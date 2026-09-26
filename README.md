@@ -140,8 +140,10 @@ return BUSY if the live set plus the new record cannot fit. Use a stable local
 filesystem that honors `fdatasync` and `fsync` for the durability guarantee.
 
 See [the RPC design notes](docs/design.md#m1--framed-kv-rpc) and
-[development baseline instructions](benchmarks/README.md). Machine-specific
-benchmark reports and raw samples remain in the local development checkout.
+[development baseline instructions](benchmarks/README.md). The initial
+[RPC baseline](benchmarks/rpc-baseline-20260924.md) and
+[WAL baseline](benchmarks/rpc-wal-baseline-20260925.md) include machine-specific
+reports and raw samples from local runs.
 
 ## Roadmap
 

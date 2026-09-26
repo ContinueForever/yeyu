@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "started_utc": "2026-09-24T11:16:41.095585+00:00",
+  "command": [
+    "benchmarks/run_baseline.py",
+    "--output-dir",
+    "benchmarks/results/rpc-local-20260924"
+  ],
+  "environment": {
+    "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+    "cpu_model": "11th Gen Intel(R) Core(TM) i7-11800H @ 2.30GHz",
+    "logical_cpus": 4,
+    "cpu_affinity": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "memory": "MemTotal:        8078756 kB",
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "load_average": [
+      0.3349609375,
+      0.30126953125,
+      0.18896484375
+    ],
+    "server_sha256": "d073cf9ab10b7542c188d5a5e9d5f36050ad5e76f873faa3815f3539d7065298",
+    "build": {
+      "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+      "CMAKE_CXX_COMPILER": "/home/wwww/.micromamba/envs/yewu/bin/x86_64-conda-linux-gnu-g++",
+      "CMAKE_CXX_FLAGS": "",
+      "CMAKE_CXX_FLAGS_DEBUG": "-g",
+      "CMAKE_CXX_FLAGS_MINSIZEREL": "-Os -DNDEBUG",
+      "CMAKE_CXX_FLAGS_RELEASE": "-O3 -DNDEBUG",
+      "CMAKE_CXX_FLAGS_RELWITHDEBINFO": "-O2 -g -DNDEBUG",
+      "YEWUKV_ENABLE_SANITIZERS": "OFF",
+      "CMAKE_CXX_FLAGS-ADVANCED": "1",
+      "CMAKE_CXX_FLAGS_DEBUG-ADVANCED": "1",
+      "CMAKE_CXX_FLAGS_MINSIZEREL-ADVANCED": "1",
+      "CMAKE_CXX_FLAGS_RELEASE-ADVANCED": "1",
+      "CMAKE_CXX_FLAGS_RELWITHDEBINFO-ADVANCED": "1"
+    },
+    "compiler_version": "x86_64-conda-linux-gnu-g++ (conda-forge gcc 14.4.0-5) 14.4.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+  },
+  "git_revision": "52f908facbc7a42e36a7e5c7d604bc0a4f2f5c9c",
+  "git_status": " M .github/workflows/ci.yml\n M .gitignore\n M CMakeLists.txt\n M README.md\n M app/CMakeLists.txt\n M app/yewukv_server.cc\n M benchmarks/README.md\n M docs/design.md\n M proto/CMakeLists.txt\n M src/common/status.cc\n M src/common/status.h\n M src/kv/server.cc\n M src/kv/server.h\n M src/net/acceptor.cc\n M src/net/acceptor.h\n M src/net/buffer.h\n M src/net/channel.cc\n M src/net/channel.h\n M src/net/event_loop.cc\n M src/net/event_loop_thread.cc\n M src/net/event_loop_thread.h\n M src/net/event_loop_thread_pool.cc\n M src/net/event_loop_thread_pool.h\n M src/net/poller.cc\n M src/net/tcp_connection.cc\n M src/net/tcp_connection.h\n M src/net/tcp_server.cc\n M src/net/tcp_server.h\n M src/rpc/CMakeLists.txt\n M src/rpc/README.md\n M tests/CMakeLists.txt\n?? app/yewukv_client.cc\n?? benchmarks/rpc_baseline.py\n?? benchmarks/run_baseline.py\n?? \"docs/\\344\\270\\213\\344\\270\\200\\346\\255\\245\\350\\241\\214\\345\\212\\250\\346\\212\\245\\345\\221\\212.md\"\n?? proto/kv.proto\n?? src/rpc/client.cc\n?? src/rpc/client.h\n?? src/rpc/frame_codec.cc\n?? src/rpc/frame_codec.h\n?? src/rpc/kv_server.cc\n?? src/rpc/kv_server.h\n?? tests/test_benchmark.py\n?? tests/test_frame_codec.cc\n?? tests/test_idle_network.py\n?? tests/test_network.py\n?? tests/test_rpc_client.cc\n?? tests/test_rpc_network.py\n?? tests/test_tcp_connection.cc\n",
+  "source_manifest_sha256": "6cf3170f642864adea1d3a7d72966af772773ae8057ad33b30e3921847b3a7ed",
+  "status": "failed",
+  "runs": [],
+  "error": "PermissionError(1, 'Operation not permitted')",
+  "finished_utc": "2026-09-24T11:16:41.153132+00:00"
+}

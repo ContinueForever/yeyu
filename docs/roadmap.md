@@ -4,7 +4,7 @@
 
 ## 当前基线
 
-代码已有 Reactor、文本协议、Protobuf RPC 客户端与服务端、有界单线程存储执行器、带 CRC 的同步 WAL、重启回放及日志回收。普通 CTest 55 项通过；WAL 的 8 项与 Raft 选举／日志规则测试在 ASan/UBSan 下通过。已有 WAL 前和 WAL 后的本机 RPC 开发基准；包含本机环境信息的报告与原始样本保留在本地。Raft 仅有网络外的选举和日志规则内核，Compose 当前仅部署单节点；没有三副本或线性一致读写的证据。
+代码已有 Reactor、文本协议、Protobuf RPC 客户端与服务端、有界单线程存储执行器、带 CRC 的同步 WAL、重启回放及日志回收。普通 CTest 55 项通过；WAL 的 8 项与 Raft 选举／日志规则测试在 ASan/UBSan 下通过。已有 WAL 前和 WAL 后的本机 RPC 开发基准，公开仓库保留了包含本机环境信息的报告与原始样本。Raft 仅有网络外的选举和日志规则内核，Compose 当前仅部署单节点；没有三副本或线性一致读写的证据。
 
 已知边界：每次写入单独 `fdatasync`；一个存储工作线程串行执行；map 无总内存配额；WAL 默认上限 1 GiB，回收要复制存活数据；没有磁盘满、真实断电、长时间负载或跨机器验收。当前 WAL 是已应用状态机的本地日志，**不是**可直接复用的 Raft term/index 日志。
 
@@ -35,7 +35,7 @@
 
 G1 的选举和日志规则内核已有确定性测试，契约见[Raft 核心契约](raft-contract.md)；持久化 Raft 日志、节点集成、传输和服务端接线尚未完成。
 
-当前 G0 核对（2026-09-26）：本地完整测试及基准完成。实际 Docker 构建发现本机 `build/` 污染构建上下文，现用 `.dockerignore` 排除。单节点 Compose 镜像已成功构建，健康检查通过；RPC 写入返回 `OK`，容器重启后、以及 `docker compose down` 后重新创建容器时，均从保留的 `node-data` 卷读取到原值。[GitHub Actions 首轮运行](https://github.com/ContinueForever/yeyu/actions/runs/36230842263)的普通构建、ASan/UBSan 构建、测试、格式检查和容器重建后的 WAL 恢复检查全部通过。公开 CI 分支只包含源码、测试、部署与设计文档；基准原始样本和本机环境报告仍仅在本地。G0 的公开复现证据还需脱敏整理，因此不宣称整个 G0 已完成。
+当前 G0 核对（2026-09-26）：本地完整测试及基准完成。实际 Docker 构建发现本机 `build/` 污染构建上下文，现用 `.dockerignore` 排除。单节点 Compose 镜像已成功构建，健康检查通过；RPC 写入返回 `OK`，容器重启后、以及 `docker compose down` 后重新创建容器时，均从保留的 `node-data` 卷读取到原值。[GitHub Actions 首轮运行](https://github.com/ContinueForever/yeyu/actions/runs/36230842263)的普通构建、ASan/UBSan 构建、测试、格式检查和容器重建后的 WAL 恢复检查全部通过。公开 CI 分支现包含两次本机基准的命令、报告与原始样本；源码压缩包因包含无关文档未公开。G0 的代码、持久恢复和 CI 门槛已通过；合并 PR 后仍应从另一台机器验证文档与基准复现。
 
 求职准备与工程主线并行：从现在开始投递和复盘；每周保留算法编码、操作系统／网络／数据库基础与系统设计练习。项目验收不能替代现场编码能力。
 

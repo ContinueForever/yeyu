@@ -60,8 +60,11 @@ The runner requires Linux `/proc`, local TCP sockets and a prebuilt server.
 For a remote server use `rpc_baseline.py` directly and separately record the
 server hardware/build/options. Optional `--samples-output` preserves raw samples.
 
-Machine-specific reports and raw artifacts from the initial local runs are
-retained in the development checkout and excluded from this public CI branch.
-Run the matrix above to collect new evidence on your own machine. Compare
-versions only with the same script, workload and runtime; a whole-server
-version comparison is not an isolated WAL A/B experiment.
+The [2026-09-24 report](rpc-baseline-20260924.md) links the initial collected
+baseline, which predates the WAL. Compare new results against it only as a
+change in the whole server configuration, not as a like-for-like storage result.
+The [2026-09-25 WAL report](rpc-wal-baseline-20260925.md) records the first
+durable-write run with the same workload and its raw evidence.
+The original source archives are omitted from the public repository because
+they also contain unrelated documents; the source hash manifests remain for
+provenance. New runs can create their own snapshots with `run_baseline.py`.

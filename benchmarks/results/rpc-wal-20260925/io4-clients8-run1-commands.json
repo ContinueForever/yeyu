@@ -1,0 +1,35 @@
+{
+  "server": [
+    "/home/wwww/yewu/build/bin/yewukv-server",
+    "--port",
+    "58275",
+    "--protocol",
+    "rpc",
+    "--io-threads",
+    "4",
+    "--idle-timeout",
+    "60",
+    "--data-dir",
+    "/home/wwww/yewu/benchmarks/results/rpc-wal-20260925/io4-clients8-run1-data"
+  ],
+  "client": [
+    "/usr/bin/python3",
+    "/home/wwww/yewu/benchmarks/rpc_baseline.py",
+    "--port",
+    "58275",
+    "--clients",
+    "8",
+    "--ops-per-client",
+    "5000",
+    "--warmup-ops",
+    "100",
+    "--value-size",
+    "128",
+    "--write-percent",
+    "50",
+    "--output",
+    "/home/wwww/yewu/benchmarks/results/rpc-wal-20260925/io4-clients8-run1.json",
+    "--samples-output",
+    "/home/wwww/yewu/benchmarks/results/rpc-wal-20260925/io4-clients8-run1-samples.json"
+  ]
+}
