@@ -1,0 +1,28 @@
+# build
+build/
+build-asan/
+cmake-build-*/
+*.o
+*.a
+compile_commands.json
+
+# caches
+.cache/
+.ccache/
+__pycache__/
+*.pyc
+*.log
+core
+core.*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# data/runtime
+data/
+*.wal
+*.sst
+benchmarks/results/*
+!benchmarks/results/README.md

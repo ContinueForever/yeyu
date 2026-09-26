@@ -1,0 +1,12 @@
+Checks: >
+  -*,
+  bugprone-*,
+  performance-*,
+  modernize-use-nullptr,
+  modernize-use-override,
+  misc-definitions-in-headers
+CheckOptions:
+  - key: readability-identifier-naming.FunctionCase
+    value: lower_case
+WarningsAsErrors: ''
+HeaderFilterRegex: 'src/.*'

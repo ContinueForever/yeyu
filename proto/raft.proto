@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package yewukv.raft;
+
+// Wire messages for the Raft layer (M3). Keeping the schema here early lets the
+// protobuf code-generation pipeline be validated from day one.
+
+message Entry {
+  enum Type {
+    NORMAL = 0;
+    CONFIG = 1; // membership change (M4)
+  }
+  Type type = 1;
+  uint64 term = 2;
+  uint64 index = 3;
+  bytes data = 4; // serialized KV command
+}
+
+message RequestVoteRequest {
+  uint64 term = 1;
+  uint64 candidate_id = 2;
+  uint64 last_log_index = 3;
+  uint64 last_log_term = 4;
+  bool pre_vote = 5; // M4: prevent disruptive servers
+}
+
+message RequestVoteResponse {
+  uint64 term = 1;
+  bool vote_granted = 2;
+}
+
+message AppendEntriesRequest {
+  uint64 term = 1;
+  uint64 leader_id = 2;
+  uint64 prev_log_index = 3;
+  uint64 prev_log_term = 4;
+  repeated Entry entries = 5;
+  uint64 leader_commit = 6;
+}
+
+message AppendEntriesResponse {
+  uint64 term = 1;
+  bool success = 2;
+  uint64 conflict_index = 3; // hint for fast backtrack
+  uint64 conflict_term = 4;
+}

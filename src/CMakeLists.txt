@@ -1,0 +1,6 @@
+add_subdirectory(common)
+add_subdirectory(net)
+add_subdirectory(rpc)
+add_subdirectory(storage)
+add_subdirectory(raft)
+add_subdirectory(kv)
