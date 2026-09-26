@@ -1,0 +1,531 @@
+{
+  "version": 1,
+  "started_utc": "2026-09-25T13:37:28.146688+00:00",
+  "command": [
+    "benchmarks/run_baseline.py",
+    "--output-dir",
+    "benchmarks/results/rpc-wal-20260925"
+  ],
+  "environment": {
+    "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+    "cpu_model": "11th Gen Intel(R) Core(TM) i7-11800H @ 2.30GHz",
+    "logical_cpus": 4,
+    "cpu_affinity": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "memory": "MemTotal:        8078728 kB",
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "load_average": [
+      0.40185546875,
+      0.2607421875,
+      0.20166015625
+    ],
+    "server_sha256": "c9795b53b63b679195745c28a339a2752fc18b005defdcb074c6d07ca2ea0c27",
+    "build": {
+      "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+      "CMAKE_CXX_COMPILER": "/home/wwww/.micromamba/envs/yewu/bin/x86_64-conda-linux-gnu-g++",
+      "CMAKE_CXX_FLAGS": "",
+      "CMAKE_CXX_FLAGS_DEBUG": "-g",
+      "CMAKE_CXX_FLAGS_MINSIZEREL": "-Os -DNDEBUG",
+      "CMAKE_CXX_FLAGS_RELEASE": "-O3 -DNDEBUG",
+      "CMAKE_CXX_FLAGS_RELWITHDEBINFO": "-O2 -g -DNDEBUG",
+      "YEWUKV_ENABLE_SANITIZERS": "OFF",
+      "CMAKE_CXX_FLAGS-ADVANCED": "1",
+      "CMAKE_CXX_FLAGS_DEBUG-ADVANCED": "1",
+      "CMAKE_CXX_FLAGS_MINSIZEREL-ADVANCED": "1",
+      "CMAKE_CXX_FLAGS_RELEASE-ADVANCED": "1",
+      "CMAKE_CXX_FLAGS_RELWITHDEBINFO-ADVANCED": "1"
+    },
+    "compiler_version": "x86_64-conda-linux-gnu-g++ (conda-forge gcc 14.4.0-5) 14.4.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+  },
+  "git_revision": "52f908facbc7a42e36a7e5c7d604bc0a4f2f5c9c",
+  "git_status": " M .github/workflows/ci.yml\n M .gitignore\n M CMakeLists.txt\n M README.md\n M app/CMakeLists.txt\n M app/yewukv_server.cc\n M benchmarks/README.md\n M deploy/Dockerfile\n M deploy/docker-compose.yml\n M docs/design.md\n M proto/CMakeLists.txt\n M src/common/status.cc\n M src/common/status.h\n M src/kv/server.cc\n M src/kv/server.h\n M src/kv/text_protocol.h\n M src/net/acceptor.cc\n M src/net/acceptor.h\n M src/net/buffer.h\n M src/net/channel.cc\n M src/net/channel.h\n M src/net/event_loop.cc\n M src/net/event_loop_thread.cc\n M src/net/event_loop_thread.h\n M src/net/event_loop_thread_pool.cc\n M src/net/event_loop_thread_pool.h\n M src/net/poller.cc\n M src/net/tcp_connection.cc\n M src/net/tcp_connection.h\n M src/net/tcp_server.cc\n M src/net/tcp_server.h\n M src/rpc/CMakeLists.txt\n M src/rpc/README.md\n M src/storage/CMakeLists.txt\n M src/storage/engine.h\n M src/storage/mem_engine.cc\n M src/storage/mem_engine.h\n M tests/CMakeLists.txt\n?? app/yewukv_client.cc\n?? benchmarks/results/\n?? benchmarks/rpc-baseline-20260924.md\n?? benchmarks/rpc_baseline.py\n?? benchmarks/run_baseline.py\n?? docs/roadmap.md\n?? \"docs/\\344\\270\\213\\344\\270\\200\\346\\255\\245\\350\\241\\214\\345\\212\\250\\346\\212\\245\\345\\221\\212.md\"\n?? proto/kv.proto\n?? src/rpc/client.cc\n?? src/rpc/client.h\n?? src/rpc/frame_codec.cc\n?? src/rpc/frame_codec.h\n?? src/rpc/kv_server.cc\n?? src/rpc/kv_server.h\n?? src/storage/executor.cc\n?? src/storage/executor.h\n?? src/storage/wal_engine.cc\n?? src/storage/wal_engine.h\n?? tests/test_benchmark.py\n?? tests/test_frame_codec.cc\n?? tests/test_idle_network.py\n?? tests/test_network.py\n?? tests/test_rpc_client.cc\n?? tests/test_rpc_network.py\n?? tests/test_storage_executor.cc\n?? tests/test_storage_server.cc\n?? tests/test_tcp_connection.cc\n?? tests/test_wal_engine.cc\n?? tests/test_wal_recovery.py\n",
+  "source_manifest_sha256": "d9bc6be550478ea59346dc65b107da7c65c58ac625841a02ae43188763e8eef6",
+  "status": "complete",
+  "runs": [
+    {
+      "version": 2,
+      "timestamp_utc": "2026-09-25T13:37:30.307232+00:00",
+      "git_revision": "52f908facbc7a42e36a7e5c7d604bc0a4f2f5c9c",
+      "working_tree_dirty": true,
+      "host": "127.0.0.1",
+      "port": 33333,
+      "clients": 1,
+      "operations": 5000,
+      "ops_per_client": 5000,
+      "warmup_ops_per_client": 100,
+      "timeout_seconds": 5.0,
+      "completed_puts": 2500,
+      "completed_gets": 2500,
+      "samples_file": "/home/wwww/yewu/benchmarks/results/rpc-wal-20260925/io0-clients1-run1-samples.json",
+      "write_percent": 50,
+      "value_size_bytes": 128,
+      "elapsed_seconds": 1.97616832,
+      "throughput_ops_per_second": 2530.1,
+      "latency_ms": {
+        "p50": 0.491,
+        "p95": 0.728,
+        "p99": 1.026
+      },
+      "machine": {
+        "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+        "logical_cpus": 4,
+        "python": "3.12.3",
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "note": "Python threaded closed-loop client; one outstanding RPC and one hot key per connection. Not a server saturation benchmark.",
+      "io_threads": 0,
+      "repeat": 1,
+      "raw_file": "io0-clients1-run1.json"
+    },
+    {
+      "version": 2,
+      "timestamp_utc": "2026-09-25T13:37:32.410224+00:00",
+      "git_revision": "52f908facbc7a42e36a7e5c7d604bc0a4f2f5c9c",
+      "working_tree_dirty": true,
+      "host": "127.0.0.1",
+      "port": 44577,
+      "clients": 1,
+      "operations": 5000,
+      "ops_per_client": 5000,
+      "warmup_ops_per_client": 100,
+      "timeout_seconds": 5.0,
+      "completed_puts": 2500,
+      "completed_gets": 2500,
+      "samples_file": "/home/wwww/yewu/benchmarks/results/rpc-wal-20260925/io4-clients1-run1-samples.json",
+      "write_percent": 50,
+      "value_size_bytes": 128,
+      "elapsed_seconds": 1.950464272,
+      "throughput_ops_per_second": 2563.5,
+      "latency_ms": {
+        "p50": 0.524,
+        "p95": 0.714,
+        "p99": 0.842
+      },
+      "machine": {
+        "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+        "logical_cpus": 4,
+        "python": "3.12.3",
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "note": "Python threaded closed-loop client; one outstanding RPC and one hot key per connection. Not a server saturation benchmark.",
+      "io_threads": 4,
+      "repeat": 1,
+      "raw_file": "io4-clients1-run1.json"
+    },
+    {
+      "version": 2,
+      "timestamp_utc": "2026-09-25T13:37:44.058746+00:00",
+      "git_revision": "52f908facbc7a42e36a7e5c7d604bc0a4f2f5c9c",
+      "working_tree_dirty": true,
+      "host": "127.0.0.1",
+      "port": 56717,
+      "clients": 8,
+      "operations": 40000,
+      "ops_per_client": 5000,
+      "warmup_ops_per_client": 100,
+      "timeout_seconds": 5.0,
+      "completed_puts": 20000,
+      "completed_gets": 20000,
+      "samples_file": "/home/wwww/yewu/benchmarks/results/rpc-wal-20260925/io0-clients8-run1-samples.json",
+      "write_percent": 50,
+      "value_size_bytes": 128,
+      "elapsed_seconds": 11.280646729,
+      "throughput_ops_per_second": 3545.9,
+      "latency_ms": {
+        "p50": 2.151,
+        "p95": 4.026,
+        "p99": 4.499
+      },
+      "machine": {
+        "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+        "logical_cpus": 4,
+        "python": "3.12.3",
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "note": "Python threaded closed-loop client; one outstanding RPC and one hot key per connection. Not a server saturation benchmark.",
+      "io_threads": 0,
+      "repeat": 1,
+      "raw_file": "io0-clients8-run1.json"
+    },
+    {
+      "version": 2,
+      "timestamp_utc": "2026-09-25T13:37:55.441834+00:00",
+      "git_revision": "52f908facbc7a42e36a7e5c7d604bc0a4f2f5c9c",
+      "working_tree_dirty": true,
+      "host": "127.0.0.1",
+      "port": 58275,
+      "clients": 8,
+      "operations": 40000,
+      "ops_per_client": 5000,
+      "warmup_ops_per_client": 100,
+      "timeout_seconds": 5.0,
+      "completed_puts": 20000,
+      "completed_gets": 20000,
+      "samples_file": "/home/wwww/yewu/benchmarks/results/rpc-wal-20260925/io4-clients8-run1-samples.json",
+      "write_percent": 50,
+      "value_size_bytes": 128,
+      "elapsed_seconds": 10.996599835,
+      "throughput_ops_per_second": 3637.5,
+      "latency_ms": {
+        "p50": 2.053,
+        "p95": 3.813,
+        "p99": 4.25
+      },
+      "machine": {
+        "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+        "logical_cpus": 4,
+        "python": "3.12.3",
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "note": "Python threaded closed-loop client; one outstanding RPC and one hot key per connection. Not a server saturation benchmark.",
+      "io_threads": 4,
+      "repeat": 1,
+      "raw_file": "io4-clients8-run1.json"
+    },
+    {
+      "version": 2,
+      "timestamp_utc": "2026-09-25T13:37:57.568365+00:00",
+      "git_revision": "52f908facbc7a42e36a7e5c7d604bc0a4f2f5c9c",
+      "working_tree_dirty": true,
+      "host": "127.0.0.1",
+      "port": 40505,
+      "clients": 1,
+      "operations": 5000,
+      "ops_per_client": 5000,
+      "warmup_ops_per_client": 100,
+      "timeout_seconds": 5.0,
+      "completed_puts": 2500,
+      "completed_gets": 2500,
+      "samples_file": "/home/wwww/yewu/benchmarks/results/rpc-wal-20260925/io0-clients1-run2-samples.json",
+      "write_percent": 50,
+      "value_size_bytes": 128,
+      "elapsed_seconds": 1.979360305,
+      "throughput_ops_per_second": 2526.1,
+      "latency_ms": {
+        "p50": 0.536,
+        "p95": 0.731,
+        "p99": 0.916
+      },
+      "machine": {
+        "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+        "logical_cpus": 4,
+        "python": "3.12.3",
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "note": "Python threaded closed-loop client; one outstanding RPC and one hot key per connection. Not a server saturation benchmark.",
+      "io_threads": 0,
+      "repeat": 2,
+      "raw_file": "io0-clients1-run2.json"
+    },
+    {
+      "version": 2,
+      "timestamp_utc": "2026-09-25T13:37:59.710309+00:00",
+      "git_revision": "52f908facbc7a42e36a7e5c7d604bc0a4f2f5c9c",
+      "working_tree_dirty": true,
+      "host": "127.0.0.1",
+      "port": 39355,
+      "clients": 1,
+      "operations": 5000,
+      "ops_per_client": 5000,
+      "warmup_ops_per_client": 100,
+      "timeout_seconds": 5.0,
+      "completed_puts": 2500,
+      "completed_gets": 2500,
+      "samples_file": "/home/wwww/yewu/benchmarks/results/rpc-wal-20260925/io4-clients1-run2-samples.json",
+      "write_percent": 50,
+      "value_size_bytes": 128,
+      "elapsed_seconds": 1.976471224,
+      "throughput_ops_per_second": 2529.8,
+      "latency_ms": {
+        "p50": 0.533,
+        "p95": 0.722,
+        "p99": 0.873
+      },
+      "machine": {
+        "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+        "logical_cpus": 4,
+        "python": "3.12.3",
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "note": "Python threaded closed-loop client; one outstanding RPC and one hot key per connection. Not a server saturation benchmark.",
+      "io_threads": 4,
+      "repeat": 2,
+      "raw_file": "io4-clients1-run2.json"
+    },
+    {
+      "version": 2,
+      "timestamp_utc": "2026-09-25T13:38:11.150957+00:00",
+      "git_revision": "52f908facbc7a42e36a7e5c7d604bc0a4f2f5c9c",
+      "working_tree_dirty": true,
+      "host": "127.0.0.1",
+      "port": 45077,
+      "clients": 8,
+      "operations": 40000,
+      "ops_per_client": 5000,
+      "warmup_ops_per_client": 100,
+      "timeout_seconds": 5.0,
+      "completed_puts": 20000,
+      "completed_gets": 20000,
+      "samples_file": "/home/wwww/yewu/benchmarks/results/rpc-wal-20260925/io0-clients8-run2-samples.json",
+      "write_percent": 50,
+      "value_size_bytes": 128,
+      "elapsed_seconds": 11.04743468,
+      "throughput_ops_per_second": 3620.8,
+      "latency_ms": {
+        "p50": 2.096,
+        "p95": 3.933,
+        "p99": 4.494
+      },
+      "machine": {
+        "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+        "logical_cpus": 4,
+        "python": "3.12.3",
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "note": "Python threaded closed-loop client; one outstanding RPC and one hot key per connection. Not a server saturation benchmark.",
+      "io_threads": 0,
+      "repeat": 2,
+      "raw_file": "io0-clients8-run2.json"
+    },
+    {
+      "version": 2,
+      "timestamp_utc": "2026-09-25T13:38:22.764190+00:00",
+      "git_revision": "52f908facbc7a42e36a7e5c7d604bc0a4f2f5c9c",
+      "working_tree_dirty": true,
+      "host": "127.0.0.1",
+      "port": 36735,
+      "clients": 8,
+      "operations": 40000,
+      "ops_per_client": 5000,
+      "warmup_ops_per_client": 100,
+      "timeout_seconds": 5.0,
+      "completed_puts": 20000,
+      "completed_gets": 20000,
+      "samples_file": "/home/wwww/yewu/benchmarks/results/rpc-wal-20260925/io4-clients8-run2-samples.json",
+      "write_percent": 50,
+      "value_size_bytes": 128,
+      "elapsed_seconds": 11.250873935,
+      "throughput_ops_per_second": 3555.3,
+      "latency_ms": {
+        "p50": 2.162,
+        "p95": 3.926,
+        "p99": 4.388
+      },
+      "machine": {
+        "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+        "logical_cpus": 4,
+        "python": "3.12.3",
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "note": "Python threaded closed-loop client; one outstanding RPC and one hot key per connection. Not a server saturation benchmark.",
+      "io_threads": 4,
+      "repeat": 2,
+      "raw_file": "io4-clients8-run2.json"
+    },
+    {
+      "version": 2,
+      "timestamp_utc": "2026-09-25T13:38:24.874982+00:00",
+      "git_revision": "52f908facbc7a42e36a7e5c7d604bc0a4f2f5c9c",
+      "working_tree_dirty": true,
+      "host": "127.0.0.1",
+      "port": 59685,
+      "clients": 1,
+      "operations": 5000,
+      "ops_per_client": 5000,
+      "warmup_ops_per_client": 100,
+      "timeout_seconds": 5.0,
+      "completed_puts": 2500,
+      "completed_gets": 2500,
+      "samples_file": "/home/wwww/yewu/benchmarks/results/rpc-wal-20260925/io0-clients1-run3-samples.json",
+      "write_percent": 50,
+      "value_size_bytes": 128,
+      "elapsed_seconds": 1.967020013,
+      "throughput_ops_per_second": 2541.9,
+      "latency_ms": {
+        "p50": 0.539,
+        "p95": 0.722,
+        "p99": 0.871
+      },
+      "machine": {
+        "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+        "logical_cpus": 4,
+        "python": "3.12.3",
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "note": "Python threaded closed-loop client; one outstanding RPC and one hot key per connection. Not a server saturation benchmark.",
+      "io_threads": 0,
+      "repeat": 3,
+      "raw_file": "io0-clients1-run3.json"
+    },
+    {
+      "version": 2,
+      "timestamp_utc": "2026-09-25T13:38:26.980953+00:00",
+      "git_revision": "52f908facbc7a42e36a7e5c7d604bc0a4f2f5c9c",
+      "working_tree_dirty": true,
+      "host": "127.0.0.1",
+      "port": 48941,
+      "clients": 1,
+      "operations": 5000,
+      "ops_per_client": 5000,
+      "warmup_ops_per_client": 100,
+      "timeout_seconds": 5.0,
+      "completed_puts": 2500,
+      "completed_gets": 2500,
+      "samples_file": "/home/wwww/yewu/benchmarks/results/rpc-wal-20260925/io4-clients1-run3-samples.json",
+      "write_percent": 50,
+      "value_size_bytes": 128,
+      "elapsed_seconds": 1.981391797,
+      "throughput_ops_per_second": 2523.5,
+      "latency_ms": {
+        "p50": 0.532,
+        "p95": 0.729,
+        "p99": 0.926
+      },
+      "machine": {
+        "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+        "logical_cpus": 4,
+        "python": "3.12.3",
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "note": "Python threaded closed-loop client; one outstanding RPC and one hot key per connection. Not a server saturation benchmark.",
+      "io_threads": 4,
+      "repeat": 3,
+      "raw_file": "io4-clients1-run3.json"
+    },
+    {
+      "version": 2,
+      "timestamp_utc": "2026-09-25T13:38:38.750498+00:00",
+      "git_revision": "52f908facbc7a42e36a7e5c7d604bc0a4f2f5c9c",
+      "working_tree_dirty": true,
+      "host": "127.0.0.1",
+      "port": 40951,
+      "clients": 8,
+      "operations": 40000,
+      "ops_per_client": 5000,
+      "warmup_ops_per_client": 100,
+      "timeout_seconds": 5.0,
+      "completed_puts": 20000,
+      "completed_gets": 20000,
+      "samples_file": "/home/wwww/yewu/benchmarks/results/rpc-wal-20260925/io0-clients8-run3-samples.json",
+      "write_percent": 50,
+      "value_size_bytes": 128,
+      "elapsed_seconds": 11.359917679,
+      "throughput_ops_per_second": 3521.2,
+      "latency_ms": {
+        "p50": 2.232,
+        "p95": 4.008,
+        "p99": 4.375
+      },
+      "machine": {
+        "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+        "logical_cpus": 4,
+        "python": "3.12.3",
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "note": "Python threaded closed-loop client; one outstanding RPC and one hot key per connection. Not a server saturation benchmark.",
+      "io_threads": 0,
+      "repeat": 3,
+      "raw_file": "io0-clients8-run3.json"
+    },
+    {
+      "version": 2,
+      "timestamp_utc": "2026-09-25T13:38:49.839514+00:00",
+      "git_revision": "52f908facbc7a42e36a7e5c7d604bc0a4f2f5c9c",
+      "working_tree_dirty": true,
+      "host": "127.0.0.1",
+      "port": 32949,
+      "clients": 8,
+      "operations": 40000,
+      "ops_per_client": 5000,
+      "warmup_ops_per_client": 100,
+      "timeout_seconds": 5.0,
+      "completed_puts": 20000,
+      "completed_gets": 20000,
+      "samples_file": "/home/wwww/yewu/benchmarks/results/rpc-wal-20260925/io4-clients8-run3-samples.json",
+      "write_percent": 50,
+      "value_size_bytes": 128,
+      "elapsed_seconds": 10.70048853,
+      "throughput_ops_per_second": 3738.1,
+      "latency_ms": {
+        "p50": 2.085,
+        "p95": 3.81,
+        "p99": 4.188
+      },
+      "machine": {
+        "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+        "logical_cpus": 4,
+        "python": "3.12.3",
+        "cpu_affinity": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "note": "Python threaded closed-loop client; one outstanding RPC and one hot key per connection. Not a server saturation benchmark.",
+      "io_threads": 4,
+      "repeat": 3,
+      "raw_file": "io4-clients8-run3.json"
+    }
+  ],
+  "finished_utc": "2026-09-25T13:38:49.874848+00:00"
+}

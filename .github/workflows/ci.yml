@@ -1,0 +1,44 @@
+name: ci
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  build-test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      matrix:
+        sanitizers: ["OFF", "ON"]
+    env:
+      ASAN_OPTIONS: detect_leaks=1:halt_on_error=1
+      UBSAN_OPTIONS: halt_on_error=1:print_stacktrace=1
+    steps:
+      - uses: actions/checkout@v4
+      - name: install deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y g++ cmake ninja-build \
+            protobuf-compiler libprotobuf-dev libgtest-dev python3
+      - name: configure
+        run: cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Debug -DYEWUKV_ENABLE_SANITIZERS=${{ matrix.sanitizers }}
+      - name: build
+        run: cmake --build build -j$(nproc)
+      - name: test
+        run: ctest --test-dir build --output-on-failure
+      - name: clang-format check
+        run: |
+          if command -v clang-format >/dev/null; then
+            files=$(git ls-files '*.cc' '*.h')
+            [ -z "$files" ] || clang-format --dry-run --Werror $files
+          fi
+  compose-durability:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Docker versions
+        run: |
+          docker version
+          docker compose version
+      - name: Build and verify WAL recovery across container recreation
+        run: scripts/ci-compose-smoke.sh
