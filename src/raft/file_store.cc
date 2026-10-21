@@ -215,7 +215,7 @@ void FileStore::Recover() {
     if (!status.ok()) throw std::runtime_error(status.ToString());
     return;
   }
-  struct stat info{};
+  struct stat info {};
   CheckIO(::fstat(fd.get(), &info) == 0, "stat Raft state");
   Require(S_ISREG(info.st_mode), "state is not a regular file");
   Require(info.st_size >= static_cast<off_t>(kHeaderBytes + kChecksumBytes) &&

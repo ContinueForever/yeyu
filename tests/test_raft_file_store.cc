@@ -319,9 +319,7 @@ TEST(RaftFileStore, RejectsInvalidConfigurationAndOversizedPublishedImage) {
   options.max_state_bytes = FileStore::kMaxStateBytes + 1;
   EXPECT_THROW(FileStore store(directory.path(), options), std::invalid_argument);
   EXPECT_THROW(FileStore store(""), std::invalid_argument);
-  {
-    FileStore store(directory.path());
-  }
+  { FileStore store(directory.path()); }
   ASSERT_EQ(::truncate(directory.file().c_str(), FileStore::kMaxStateBytes + 1), 0);
   EXPECT_THROW(FileStore store(directory.path()), std::runtime_error);
 }
