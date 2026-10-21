@@ -1,0 +1,13 @@
+Test project /home/hermes/yeyu/source/build-asan
+    Start 101: cluster_snapshot_runtime
+    Start 102: cluster_resource_runtime
+1/4 Test #102: cluster_resource_runtime .........   Passed    9.95 sec
+    Start  98: cluster_failover_recovery
+2/4 Test  #98: cluster_failover_recovery ........   Passed    8.18 sec
+    Start 103: cluster_fault_campaign_smoke
+3/4 Test #103: cluster_fault_campaign_smoke .....   Passed    6.93 sec
+4/4 Test #101: cluster_snapshot_runtime .........   Passed   55.17 sec
+
+100% tests passed, 0 tests failed out of 4
+
+Total Test time (real) =  55.17 sec

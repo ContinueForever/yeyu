@@ -7,9 +7,16 @@
 .idea
 build/
 build-asan/
+build-*/
 cmake-build-*/
 benchmarks/results/
+benchmarks/published/
+cluster-runtime/
 data/
+raft.state*
+cluster.identity
+.env
+.env.*
 __pycache__/
 *.pyc
 *.o

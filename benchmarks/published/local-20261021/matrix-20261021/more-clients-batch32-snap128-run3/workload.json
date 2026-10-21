@@ -1,0 +1,9 @@
+{
+  "clients": 16,
+  "write_percent": 50,
+  "value_size": 128,
+  "keys_per_client": 8,
+  "duration_seconds": 10.0,
+  "snapshot_entries": 128,
+  "snapshot_bytes": 1048576
+}

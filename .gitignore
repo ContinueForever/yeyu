@@ -1,6 +1,7 @@
 # build
 build/
 build-asan/
+build-*/
 cmake-build-*/
 *.o
 *.a
@@ -22,7 +23,16 @@ core.*
 
 # data/runtime
 data/
+cluster-runtime/
+raft.state*
+cluster.identity
+LOCK
 *.wal
 *.sst
+.env
+.env.*
 benchmarks/results/*
 !benchmarks/results/README.md
+
+# Curated public acceptance logs (runtime data remain ignored).
+!benchmarks/published/**/*.log

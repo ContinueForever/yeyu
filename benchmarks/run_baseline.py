@@ -35,7 +35,7 @@ def source_snapshot(output):
         for name in sorted(set(paths)):
             path = ROOT / name
             # Results and old result snapshots are never inputs to the build.
-            if not name or name.startswith("benchmarks/results/") or not path.is_file():
+            if not name or name.startswith(("benchmarks/results/", "benchmarks/published/")) or not path.is_file():
                 continue
             if output == path or output in path.parents:
                 continue

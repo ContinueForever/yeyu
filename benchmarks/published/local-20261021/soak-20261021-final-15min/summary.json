@@ -1,0 +1,63 @@
+{
+  "command": [
+    "scripts/cluster-soak.py",
+    "--node",
+    "build/bin/yewukv-node",
+    "--client",
+    "build/bin/yewukv-client",
+    "--duration-seconds",
+    "900",
+    "--output",
+    "benchmarks/results/soak-20261021-final-15min"
+  ],
+  "environment": {
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.43",
+    "cpu_model": "11th Gen Intel(R) Core(TM) i7-11800H @ 2.30GHz",
+    "logical_cpus": 4,
+    "cpu_affinity": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "memory": "MemTotal:        8141388 kB",
+    "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+    "load_average": [
+      1.41455078125,
+      1.2138671875,
+      1.0
+    ],
+    "server_sha256": "afda2098f33fb7013446aef349fe977b7f576cd1f47b24f7a64fc6122a52cfc0",
+    "build": {
+      "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+      "CMAKE_CXX_COMPILER": "/usr/bin/c++",
+      "CMAKE_CXX_FLAGS": "",
+      "CMAKE_CXX_FLAGS_DEBUG": "-g",
+      "CMAKE_CXX_FLAGS_MINSIZEREL": "-Os -DNDEBUG",
+      "CMAKE_CXX_FLAGS_RELEASE": "-O3 -DNDEBUG",
+      "CMAKE_CXX_FLAGS_RELWITHDEBINFO": "-O2 -g -DNDEBUG",
+      "YEWUKV_ENABLE_SANITIZERS": "OFF",
+      "CMAKE_CXX_FLAGS-ADVANCED": "1",
+      "CMAKE_CXX_FLAGS_DEBUG-ADVANCED": "1",
+      "CMAKE_CXX_FLAGS_MINSIZEREL-ADVANCED": "1",
+      "CMAKE_CXX_FLAGS_RELEASE-ADVANCED": "1",
+      "CMAKE_CXX_FLAGS_RELWITHDEBINFO-ADVANCED": "1"
+    },
+    "compiler_version": "c++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+  },
+  "source_manifest_sha256": "1a60ee415cc65c478458cffc740610a5fb118d8fe9484d8bce327cb1b37050f6",
+  "status": "complete",
+  "note": "Three loopback processes on one host. Fresh per-epoch keys; exhaustive per-key oracle <=9 operations/key.",
+  "elapsed_seconds": 900.7993857450001,
+  "epochs": 948,
+  "attempted_operations": 51192,
+  "checked_operations": 50970,
+  "unknown_writes": 794,
+  "fault_counts": {
+    "all-restart": 189,
+    "directed-partition": 190,
+    "follower-partition": 190,
+    "leader-kill": 190,
+    "link-delay": 189
+  }
+}

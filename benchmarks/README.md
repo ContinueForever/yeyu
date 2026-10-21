@@ -1,4 +1,8 @@
-# benchmarks (M6)
+# Benchmarks and experiment evidence
+
+The [2026-10-21 acceptance report](../docs/local-acceptance-20261021.md)
+describes the current snapshot cluster. Its [published evidence](published/local-20261021/README.md)
+includes raw latency samples, all 948 fault histories and SHA-256 checksums.
 
 M1 single-node RPC development baseline (run the server with `--protocol rpc`):
 
@@ -13,10 +17,6 @@ throughput plus P50/P95/P99 latency, run parameters, machine details and Git
 revision. Client and server share a host, so these figures are development
 baselines rather than cluster or production performance claims.
 
-- `ycsb/` — YCSB workloads A–F against the cluster; record hardware, version,
-  parameters, P50/P95/P99 and throughput.
-- `e2e_writer.py` — monotonic-sequence writer/verifier used for RPO checks
-  across leader kill / partition chaos runs.
 - All numbers must be reproducible; VM-local numbers are development-only.
 
 ## Reproducible local matrix
@@ -52,7 +52,7 @@ Each output directory contains:
 - Server/client logs and command files, including failures. A failed run leaves
   `status: failed` and does not produce a successful summary.
 - `source.tar.gz` and `source-manifest.json`: actual working-tree source snapshot
-  and file hashes, including untracked source. Prior results are excluded. This
+  and file hashes, including untracked source. Generated and published results are excluded. This
   identifies code more precisely than HEAD when the working tree is dirty.
 
 Choose a new output directory for every run; existing results are never replaced.
@@ -68,3 +68,40 @@ durable-write run with the same workload and its raw evidence.
 The original source archives are omitted from the public repository because
 they also contain unrelated documents; the source hash manifests remain for
 provenance. New runs can create their own snapshots with `run_baseline.py`.
+
+
+## Snapshot cluster matrix and fault campaign
+
+`cluster_matrix.py` runs fresh three-node clusters and multiprocess load generators.
+The default seven profiles vary concurrency, PUT proportion, active keys and value size;
+all GETs check the current value in a disjoint per-client keyspace. Timed work excludes
+preload and 20 warmup GETs per client. Raw gzip JSON contains `latency_ns` and
+`completed_offset_ns`; `timeline.json` records one-second throughput/latency windows.
+CPU, sampled RSS, published file size, persistence bytes and snapshot counters are retained.
+
+```bash
+python3 benchmarks/cluster_matrix.py --node build/bin/yewukv-node \
+  --duration-seconds 10 --repeats 3 --output benchmarks/results/my-matrix
+# Same binary, identical workload, interleaved snapshot threshold comparison.
+# The large thresholds suppress snapshots only within this bounded experiment.
+python3 benchmarks/cluster_matrix.py --node build/bin/yewukv-node \
+  --profiles balanced --duration-seconds 10 --repeats 3 \
+  --snapshot-entries 128,1000000000 --snapshot-bytes 67108864 \
+  --output benchmarks/results/my-snapshot-ab
+python3 scripts/cluster-soak.py --node build/bin/yewukv-node \
+  --client build/bin/yewukv-client --duration-seconds 900 \
+  --output benchmarks/results/my-soak
+```
+
+Outputs must be new directories. Each experiment retains commands, binary/source
+identity and raw evidence. A failed run aborts the matrix and remains recorded.
+P99 summaries are medians of run P99s, not pooled percentiles. Resource counters
+include a short replication drain; the completion latency interval does not.
+Partial final timeline windows should not be compared with full one-second windows.
+All nodes and clients share a host; no server saturation or cross-host claim follows.
+
+Fault campaigns use fresh per-epoch keys so the exhaustive per-key checker remains
+bounded without dropping same-key dependencies. Unknown writes remain optional,
+unbounded-completion operations. Real-process seed values reproduce the scenario
+choices; OS scheduling remains nondeterministic. Logical core tests are separately
+reproducible with fixed message/tick seeds.

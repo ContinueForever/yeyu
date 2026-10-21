@@ -1,0 +1,29 @@
+{
+  "acknowledged_puts": 18,
+  "recovered_state": {
+    "id": 1,
+    "role": "follower",
+    "term": 1,
+    "leader_id": 3,
+    "last_index": 38,
+    "commit_index": 38,
+    "applied_index": 38,
+    "pending": 0,
+    "keys": 19,
+    "disk_saves": 2,
+    "disk_bytes": 8906,
+    "disk_persist_ns": 162325,
+    "snapshot_index": 38,
+    "snapshot_bytes": 3867,
+    "live_snapshot_bytes": 3867,
+    "retained_entries": 0,
+    "retained_log_bytes": 0,
+    "state_bytes": 3927,
+    "snapshots_saved": 1,
+    "snapshots_installed": 0,
+    "busy_rejections": 0,
+    "completed_commands": 37,
+    "quorum_timeouts": 0
+  },
+  "checked": true
+}

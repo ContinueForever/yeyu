@@ -25,6 +25,21 @@ jobs:
         run: cmake --build build -j$(nproc)
       - name: test
         run: ctest --test-dir build --output-on-failure
+      - name: Retain test and cluster history evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-evidence-sanitizers-${{ matrix.sanitizers }}
+          path: |
+            build/Testing/Temporary/LastTest.log
+            build/Testing/Temporary/LastTestsFailed.log
+            build/cluster-history.json
+            build/cluster-evidence/
+            build/tests/soak-evidence/
+          if-no-files-found: ignore
+      - name: Verify published experiment evidence
+        if: matrix.sanitizers == 'OFF'
+        run: python3 scripts/verify-evidence.py benchmarks/published/local-20261021
       - name: clang-format check
         run: |
           if command -v clang-format >/dev/null; then
