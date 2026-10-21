@@ -27,6 +27,7 @@ class TcpConnection : public std::enable_shared_from_this<TcpConnection> {
   static constexpr size_t kMaxRequestBytes = 64 * 1024;  // Includes the text protocol's newline.
   static constexpr size_t kMaxInputBytes = 128 * 1024;
   static constexpr size_t kMaxOutputBytes = 1024 * 1024;
+  static constexpr size_t kMaxOutstandingResponses = 4096;
 
   TcpConnection(EventLoop* loop, int fd, InetAddress peer);
   ~TcpConnection();
@@ -77,6 +78,7 @@ class TcpConnection : public std::enable_shared_from_this<TcpConnection> {
   uint64_t next_response_id_ = 0;
   uint64_t next_reply_id_ = 0;
   std::map<uint64_t, std::string> ready_responses_;
+  size_t ready_response_bytes_ = 0;
   bool accepting_sends_ = true;
   bool shutdown_requested_ = false;
   bool write_shutdown_ = false;

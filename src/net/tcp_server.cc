@@ -12,8 +12,9 @@
 
 namespace yewukv::net {
 
-TcpServer::TcpServer(uint16_t port, int worker_threads, std::chrono::seconds idle_timeout)
-    : addr_(port),
+TcpServer::TcpServer(uint16_t port, int worker_threads, std::chrono::seconds idle_timeout,
+                     bool loopback_only)
+    : addr_(port, loopback_only),
       acceptor_(&base_loop_, addr_),
       pool_(&base_loop_, "io-worker", worker_threads),
       idle_timeout_(idle_timeout) {

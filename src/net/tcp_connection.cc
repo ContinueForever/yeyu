@@ -53,6 +53,11 @@ void TcpConnection::Send(std::string_view data) {
 
 uint64_t TcpConnection::ReserveResponse() {
   loop_->AssertInLoopThread();
+  if (next_response_id_ == UINT64_MAX ||
+      next_response_id_ - next_reply_id_ >= kMaxOutstandingResponses) {
+    HandleClose();
+    return UINT64_MAX;
+  }
   return next_response_id_++;
 }
 
@@ -67,11 +72,18 @@ void TcpConnection::SendOrdered(uint64_t id, std::string data) {
 
 void TcpConnection::SendOrderedInLoop(uint64_t id, std::string data) {
   if (!Connected() || id < next_reply_id_ || id >= next_response_id_) return;
+  if (ready_responses_.count(id)) return;
+  if (data.size() > kMaxOutputBytes - output_.ReadableBytes() - ready_response_bytes_) {
+    HandleClose();
+    return;
+  }
+  ready_response_bytes_ += data.size();
   ready_responses_.emplace(id, std::move(data));
   while (Connected()) {
     auto found = ready_responses_.find(next_reply_id_);
     if (found == ready_responses_.end()) break;
     std::string reply = std::move(found->second);
+    ready_response_bytes_ -= reply.size();
     ready_responses_.erase(found);
     ++next_reply_id_;
     if (!reply.empty()) SendInLoop(reply);
@@ -81,7 +93,7 @@ void TcpConnection::SendOrderedInLoop(uint64_t id, std::string data) {
 
 void TcpConnection::SendInLoop(std::string_view data) {
   if (!Connected() || !accepting_sends_) return;
-  if (data.size() > kMaxOutputBytes - output_.ReadableBytes()) {
+  if (data.size() > kMaxOutputBytes - output_.ReadableBytes() - ready_response_bytes_) {
     HandleClose();
     return;
   }
@@ -158,6 +170,7 @@ void TcpConnection::HandleClose() {
   auto self = shared_from_this();
   accepting_sends_ = false;
   ready_responses_.clear();
+  ready_response_bytes_ = 0;
   channel_.DisableAll();
   sockops::Close(fd_);
   fd_ = -1;

@@ -59,3 +59,35 @@ TEST(TcpConnection, OutOfOrderCompletionsDrainInRequestOrderAfterHalfClose) {
   EXPECT_EQ(std::string(buffer, count), "first\nsecond\n");
   EXPECT_EQ(::recv(peer.fd, buffer, sizeof(buffer), 0), 0);
 }
+
+TEST(TcpConnection, WaitingForFirstReplyCannotAccumulateUnboundedCompletedResponses) {
+  int fds[2];
+  ASSERT_EQ(::socketpair(AF_UNIX, SOCK_STREAM | SOCK_NONBLOCK | SOCK_CLOEXEC, 0, fds), 0);
+  yewukv::net::EventLoop loop;
+  auto conn =
+      std::make_shared<yewukv::net::TcpConnection>(&loop, fds[0], yewukv::net::InetAddress(0));
+  conn->Start();
+  conn->ReserveResponse();  // Deliberately never complete the first request.
+  const auto second = conn->ReserveResponse();
+  const auto third = conn->ReserveResponse();
+  conn->SendOrdered(second, std::string(yewukv::net::TcpConnection::kMaxOutputBytes, 'x'));
+  EXPECT_TRUE(conn->Connected());
+  conn->SendOrdered(third, "one-byte-over-budget");
+  EXPECT_FALSE(conn->Connected());
+  ::close(fds[1]);
+}
+
+TEST(TcpConnection, OutstandingRequestCountIsBoundedEvenForTinyResponses) {
+  int fds[2];
+  ASSERT_EQ(::socketpair(AF_UNIX, SOCK_STREAM | SOCK_NONBLOCK | SOCK_CLOEXEC, 0, fds), 0);
+  yewukv::net::EventLoop loop;
+  auto conn =
+      std::make_shared<yewukv::net::TcpConnection>(&loop, fds[0], yewukv::net::InetAddress(0));
+  conn->Start();
+  for (size_t i = 0; i < yewukv::net::TcpConnection::kMaxOutstandingResponses; ++i)
+    EXPECT_NE(conn->ReserveResponse(), UINT64_MAX);
+  EXPECT_TRUE(conn->Connected());
+  EXPECT_EQ(conn->ReserveResponse(), UINT64_MAX);
+  EXPECT_FALSE(conn->Connected());
+  ::close(fds[1]);
+}

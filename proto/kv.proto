@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package yewukv.rpc;
 
+import "raft.proto";
+
 message PutRequest {
   bytes key = 1;
   bytes value = 2;
@@ -16,16 +18,28 @@ message DeleteRequest {
 }
 
 message PingRequest {}
+message StatusRequest {}
+
+// Deterministic sorted live KV state covering applied committed entries only.
+message KvSnapshot {
+  uint32 version = 1;
+  repeated PutRequest entries = 2;
+}
 
 // Every request must have a nonzero request_id and exactly one operation.
 // Application validation enforces these constraints after Protobuf parsing.
 message KvRequest {
   uint64 request_id = 1;
+  // Set by the cluster leader before persistence. Zero preserves legacy log
+  // semantics; version 1 enforces deterministic live-state capacity.
+  uint32 state_machine_version = 8;
   oneof operation {
     PutRequest put = 2;
     GetRequest get = 3;
     DeleteRequest del = 4;
     PingRequest ping = 5;
+    StatusRequest status = 6;
+    yewukv.raft.PeerMessage peer = 7;
   }
 }
 
@@ -36,9 +50,15 @@ message KvResponse {
     INVALID_ARGUMENT = 2;
     INTERNAL = 3;
     BUSY = 4;
+    NOT_LEADER = 5;  // Request was rejected before proposal; safe to redirect.
+    UNAVAILABLE = 6; // Accepted operation may have committed; do not retry blindly.
   }
   uint64 request_id = 1;
   Code code = 2;
   bytes value = 3;
   string error = 4;
+  uint64 leader_id = 5;
+  bool is_leader = 6;
+  yewukv.raft.PeerMessage peer = 7;
+  uint64 raft_term = 8;
 }

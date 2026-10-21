@@ -146,6 +146,11 @@ KvResponse RpcKvServer::Apply(const KvRequest& request) {
       break;
     case KvRequest::kPing:
       break;
+    case KvRequest::kStatus:
+    case KvRequest::kPeer:
+      response.set_code(KvResponse::INVALID_ARGUMENT);
+      response.set_error("operation requires a cluster node");
+      break;
     case KvRequest::OPERATION_NOT_SET:
       response.set_code(KvResponse::INVALID_ARGUMENT);
       response.set_error("operation must be specified");
