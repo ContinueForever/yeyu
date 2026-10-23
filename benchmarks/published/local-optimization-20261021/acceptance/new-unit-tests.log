@@ -1,0 +1,43 @@
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftJournal.*:RaftReadIndex.*
+[==========] Running 15 tests from 2 test suites.
+[----------] Global test environment set-up.
+[----------] 10 tests from RaftJournal
+[ RUN      ] RaftJournal.MigratesLegacyImageAndRecoversBinarySuffixAndVote
+[       OK ] RaftJournal.MigratesLegacyImageAndRecoversBinarySuffixAndVote (1 ms)
+[ RUN      ] RaftJournal.AppendsOnlyDeltaAndLeavesLargeCheckpointUntouched
+[       OK ] RaftJournal.AppendsOnlyDeltaAndLeavesLargeCheckpointUntouched (9 ms)
+[ RUN      ] RaftJournal.ReplacementAndTruncationReplayWithoutResurrectingOldSuffix
+[       OK ] RaftJournal.ReplacementAndTruncationReplayWithoutResurrectingOldSuffix (0 ms)
+[ RUN      ] RaftJournal.EveryIncompleteFinalRecordIsTruncatedButAcknowledgedPrefixRemains
+[       OK ] RaftJournal.EveryIncompleteFinalRecordIsTruncatedButAcknowledgedPrefixRemains (4 ms)
+[ RUN      ] RaftJournal.RejectsCompleteCorruptRecordIncludingFinalRecordAndHeaderLength
+[       OK ] RaftJournal.RejectsCompleteCorruptRecordIncludingFinalRecordAndHeaderLength (0 ms)
+[ RUN      ] RaftJournal.RollsCheckpointGenerationAndReclaimsObsoleteJournal
+[       OK ] RaftJournal.RollsCheckpointGenerationAndReclaimsObsoleteJournal (1 ms)
+[ RUN      ] RaftJournal.MissingCheckpointOrActiveJournalFailsClosed
+[       OK ] RaftJournal.MissingCheckpointOrActiveJournalFailsClosed (0 ms)
+[ RUN      ] RaftJournal.JournalFailurePoisonsInstanceUntilReopenAtAllAppendBoundaries
+[       OK ] RaftJournal.JournalFailurePoisonsInstanceUntilReopenAtAllAppendBoundaries (0 ms)
+[ RUN      ] RaftJournal.SigkillAtAppendBoundariesRecoversWholeOldOrNewSuffix
+[       OK ] RaftJournal.SigkillAtAppendBoundariesRecoversWholeOldOrNewSuffix (2 ms)
+[ RUN      ] RaftJournal.SigkillAtCheckpointBoundariesKeepsCheckpointAndJournalPaired
+[       OK ] RaftJournal.SigkillAtCheckpointBoundariesKeepsCheckpointAndJournalPaired (2 ms)
+[----------] 10 tests from RaftJournal (24 ms total)
+
+[----------] 5 tests from RaftReadIndex
+[ RUN      ] RaftReadIndex.RequiresCurrentTermCommitAndFreshQuorumWithoutWritingLog
+[       OK ] RaftReadIndex.RequiresCurrentTermCommitAndFreshQuorumWithoutWritingLog (0 ms)
+[ RUN      ] RaftReadIndex.IgnoresWrongContextSequenceAndDuplicateAcknowledgements
+[       OK ] RaftReadIndex.IgnoresWrongContextSequenceAndDuplicateAcknowledgements (0 ms)
+[ RUN      ] RaftReadIndex.IsolatedOldLeaderCannotReadAndLateOldTermReplyCannotReleaseRead
+[       OK ] RaftReadIndex.IsolatedOldLeaderCannotReadAndLateOldTermReplyCannotReleaseRead (0 ms)
+[ RUN      ] RaftReadIndex.CancelledRoundCannotSatisfyLaterRead
+[       OK ] RaftReadIndex.CancelledRoundCannotSatisfyLaterRead (0 ms)
+[ RUN      ] RaftReadIndex.SeededReadsWithPartitionsRestartsAndSnapshotsKeepCommittedFence
+[       OK ] RaftReadIndex.SeededReadsWithPartitionsRestartsAndSnapshotsKeepCommittedFence (134 ms)
+[----------] 5 tests from RaftReadIndex (134 ms total)
+
+[----------] Global test environment tear-down
+[==========] 15 tests from 2 test suites ran. (158 ms total)
+[  PASSED  ] 15 tests.

@@ -1,0 +1,2904 @@
+{
+  "files": {
+    "baseline-read-index-balanced-batch32-snap128-run1/client-0-samples-ns.json.gz": {
+      "bytes": 63078,
+      "sha256": "9e942b7633502c0cef555c6c64e51ff93a6853fced3f42fddb5db3a3623f746f"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run1/client-1-samples-ns.json.gz": {
+      "bytes": 63023,
+      "sha256": "d188c35d88e5e3c3ca49847d48e3197ba66850ea9535c7b25e0651762f167855"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run1/client-2-samples-ns.json.gz": {
+      "bytes": 62840,
+      "sha256": "c56ea033e81761eb5188757317e3b3fe6f1232a15e82d1c2d8dce0cd03006e01"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run1/client-3-samples-ns.json.gz": {
+      "bytes": 63106,
+      "sha256": "a8d2e6ae618cb717e4a0c0ab4ec68f5b6505f4f4920552b2d8cffc868c2ef57d"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run1/client-4-samples-ns.json.gz": {
+      "bytes": 62931,
+      "sha256": "ed73594a52932f54754fccbfee82f5b2c7465297697931b0e0f3f88ba1faac97"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run1/client-5-samples-ns.json.gz": {
+      "bytes": 62853,
+      "sha256": "cbe4d5dde6b4d590ad32fa734472203813b68a757d3097a6d713c06e085fef33"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run1/client-6-samples-ns.json.gz": {
+      "bytes": 63080,
+      "sha256": "6314ddf784dddd1ee6b7602374e57db80753ae72bf6ba63b4611d5847eafb3c7"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run1/client-7-samples-ns.json.gz": {
+      "bytes": 63466,
+      "sha256": "273e126c01d4852f9beb80e31d50f2f4f7568335eda3398ad4c7df63fde65c30"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run1/commands.json": {
+      "bytes": 1716,
+      "sha256": "4a117f213f80af8cf43b2775e33357168bed8680b8231793e831375499c2b859"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run1/node-1.log": {
+      "bytes": 114,
+      "sha256": "e140957b58632463b80ed1575086f2d035340e0e2957ea879ec3663b92da6489"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run1/node-2.log": {
+      "bytes": 114,
+      "sha256": "c0e371c5f27922b465317a343086d6d0c1f9ac3fb2dd2171637aaceb65f3a718"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run1/node-3.log": {
+      "bytes": 168,
+      "sha256": "0fcb0e6061cf1c720fa35ac2a27e188a0a08edadc40ed8b95c54019c04f25d94"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run1/resource-samples.json": {
+      "bytes": 51196,
+      "sha256": "c04cdd102962ccb1f0e400bcd9a1a7a6fa96630cdef8b395511a4e75a0cbd95a"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run1/result.json": {
+      "bytes": 10946,
+      "sha256": "46e712d336199de17a081508f733242aac4b5ffa35bcd58bfb2f445028402927"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run1/timeline.json": {
+      "bytes": 2515,
+      "sha256": "3edb4aed40e39118528955b9133be2b95b29eee14ab5cce2a06d1ef39a69d83f"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run1/workload.json": {
+      "bytes": 171,
+      "sha256": "f733ccd5d866d7e433dbbf39705e98e727faaba3ac01a131dc1263d84874a92b"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run2/client-0-samples-ns.json.gz": {
+      "bytes": 61171,
+      "sha256": "169d55b320c191c153273067038e4dc36628c23f2c869f42824f0c2333612dce"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run2/client-1-samples-ns.json.gz": {
+      "bytes": 61496,
+      "sha256": "e5d59ccc14df370f5af5d4f85bb1a277910018592af1714494756f4dad9beb21"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run2/client-2-samples-ns.json.gz": {
+      "bytes": 61881,
+      "sha256": "7e30f1afc79443e3e3db893330cc579eb4b4197c28ec2dc0c16ad4f31a24bcba"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run2/client-3-samples-ns.json.gz": {
+      "bytes": 61666,
+      "sha256": "09c199b9fe88be37c7ee134b7460148e676fb071638f7ac621d7fcd4c0f89911"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run2/client-4-samples-ns.json.gz": {
+      "bytes": 61380,
+      "sha256": "3441f335105248f99993e692c0378f4e1fc08f31dd530b89c1db074e6facaf60"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run2/client-5-samples-ns.json.gz": {
+      "bytes": 61457,
+      "sha256": "8786c4925188a2aafacbc1a660b614ed3ba40dc0b87a9d14950d03a58b89dfd8"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run2/client-6-samples-ns.json.gz": {
+      "bytes": 61758,
+      "sha256": "077285108302eb23d2b87c6ebd6589fe47a2b76a15cf00bd4de80760fa4dbb53"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run2/client-7-samples-ns.json.gz": {
+      "bytes": 61122,
+      "sha256": "517b7fb6825c427c0960b7e944fee091ff8e04828bd53310f6491c041c0951b1"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run2/commands.json": {
+      "bytes": 1716,
+      "sha256": "8316abfce95c7c2e01169d68c095435d3487ae97d9ed8b3824ed6eac83e5a7f1"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run2/node-1.log": {
+      "bytes": 114,
+      "sha256": "f6b5077affe0b32bc485c00479d52b644a28001f0b497ae332f108303577dacc"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run2/node-2.log": {
+      "bytes": 114,
+      "sha256": "c8d51b6221ecfbec1fd478fd693dca8f6dfa6a163a178aa3f7e907dd0dddd152"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run2/node-3.log": {
+      "bytes": 168,
+      "sha256": "e18bee1d7bbb2fd07b77368deca468a7612308a640a4cd77f3d6bcd716c8c47a"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run2/resource-samples.json": {
+      "bytes": 51626,
+      "sha256": "434bd3a0e2f84b91a63d75550136a9bf0e638285c073150ba08aacfedc365202"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run2/result.json": {
+      "bytes": 10919,
+      "sha256": "4015813a8477f31dfe1da41c85f5f650635557fc2cf87f64c9925c08a42b2aa4"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run2/timeline.json": {
+      "bytes": 2505,
+      "sha256": "f4cf61ae7eb71bff3f223ed762be40e9f8b4190e5f9509b8c39a5562ca84661b"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run2/workload.json": {
+      "bytes": 171,
+      "sha256": "f733ccd5d866d7e433dbbf39705e98e727faaba3ac01a131dc1263d84874a92b"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run3/client-0-samples-ns.json.gz": {
+      "bytes": 59294,
+      "sha256": "68b0999a5c106918299518cb3705eb44cc7bd665d660e651d239d0fcc0ea1bb3"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run3/client-1-samples-ns.json.gz": {
+      "bytes": 59203,
+      "sha256": "fc93dd93a3be9251a10740d59844cad100c173324c54bcf7ea793914f1ffa3c0"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run3/client-2-samples-ns.json.gz": {
+      "bytes": 59282,
+      "sha256": "e9ba3662d5da33eb23cd05dfacab76d1fe3633af6b977d84d139170525ad4a55"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run3/client-3-samples-ns.json.gz": {
+      "bytes": 59726,
+      "sha256": "0e80cbe15407e379ebf7c8a0a6d7979cf59b709bf590b34c28d7306277479c8e"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run3/client-4-samples-ns.json.gz": {
+      "bytes": 59024,
+      "sha256": "b5a519593af2c10b790791ee4ce0d25cb2cf1711a9c61513dc57c55c467685e3"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run3/client-5-samples-ns.json.gz": {
+      "bytes": 59055,
+      "sha256": "7714574b25cae33bfa431e6e3b7700b2b5cf491eefe599f8e4e1610be488af3a"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run3/client-6-samples-ns.json.gz": {
+      "bytes": 59510,
+      "sha256": "f6138c8bc37d0754a78e515d5865c1f9b15c03794cb23a498d93e0f9ce648483"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run3/client-7-samples-ns.json.gz": {
+      "bytes": 59188,
+      "sha256": "faadac19787df1ccd3c7677b993a40f393348c33368a81ea09a1fcc2cead3ce6"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run3/commands.json": {
+      "bytes": 1716,
+      "sha256": "a35c88bb5d933ba33d1ad0c79d184c0e0c3c47fec02406b702b8ff8458b675f2"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run3/node-1.log": {
+      "bytes": 114,
+      "sha256": "4dc53a4df1508f30f984a18545bf92579baf7233696e5e0281090da05d143f0f"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run3/node-2.log": {
+      "bytes": 114,
+      "sha256": "f0f9d92518552ee2d8105c631ec06ab8c5065a66f0b225c8388f6011e1118c46"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run3/node-3.log": {
+      "bytes": 168,
+      "sha256": "3fdd79d7dcd2f0b1f184a949dc8bd99a5de3a27e21419d95b90a7a1e5f27872a"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run3/resource-samples.json": {
+      "bytes": 51625,
+      "sha256": "7c479c21ae213fef904d1bba411fa440573ed9ab46253d045d879624156a3ff4"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run3/result.json": {
+      "bytes": 10913,
+      "sha256": "42ba417c2661ba6a0bbdde47c1a45dcbcf98396e2eb9daab3782511ab5b7099f"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run3/timeline.json": {
+      "bytes": 2510,
+      "sha256": "f7b1843f7432466de5e721382925c2bc1221fdb3214c5148c783c80595ab7528"
+    },
+    "baseline-read-index-balanced-batch32-snap128-run3/workload.json": {
+      "bytes": 171,
+      "sha256": "f733ccd5d866d7e433dbbf39705e98e727faaba3ac01a131dc1263d84874a92b"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run1/client-0-samples-ns.json.gz": {
+      "bytes": 41716,
+      "sha256": "42e3777be717050d06798a0eecd20b55e7da1559aa6fec83c4853f4b01858aec"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run1/client-1-samples-ns.json.gz": {
+      "bytes": 41574,
+      "sha256": "3a855b69b196b7012cee41c93661d08fb73f919066dd3f06adc4f4c9da69675e"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run1/client-2-samples-ns.json.gz": {
+      "bytes": 41609,
+      "sha256": "10dfef27141c9641cfc1d325a2f17aa6e5c10313ab6efe2aba3c8254457bab7e"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run1/client-3-samples-ns.json.gz": {
+      "bytes": 41678,
+      "sha256": "ee80f0dc453fe9e600a0b324432d8c786305235404883d9022b728f0311912d8"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run1/client-4-samples-ns.json.gz": {
+      "bytes": 41300,
+      "sha256": "37e7fa85f58cb8c952833f0c2e927134afe6f500a12dbd11a6f3f66ac679a183"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run1/client-5-samples-ns.json.gz": {
+      "bytes": 41602,
+      "sha256": "2f95409a0c8cafaf4caff438882986bcd8505575665243e87409df89af7d2a80"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run1/client-6-samples-ns.json.gz": {
+      "bytes": 41686,
+      "sha256": "631e3fd24ef292883d507b0358a4f805b505839fb74e3be700be3616e0b6e9f3"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run1/client-7-samples-ns.json.gz": {
+      "bytes": 41646,
+      "sha256": "1d8c74500af172fd0cb2fe546509089662e561b40a85ca336a8bb76f5fd10264"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run1/commands.json": {
+      "bytes": 1725,
+      "sha256": "e1c1a10ae34689fd96e2c23b9e223b4259f5f0fb736502b525c636f96f577a49"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run1/node-1.log": {
+      "bytes": 114,
+      "sha256": "e286f3815c6e88621db34c447052051b0978fee6d234598cb31025d5fb600793"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run1/node-2.log": {
+      "bytes": 114,
+      "sha256": "02421a8c9c6fd4b57de06416300267c5f0d08d55354ec0f69c8369f85f1864cc"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run1/node-3.log": {
+      "bytes": 168,
+      "sha256": "8d822217eef942e5e34c4646fc380fa9e04085cfe2c442f468e69eb07928dc13"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run1/resource-samples.json": {
+      "bytes": 51675,
+      "sha256": "1d2f210885350ba6eba33f970bfdfccb45d57e3b6b6a44055def70181cd2c1c7"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run1/result.json": {
+      "bytes": 10997,
+      "sha256": "944348e73ec659cdd3da1be6e89c198b19014b939bbbca122fa24018a561698e"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run1/timeline.json": {
+      "bytes": 2527,
+      "sha256": "b83fc17b4425bf1a8c198d8915be1654de40dd9edf3b18bb772fe6cda5821698"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run1/workload.json": {
+      "bytes": 172,
+      "sha256": "91b5a03fcde6271d7584665918aeeae264965ea3140956d27d98a52bf8acd411"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run2/client-0-samples-ns.json.gz": {
+      "bytes": 40265,
+      "sha256": "e161aaaad6571f37ff3245070214f03df259086316fece8331046ecbb5a61dce"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run2/client-1-samples-ns.json.gz": {
+      "bytes": 40300,
+      "sha256": "1d2b6059c98eb8ea8905878072e2795d59edac90f4a245688e9f4da90ea8737c"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run2/client-2-samples-ns.json.gz": {
+      "bytes": 40323,
+      "sha256": "09ca2a3397e32208daf09fa87d471162d473334bc2bfdc2ac2137d9db07828a3"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run2/client-3-samples-ns.json.gz": {
+      "bytes": 40228,
+      "sha256": "18bf9b11399b227de1151d5d147fe02f50483a02de6b8c0e078f5ce61a3638ee"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run2/client-4-samples-ns.json.gz": {
+      "bytes": 40267,
+      "sha256": "a736507e44202d15b201d55f5ea517f0cd92232d19d110ab1ae6ab9dedfe9144"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run2/client-5-samples-ns.json.gz": {
+      "bytes": 40324,
+      "sha256": "5e2285168d8d5c6d413cc0d179931d0d0e6d7892d428ef796027c798ef242e15"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run2/client-6-samples-ns.json.gz": {
+      "bytes": 40218,
+      "sha256": "96c60540bc69e88c7858d0017abd2868f08ef036f8dc771d2138f8fc5dc5aff8"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run2/client-7-samples-ns.json.gz": {
+      "bytes": 40351,
+      "sha256": "1eb6991994ffc4da3cb536dce1b2fe194e25e03b8384605f44e91f6367322ee7"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run2/commands.json": {
+      "bytes": 1725,
+      "sha256": "e66db196c86e9999b230c796c6fc83f89b4c3f1b10488b67cc367385bd6f6029"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run2/node-1.log": {
+      "bytes": 114,
+      "sha256": "195acddc91129ef739c0d0e2e32fa4708f80b604e7ab31daf5d7cb5f805466e7"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run2/node-2.log": {
+      "bytes": 114,
+      "sha256": "cde3fb845739de77918e392bbae26011a0228fdcc1a0b976688e389098fb6469"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run2/node-3.log": {
+      "bytes": 168,
+      "sha256": "cf809c0e2715b31e73be2d78286b603cf0d686c577f7613f9e7ed3e4a687595b"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run2/resource-samples.json": {
+      "bytes": 52108,
+      "sha256": "eb04ebe771f635d136419a9bee053568f6e90841702cbdd8f328ff549bf4c35e"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run2/result.json": {
+      "bytes": 10994,
+      "sha256": "c2eda55447b137582d039374776dfcef56f9b9bab1482bc5eaf5107b8d06d05c"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run2/timeline.json": {
+      "bytes": 2527,
+      "sha256": "25a2d4136c6c84338e334beced40bbe16f4caff88ded8531e221103e0aaccecb"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run2/workload.json": {
+      "bytes": 172,
+      "sha256": "91b5a03fcde6271d7584665918aeeae264965ea3140956d27d98a52bf8acd411"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run3/client-0-samples-ns.json.gz": {
+      "bytes": 33773,
+      "sha256": "808e058209e7c7a1c526b440e83123fc8f5c86cbb27e065670dc10e8102a98b2"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run3/client-1-samples-ns.json.gz": {
+      "bytes": 33178,
+      "sha256": "2f77174ee9869a9ee032b99f13270680d2e46418cdb8297e3e1c378ffe3c673f"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run3/client-2-samples-ns.json.gz": {
+      "bytes": 33293,
+      "sha256": "53d696efacaa7aa63aa4b8aca56f1e6acd1c3b3fe245cd99e73fc859679e893c"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run3/client-3-samples-ns.json.gz": {
+      "bytes": 33372,
+      "sha256": "18a3db015f8d10da5d82ac2749fc01c4cb5e4c530fa511d2860e9c1f0b6958cd"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run3/client-4-samples-ns.json.gz": {
+      "bytes": 33243,
+      "sha256": "6b6cc55787eb8c056bfa01d016fe8f719dee05a33604521d1501a7abeba9ccf7"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run3/client-5-samples-ns.json.gz": {
+      "bytes": 33150,
+      "sha256": "2834160f6ac063c0e93cb73041aa116e5ba9bd602b1ee7e130f6a085fad884eb"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run3/client-6-samples-ns.json.gz": {
+      "bytes": 33516,
+      "sha256": "e5c3d5f616ed1c62dd697c008b40c9cb40bb45fee0d94e59a822316533858c8d"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run3/client-7-samples-ns.json.gz": {
+      "bytes": 33557,
+      "sha256": "a46275852c49e08ef82d2db13868828c704177f524d9a669f878501581aa66ec"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run3/commands.json": {
+      "bytes": 1725,
+      "sha256": "ce097f2017d5c32cb14ee14fcbe63b7dd86a5a227015a10a170b0f2272d40f04"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run3/node-1.log": {
+      "bytes": 114,
+      "sha256": "081c027810fe2d63c037dcedd898efb6fc5cac3a077643eab502a5291f134938"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run3/node-2.log": {
+      "bytes": 114,
+      "sha256": "bdd416537fb40ddbb880b773866f9dde2ee28f26a90b292b3adf2d451681c12a"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run3/node-3.log": {
+      "bytes": 168,
+      "sha256": "b32ec8f47c142b1bf1147f1af2d50d53fe4a157bd5d45ee36ec5d2399a9c7c04"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run3/resource-samples.json": {
+      "bytes": 52096,
+      "sha256": "cb5637b643762cfdc88690c173f12ef55fbbc929d5afe977da60ea4e3997d835"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run3/result.json": {
+      "bytes": 10989,
+      "sha256": "0ce53bcd698fdb723aa0e21ab0afbae4cc904ff0fc27d85d5d44a180ef033589"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run3/timeline.json": {
+      "bytes": 2525,
+      "sha256": "6cc096b074f8e8f5c8cc87f9477045f719d5b2dd3691e11b2e708d8446ce55c4"
+    },
+    "baseline-read-index-large-value-batch32-snap128-run3/workload.json": {
+      "bytes": 172,
+      "sha256": "91b5a03fcde6271d7584665918aeeae264965ea3140956d27d98a52bf8acd411"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run1/client-0-samples-ns.json.gz": {
+      "bytes": 61023,
+      "sha256": "71b2657fcbfa11bf483967dcc9e3ca4d77d1da4341197ad3ae552f5cdfd0e182"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run1/client-1-samples-ns.json.gz": {
+      "bytes": 60797,
+      "sha256": "5d5365b64aa0214ce3983c43d47572262329396cf1539f87c99b3e716a8267e4"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run1/client-2-samples-ns.json.gz": {
+      "bytes": 61376,
+      "sha256": "f1f15c78b2b90ea0302373a330d4d8ac8a3ab3d401f9543c71c0576f7776742b"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run1/client-3-samples-ns.json.gz": {
+      "bytes": 61097,
+      "sha256": "030786fc5b8f02082ba5e52e1e37b1293d7682313a42a5564a32304ebc937ae5"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run1/client-4-samples-ns.json.gz": {
+      "bytes": 60949,
+      "sha256": "ecdfb6db897aff3f4627716fdf86c5bbdd8e0783105e5c7a32af216d2919855c"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run1/client-5-samples-ns.json.gz": {
+      "bytes": 60918,
+      "sha256": "c094f3be5c5a07a6c04c4a5c6977e1d5e2d22070c472bf62651bb80db29ed538"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run1/client-6-samples-ns.json.gz": {
+      "bytes": 61064,
+      "sha256": "8650aede34ce6417976def7f857400d39e4fc144abe875ce84b190eaa9ea22c4"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run1/client-7-samples-ns.json.gz": {
+      "bytes": 60953,
+      "sha256": "30940256f96c25ed10e4bb7fcb42aea3f63684bc10fb2a254f27bcf77d7a8031"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run1/commands.json": {
+      "bytes": 1719,
+      "sha256": "c142eecf091c39c649fc5c4d72ee2ceb26c2a14fe0168711b3ce773c129e53dd"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run1/node-1.log": {
+      "bytes": 114,
+      "sha256": "5b7573aa743b1692c373e00ad7616f4991a0636b7d44b16defb84fcfa404c994"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run1/node-2.log": {
+      "bytes": 114,
+      "sha256": "3d68b6fe1d51fcc447248b950457efceae8d16d78eadc1b81bcf8db6e6a8f8b4"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run1/node-3.log": {
+      "bytes": 168,
+      "sha256": "608bf9a35929695a8d51ae370b775974dec018e43d149ddc83f72b90866043cc"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run1/resource-samples.json": {
+      "bytes": 51499,
+      "sha256": "e67a79c5102601a6e27c76cbfc830fcc1108ac1a9dc8530298b2016ffef8d128"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run1/result.json": {
+      "bytes": 22523,
+      "sha256": "d5a0789f993400e081f6ee67b4752938bfecd78144331405bab72fc33a47dced"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run1/timeline.json": {
+      "bytes": 2511,
+      "sha256": "7893fcced7593dd814b74a69ead5539296844cf2167b25c75b1b2c5f57f96587"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run1/workload.json": {
+      "bytes": 173,
+      "sha256": "acfed4ad3dc5325de488cb115e0841bce56008314a232cf4f0487cb0c3aa8caf"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run2/client-0-samples-ns.json.gz": {
+      "bytes": 57262,
+      "sha256": "998761e8533ec01f81172ca51a7f1f4d65d55fc9271235168ba0ff0f6c1fe8ba"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run2/client-1-samples-ns.json.gz": {
+      "bytes": 57233,
+      "sha256": "25f4f28d0147396e03e6b51406d2bd49a0b701ffd0e74c93dc9941f9d09ddf82"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run2/client-2-samples-ns.json.gz": {
+      "bytes": 57447,
+      "sha256": "050bc8f14515e5e01e7d65ce4dad0202ce22d0a533b5fb219e72e13001db36a6"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run2/client-3-samples-ns.json.gz": {
+      "bytes": 57243,
+      "sha256": "a9a75493b3c3b750750782736243dfb2cc17f7ceab664b1415794aeff28086ab"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run2/client-4-samples-ns.json.gz": {
+      "bytes": 57129,
+      "sha256": "a26eaaf7e85e143860b5ddf70d03a70c53af5951e654260232b25f48884393df"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run2/client-5-samples-ns.json.gz": {
+      "bytes": 57175,
+      "sha256": "77d5b77faf0129a2531d5ec3ddb1f43c5b7424cbf90735594d9ca99cd2cb573d"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run2/client-6-samples-ns.json.gz": {
+      "bytes": 57036,
+      "sha256": "21504c72de550e387e3f471e65f1f003b5f636ccd3db822badcb4d097f4b9b7e"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run2/client-7-samples-ns.json.gz": {
+      "bytes": 57420,
+      "sha256": "5584c3d5eddf3894f3120799622191041b26e1004b131b9d6238bec8ed872161"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run2/commands.json": {
+      "bytes": 1719,
+      "sha256": "1b66876eb93fe32d1fb63955faf28e3d05bad0055058d7b3896e5ed4bb522ba8"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run2/node-1.log": {
+      "bytes": 114,
+      "sha256": "c0321da69e3d283f53e3819caddf1a7bd11986a781c9bb07a402f2879412ab7f"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run2/node-2.log": {
+      "bytes": 114,
+      "sha256": "ddbd282b770845fe28d295c5c03f18c33ffcee1e352114b639c47995bc4d0e82"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run2/node-3.log": {
+      "bytes": 168,
+      "sha256": "d13941ac22b76ba80098ff8f69d281d197ba9bf2fc91de15990e1809861c6733"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run2/resource-samples.json": {
+      "bytes": 51500,
+      "sha256": "771eed4e8e0c0b796e55612000b6c07a60e1c4521297b9f2b9601309eafeb16f"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run2/result.json": {
+      "bytes": 22516,
+      "sha256": "09a1184d023c8417ef4899614af03f6aad687c8c30816a2d15b37c8b0f6112f7"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run2/timeline.json": {
+      "bytes": 2510,
+      "sha256": "8e99069cb57d7fc368781260ee2cab644638d47e269c825b3747c5011d1cd3da"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run2/workload.json": {
+      "bytes": 173,
+      "sha256": "acfed4ad3dc5325de488cb115e0841bce56008314a232cf4f0487cb0c3aa8caf"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run3/client-0-samples-ns.json.gz": {
+      "bytes": 56655,
+      "sha256": "f7fad102f2bc41701c9d1f06a958a94c0c6aeb19e52a9671c3d702df9d100a27"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run3/client-1-samples-ns.json.gz": {
+      "bytes": 56857,
+      "sha256": "11d396b3b668642ce3323d6893b24206de5afb9611e3aaf3a2335e901cc616ac"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run3/client-2-samples-ns.json.gz": {
+      "bytes": 56971,
+      "sha256": "340014b61e17fd816d80eef59504a8c606c2c29f8b9cad47377d542525eb5ed4"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run3/client-3-samples-ns.json.gz": {
+      "bytes": 56527,
+      "sha256": "1b0462c5a3ec806dea3c8a412e7a62f1824ae4ba506f777a815d4b71409df657"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run3/client-4-samples-ns.json.gz": {
+      "bytes": 56570,
+      "sha256": "5ff9464bf3ee343ab8e7b7d650f64bf20f73340499e5e6b741921f98d96c5238"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run3/client-5-samples-ns.json.gz": {
+      "bytes": 56704,
+      "sha256": "2cb98a545fff72c82f5dc7e20ab714ca96af4d804eef9a15cc5e5f564e1555ce"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run3/client-6-samples-ns.json.gz": {
+      "bytes": 56838,
+      "sha256": "c4c7a9afd37bccd2f4baf73ef313a1fe4352ee25b3a32f9bcf2c6de81f7a244a"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run3/client-7-samples-ns.json.gz": {
+      "bytes": 56780,
+      "sha256": "bcae2ff46a9ea6873e3c641da2fbda6e0c036ca2f753cd68973e34acf6a8ff44"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run3/commands.json": {
+      "bytes": 1719,
+      "sha256": "8df858d867073f149dd34d5d4b13e3879183ada48d68fa0b0ae11d755cb94597"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run3/node-1.log": {
+      "bytes": 114,
+      "sha256": "471adbb1b7f7307e485d87a2e6e3d2735a2be76ff7a5953b2196c0dd6605d415"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run3/node-2.log": {
+      "bytes": 114,
+      "sha256": "4ece4cfc2e7cf02cb4d5710d3fa17d348afee6cef0c05fe8b7b7c9aa8c55dfaf"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run3/node-3.log": {
+      "bytes": 168,
+      "sha256": "d027940dc7ad4d2964ce635cd634957c03d1259752399fa82a7319a8169167dc"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run3/resource-samples.json": {
+      "bytes": 51926,
+      "sha256": "34dd0942be36ea9a2676ab27f68a8b2e73773169b39bead66ade6f72b50ccb07"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run3/result.json": {
+      "bytes": 22515,
+      "sha256": "0b90d0f9f4b2e52297d922927bf2fe01a01a25858be608074526223751a2da7e"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run3/timeline.json": {
+      "bytes": 2511,
+      "sha256": "74d1fa7c68b3dfc67796452e2dc42207ae244f03ced76989c23c6046904c2abd"
+    },
+    "baseline-read-index-more-keys-batch32-snap128-run3/workload.json": {
+      "bytes": 173,
+      "sha256": "acfed4ad3dc5325de488cb115e0841bce56008314a232cf4f0487cb0c3aa8caf"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run1/client-0-samples-ns.json.gz": {
+      "bytes": 240497,
+      "sha256": "958842e0b7564a404d3fec3654a8d96c88c688bc93c55c0e1aeb580044194c02"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run1/client-1-samples-ns.json.gz": {
+      "bytes": 239987,
+      "sha256": "830e86a071103b4300d22953e2e5a31bd646934858680569652ced14a3541cd1"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run1/client-2-samples-ns.json.gz": {
+      "bytes": 239888,
+      "sha256": "60df12bc8280eaab3c2090277da6afe109b344c0333833c23b7aa6130e7d92ec"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run1/client-3-samples-ns.json.gz": {
+      "bytes": 240325,
+      "sha256": "e3baf6c7161568d4a1ec0e9040ac72dbd72444cd0db70cda47d3487a26a722f0"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run1/client-4-samples-ns.json.gz": {
+      "bytes": 239934,
+      "sha256": "af1fcee527a867967ceba3f42025e958ab4deb4f2492dcc662e736295e913332"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run1/client-5-samples-ns.json.gz": {
+      "bytes": 240285,
+      "sha256": "d11c2e816b2065d145ba79013ff585146eb7d826865abf0743a68a1857eb0c2c"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run1/client-6-samples-ns.json.gz": {
+      "bytes": 240685,
+      "sha256": "fd4ebf0a0e035aaf6275036a8dc0763dbb2aa3fae1ffcf729040f0a8ccf14a89"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run1/client-7-samples-ns.json.gz": {
+      "bytes": 240556,
+      "sha256": "21328bd340b14102085e20109972e4299caab5b524776bb00590d49df5f89664"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run1/commands.json": {
+      "bytes": 1719,
+      "sha256": "7b4ad9839621eaf6aa82836c2cfb0e817a0384ee2477af59f54f8e52e397eb79"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run1/node-1.log": {
+      "bytes": 114,
+      "sha256": "d7e3fd92ac4dcb059298441da3ff9451d2d115f967780d73577a8e15a21d27ff"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run1/node-2.log": {
+      "bytes": 114,
+      "sha256": "f624038613f397704a97b8869faf3c8a786f9500df09818193ed2f7bfe5c1a45"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run1/node-3.log": {
+      "bytes": 168,
+      "sha256": "307a2ebefaf34ad78714aacaa1f302a4b40602a7d73777919c1ffa4cbd39ed81"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run1/resource-samples.json": {
+      "bytes": 51628,
+      "sha256": "b2226c10efa4b666ba8c545b30d9a16ae6ae4291b2eb8fedd880b6e7a4f4ceba"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run1/result.json": {
+      "bytes": 10585,
+      "sha256": "3c08cc2a278928bed60e6d27680132461542972211aee81670efe2638648a453"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run1/timeline.json": {
+      "bytes": 2543,
+      "sha256": "175afcd5e1cea41fb02c7b11f72fdd7aba38d586bdd62e6578f0e86865777f98"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run1/workload.json": {
+      "bytes": 170,
+      "sha256": "0a2c826aa1e09ccdf948dba5d1c5dee0e12fc58c9d34a332967e8e7df9f1ae06"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run2/client-0-samples-ns.json.gz": {
+      "bytes": 234064,
+      "sha256": "7d0f6056f52b7214bc16ce737708db52c1c3a10b7e4d6eaa232284645fc1b179"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run2/client-1-samples-ns.json.gz": {
+      "bytes": 232790,
+      "sha256": "c20b4c7ba0a68a88302e9ae33370b99b5caf2bd1a3a3935b51103389364ad8b2"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run2/client-2-samples-ns.json.gz": {
+      "bytes": 233410,
+      "sha256": "f708a6ec0e07bab581cfcc4528197cf5fbd5a7880f2ef8c7ac982cf1e6c829fb"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run2/client-3-samples-ns.json.gz": {
+      "bytes": 233624,
+      "sha256": "d99cb3b0ce5da5044b6dee483935d306d2699225666a3b5d56006f04b8e6ff61"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run2/client-4-samples-ns.json.gz": {
+      "bytes": 234141,
+      "sha256": "96fb18bc6787dfdbee1dd7662b8e6b7944551489b26047d82db3f06e1a6dd974"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run2/client-5-samples-ns.json.gz": {
+      "bytes": 233505,
+      "sha256": "ff5028258d49ce7af7e11125e6e6fdf5d86e72b0d9d5698505bed410c33b094e"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run2/client-6-samples-ns.json.gz": {
+      "bytes": 233610,
+      "sha256": "8e3888ed56ba27f13b1c10c100bbed3bb9769cb448e25555a7b6fe8d1a2d49e1"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run2/client-7-samples-ns.json.gz": {
+      "bytes": 234566,
+      "sha256": "36c1658bd7720cf66de4eba41fef2923276aa4ba810a6c13ab344490a8b14336"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run2/commands.json": {
+      "bytes": 1719,
+      "sha256": "2dd6a5fa251f8bead2e95ed2a1b57e7a16597aba6621ac30a83e1762418ed687"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run2/node-1.log": {
+      "bytes": 114,
+      "sha256": "7a577b77728cd8cef4f12765866a40c83838bad13d73053c79d5cf5d0160bc8c"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run2/node-2.log": {
+      "bytes": 114,
+      "sha256": "1170cfba51cee3093e97158828de02f8ae95a01b28fc08d87497ecac145d17de"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run2/node-3.log": {
+      "bytes": 168,
+      "sha256": "c7669ea7c37997a1051718a2a64d95057c36838c8d237e934f983ae0f0241188"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run2/resource-samples.json": {
+      "bytes": 51212,
+      "sha256": "a7e72d0af761939cca1c06a9941770b85cfd76600aaf7701054e41cfa9aec797"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run2/result.json": {
+      "bytes": 10591,
+      "sha256": "1a158236e215da1f66f14be4062bf9dc1cf0f90bd0b4e74e28ef0f39e2efeb0a"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run2/timeline.json": {
+      "bytes": 2540,
+      "sha256": "8917e8ccd0d10e93df7184c38218b316d07e4cba21a161daebddd48c57ef0735"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run2/workload.json": {
+      "bytes": 170,
+      "sha256": "0a2c826aa1e09ccdf948dba5d1c5dee0e12fc58c9d34a332967e8e7df9f1ae06"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run3/client-0-samples-ns.json.gz": {
+      "bytes": 225519,
+      "sha256": "123978481716600d35278a7e5f7a3722470cd8cdb55d3296913b80d9489b127b"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run3/client-1-samples-ns.json.gz": {
+      "bytes": 225564,
+      "sha256": "74677325a6c3e6488594364f1b60c074985f937a74728f66b2ccf55caf7964d8"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run3/client-2-samples-ns.json.gz": {
+      "bytes": 225933,
+      "sha256": "571f4767f24e74c7fc36c35cf27a60bfd001cbf3a0cca57fc69054bd6da5694a"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run3/client-3-samples-ns.json.gz": {
+      "bytes": 223283,
+      "sha256": "4b8b311dc4d3ddd090f1036d308f8be886669c737affc9e428607bb674a20225"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run3/client-4-samples-ns.json.gz": {
+      "bytes": 224628,
+      "sha256": "09d34d4f944d3b9a94ef6145edb859822e5e088aeb6ffa4e999de6cb8789b46e"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run3/client-5-samples-ns.json.gz": {
+      "bytes": 224911,
+      "sha256": "bb67f06c29595d24483a8259eed8eff949d025f8ceb911d2c91165539281b37c"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run3/client-6-samples-ns.json.gz": {
+      "bytes": 223152,
+      "sha256": "195d03144e13f060be43bb1cc6a995610eb311c4b681d420fb31e0443f9639ef"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run3/client-7-samples-ns.json.gz": {
+      "bytes": 225210,
+      "sha256": "7608e5cdace4b41c72deacc75bd88cc5c70ce1749d668a3739c313d7fb012ee7"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run3/commands.json": {
+      "bytes": 1719,
+      "sha256": "783a82ab8f20fddb5c014bf398b97baf7b8c4562886db0e117ea3c932276cd90"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run3/node-1.log": {
+      "bytes": 114,
+      "sha256": "fb68e1727180a130d8118658e12cc198ced1bb749b5fad76fa38a3b011b5b6bd"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run3/node-2.log": {
+      "bytes": 114,
+      "sha256": "4afbcb15da890570061216da220692d9e58ba865b72b71eaea488ecdeead855f"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run3/node-3.log": {
+      "bytes": 168,
+      "sha256": "ccda857f3b37897d3ce6f7016e158d42ad0d755c52e41692dbc3db99a58553e0"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run3/resource-samples.json": {
+      "bytes": 52049,
+      "sha256": "5ec87bd2ac45a841784541f4a87e04c4f4b336bcd3a1152589792417a91d7706"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run3/result.json": {
+      "bytes": 10582,
+      "sha256": "b0a411ce881e9040cd5a9607824a6853bdbe9f950645c9c89883fef08c4adcd2"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run3/timeline.json": {
+      "bytes": 2545,
+      "sha256": "e5af6316eac762a0758cc6afdce35c79df846127d9879678bdd20d9aa8b2dcd1"
+    },
+    "baseline-read-index-read-only-batch32-snap128-run3/workload.json": {
+      "bytes": 170,
+      "sha256": "0a2c826aa1e09ccdf948dba5d1c5dee0e12fc58c9d34a332967e8e7df9f1ae06"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run1/client-0-samples-ns.json.gz": {
+      "bytes": 58951,
+      "sha256": "86a00cc2ece3e0223918c12fadb40920b6a9a0ac71d621955c71ea1cf8170f1c"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run1/client-1-samples-ns.json.gz": {
+      "bytes": 58997,
+      "sha256": "004df9275c036825b112cd2895d33a2828a992d6672c0ab0a2e1c6ead675d451"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run1/client-2-samples-ns.json.gz": {
+      "bytes": 58817,
+      "sha256": "bdb80d43e3f3f1e49f024bc4107bf3686c6ec3247daa2fa54595d0c8e6bd5eca"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run1/client-3-samples-ns.json.gz": {
+      "bytes": 58887,
+      "sha256": "c21df0dee206827232a1422c4c0efab1793723c38dddaa118b7587f59a7079b3"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run1/client-4-samples-ns.json.gz": {
+      "bytes": 58727,
+      "sha256": "a149ecdadb7119ffe7703c34eac175b4d0a5090054baec6d80785301834de8ba"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run1/client-5-samples-ns.json.gz": {
+      "bytes": 58767,
+      "sha256": "b28b91ee59e1659aa85061f9c52795f2df0ffe029d29f34ffb9b8a85b376eb30"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run1/client-6-samples-ns.json.gz": {
+      "bytes": 58925,
+      "sha256": "0db3dc22e4b43800e3fb4472e45ad7796f61df982f7a1d59408afbe6aafe1f8c"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run1/client-7-samples-ns.json.gz": {
+      "bytes": 59166,
+      "sha256": "b11e0f0a8196baf31bfbddcacd1e30fc4f391b93a690f9bcd9eec803cb9df50a"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run1/commands.json": {
+      "bytes": 1725,
+      "sha256": "f44222b4ff20edabb1420af98b66f94865ecabd09353f3e15738063c72147e0c"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run1/node-1.log": {
+      "bytes": 114,
+      "sha256": "cf3bd88d4fd0ee2da38bd4b951a63248d6d5ff2cc0de349bcdae8c0f23c87d72"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run1/node-2.log": {
+      "bytes": 114,
+      "sha256": "a84de3a12b1c7fde45c1f95cc93f2cd82e56de3d51be414316cf3df22590da68"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run1/node-3.log": {
+      "bytes": 168,
+      "sha256": "84980015925b2385d220d955aaf9013d84d793d1f48b027ffd12e4c7f5f4bfb2"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run1/resource-samples.json": {
+      "bytes": 51285,
+      "sha256": "9c81ef8808848c5c3510ba05ed1cbe4817b28d7485888b41c933d017a2093bdb"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run1/result.json": {
+      "bytes": 10940,
+      "sha256": "5e0fec13021d7623fea661dcea6ac858db648e3f3670060f07f6868a0531347b"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run1/timeline.json": {
+      "bytes": 2513,
+      "sha256": "e2c7adedc6c5763a96233298cf2d8fc7eac2ed4f24bb8fc204616fdb307b3629"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run1/workload.json": {
+      "bytes": 171,
+      "sha256": "dbed41e97fc5c866329bab65b593d9555f6a9fe3ecf9674a8506bbcf145f2d14"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run2/client-0-samples-ns.json.gz": {
+      "bytes": 54581,
+      "sha256": "d5d08399700e7343de610c5e63574c6eed982a31b0160749fd4b4a321feed928"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run2/client-1-samples-ns.json.gz": {
+      "bytes": 54273,
+      "sha256": "0de638d0a9de60ca7ec312639bec2dee04f70534ce41ba1601b08f8656c0011d"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run2/client-2-samples-ns.json.gz": {
+      "bytes": 54711,
+      "sha256": "9a4924966a59b33bfa6800d8bbbcbe2f3df94e75b51a56c05e7834f17f0245b7"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run2/client-3-samples-ns.json.gz": {
+      "bytes": 54726,
+      "sha256": "5795430a0a743989db19173215e77080ca57d5cdd3f58ee86614266968a47308"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run2/client-4-samples-ns.json.gz": {
+      "bytes": 54434,
+      "sha256": "7927f5094ce09775a35aeb5b2a0ec52f875201fac74866027124881d82a289f4"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run2/client-5-samples-ns.json.gz": {
+      "bytes": 54581,
+      "sha256": "3a61fc01157172eed18891881b46f1a0135f9b466d72257f60e8fe51fd9c9efe"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run2/client-6-samples-ns.json.gz": {
+      "bytes": 54541,
+      "sha256": "93679612abdd6df9afa9ef40c3029de2712fcee72cdd2e24549608080e2a7af6"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run2/client-7-samples-ns.json.gz": {
+      "bytes": 54693,
+      "sha256": "8f30f113e3b08a9271423ceef17b7f122081857c80e9f7ba8bc56324e4f128c4"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run2/commands.json": {
+      "bytes": 1725,
+      "sha256": "9cefb5e307bb2436528f360c895c433d89f9ef7708532d036a3af14589ef0c73"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run2/node-1.log": {
+      "bytes": 114,
+      "sha256": "b3dfc77f0acdb2296e22cbad69d251bebbb113935ec549f09f0483fff23a92c5"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run2/node-2.log": {
+      "bytes": 114,
+      "sha256": "cd557d759738e58341cfdeee7ef254956d8e010f88ae0ab7b9139c54a0901467"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run2/node-3.log": {
+      "bytes": 168,
+      "sha256": "8eb22dfeffd980c1c2f93ceefdb8b74a92eb90a2c95471c776507d91a128f000"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run2/resource-samples.json": {
+      "bytes": 51692,
+      "sha256": "66087e7e496e9a6aca4581cd7c477a879da80f067ea3c7caacf9495cd3cfee7a"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run2/result.json": {
+      "bytes": 10936,
+      "sha256": "5bf66943f5302a938a603c047443aff728cd17a2d5303f8ae51a687cef08be72"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run2/timeline.json": {
+      "bytes": 2512,
+      "sha256": "96ac4737093e26772a590d0874c7fb90c6470e85d941ae8f5a342a52fd8fff01"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run2/workload.json": {
+      "bytes": 171,
+      "sha256": "dbed41e97fc5c866329bab65b593d9555f6a9fe3ecf9674a8506bbcf145f2d14"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run3/client-0-samples-ns.json.gz": {
+      "bytes": 59585,
+      "sha256": "fb0aace328eaa2ecbed1a29d84af03379bccda32a14e4afaa33fcb6984012054"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run3/client-1-samples-ns.json.gz": {
+      "bytes": 58901,
+      "sha256": "d83b2bd76c6d7e11f06f236300fa906b94eb1c0b376484fc2ad32ea4e836f5b8"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run3/client-2-samples-ns.json.gz": {
+      "bytes": 59360,
+      "sha256": "f1d147f92cac7b919331704a3c4c7566143d959128dbcc995ca110726d11fba4"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run3/client-3-samples-ns.json.gz": {
+      "bytes": 59332,
+      "sha256": "951edd4424ad03ee96068a5374c809c7dfc36bd22611ed2bc5c6e14a4fc2956d"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run3/client-4-samples-ns.json.gz": {
+      "bytes": 59192,
+      "sha256": "49b12e3d34409df9e6b271973e5c46c8dc7056abbb2596b23c77de0ab2e32719"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run3/client-5-samples-ns.json.gz": {
+      "bytes": 59170,
+      "sha256": "eb7a968f570dc3cdc8599fe770de9cd38b8c9e6df8c36b2039a9e5fef45c168e"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run3/client-6-samples-ns.json.gz": {
+      "bytes": 59356,
+      "sha256": "0fcc2b92cf4bc3afce14fec72b490d333677a461c9cbdcc5d2c0c7e57a1a1e67"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run3/client-7-samples-ns.json.gz": {
+      "bytes": 59444,
+      "sha256": "76696f6bdff1c898df7e46de112bdc1bfab6038faf3a98c53898df81b7e802b5"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run3/commands.json": {
+      "bytes": 1725,
+      "sha256": "676cd717fbb5ed58d202c34a8869f57a0e8c230951ff4aa632f576d34e678758"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run3/node-1.log": {
+      "bytes": 114,
+      "sha256": "8883307452ccec74ed6fe0721bb9247f9f610a7bb7e1c30b9ee10e73b9c21e43"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run3/node-2.log": {
+      "bytes": 114,
+      "sha256": "fad8899a20f68b3d56dc5c59a79fec53cfe406330e9f1c9bda799ef0d82fe19e"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run3/node-3.log": {
+      "bytes": 168,
+      "sha256": "87970f2503ccccf55d43dc7c4af92531621380e29d37f7b5cde8402e848c16cd"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run3/resource-samples.json": {
+      "bytes": 51683,
+      "sha256": "5c8f567093df97fc66aa05d5e692452bb91853d4e335e2a80aa85632135f8fb7"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run3/result.json": {
+      "bytes": 10938,
+      "sha256": "67db239e08b0e850a8a8a356b86d7a59d20c44cd4f3e55615879526a8f78b278"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run3/timeline.json": {
+      "bytes": 2511,
+      "sha256": "02542504758acd562046518a84ea7398aafe11570aab8ff27868500b0937d077"
+    },
+    "baseline-read-index-write-heavy-batch32-snap128-run3/workload.json": {
+      "bytes": 171,
+      "sha256": "dbed41e97fc5c866329bab65b593d9555f6a9fe3ecf9674a8506bbcf145f2d14"
+    },
+    "current-log-balanced-batch32-snap128-run1/client-0-samples-ns.json.gz": {
+      "bytes": 72809,
+      "sha256": "b69cf9df5ba7f554da1ca9a499575d0aa9c4ce234aadadf30bd994a1ebe05df8"
+    },
+    "current-log-balanced-batch32-snap128-run1/client-1-samples-ns.json.gz": {
+      "bytes": 72753,
+      "sha256": "57b32d902a891ce3ffd266f586b532acd0a13c41e268921c126aa3851d5e1df3"
+    },
+    "current-log-balanced-batch32-snap128-run1/client-2-samples-ns.json.gz": {
+      "bytes": 72764,
+      "sha256": "dc414f16bcc003878af0655487fc79b57b3854440ac5c411c344bfbf965f7f35"
+    },
+    "current-log-balanced-batch32-snap128-run1/client-3-samples-ns.json.gz": {
+      "bytes": 72653,
+      "sha256": "87b3130053322267425012e7f9068dd9024ca50e1e567806938690385b6f66b5"
+    },
+    "current-log-balanced-batch32-snap128-run1/client-4-samples-ns.json.gz": {
+      "bytes": 72677,
+      "sha256": "cb53d56fbb2965da053a414ea2d46f022689cf9e2dd53b2c4b3321781a731d3e"
+    },
+    "current-log-balanced-batch32-snap128-run1/client-5-samples-ns.json.gz": {
+      "bytes": 72708,
+      "sha256": "9002e213dc1d16bb6eb6de88ff563378cc2a0ef33177a1515b71823a28333a23"
+    },
+    "current-log-balanced-batch32-snap128-run1/client-6-samples-ns.json.gz": {
+      "bytes": 72651,
+      "sha256": "21eead4cf3ec6173d3e6129eece650991f438a37d4d474f038bfbb011c86927f"
+    },
+    "current-log-balanced-batch32-snap128-run1/client-7-samples-ns.json.gz": {
+      "bytes": 72588,
+      "sha256": "2d1a43fc4ada2750c6fa4cf0496c3e053f5d3617e22920500d369b787934db66"
+    },
+    "current-log-balanced-batch32-snap128-run1/commands.json": {
+      "bytes": 1557,
+      "sha256": "2fc9a313a90496966dacd3e4ffa0b6cc745df6517459ad4e610ee3639cd681df"
+    },
+    "current-log-balanced-batch32-snap128-run1/node-1.log": {
+      "bytes": 114,
+      "sha256": "f4cfef317132d2db31c2af73d7a7cded30354aab750ffca4a947daddb7844bdd"
+    },
+    "current-log-balanced-batch32-snap128-run1/node-2.log": {
+      "bytes": 114,
+      "sha256": "933908e4053dcc5c75837597f7e84b4405af24930358ba2d8fda9e78d6b739a1"
+    },
+    "current-log-balanced-batch32-snap128-run1/node-3.log": {
+      "bytes": 168,
+      "sha256": "4efcf9210e69c6b38b32089340e3a6acd53f3d41eb1ad6b5931fc85f9fd6142a"
+    },
+    "current-log-balanced-batch32-snap128-run1/resource-samples.json": {
+      "bytes": 51210,
+      "sha256": "e2253e3978087562857762873d7f2b8a3cb66281ac94110cc07d0bad334bc1d6"
+    },
+    "current-log-balanced-batch32-snap128-run1/result.json": {
+      "bytes": 12408,
+      "sha256": "ef65d6e2af4d30f24df9fe515f6802f7a9c5947347321deef4d088f3d492189a"
+    },
+    "current-log-balanced-batch32-snap128-run1/timeline.json": {
+      "bytes": 2511,
+      "sha256": "e1775e7536d8703254dcb1f77a6d5c10fa86d9777c02e42e9afd51fbe616b3a2"
+    },
+    "current-log-balanced-batch32-snap128-run1/workload.json": {
+      "bytes": 171,
+      "sha256": "f733ccd5d866d7e433dbbf39705e98e727faaba3ac01a131dc1263d84874a92b"
+    },
+    "current-log-balanced-batch32-snap128-run2/client-0-samples-ns.json.gz": {
+      "bytes": 61936,
+      "sha256": "aef8415442c237fcdad6f43f136ca2132aa824507cd6abb192be07b9b3715d8c"
+    },
+    "current-log-balanced-batch32-snap128-run2/client-1-samples-ns.json.gz": {
+      "bytes": 61837,
+      "sha256": "8f1339038a4f3c2c669089d38c767257bafbbcb3b1c3433558f5bfc94c99a1d4"
+    },
+    "current-log-balanced-batch32-snap128-run2/client-2-samples-ns.json.gz": {
+      "bytes": 61871,
+      "sha256": "831d0099a47e41d05afe6879bc83dca28b65dc2697bd754cac049ef03d1a8da4"
+    },
+    "current-log-balanced-batch32-snap128-run2/client-3-samples-ns.json.gz": {
+      "bytes": 62075,
+      "sha256": "7b2468795a5c09e136e31ef414a3fbb8876c3ca766f964f5af06d9793250acd8"
+    },
+    "current-log-balanced-batch32-snap128-run2/client-4-samples-ns.json.gz": {
+      "bytes": 61823,
+      "sha256": "ea937e4376afb6c2593e6e152543f3a5d1b03fafd4d75caa02a896794913cb62"
+    },
+    "current-log-balanced-batch32-snap128-run2/client-5-samples-ns.json.gz": {
+      "bytes": 61875,
+      "sha256": "41d067e23d04eb857c1914ad282d20a156a1e17ead16444d93eab588f9e820e4"
+    },
+    "current-log-balanced-batch32-snap128-run2/client-6-samples-ns.json.gz": {
+      "bytes": 61729,
+      "sha256": "483e19f47e5c3f29c8503f548eaf47fb9c31aa91900790213320da28b81632ad"
+    },
+    "current-log-balanced-batch32-snap128-run2/client-7-samples-ns.json.gz": {
+      "bytes": 61863,
+      "sha256": "185933e38891d532e42e299975a4530c4d5bfd74c817e5764aa2e4c0a0161bdf"
+    },
+    "current-log-balanced-batch32-snap128-run2/commands.json": {
+      "bytes": 1557,
+      "sha256": "2e202a7c2eb9ef550e1ee3b8aa64938cbb906dbce7c106b92aacbf915fb03e3e"
+    },
+    "current-log-balanced-batch32-snap128-run2/node-1.log": {
+      "bytes": 114,
+      "sha256": "27594cb7569f9399f5366dcc56e2bac062147f8c5953e3e35e01fd609a4df4ba"
+    },
+    "current-log-balanced-batch32-snap128-run2/node-2.log": {
+      "bytes": 114,
+      "sha256": "0b99f50140eaa855dbb5a949d85ed3683774321287c15d78d2f77ebd003c7c17"
+    },
+    "current-log-balanced-batch32-snap128-run2/node-3.log": {
+      "bytes": 168,
+      "sha256": "7b2f16c99e4e975c1979adb2311e39098f98965cb63069fc4eeee11638444735"
+    },
+    "current-log-balanced-batch32-snap128-run2/resource-samples.json": {
+      "bytes": 49118,
+      "sha256": "781a93753a00502103fa02eb1542605c2f7721b3654f95da55eb7af7fc24dea2"
+    },
+    "current-log-balanced-batch32-snap128-run2/result.json": {
+      "bytes": 12415,
+      "sha256": "fca382be7da686cd419854e6529ea94dec27ced817e01b8fb20d462a9ecce322"
+    },
+    "current-log-balanced-batch32-snap128-run2/timeline.json": {
+      "bytes": 2510,
+      "sha256": "6aba22cc5d8c4a1a4ca7be4ce48f712466f16d0d11646fff24d3cd7488c67b67"
+    },
+    "current-log-balanced-batch32-snap128-run2/workload.json": {
+      "bytes": 171,
+      "sha256": "f733ccd5d866d7e433dbbf39705e98e727faaba3ac01a131dc1263d84874a92b"
+    },
+    "current-log-balanced-batch32-snap128-run3/client-0-samples-ns.json.gz": {
+      "bytes": 66057,
+      "sha256": "d1673bec0483e93bc38d0b0a36f6de834cf37e8a099deebda70e8540d0960489"
+    },
+    "current-log-balanced-batch32-snap128-run3/client-1-samples-ns.json.gz": {
+      "bytes": 65985,
+      "sha256": "1ddf933d5f4087aade3502c26e7274dcb915f8b8ff99f57ea741dd7300eb05f8"
+    },
+    "current-log-balanced-batch32-snap128-run3/client-2-samples-ns.json.gz": {
+      "bytes": 65986,
+      "sha256": "51d6f32bd6179b414ad99942874ff046c78eeb774da208c9f492ef2036a23ecc"
+    },
+    "current-log-balanced-batch32-snap128-run3/client-3-samples-ns.json.gz": {
+      "bytes": 66082,
+      "sha256": "a75ae94ba7018872b7412cbd1bb708d0f8f43e7e8dbbce407e8bd896db8137cb"
+    },
+    "current-log-balanced-batch32-snap128-run3/client-4-samples-ns.json.gz": {
+      "bytes": 65926,
+      "sha256": "e7cc49e300dfc70bc9b8de30b6a24735ec9186847fa9085e7d88c6e2b689cbdb"
+    },
+    "current-log-balanced-batch32-snap128-run3/client-5-samples-ns.json.gz": {
+      "bytes": 66088,
+      "sha256": "0e7ed963877fec2e6fef97b98492d5ae597ef9c1e12c12199dbc3d8a08ecfc89"
+    },
+    "current-log-balanced-batch32-snap128-run3/client-6-samples-ns.json.gz": {
+      "bytes": 65832,
+      "sha256": "5fde4ef2637cc242c2a30d632c9fbb3936ee46e0603de5bfbb156ea1ec210e76"
+    },
+    "current-log-balanced-batch32-snap128-run3/client-7-samples-ns.json.gz": {
+      "bytes": 65970,
+      "sha256": "ba06236748a4c67a787060fe17691525badc0896d5fe92dba6fc3ffdc2266536"
+    },
+    "current-log-balanced-batch32-snap128-run3/commands.json": {
+      "bytes": 1557,
+      "sha256": "6fc2f478bea6da9ed8eb2ce3467b36d28e83669d0150d9004c7dcb4307f8521c"
+    },
+    "current-log-balanced-batch32-snap128-run3/node-1.log": {
+      "bytes": 114,
+      "sha256": "87800e90edd0849bb2e8810af8a9a0d6998a65830ed6561d2dc24f13d6aef51b"
+    },
+    "current-log-balanced-batch32-snap128-run3/node-2.log": {
+      "bytes": 114,
+      "sha256": "97c637683ee8aaf2b49e2ab8baadc790579b0c14a49dcbf6564aad1146037030"
+    },
+    "current-log-balanced-batch32-snap128-run3/node-3.log": {
+      "bytes": 168,
+      "sha256": "cc2889ad9f9c861d862f3f9e6be100203030399e2c6288c542203c8aae4b1051"
+    },
+    "current-log-balanced-batch32-snap128-run3/resource-samples.json": {
+      "bytes": 51661,
+      "sha256": "419b4d2fd7ec11449efc661d1498423938ced733b448e360eefe249e8e04d5d6"
+    },
+    "current-log-balanced-batch32-snap128-run3/result.json": {
+      "bytes": 12440,
+      "sha256": "ad3fe2ab8993fc265e5635d695ee2e3328a8a667aae4cd88c70b924fd0d31eff"
+    },
+    "current-log-balanced-batch32-snap128-run3/timeline.json": {
+      "bytes": 2511,
+      "sha256": "151d8e7af744497736507e1b14acb4e3086cee5479e02c179b124bbc021ff306"
+    },
+    "current-log-balanced-batch32-snap128-run3/workload.json": {
+      "bytes": 171,
+      "sha256": "f733ccd5d866d7e433dbbf39705e98e727faaba3ac01a131dc1263d84874a92b"
+    },
+    "current-log-large-value-batch32-snap128-run1/client-0-samples-ns.json.gz": {
+      "bytes": 49595,
+      "sha256": "c514c8e52d3f33ff3d1b36d4ccf5c3fc6ba64d91c309ceb3958bd58f4df909e5"
+    },
+    "current-log-large-value-batch32-snap128-run1/client-1-samples-ns.json.gz": {
+      "bytes": 49702,
+      "sha256": "ae3325386f23a773dacc85453b8ebf722e91e967d4ee6636b6d5938c1bfb7971"
+    },
+    "current-log-large-value-batch32-snap128-run1/client-2-samples-ns.json.gz": {
+      "bytes": 49651,
+      "sha256": "c2d40b400e341c8456302fab0fc4fc583e8f0ff3984deb67c641843f06441659"
+    },
+    "current-log-large-value-batch32-snap128-run1/client-3-samples-ns.json.gz": {
+      "bytes": 49573,
+      "sha256": "49f336a5972ebfba2523cd67c117a33a051628b0dbb79c238c01dbf84551bcbf"
+    },
+    "current-log-large-value-batch32-snap128-run1/client-4-samples-ns.json.gz": {
+      "bytes": 49587,
+      "sha256": "a56adb0897ebbbcf1797686ffea149b35d069b195149d92f64503c81e998ee7a"
+    },
+    "current-log-large-value-batch32-snap128-run1/client-5-samples-ns.json.gz": {
+      "bytes": 49476,
+      "sha256": "0eca5ffc509a88c8851e4bc35b6527837657a5de82a99997b22255fc37c14aa9"
+    },
+    "current-log-large-value-batch32-snap128-run1/client-6-samples-ns.json.gz": {
+      "bytes": 49559,
+      "sha256": "819bfeb256cb3be0c5e33f8772b1141e932603ec6ea6a9762abcc47ae2410cb4"
+    },
+    "current-log-large-value-batch32-snap128-run1/client-7-samples-ns.json.gz": {
+      "bytes": 49579,
+      "sha256": "f98c4bf7088a1024497a9f82157a7347b9562dac8e6ccbcee562af0fc9da5c99"
+    },
+    "current-log-large-value-batch32-snap128-run1/commands.json": {
+      "bytes": 1566,
+      "sha256": "2ebdab77ab00d158c29f17c2106def141c603544f8609fd269f1d3d820ca0268"
+    },
+    "current-log-large-value-batch32-snap128-run1/node-1.log": {
+      "bytes": 114,
+      "sha256": "eab297c54599232d53b6334d4d5f14ffbef18c2f41b85ce7aaea790c634c3d7d"
+    },
+    "current-log-large-value-batch32-snap128-run1/node-2.log": {
+      "bytes": 114,
+      "sha256": "98c221a35c8856fc0563f5e12b708680db7161dfed0c22cc9f9272fc70e33ce4"
+    },
+    "current-log-large-value-batch32-snap128-run1/node-3.log": {
+      "bytes": 168,
+      "sha256": "cbb66dcfbd347404cd4cba053d3a7a668d1c624920bee896a0a83f4dbb52b3ec"
+    },
+    "current-log-large-value-batch32-snap128-run1/resource-samples.json": {
+      "bytes": 51689,
+      "sha256": "1245060dc8e4c79e70af156be2076b3e9ffaadb14f56206cb55cd369509b03d2"
+    },
+    "current-log-large-value-batch32-snap128-run1/result.json": {
+      "bytes": 12475,
+      "sha256": "457b38964780fb6380f85a4659b68c02cf0d242b249b77e289b3c86696665be5"
+    },
+    "current-log-large-value-batch32-snap128-run1/timeline.json": {
+      "bytes": 2509,
+      "sha256": "c6ce2aee2f941d448b7f643d4d71dac626514a71d05ddea10b8cea573e3bf0a3"
+    },
+    "current-log-large-value-batch32-snap128-run1/workload.json": {
+      "bytes": 172,
+      "sha256": "91b5a03fcde6271d7584665918aeeae264965ea3140956d27d98a52bf8acd411"
+    },
+    "current-log-large-value-batch32-snap128-run2/client-0-samples-ns.json.gz": {
+      "bytes": 47247,
+      "sha256": "df4c511d805a3c31cf4c454c153e4e6c0760a945a391aff08902699d3485c866"
+    },
+    "current-log-large-value-batch32-snap128-run2/client-1-samples-ns.json.gz": {
+      "bytes": 47153,
+      "sha256": "3b18c281bbd1bb6cf2145084a29abdb9ddc836281257572a3bf37eeaa32d1a2c"
+    },
+    "current-log-large-value-batch32-snap128-run2/client-2-samples-ns.json.gz": {
+      "bytes": 47203,
+      "sha256": "bea88bcd291d44a455f39bec3c7e20fc7aba0cd8d6aa6782f72078fa09a3919f"
+    },
+    "current-log-large-value-batch32-snap128-run2/client-3-samples-ns.json.gz": {
+      "bytes": 47086,
+      "sha256": "4afd1f795a2abe99d195b73d3553623386009e8ec485d8dd35a56d695af6318a"
+    },
+    "current-log-large-value-batch32-snap128-run2/client-4-samples-ns.json.gz": {
+      "bytes": 47191,
+      "sha256": "f59cdfe24dfc973aa023d80631cf6e0c8825a1966354bdfe6d95261ed875f996"
+    },
+    "current-log-large-value-batch32-snap128-run2/client-5-samples-ns.json.gz": {
+      "bytes": 47175,
+      "sha256": "cb7b3fa38bd7e7608a34df2a7788fdf35c33ec0985a28e2f8f1f90792935c6ac"
+    },
+    "current-log-large-value-batch32-snap128-run2/client-6-samples-ns.json.gz": {
+      "bytes": 47039,
+      "sha256": "66e6247011f3c8713c215f5e1cb8fc1d6044076bcab5200f7f67f22fb95c5962"
+    },
+    "current-log-large-value-batch32-snap128-run2/client-7-samples-ns.json.gz": {
+      "bytes": 47037,
+      "sha256": "a99bcdecfe5bee9f1fdc7e823c34941a045f9087d030cec5308298077ff60805"
+    },
+    "current-log-large-value-batch32-snap128-run2/commands.json": {
+      "bytes": 1566,
+      "sha256": "b7e1ae44404902388bcb9bfd313159ca506162cdda88d1b95115f47d2bb33321"
+    },
+    "current-log-large-value-batch32-snap128-run2/node-1.log": {
+      "bytes": 114,
+      "sha256": "54cd31485b7a33b35d6bcf17e7619b14f51d6d57984563898e50921dc79880eb"
+    },
+    "current-log-large-value-batch32-snap128-run2/node-2.log": {
+      "bytes": 114,
+      "sha256": "37769510fc17ceef2c4ad8744d9a7eb80c932cec2ab658a53cf67b5dbfc37d5d"
+    },
+    "current-log-large-value-batch32-snap128-run2/node-3.log": {
+      "bytes": 168,
+      "sha256": "a4151dd23b71e54b1888802eb450cea436c5fc480b89b3238070a7d26290e28b"
+    },
+    "current-log-large-value-batch32-snap128-run2/resource-samples.json": {
+      "bytes": 52114,
+      "sha256": "6c41990accebbf7fde3e0ade4e921ccdb65ffb18e9a3f73dc67e34c1f1a25023"
+    },
+    "current-log-large-value-batch32-snap128-run2/result.json": {
+      "bytes": 12501,
+      "sha256": "a7ea92077b798e6437bdece4caf561ea9268c327dae329893113540590e714fc"
+    },
+    "current-log-large-value-batch32-snap128-run2/timeline.json": {
+      "bytes": 2517,
+      "sha256": "792b14d29a6ae5ad285022d786e49d10806cc21e6c716e0c4d127e06138a2974"
+    },
+    "current-log-large-value-batch32-snap128-run2/workload.json": {
+      "bytes": 172,
+      "sha256": "91b5a03fcde6271d7584665918aeeae264965ea3140956d27d98a52bf8acd411"
+    },
+    "current-log-large-value-batch32-snap128-run3/client-0-samples-ns.json.gz": {
+      "bytes": 42333,
+      "sha256": "846edaef39ce9a16c904c891e595d17072e11cc219d1f183b52377d4e020da68"
+    },
+    "current-log-large-value-batch32-snap128-run3/client-1-samples-ns.json.gz": {
+      "bytes": 42576,
+      "sha256": "405d461b1a1eecf30d439781c5dfc02b0a4eb5adff4ec42f138e7185b0b9ca7d"
+    },
+    "current-log-large-value-batch32-snap128-run3/client-2-samples-ns.json.gz": {
+      "bytes": 42356,
+      "sha256": "8d06ce240f7e8688d39bc5f15ea723633eedbc201e574777178bbbf1773bf399"
+    },
+    "current-log-large-value-batch32-snap128-run3/client-3-samples-ns.json.gz": {
+      "bytes": 42499,
+      "sha256": "5ce3b733b454002f6924fe26ded9a065089923240b9112058a3ecf817d790c4d"
+    },
+    "current-log-large-value-batch32-snap128-run3/client-4-samples-ns.json.gz": {
+      "bytes": 42386,
+      "sha256": "6c03087749fe6ee3ee195e9c2cb4408eac7378ba7a377a8d3849df90d7cf338e"
+    },
+    "current-log-large-value-batch32-snap128-run3/client-5-samples-ns.json.gz": {
+      "bytes": 42367,
+      "sha256": "b31842e63ba889da83193fa7c620b33fac816e358a3ccb45e4561d73219630b6"
+    },
+    "current-log-large-value-batch32-snap128-run3/client-6-samples-ns.json.gz": {
+      "bytes": 42540,
+      "sha256": "770e555f688ff35aee99592a4afbd37eac395c790e2df068f4cf9520adfb7e00"
+    },
+    "current-log-large-value-batch32-snap128-run3/client-7-samples-ns.json.gz": {
+      "bytes": 42400,
+      "sha256": "92457d4a08e3f6fa24b03a1f359475382b2b153b45435272ba821787eb7c8192"
+    },
+    "current-log-large-value-batch32-snap128-run3/commands.json": {
+      "bytes": 1566,
+      "sha256": "6aed7afd7349c8fbff4899290498abf8cd159bf39c4902e4e62a3188ec182a7c"
+    },
+    "current-log-large-value-batch32-snap128-run3/node-1.log": {
+      "bytes": 114,
+      "sha256": "c7fffbfa9ac5dd060f3e33e177fd67149272f144e2f15edf136166f59916fa4f"
+    },
+    "current-log-large-value-batch32-snap128-run3/node-2.log": {
+      "bytes": 114,
+      "sha256": "537522f47d3022cd4e0e624abb3c2432115e3a87aa232ef800b503980ba71bc5"
+    },
+    "current-log-large-value-batch32-snap128-run3/node-3.log": {
+      "bytes": 168,
+      "sha256": "dd63f44257fa1238bf98c37c2f38cac603e71796dbd035b2abbe45c6c861bb2a"
+    },
+    "current-log-large-value-batch32-snap128-run3/resource-samples.json": {
+      "bytes": 52115,
+      "sha256": "edba987707bd7b07ea1ab05ebdb8d16a8a9cef4860f74e03079f5b7e558e57b9"
+    },
+    "current-log-large-value-batch32-snap128-run3/result.json": {
+      "bytes": 12485,
+      "sha256": "03cad881174145426b21b2d0a359ccbf1ea8548aa47352a405d687fddfb47891"
+    },
+    "current-log-large-value-batch32-snap128-run3/timeline.json": {
+      "bytes": 2525,
+      "sha256": "d6cc3a677a9c0be9287f12204454a1c33eee351793de5db51d9696e2d2ad7fab"
+    },
+    "current-log-large-value-batch32-snap128-run3/workload.json": {
+      "bytes": 172,
+      "sha256": "91b5a03fcde6271d7584665918aeeae264965ea3140956d27d98a52bf8acd411"
+    },
+    "current-log-more-keys-batch32-snap128-run1/client-0-samples-ns.json.gz": {
+      "bytes": 69262,
+      "sha256": "6bfe4d5705e63c7ad6b962b210993a764e18b984ddb6d7d84e5daba0a4998655"
+    },
+    "current-log-more-keys-batch32-snap128-run1/client-1-samples-ns.json.gz": {
+      "bytes": 69177,
+      "sha256": "8548cf2aa62597b37c866f089efdd2ee12e698e1e4083a2683d72aff0451a362"
+    },
+    "current-log-more-keys-batch32-snap128-run1/client-2-samples-ns.json.gz": {
+      "bytes": 69349,
+      "sha256": "7851abcbdbb45e4fbc21cf6ed2cf5953088dc3f7191383dbc4349b000922ee2a"
+    },
+    "current-log-more-keys-batch32-snap128-run1/client-3-samples-ns.json.gz": {
+      "bytes": 69485,
+      "sha256": "4aceb69bf1736dfcf68c5b940e4674377ed811317d8d4485ce8969300a16abfd"
+    },
+    "current-log-more-keys-batch32-snap128-run1/client-4-samples-ns.json.gz": {
+      "bytes": 69090,
+      "sha256": "56d04ac2d11c7380c0e7c974b35ea4b466c94a1c99e9b336af92eaf2b1522721"
+    },
+    "current-log-more-keys-batch32-snap128-run1/client-5-samples-ns.json.gz": {
+      "bytes": 69440,
+      "sha256": "15e02030e99e518d8e0151412da67a70ca7cb41b9fe77f5d2671bbc69de155e7"
+    },
+    "current-log-more-keys-batch32-snap128-run1/client-6-samples-ns.json.gz": {
+      "bytes": 69268,
+      "sha256": "606c8fc8926b237df9ba4c8c4f9052c15a6ff76973564afe0f7ce4273fdad8f7"
+    },
+    "current-log-more-keys-batch32-snap128-run1/client-7-samples-ns.json.gz": {
+      "bytes": 69281,
+      "sha256": "ddc1960e56dbd4fcfaac5c1081db0bc1c15eea0a1c4c991ab44a2c32e0ae3dbe"
+    },
+    "current-log-more-keys-batch32-snap128-run1/commands.json": {
+      "bytes": 1560,
+      "sha256": "e3c9d33eddc03671447bde5cbc0b03dfb1a33babf3acfb11f9e9724c2514759e"
+    },
+    "current-log-more-keys-batch32-snap128-run1/node-1.log": {
+      "bytes": 114,
+      "sha256": "2a7ebe9bcd53b42ad8c60873a8c1fb41a9cd3060d3a2dcc5390ff74ef3ff0f5a"
+    },
+    "current-log-more-keys-batch32-snap128-run1/node-2.log": {
+      "bytes": 114,
+      "sha256": "d0deedcb4c25a83921f6cac27b54454b99feffb96adf3430b9e5d6b9d43623b5"
+    },
+    "current-log-more-keys-batch32-snap128-run1/node-3.log": {
+      "bytes": 168,
+      "sha256": "8536ea721f9c684286124365d4d6f37a899561f4b28cffbd3345a3ee7ff17a01"
+    },
+    "current-log-more-keys-batch32-snap128-run1/resource-samples.json": {
+      "bytes": 51512,
+      "sha256": "44d8575ca9c83bbd8361ae8f66bfd1a430bd2134ed843f25dfaf8c1cf4baa5a4"
+    },
+    "current-log-more-keys-batch32-snap128-run1/result.json": {
+      "bytes": 23967,
+      "sha256": "be90ad7b31f0da1d463c00a9afe7b256d448d41d535b83f6f4cf6c50f9fd7447"
+    },
+    "current-log-more-keys-batch32-snap128-run1/timeline.json": {
+      "bytes": 2511,
+      "sha256": "73807f31cd43b4435a88a5b9e1d0dbc8f5b08e7d209a560fb36bd5627d6d9ff1"
+    },
+    "current-log-more-keys-batch32-snap128-run1/workload.json": {
+      "bytes": 173,
+      "sha256": "acfed4ad3dc5325de488cb115e0841bce56008314a232cf4f0487cb0c3aa8caf"
+    },
+    "current-log-more-keys-batch32-snap128-run2/client-0-samples-ns.json.gz": {
+      "bytes": 67966,
+      "sha256": "0ceb29617b7aff202e4a1ca556a17c9c8767ec029fe56a852c5ac403b15dd6f4"
+    },
+    "current-log-more-keys-batch32-snap128-run2/client-1-samples-ns.json.gz": {
+      "bytes": 67964,
+      "sha256": "6f8ca33c570585eb2df8d7affe2c0edd8ebb5de30d2e29f19828bd675806893b"
+    },
+    "current-log-more-keys-batch32-snap128-run2/client-2-samples-ns.json.gz": {
+      "bytes": 67870,
+      "sha256": "daa42ceefc86b564284a5f641e8d5b8a587de053b7fb64826d183f721260835a"
+    },
+    "current-log-more-keys-batch32-snap128-run2/client-3-samples-ns.json.gz": {
+      "bytes": 68075,
+      "sha256": "3900dacadd2871231461d107915a193d1f957e85abac7961451ef14ad4499d72"
+    },
+    "current-log-more-keys-batch32-snap128-run2/client-4-samples-ns.json.gz": {
+      "bytes": 68058,
+      "sha256": "aee9584db245003ab6dee22b2e1321d62647812c8052431ddbc26972d1504806"
+    },
+    "current-log-more-keys-batch32-snap128-run2/client-5-samples-ns.json.gz": {
+      "bytes": 68117,
+      "sha256": "6a82a970c0435663aecde8ddbe14eb1941299a566aaea52b8ac1a07ab342b219"
+    },
+    "current-log-more-keys-batch32-snap128-run2/client-6-samples-ns.json.gz": {
+      "bytes": 67915,
+      "sha256": "fe012b6a7ec56e9b407ae7c5a6026e19cbf98f6492889751c289f0fba0643261"
+    },
+    "current-log-more-keys-batch32-snap128-run2/client-7-samples-ns.json.gz": {
+      "bytes": 68058,
+      "sha256": "9cf060ecef93990254444b8e9898fd24e54d789bf00bd469f54a65737e0afacb"
+    },
+    "current-log-more-keys-batch32-snap128-run2/commands.json": {
+      "bytes": 1560,
+      "sha256": "15c5e93a077a200df9943d3639ebb38e79390ed6c9a840f74cdae4657ee4bff3"
+    },
+    "current-log-more-keys-batch32-snap128-run2/node-1.log": {
+      "bytes": 114,
+      "sha256": "89e584dde6d3791edd621592851458b5b8bdc9a06d28389cbfc3199614377f19"
+    },
+    "current-log-more-keys-batch32-snap128-run2/node-2.log": {
+      "bytes": 114,
+      "sha256": "d95933e630a207a6a51b3a53368b7d51e41f8a85608bde3d343a4b8682399ce2"
+    },
+    "current-log-more-keys-batch32-snap128-run2/node-3.log": {
+      "bytes": 168,
+      "sha256": "b2abef8d29f8fca9ccd1ff84ffc3d2b1f1752710bba843a4870ff96fa192c2a5"
+    },
+    "current-log-more-keys-batch32-snap128-run2/resource-samples.json": {
+      "bytes": 51937,
+      "sha256": "b47e71a0ee3d319010a999e9ec5d4bf70ac25d85f1d5da2372d42dcba7d27e6e"
+    },
+    "current-log-more-keys-batch32-snap128-run2/result.json": {
+      "bytes": 23954,
+      "sha256": "2e2cf1e83266905766a59f00021a6e8878c2256c4def96d1164ebdedb4dfc4f7"
+    },
+    "current-log-more-keys-batch32-snap128-run2/timeline.json": {
+      "bytes": 2514,
+      "sha256": "2cc3813231fd0ace6b4bfd9b47bf22e93da8ee45e4529f6830dd69fbf9b4df73"
+    },
+    "current-log-more-keys-batch32-snap128-run2/workload.json": {
+      "bytes": 173,
+      "sha256": "acfed4ad3dc5325de488cb115e0841bce56008314a232cf4f0487cb0c3aa8caf"
+    },
+    "current-log-more-keys-batch32-snap128-run3/client-0-samples-ns.json.gz": {
+      "bytes": 67835,
+      "sha256": "d08b82a8ab0d14f66fa6c74fcfa589da9a583f95e0f2c797ec3dd957abec73ed"
+    },
+    "current-log-more-keys-batch32-snap128-run3/client-1-samples-ns.json.gz": {
+      "bytes": 67731,
+      "sha256": "c0b73f5a02bda646c3d4bfeee64721c4a1e0997ad3a3ad095741191fadae2818"
+    },
+    "current-log-more-keys-batch32-snap128-run3/client-2-samples-ns.json.gz": {
+      "bytes": 67672,
+      "sha256": "b3ce92de4c6885d5637f9cdd9ce399dc6f49aea0548c1b56e8931b1ccf2085d3"
+    },
+    "current-log-more-keys-batch32-snap128-run3/client-3-samples-ns.json.gz": {
+      "bytes": 67750,
+      "sha256": "41486253b7da1e11ece46ca570449a7bbebb74b29d22ac50b713e787a339ca97"
+    },
+    "current-log-more-keys-batch32-snap128-run3/client-4-samples-ns.json.gz": {
+      "bytes": 67798,
+      "sha256": "c27049dc986184f62c8c31827e7bf1804e8b2279adb3ea49ec93cefc039d1ed6"
+    },
+    "current-log-more-keys-batch32-snap128-run3/client-5-samples-ns.json.gz": {
+      "bytes": 67834,
+      "sha256": "1c54f3ff3b5bf58dfd3d601a7124fc9464d22aba3e34bc9e8aeade57d612ffa9"
+    },
+    "current-log-more-keys-batch32-snap128-run3/client-6-samples-ns.json.gz": {
+      "bytes": 67877,
+      "sha256": "33356e314d6e5260238d0765c2b223d29729af22ce22d7fe970a18bae525d6d2"
+    },
+    "current-log-more-keys-batch32-snap128-run3/client-7-samples-ns.json.gz": {
+      "bytes": 67901,
+      "sha256": "4b6faf84a47f5f85a56c040ad50e97369e5e428808c59a9a4975a69157b8672e"
+    },
+    "current-log-more-keys-batch32-snap128-run3/commands.json": {
+      "bytes": 1560,
+      "sha256": "1d4bab5057ada1e7567e76dcb4a60f315ea9d9d932aeb3d5df1b98e912bd6a16"
+    },
+    "current-log-more-keys-batch32-snap128-run3/node-1.log": {
+      "bytes": 114,
+      "sha256": "9488ca3ec634699571bfeabe99ed6ef410bd405018c2f3529cd4d0abb0f776a0"
+    },
+    "current-log-more-keys-batch32-snap128-run3/node-2.log": {
+      "bytes": 114,
+      "sha256": "b8787f05ffee019678b313624b6bbbccebc374411bc30a81bf12f5425a5fc68f"
+    },
+    "current-log-more-keys-batch32-snap128-run3/node-3.log": {
+      "bytes": 168,
+      "sha256": "5def91e43c13ae2baa860bd252dc30ec90d48ac53afa873836a1b080416cda26"
+    },
+    "current-log-more-keys-batch32-snap128-run3/resource-samples.json": {
+      "bytes": 51936,
+      "sha256": "9327e6b0bca9fb69b6258adf771a0ccaa032166202bd403c7505bd27479518ef"
+    },
+    "current-log-more-keys-batch32-snap128-run3/result.json": {
+      "bytes": 23966,
+      "sha256": "da5dcdcd6238ac4612d700c7df12efb40f053c99e7cc55dc3d4a340cc1dc6822"
+    },
+    "current-log-more-keys-batch32-snap128-run3/timeline.json": {
+      "bytes": 2510,
+      "sha256": "dabed157d58520bf723a41da4005b4ae697edb6c05b6ecd7d2071a4bbb18ad4f"
+    },
+    "current-log-more-keys-batch32-snap128-run3/workload.json": {
+      "bytes": 173,
+      "sha256": "acfed4ad3dc5325de488cb115e0841bce56008314a232cf4f0487cb0c3aa8caf"
+    },
+    "current-log-read-only-batch32-snap128-run1/client-0-samples-ns.json.gz": {
+      "bytes": 71250,
+      "sha256": "3001efe51a24e5542b19df48f5f19767e1781f8631a30243135805d8b841e52b"
+    },
+    "current-log-read-only-batch32-snap128-run1/client-1-samples-ns.json.gz": {
+      "bytes": 71317,
+      "sha256": "888ef4ed4f3fa9096041fd1717e8a47861a88305b8a3fbf1eb70aa3414ad701b"
+    },
+    "current-log-read-only-batch32-snap128-run1/client-2-samples-ns.json.gz": {
+      "bytes": 71438,
+      "sha256": "1b2e70cb3b9353b9545f3ac967847d687887dd3b796b69cb2710e501d0b5d74a"
+    },
+    "current-log-read-only-batch32-snap128-run1/client-3-samples-ns.json.gz": {
+      "bytes": 71259,
+      "sha256": "8b4e9e3db6064e5542f4f553c5232a4aedc06de5eaf738f65b80bf6cf0fa5bb4"
+    },
+    "current-log-read-only-batch32-snap128-run1/client-4-samples-ns.json.gz": {
+      "bytes": 71285,
+      "sha256": "88403d064a850b21b36fb406bfd44fbd3cf9c2936a4c51297fba87687f395eb6"
+    },
+    "current-log-read-only-batch32-snap128-run1/client-5-samples-ns.json.gz": {
+      "bytes": 71266,
+      "sha256": "5e0b7268ede7a6664df91a27feb519c77790fbc084877b5f32713098fd9eb3f7"
+    },
+    "current-log-read-only-batch32-snap128-run1/client-6-samples-ns.json.gz": {
+      "bytes": 71305,
+      "sha256": "f093faecce172ad50ddaef618faab5e2905a0a410ca789aa723e1154fc55224e"
+    },
+    "current-log-read-only-batch32-snap128-run1/client-7-samples-ns.json.gz": {
+      "bytes": 71282,
+      "sha256": "77bc28961590ef673dbe7ef7c847d4d043f9e49d0ca7a9ba82ea74ef8cbbf526"
+    },
+    "current-log-read-only-batch32-snap128-run1/commands.json": {
+      "bytes": 1560,
+      "sha256": "f9c0e19605759da5f0261dae4a0db15c04e59a3f5543e55b712815c70a24203c"
+    },
+    "current-log-read-only-batch32-snap128-run1/node-1.log": {
+      "bytes": 114,
+      "sha256": "974572f651898a95c57f6c6285b50d15dcb4bf55f1a7f098fd8e0ec11d43d0ba"
+    },
+    "current-log-read-only-batch32-snap128-run1/node-2.log": {
+      "bytes": 114,
+      "sha256": "d23869ebdfaa3356db1a271259a48728884d858565a47cf2e9adec5743aeae26"
+    },
+    "current-log-read-only-batch32-snap128-run1/node-3.log": {
+      "bytes": 168,
+      "sha256": "2d1c5fc67ecf3cba3b22b03909c754d3fe62ba5ccfd5178a6789456d8abcc053"
+    },
+    "current-log-read-only-batch32-snap128-run1/resource-samples.json": {
+      "bytes": 51150,
+      "sha256": "843e6084c7d6039726d49462084ac9cfe9f3a80e4cd16b90630fbbdc0b38917b"
+    },
+    "current-log-read-only-batch32-snap128-run1/result.json": {
+      "bytes": 12247,
+      "sha256": "469f520ae0849bacab3c36d61b6c0ac2bd8fbe29b14a8f21957287d34ee699af"
+    },
+    "current-log-read-only-batch32-snap128-run1/timeline.json": {
+      "bytes": 2513,
+      "sha256": "3e37e743d6ce646eb36cb7b26a0730e288bd164ffff27eddf96cc52c15e98664"
+    },
+    "current-log-read-only-batch32-snap128-run1/workload.json": {
+      "bytes": 170,
+      "sha256": "0a2c826aa1e09ccdf948dba5d1c5dee0e12fc58c9d34a332967e8e7df9f1ae06"
+    },
+    "current-log-read-only-batch32-snap128-run2/client-0-samples-ns.json.gz": {
+      "bytes": 69019,
+      "sha256": "abe0c387c9602f7b56b9920032e77f5e37838dae337f1df3bf60340118cef8ce"
+    },
+    "current-log-read-only-batch32-snap128-run2/client-1-samples-ns.json.gz": {
+      "bytes": 68990,
+      "sha256": "360eebe323e2918715bba378026405801bcb16a0a8bc8a538b387188a6890376"
+    },
+    "current-log-read-only-batch32-snap128-run2/client-2-samples-ns.json.gz": {
+      "bytes": 68977,
+      "sha256": "c8adfc0a42c8443897c898c5a63adddda56b9c915d44bdbbe2347cf4b4c1bbb7"
+    },
+    "current-log-read-only-batch32-snap128-run2/client-3-samples-ns.json.gz": {
+      "bytes": 69032,
+      "sha256": "5f835e781aecaf24e280a8926a7f8e78acbd62f6ab5ed90a410d9f13db6f869f"
+    },
+    "current-log-read-only-batch32-snap128-run2/client-4-samples-ns.json.gz": {
+      "bytes": 69033,
+      "sha256": "92f10dd8cf947d58a4a196d91360f267e0fab21ef2db630700a9e47ba39cb638"
+    },
+    "current-log-read-only-batch32-snap128-run2/client-5-samples-ns.json.gz": {
+      "bytes": 69033,
+      "sha256": "54bbbdac090917d8faa3ff3a602b48bfdbc4231c4fd9e45ed95425552717a4e7"
+    },
+    "current-log-read-only-batch32-snap128-run2/client-6-samples-ns.json.gz": {
+      "bytes": 69010,
+      "sha256": "726e722ef64c21895207eb98fcec77da30be2d8536ce5f63fdf4a78d706c12a5"
+    },
+    "current-log-read-only-batch32-snap128-run2/client-7-samples-ns.json.gz": {
+      "bytes": 68877,
+      "sha256": "a89961bb63aeb8e31eb6c56f2d86b801a31fad2b2ea4791f4fce3e57b0d565e9"
+    },
+    "current-log-read-only-batch32-snap128-run2/commands.json": {
+      "bytes": 1560,
+      "sha256": "dba207222e7110e1a72b1949dea3bbfa0742f0329327ea3039622b76b128495a"
+    },
+    "current-log-read-only-batch32-snap128-run2/node-1.log": {
+      "bytes": 114,
+      "sha256": "43d99d05e4ba5a80baee5d9d09863266698d470ac72b34258514b75f57f8f790"
+    },
+    "current-log-read-only-batch32-snap128-run2/node-2.log": {
+      "bytes": 114,
+      "sha256": "6bd9b282003e7e61fa17375f5479d48d0dc6050f67a78edf9fea90eda4ca9533"
+    },
+    "current-log-read-only-batch32-snap128-run2/node-3.log": {
+      "bytes": 168,
+      "sha256": "52416f19fe7dd0ef66cda5561b534509f6ec2897ed979832f4fc95ac0c5d524a"
+    },
+    "current-log-read-only-batch32-snap128-run2/resource-samples.json": {
+      "bytes": 51577,
+      "sha256": "119a3fb46ebba527e052c2226c39dfd6f11c0a42adb49b5072802c931b2698a1"
+    },
+    "current-log-read-only-batch32-snap128-run2/result.json": {
+      "bytes": 12246,
+      "sha256": "64237b4b548c00a2b508727b01f2a1110702b07447ee5b9aca6d6a14fbb058a9"
+    },
+    "current-log-read-only-batch32-snap128-run2/timeline.json": {
+      "bytes": 2512,
+      "sha256": "9823ec2ee4e318e547a2147a39ec05ff037643bae65dcdb601ae8910dde9ca59"
+    },
+    "current-log-read-only-batch32-snap128-run2/workload.json": {
+      "bytes": 170,
+      "sha256": "0a2c826aa1e09ccdf948dba5d1c5dee0e12fc58c9d34a332967e8e7df9f1ae06"
+    },
+    "current-log-read-only-batch32-snap128-run3/client-0-samples-ns.json.gz": {
+      "bytes": 67995,
+      "sha256": "44017ac9f69120bffc737c85a7c4c2b0695567024d86cb1ae9445f4ee52299c7"
+    },
+    "current-log-read-only-batch32-snap128-run3/client-1-samples-ns.json.gz": {
+      "bytes": 67889,
+      "sha256": "690563a4fb3971aaea0f9dba5f760c35cb875a4acb90bcd9a98c77acd6bb4247"
+    },
+    "current-log-read-only-batch32-snap128-run3/client-2-samples-ns.json.gz": {
+      "bytes": 67820,
+      "sha256": "7fcdccc0877a306dbe72808681b5466c08c499118a32584d7446f153c7156b92"
+    },
+    "current-log-read-only-batch32-snap128-run3/client-3-samples-ns.json.gz": {
+      "bytes": 67870,
+      "sha256": "bb7581fb4a33d8742780e1025a40e23289231a6b907410dd542603ec36776fe1"
+    },
+    "current-log-read-only-batch32-snap128-run3/client-4-samples-ns.json.gz": {
+      "bytes": 67683,
+      "sha256": "b44a4b4f5097e7cfe50fa83ec520ab22db9db33be914a57d4762a6e7a87be5b4"
+    },
+    "current-log-read-only-batch32-snap128-run3/client-5-samples-ns.json.gz": {
+      "bytes": 67798,
+      "sha256": "265575b61d088849820dab328236f5e270ef27dd449faead251a5edd1ae379a1"
+    },
+    "current-log-read-only-batch32-snap128-run3/client-6-samples-ns.json.gz": {
+      "bytes": 67844,
+      "sha256": "df90f32697083bc53c0ec209564dec364a1e2bea66fb396ea8917f4b4f5f4180"
+    },
+    "current-log-read-only-batch32-snap128-run3/client-7-samples-ns.json.gz": {
+      "bytes": 67836,
+      "sha256": "8a1ba8f8e5a9d8b186c85b879dedfb92ae99ac487390b38daf92f3c59d06419a"
+    },
+    "current-log-read-only-batch32-snap128-run3/commands.json": {
+      "bytes": 1560,
+      "sha256": "9508f60e79241e35e458549e5cc1bfb9364267ee74c43a3a19c960ed58bd084f"
+    },
+    "current-log-read-only-batch32-snap128-run3/node-1.log": {
+      "bytes": 114,
+      "sha256": "2290b4e4e31fb320fc015a02e94a796fb295be064ce2273bc05c067bb30fe763"
+    },
+    "current-log-read-only-batch32-snap128-run3/node-2.log": {
+      "bytes": 114,
+      "sha256": "d6e6346f5b4647ef1b89de5c642627b860d3348fedcb4f1fc01e3fb4412faf4f"
+    },
+    "current-log-read-only-batch32-snap128-run3/node-3.log": {
+      "bytes": 168,
+      "sha256": "acc20b58795439b4ae76d2b45254ebec7460e96d3bfb62755ea3b0b9421a1cf3"
+    },
+    "current-log-read-only-batch32-snap128-run3/resource-samples.json": {
+      "bytes": 51567,
+      "sha256": "29d94ff857c3795514f822f1c56264e542bd0cf18ccbbfb336d92d9fef4f70ae"
+    },
+    "current-log-read-only-batch32-snap128-run3/result.json": {
+      "bytes": 12248,
+      "sha256": "21906200846dd048edd401c9270cd2d7ddb4566e1a8b59ba7a63b99d455a3486"
+    },
+    "current-log-read-only-batch32-snap128-run3/timeline.json": {
+      "bytes": 2509,
+      "sha256": "35498c238787345d8463edbc496c7dba294a54f42dad8726cf9f944e66d93e20"
+    },
+    "current-log-read-only-batch32-snap128-run3/workload.json": {
+      "bytes": 170,
+      "sha256": "0a2c826aa1e09ccdf948dba5d1c5dee0e12fc58c9d34a332967e8e7df9f1ae06"
+    },
+    "current-log-write-heavy-batch32-snap128-run1/client-0-samples-ns.json.gz": {
+      "bytes": 69004,
+      "sha256": "50f4d873290936ba151d12f05cd962e63d6b132a8f06a07926a0cd24249b0b5b"
+    },
+    "current-log-write-heavy-batch32-snap128-run1/client-1-samples-ns.json.gz": {
+      "bytes": 68880,
+      "sha256": "08aead1c89a5f21ce1a00ca6738bdc4c2d40e4fb9c16236c37cfa653b464bce8"
+    },
+    "current-log-write-heavy-batch32-snap128-run1/client-2-samples-ns.json.gz": {
+      "bytes": 68912,
+      "sha256": "c4e2bfe08e049dc95f6d46cbdbb0ae3a049d9872ccf76168ed2ec9baaccabf7c"
+    },
+    "current-log-write-heavy-batch32-snap128-run1/client-3-samples-ns.json.gz": {
+      "bytes": 68964,
+      "sha256": "f61f0d13a6f2cf04084cbc603f9f5741649e18f0550c7d2299f834300141bd68"
+    },
+    "current-log-write-heavy-batch32-snap128-run1/client-4-samples-ns.json.gz": {
+      "bytes": 69010,
+      "sha256": "8e793fe2b5022a46b85ffa47b102008efe3cd39d7bb560b75de3f116e1619621"
+    },
+    "current-log-write-heavy-batch32-snap128-run1/client-5-samples-ns.json.gz": {
+      "bytes": 68993,
+      "sha256": "9437d69b164921380fda23e3929ccc32d7a5c4b7036fabbcc4fe945a40cf8859"
+    },
+    "current-log-write-heavy-batch32-snap128-run1/client-6-samples-ns.json.gz": {
+      "bytes": 68938,
+      "sha256": "39f68f4b18d2944685a6464eea40c7ccd440d3aaa99932f885c03d3078f64c7a"
+    },
+    "current-log-write-heavy-batch32-snap128-run1/client-7-samples-ns.json.gz": {
+      "bytes": 68901,
+      "sha256": "26342de9b11deb2e1c800e2c8489f972302b40fe0dd52fec5f62ac6f6c5055ca"
+    },
+    "current-log-write-heavy-batch32-snap128-run1/commands.json": {
+      "bytes": 1566,
+      "sha256": "95937828ec32790b28f682b1f3bb00d057f0964e02953b3b7f0e6244b4a697b6"
+    },
+    "current-log-write-heavy-batch32-snap128-run1/node-1.log": {
+      "bytes": 114,
+      "sha256": "0413489149b78a0e6d095bc72e33c298c58a5c284e0e72c02c7543c70797a907"
+    },
+    "current-log-write-heavy-batch32-snap128-run1/node-2.log": {
+      "bytes": 114,
+      "sha256": "4ed0109af44d7b95de55de8e4a1c064cbfa77b17f88fa42f23a7aacb92761fee"
+    },
+    "current-log-write-heavy-batch32-snap128-run1/node-3.log": {
+      "bytes": 168,
+      "sha256": "8cfd3552c4f43e2e4993db26df73032c2754d6a6d58deb4185a0dafb7fd8ebfe"
+    },
+    "current-log-write-heavy-batch32-snap128-run1/resource-samples.json": {
+      "bytes": 51257,
+      "sha256": "112066a2732d5b2a54bb363e45d806e65b62dc5227cca0904eff804444576de5"
+    },
+    "current-log-write-heavy-batch32-snap128-run1/result.json": {
+      "bytes": 12410,
+      "sha256": "3b1acbc47bdf8ad051dec32152e28d1c5197b4fadc753bea70b5aa827708ea0e"
+    },
+    "current-log-write-heavy-batch32-snap128-run1/timeline.json": {
+      "bytes": 2513,
+      "sha256": "4097c964fd30f58f1767b2c0d756ac267a9b416510b69a40e7e75c8281c9c07c"
+    },
+    "current-log-write-heavy-batch32-snap128-run1/workload.json": {
+      "bytes": 171,
+      "sha256": "dbed41e97fc5c866329bab65b593d9555f6a9fe3ecf9674a8506bbcf145f2d14"
+    },
+    "current-log-write-heavy-batch32-snap128-run2/client-0-samples-ns.json.gz": {
+      "bytes": 66382,
+      "sha256": "f112875c53a5432a05c967b3d691e224a39cd5842c5c71bc202dfb1d25c196d7"
+    },
+    "current-log-write-heavy-batch32-snap128-run2/client-1-samples-ns.json.gz": {
+      "bytes": 66288,
+      "sha256": "9e2dd7af1a977bf887f3837c56df15c660845dd3f4e9fe6f9849fb3773e60ca4"
+    },
+    "current-log-write-heavy-batch32-snap128-run2/client-2-samples-ns.json.gz": {
+      "bytes": 66456,
+      "sha256": "b2e6b4cac3788778ad72b0076e952970314f2b6c45f161f786ff4c9f765da4e3"
+    },
+    "current-log-write-heavy-batch32-snap128-run2/client-3-samples-ns.json.gz": {
+      "bytes": 66276,
+      "sha256": "aeacab589eb78b611ea4c1ffc45524a1ca37f6e66d0f1b0db9e6f22c629c67e4"
+    },
+    "current-log-write-heavy-batch32-snap128-run2/client-4-samples-ns.json.gz": {
+      "bytes": 66433,
+      "sha256": "da6bd325d021bffaa5a8118b45fdd1e958567a1486dc7e0b90421f2eb0f603fc"
+    },
+    "current-log-write-heavy-batch32-snap128-run2/client-5-samples-ns.json.gz": {
+      "bytes": 66448,
+      "sha256": "5919644e818ae7d12ff3de4e31c06ac496292ebd937e83f1d99d9f05388f76fa"
+    },
+    "current-log-write-heavy-batch32-snap128-run2/client-6-samples-ns.json.gz": {
+      "bytes": 66381,
+      "sha256": "60c316600bca42134ab13f1d29832cf85f924b5e192adf1d750f1f00d7665593"
+    },
+    "current-log-write-heavy-batch32-snap128-run2/client-7-samples-ns.json.gz": {
+      "bytes": 66208,
+      "sha256": "a6dcc149951d4eecc8692dd9cce7574d5da968f6f0567a539508dc79d0481b1e"
+    },
+    "current-log-write-heavy-batch32-snap128-run2/commands.json": {
+      "bytes": 1566,
+      "sha256": "859906a4be249eed5edf2917e444ec2796b3593c3ed4e2aff9fcaecbeabc433a"
+    },
+    "current-log-write-heavy-batch32-snap128-run2/node-1.log": {
+      "bytes": 114,
+      "sha256": "09ae2039b6ed447dbfc09e561a91ffbca06c88cc08c5ce8ff297d0eda9ee5f67"
+    },
+    "current-log-write-heavy-batch32-snap128-run2/node-2.log": {
+      "bytes": 114,
+      "sha256": "6e2f48d9105228fba3f7f5e06a19863cbc4cfc9b7c650eeec231d414a44c131a"
+    },
+    "current-log-write-heavy-batch32-snap128-run2/node-3.log": {
+      "bytes": 168,
+      "sha256": "e48e9ee79835ddf085a5aa1ef4a78cedb0bd8295a82875586cef0d945eb9bccf"
+    },
+    "current-log-write-heavy-batch32-snap128-run2/resource-samples.json": {
+      "bytes": 51248,
+      "sha256": "2afd032b2518b679e4eb7d7e32b563f8cc9c81cc25dc5d88a5cea1313367f989"
+    },
+    "current-log-write-heavy-batch32-snap128-run2/result.json": {
+      "bytes": 12407,
+      "sha256": "0d7818f7cc54bd1aa6cfa60156e633dea9395c4ed64096fc68e182690b3fb2ca"
+    },
+    "current-log-write-heavy-batch32-snap128-run2/timeline.json": {
+      "bytes": 2509,
+      "sha256": "f0f89d38f86aedcc051e0d6cc85bd1f35c1f073b39962d43a99eaefa7684e3ee"
+    },
+    "current-log-write-heavy-batch32-snap128-run2/workload.json": {
+      "bytes": 171,
+      "sha256": "dbed41e97fc5c866329bab65b593d9555f6a9fe3ecf9674a8506bbcf145f2d14"
+    },
+    "current-log-write-heavy-batch32-snap128-run3/client-0-samples-ns.json.gz": {
+      "bytes": 60296,
+      "sha256": "79acb2ee08b8f4f301557ef601d08420ed7bdc271468cf5140ee91f685eecb9d"
+    },
+    "current-log-write-heavy-batch32-snap128-run3/client-1-samples-ns.json.gz": {
+      "bytes": 60236,
+      "sha256": "a015cd61a5745ed5ee86275314611b5ff9f689ab6a67a74e55282457c3ceb370"
+    },
+    "current-log-write-heavy-batch32-snap128-run3/client-2-samples-ns.json.gz": {
+      "bytes": 60165,
+      "sha256": "f2f9099ecbb70e74c652263cdf9d64a93fc46eed69b19688a5a295baea8e820f"
+    },
+    "current-log-write-heavy-batch32-snap128-run3/client-3-samples-ns.json.gz": {
+      "bytes": 60007,
+      "sha256": "b8dfc2b827e1666685d72dc9cdddcf35f38b37841fd98a23f23aaee96539104e"
+    },
+    "current-log-write-heavy-batch32-snap128-run3/client-4-samples-ns.json.gz": {
+      "bytes": 60207,
+      "sha256": "f149b86068a9d2927ca8fa3fc11735a681671c2f9ba804ace9173e9829c73ba7"
+    },
+    "current-log-write-heavy-batch32-snap128-run3/client-5-samples-ns.json.gz": {
+      "bytes": 60256,
+      "sha256": "7d36c95fa66d813b450b40230c0a1141da5d431d3a47ed2589f5f6b25afecd4a"
+    },
+    "current-log-write-heavy-batch32-snap128-run3/client-6-samples-ns.json.gz": {
+      "bytes": 60200,
+      "sha256": "a5845c62de24f4ac03244ccbf26b395821ed6b46dd2bfde0ec0f1137861dc884"
+    },
+    "current-log-write-heavy-batch32-snap128-run3/client-7-samples-ns.json.gz": {
+      "bytes": 60132,
+      "sha256": "fa8b60be9e8ad90567b7250c102863695c7f935d768251e9b8baebaa31a425ce"
+    },
+    "current-log-write-heavy-batch32-snap128-run3/commands.json": {
+      "bytes": 1566,
+      "sha256": "6e3257143dcf101dd7a14a1dda35c9dce13615a0985be096a2801ee9d96ad7c1"
+    },
+    "current-log-write-heavy-batch32-snap128-run3/node-1.log": {
+      "bytes": 114,
+      "sha256": "7591415663ae60fb8959ab32024a2f0f358ee49140c0a390258b1303b17ec054"
+    },
+    "current-log-write-heavy-batch32-snap128-run3/node-2.log": {
+      "bytes": 114,
+      "sha256": "bf4a94cb0bf43c5e6909fdae69114ee0fa388527e03e486a633866095b3886f6"
+    },
+    "current-log-write-heavy-batch32-snap128-run3/node-3.log": {
+      "bytes": 168,
+      "sha256": "4ca8d456f02962b70c62c61b68c3c5f554d1458b8d09054c23eb88ae512b9b3b"
+    },
+    "current-log-write-heavy-batch32-snap128-run3/resource-samples.json": {
+      "bytes": 51699,
+      "sha256": "735a7a48f26ca3d5337a87162650fe1d2f2b871955c461bed7dc26321f29f1c0"
+    },
+    "current-log-write-heavy-batch32-snap128-run3/result.json": {
+      "bytes": 12408,
+      "sha256": "ba7076f1ba20187f425b652825b434712d52f13d4d8f5801f9d77781e7d46d5c"
+    },
+    "current-log-write-heavy-batch32-snap128-run3/timeline.json": {
+      "bytes": 2513,
+      "sha256": "4a652151b5973533e7f5101dce572d1c9f8f43a55639132036e8b13fcee379dc"
+    },
+    "current-log-write-heavy-batch32-snap128-run3/workload.json": {
+      "bytes": 171,
+      "sha256": "dbed41e97fc5c866329bab65b593d9555f6a9fe3ecf9674a8506bbcf145f2d14"
+    },
+    "current-read-index-balanced-batch32-snap128-run1/client-0-samples-ns.json.gz": {
+      "bytes": 67188,
+      "sha256": "e916568484e9ad3dd763560bde985483678971991ba4279bc0176750755c600c"
+    },
+    "current-read-index-balanced-batch32-snap128-run1/client-1-samples-ns.json.gz": {
+      "bytes": 67165,
+      "sha256": "07cdf4e6aa6433de7e6e905fda4769d48a1a6dac5b7c4c199105bfe67f22140d"
+    },
+    "current-read-index-balanced-batch32-snap128-run1/client-2-samples-ns.json.gz": {
+      "bytes": 67448,
+      "sha256": "b37b6a2c1fb3d1d630bfb1220d65b01f3b1dfcf9ae4e2828d503e7b319b25fc6"
+    },
+    "current-read-index-balanced-batch32-snap128-run1/client-3-samples-ns.json.gz": {
+      "bytes": 67008,
+      "sha256": "f878ea9a98efc1602a61df3e5ee820e1a0fdf6cffdaa65afe16c2bf3e8cceaf3"
+    },
+    "current-read-index-balanced-batch32-snap128-run1/client-4-samples-ns.json.gz": {
+      "bytes": 67191,
+      "sha256": "73d3889de579bfa4441cabbadc49dfa07c3fc2433842aa53edb5568ed1a99cf7"
+    },
+    "current-read-index-balanced-batch32-snap128-run1/client-5-samples-ns.json.gz": {
+      "bytes": 67417,
+      "sha256": "5ee2e28cac9fb0e0b62c8df704fd973d5af1502b7ac95722f57f6172f328495d"
+    },
+    "current-read-index-balanced-batch32-snap128-run1/client-6-samples-ns.json.gz": {
+      "bytes": 67325,
+      "sha256": "f3ce86c197c4e4ac8b906e4eb0366b3101f80791b2a3f6a4ef075f859fd567ea"
+    },
+    "current-read-index-balanced-batch32-snap128-run1/client-7-samples-ns.json.gz": {
+      "bytes": 67188,
+      "sha256": "97a5521e4e818eb7434aa64e19c034a9165a7e651612691815a6ba5ecd7371fa"
+    },
+    "current-read-index-balanced-batch32-snap128-run1/commands.json": {
+      "bytes": 1599,
+      "sha256": "8bd5ead4ec7046887961c47163993de787c2014298af47f1c7a0fd608e3d4714"
+    },
+    "current-read-index-balanced-batch32-snap128-run1/node-1.log": {
+      "bytes": 114,
+      "sha256": "ad208e0146ca07aaeabd7a97621af8b396e161b88a12d25e369bfc60d9644737"
+    },
+    "current-read-index-balanced-batch32-snap128-run1/node-2.log": {
+      "bytes": 114,
+      "sha256": "a23302727981068f1d0b693fdb9d48f6b2714d36fd63bb71ae9523d12169720b"
+    },
+    "current-read-index-balanced-batch32-snap128-run1/node-3.log": {
+      "bytes": 168,
+      "sha256": "fcc27319d53423b2b2401e46f734b0d5eeacdd8c9374b080e943780774d8c69e"
+    },
+    "current-read-index-balanced-batch32-snap128-run1/resource-samples.json": {
+      "bytes": 51218,
+      "sha256": "a3afb217b8bb6737dc5c624fe991c1ea4d38917beea9b019c60f8b2946c7eea1"
+    },
+    "current-read-index-balanced-batch32-snap128-run1/result.json": {
+      "bytes": 12430,
+      "sha256": "99925d382156605dec5121acde0c394efcf4e979bbb29e16b3e34d93f4b32e28"
+    },
+    "current-read-index-balanced-batch32-snap128-run1/timeline.json": {
+      "bytes": 2513,
+      "sha256": "edd9e2561ed7945a07baebf1da91df6a5c32706e33782670ea18e6a8ac473dcf"
+    },
+    "current-read-index-balanced-batch32-snap128-run1/workload.json": {
+      "bytes": 171,
+      "sha256": "f733ccd5d866d7e433dbbf39705e98e727faaba3ac01a131dc1263d84874a92b"
+    },
+    "current-read-index-balanced-batch32-snap128-run2/client-0-samples-ns.json.gz": {
+      "bytes": 75985,
+      "sha256": "34da16400cb43f16e6c48dcfb2a46b8b217d3498d833389761b928f50347fe07"
+    },
+    "current-read-index-balanced-batch32-snap128-run2/client-1-samples-ns.json.gz": {
+      "bytes": 75973,
+      "sha256": "069bed5fec9735db834fb6e9f8b6a482e15c54da73718b3848a9b95d2f4c8fbd"
+    },
+    "current-read-index-balanced-batch32-snap128-run2/client-2-samples-ns.json.gz": {
+      "bytes": 76151,
+      "sha256": "f6ff5ece7f57140081a2094a632dfe309f5b334666ee3c75e25d83b4b60de906"
+    },
+    "current-read-index-balanced-batch32-snap128-run2/client-3-samples-ns.json.gz": {
+      "bytes": 76161,
+      "sha256": "2a138012994012491e080ae6e921d18dcbc99dff68eb65ebf05feb53fcce8223"
+    },
+    "current-read-index-balanced-batch32-snap128-run2/client-4-samples-ns.json.gz": {
+      "bytes": 75934,
+      "sha256": "2e334c85b2b3a22d9e54ff461c0ae87cc53bdbb09aeaddc3967412990ba5270d"
+    },
+    "current-read-index-balanced-batch32-snap128-run2/client-5-samples-ns.json.gz": {
+      "bytes": 76030,
+      "sha256": "0b578e28205e9badb42e15270c7329bb4e99153b4db3133fd8d85c6ac0301a54"
+    },
+    "current-read-index-balanced-batch32-snap128-run2/client-6-samples-ns.json.gz": {
+      "bytes": 75867,
+      "sha256": "c2eba99ff8ba99525d65e70f169580bd34ce3124fa96a3634cd09f47666a0189"
+    },
+    "current-read-index-balanced-batch32-snap128-run2/client-7-samples-ns.json.gz": {
+      "bytes": 76090,
+      "sha256": "a2cac7207a7ab7d6b2d5900f7335317ee3e261fdd0c23f24054083a14b96ea67"
+    },
+    "current-read-index-balanced-batch32-snap128-run2/commands.json": {
+      "bytes": 1599,
+      "sha256": "ffdb83c25e52efef4fba691b774009e4dc7fc5e1f95a1e6245f358745ae89f91"
+    },
+    "current-read-index-balanced-batch32-snap128-run2/node-1.log": {
+      "bytes": 114,
+      "sha256": "eb1763ee481eea208d276d0b6c3c85f89e5601943545e10c06cdc03c039f07b7"
+    },
+    "current-read-index-balanced-batch32-snap128-run2/node-2.log": {
+      "bytes": 114,
+      "sha256": "53829052e44a78fd616a73643474ed4cd0e138281a834abfe1a3b5e2382dd7b2"
+    },
+    "current-read-index-balanced-batch32-snap128-run2/node-3.log": {
+      "bytes": 168,
+      "sha256": "99d10127c31d140a199e0d6f3e0811575e6ae35c53fb5b62d7a9c9d5d98a212e"
+    },
+    "current-read-index-balanced-batch32-snap128-run2/resource-samples.json": {
+      "bytes": 51674,
+      "sha256": "275f02a730d797d9f85f00dc8a97a3866e32fea2dd61b5e910edc0c1f349a2fa"
+    },
+    "current-read-index-balanced-batch32-snap128-run2/result.json": {
+      "bytes": 12446,
+      "sha256": "fc55c85b35a82f9c5e195b18640537df1e3758506192ef32e8aac9681e153aeb"
+    },
+    "current-read-index-balanced-batch32-snap128-run2/timeline.json": {
+      "bytes": 2510,
+      "sha256": "9a1a0491d5f53c1fbcaf45c776da01a6a0c8ef53a232ae370737b2cfcf2d1bbd"
+    },
+    "current-read-index-balanced-batch32-snap128-run2/workload.json": {
+      "bytes": 171,
+      "sha256": "f733ccd5d866d7e433dbbf39705e98e727faaba3ac01a131dc1263d84874a92b"
+    },
+    "current-read-index-balanced-batch32-snap128-run3/client-0-samples-ns.json.gz": {
+      "bytes": 72333,
+      "sha256": "5230b0a810ba7166143c5144cf767aa49c74fdd91f70dfdf97bf25121f913152"
+    },
+    "current-read-index-balanced-batch32-snap128-run3/client-1-samples-ns.json.gz": {
+      "bytes": 72236,
+      "sha256": "9b0fdd524e2d6d7688ebd869557e5389ff254b2dde361969324948375c32c598"
+    },
+    "current-read-index-balanced-batch32-snap128-run3/client-2-samples-ns.json.gz": {
+      "bytes": 72461,
+      "sha256": "10edbd36e8d61097440da515ccb78a5d4bc847dfafc67ba9400e1f3f37389f63"
+    },
+    "current-read-index-balanced-batch32-snap128-run3/client-3-samples-ns.json.gz": {
+      "bytes": 72291,
+      "sha256": "4ac7ec5ba9a6a66e4393530340f384d1704f36a0d739c54dff27f9a6e96bd25d"
+    },
+    "current-read-index-balanced-batch32-snap128-run3/client-4-samples-ns.json.gz": {
+      "bytes": 72535,
+      "sha256": "232ceaf3cb5bf32dc80faf7165d871d53331b81e7d9ddb23af108ca8ffeee095"
+    },
+    "current-read-index-balanced-batch32-snap128-run3/client-5-samples-ns.json.gz": {
+      "bytes": 72408,
+      "sha256": "48e305b00ed761d9666754443ade287d2f2bb3f00468e88b17e7c1875048b6f8"
+    },
+    "current-read-index-balanced-batch32-snap128-run3/client-6-samples-ns.json.gz": {
+      "bytes": 72247,
+      "sha256": "5150a907af46eae425ee3d6b7404e23d240f7b70b0d38c2ee7ba8604c2b5e2f2"
+    },
+    "current-read-index-balanced-batch32-snap128-run3/client-7-samples-ns.json.gz": {
+      "bytes": 72215,
+      "sha256": "15b2904adcc10dd5b73b7d86e4a782c43dbeb2beb404dcbc96e5189df9d37b1e"
+    },
+    "current-read-index-balanced-batch32-snap128-run3/commands.json": {
+      "bytes": 1599,
+      "sha256": "8e875e3abd4e6eeb153a8b547a840d546409e6db4e536ee247e1782c0158da93"
+    },
+    "current-read-index-balanced-batch32-snap128-run3/node-1.log": {
+      "bytes": 114,
+      "sha256": "e5138acecb23c6adbd6466c749b5a4309492bc0fa29f80e8c11cce18772bc107"
+    },
+    "current-read-index-balanced-batch32-snap128-run3/node-2.log": {
+      "bytes": 114,
+      "sha256": "15cea71382ef8bad5f4fc01f924cc7c920c0e1471dffb38d3c6a236f1f6c9028"
+    },
+    "current-read-index-balanced-batch32-snap128-run3/node-3.log": {
+      "bytes": 168,
+      "sha256": "8b1fd0a4177a77956b0e23ab72d808a75d196a0614161b91699794e5dd4f9b25"
+    },
+    "current-read-index-balanced-batch32-snap128-run3/resource-samples.json": {
+      "bytes": 51670,
+      "sha256": "1e8ed9cefd8484eebf3e35d28439fa4bdd9f638d6812db27a075cce66d2e1047"
+    },
+    "current-read-index-balanced-batch32-snap128-run3/result.json": {
+      "bytes": 12433,
+      "sha256": "f3065ae5dc7a80f6a00c7e35e417cc70cb98b50809eb36646345fc4102d0a6f5"
+    },
+    "current-read-index-balanced-batch32-snap128-run3/timeline.json": {
+      "bytes": 2511,
+      "sha256": "e7c33719bba1b6fa1d3aed1843afe4ce4323b39c8cbfda42785a919ce320ee7a"
+    },
+    "current-read-index-balanced-batch32-snap128-run3/workload.json": {
+      "bytes": 171,
+      "sha256": "f733ccd5d866d7e433dbbf39705e98e727faaba3ac01a131dc1263d84874a92b"
+    },
+    "current-read-index-large-value-batch32-snap128-run1/client-0-samples-ns.json.gz": {
+      "bytes": 53538,
+      "sha256": "85f2cd8602ef5a118bd5af24fd9fa0394b92e1120061463520a9e7310cc421dd"
+    },
+    "current-read-index-large-value-batch32-snap128-run1/client-1-samples-ns.json.gz": {
+      "bytes": 53500,
+      "sha256": "74460407d9a615f4c23931fdc213330ed1dbcc9ecd3d337ad88d7ce65426520d"
+    },
+    "current-read-index-large-value-batch32-snap128-run1/client-2-samples-ns.json.gz": {
+      "bytes": 53753,
+      "sha256": "1d2a29ed98d39eaf1940fa8dd526ed1312d554910b21193bdbae42879d3aeabc"
+    },
+    "current-read-index-large-value-batch32-snap128-run1/client-3-samples-ns.json.gz": {
+      "bytes": 53406,
+      "sha256": "d098c40f1edbf0d2e9f9587c2421011bccdc735d8934ca646daebb412514c327"
+    },
+    "current-read-index-large-value-batch32-snap128-run1/client-4-samples-ns.json.gz": {
+      "bytes": 53526,
+      "sha256": "f333de800c35c8ee2a0712255ebb0d92124510fce72b4be4d1c278dbec07088e"
+    },
+    "current-read-index-large-value-batch32-snap128-run1/client-5-samples-ns.json.gz": {
+      "bytes": 53627,
+      "sha256": "b174e0661c3a3ae3fb3580c51981023683b941b17680916bd58d4a76fca1cd88"
+    },
+    "current-read-index-large-value-batch32-snap128-run1/client-6-samples-ns.json.gz": {
+      "bytes": 53577,
+      "sha256": "58aaba9f46344e0343af1ae69f6d9e7609eccf365b0bdbf94f11f78de4a58c7c"
+    },
+    "current-read-index-large-value-batch32-snap128-run1/client-7-samples-ns.json.gz": {
+      "bytes": 53526,
+      "sha256": "db99f285972cfc704005d61bedf2b1144c3e686e0ca0dcff9f12a82a9f3462da"
+    },
+    "current-read-index-large-value-batch32-snap128-run1/commands.json": {
+      "bytes": 1608,
+      "sha256": "c5d6ed44c55b6c5d54a5e1054b67f95616e38db71cd79e778a5dd6464016f09b"
+    },
+    "current-read-index-large-value-batch32-snap128-run1/node-1.log": {
+      "bytes": 114,
+      "sha256": "9e6a5c121cedde3389cce6cb281b3e8cbfe9a069c38d4f3104aab4d0111fb29d"
+    },
+    "current-read-index-large-value-batch32-snap128-run1/node-2.log": {
+      "bytes": 114,
+      "sha256": "0c91ac39cf53913e46d3067edcc2644635aff444af5181dfb15c97553f0fad6d"
+    },
+    "current-read-index-large-value-batch32-snap128-run1/node-3.log": {
+      "bytes": 168,
+      "sha256": "22e16dd83478a662567e20490e6cc022260a08cc49aae4a82ab5b81d32c92a21"
+    },
+    "current-read-index-large-value-batch32-snap128-run1/resource-samples.json": {
+      "bytes": 51683,
+      "sha256": "23d0065a62847291681b17d94902ee227f5ea2c4296a6f170e5da617fbdab8f9"
+    },
+    "current-read-index-large-value-batch32-snap128-run1/result.json": {
+      "bytes": 12501,
+      "sha256": "dee3d512cf3baf2d382848ea74293a315be3b8c371846e5127bea5a39fbdc14b"
+    },
+    "current-read-index-large-value-batch32-snap128-run1/timeline.json": {
+      "bytes": 2514,
+      "sha256": "e71e84a911f99e637f740bd064ffd13bdd075204c9207e0d6f64214377bb47b8"
+    },
+    "current-read-index-large-value-batch32-snap128-run1/workload.json": {
+      "bytes": 172,
+      "sha256": "91b5a03fcde6271d7584665918aeeae264965ea3140956d27d98a52bf8acd411"
+    },
+    "current-read-index-large-value-batch32-snap128-run2/client-0-samples-ns.json.gz": {
+      "bytes": 52459,
+      "sha256": "db25f5e035b8d60bf85ab91decf01ab0d512bf39b65d234a1e3b14d1f7523070"
+    },
+    "current-read-index-large-value-batch32-snap128-run2/client-1-samples-ns.json.gz": {
+      "bytes": 52422,
+      "sha256": "e14f7a623f9022f7068502a5bd7bc47c189625591ea7b5cd8c608de58c2fe77d"
+    },
+    "current-read-index-large-value-batch32-snap128-run2/client-2-samples-ns.json.gz": {
+      "bytes": 52574,
+      "sha256": "264898ee1be37a4e90e8a133ee37ed306a26f17d4adc934a4b5ac72d50882658"
+    },
+    "current-read-index-large-value-batch32-snap128-run2/client-3-samples-ns.json.gz": {
+      "bytes": 52412,
+      "sha256": "24c1d98b49931a4976e9cd39952c51d9db8e2c7df3ae6b9552d656c36931d03b"
+    },
+    "current-read-index-large-value-batch32-snap128-run2/client-4-samples-ns.json.gz": {
+      "bytes": 52373,
+      "sha256": "d66d748f0de7ca267b785fc86e41d2fc716ab62d1029cd6f4965367ef8fb26ce"
+    },
+    "current-read-index-large-value-batch32-snap128-run2/client-5-samples-ns.json.gz": {
+      "bytes": 52386,
+      "sha256": "af354453af17152cdc5711f5c71b5bf7a517d61d297a6f1d65c640b69bbdf296"
+    },
+    "current-read-index-large-value-batch32-snap128-run2/client-6-samples-ns.json.gz": {
+      "bytes": 52489,
+      "sha256": "e4ab5f77c441dd3602e06b560cb1b18249b8cdfb5555dc1f5aa900134276686c"
+    },
+    "current-read-index-large-value-batch32-snap128-run2/client-7-samples-ns.json.gz": {
+      "bytes": 52363,
+      "sha256": "aa9918d4414058a756808e78409995dbea737384ca97ed5a03192beb82778f6a"
+    },
+    "current-read-index-large-value-batch32-snap128-run2/commands.json": {
+      "bytes": 1608,
+      "sha256": "243fb5d7cfa58f00e842e6f024989627ec767a108af755ea2220cbeb723b6370"
+    },
+    "current-read-index-large-value-batch32-snap128-run2/node-1.log": {
+      "bytes": 114,
+      "sha256": "95139f8844bf41068a40b3e84f8331ba71b350173bb4a86abefd13dfa8237309"
+    },
+    "current-read-index-large-value-batch32-snap128-run2/node-2.log": {
+      "bytes": 114,
+      "sha256": "2a32e44e09217b0e19d5d432568e304474ce832d7376a92e80ae90ffbaf03f4a"
+    },
+    "current-read-index-large-value-batch32-snap128-run2/node-3.log": {
+      "bytes": 168,
+      "sha256": "7bb601a5dbf055102d09f87de6e61abeae91b7f7ac9367be4a5f5928e061b136"
+    },
+    "current-read-index-large-value-batch32-snap128-run2/resource-samples.json": {
+      "bytes": 52097,
+      "sha256": "7c8b48c39933dad6d9e2c84371889d27c40bcebc7fab6dd933c821683fb3919a"
+    },
+    "current-read-index-large-value-batch32-snap128-run2/result.json": {
+      "bytes": 12502,
+      "sha256": "2d405332b13972eb48a370df9d2c8fb30f9c638f318e78f6259ae293c3f952d8"
+    },
+    "current-read-index-large-value-batch32-snap128-run2/timeline.json": {
+      "bytes": 2512,
+      "sha256": "20d7cd3be8694624a230037637141f6deeff934724e2bf1e998e856134a76ce9"
+    },
+    "current-read-index-large-value-batch32-snap128-run2/workload.json": {
+      "bytes": 172,
+      "sha256": "91b5a03fcde6271d7584665918aeeae264965ea3140956d27d98a52bf8acd411"
+    },
+    "current-read-index-large-value-batch32-snap128-run3/client-0-samples-ns.json.gz": {
+      "bytes": 49357,
+      "sha256": "00def95f3eba9d8f17a0ae0bc3eb757ff9fb38188044f4fb2967c6ddc784c7c6"
+    },
+    "current-read-index-large-value-batch32-snap128-run3/client-1-samples-ns.json.gz": {
+      "bytes": 49369,
+      "sha256": "ae4ac2493589fe1bc0ea9f51afe846962c307d734b43f3a1106a7f5b06dbf4fa"
+    },
+    "current-read-index-large-value-batch32-snap128-run3/client-2-samples-ns.json.gz": {
+      "bytes": 49514,
+      "sha256": "317ea14a2301155fd075249f5536b059fe9860e5bd12c31b01f7f6ad7851f898"
+    },
+    "current-read-index-large-value-batch32-snap128-run3/client-3-samples-ns.json.gz": {
+      "bytes": 49237,
+      "sha256": "d35f93f9391052f793dec1ce540805802d9d18b8db942e6514678ec3566df0ad"
+    },
+    "current-read-index-large-value-batch32-snap128-run3/client-4-samples-ns.json.gz": {
+      "bytes": 49484,
+      "sha256": "ea3cffb94286579157d8adad93852f8ee2796a4598ff4aee43c83c36b2629e3a"
+    },
+    "current-read-index-large-value-batch32-snap128-run3/client-5-samples-ns.json.gz": {
+      "bytes": 49419,
+      "sha256": "f6ffa6485d9e585b847af23e39cfd8c9b870b47bf1970b6d877cc36112e44f8a"
+    },
+    "current-read-index-large-value-batch32-snap128-run3/client-6-samples-ns.json.gz": {
+      "bytes": 49388,
+      "sha256": "3f72f943a3cfab579038ea756d6dec094cce207fe868d296c8d44eac7620cd5e"
+    },
+    "current-read-index-large-value-batch32-snap128-run3/client-7-samples-ns.json.gz": {
+      "bytes": 49344,
+      "sha256": "2c7bee61f52b4d9cdf7d143f32d93e78c2953f7234f8d2c63cfda412372bfd7a"
+    },
+    "current-read-index-large-value-batch32-snap128-run3/commands.json": {
+      "bytes": 1608,
+      "sha256": "d887539607168e7fa7d696a9053541815d20ef883cf8a5571dd7deff6051a5a5"
+    },
+    "current-read-index-large-value-batch32-snap128-run3/node-1.log": {
+      "bytes": 114,
+      "sha256": "7c5fe5a1be9c61d683ffba3b0fa0dec28bd46aef0494492ad453f6fcd8e9ede9"
+    },
+    "current-read-index-large-value-batch32-snap128-run3/node-2.log": {
+      "bytes": 114,
+      "sha256": "859f6255af3cd6fd6dbdfabe1d5e159da6c485468894e00c635fb4c27b2e810d"
+    },
+    "current-read-index-large-value-batch32-snap128-run3/node-3.log": {
+      "bytes": 168,
+      "sha256": "0e25ef7a748a2887ff9f52676ea4a71cfbb2c95135fa92fef1aab00ed30545a7"
+    },
+    "current-read-index-large-value-batch32-snap128-run3/resource-samples.json": {
+      "bytes": 52096,
+      "sha256": "ad2a0742e55cedc691289c07ef4176206e80882dbe6bca6d5c38f203b93dbff6"
+    },
+    "current-read-index-large-value-batch32-snap128-run3/result.json": {
+      "bytes": 12495,
+      "sha256": "bfd60099a7b2a94aeb88241f529bdbe986fd2dcd92fc0fe6bfc9b84e526e2e29"
+    },
+    "current-read-index-large-value-batch32-snap128-run3/timeline.json": {
+      "bytes": 2515,
+      "sha256": "222ebecaebdd6ce4219d62df6b652cccec96375379482815043ac6ede5cc6122"
+    },
+    "current-read-index-large-value-batch32-snap128-run3/workload.json": {
+      "bytes": 172,
+      "sha256": "91b5a03fcde6271d7584665918aeeae264965ea3140956d27d98a52bf8acd411"
+    },
+    "current-read-index-more-keys-batch32-snap128-run1/client-0-samples-ns.json.gz": {
+      "bytes": 76101,
+      "sha256": "963cea0d882d107e7c58c0f913b5c8a8c36137fbbf666541df063653d11e01b6"
+    },
+    "current-read-index-more-keys-batch32-snap128-run1/client-1-samples-ns.json.gz": {
+      "bytes": 75965,
+      "sha256": "f5712e1f5fd266e3a08a5589f5232ceb8df579a6042566864fe434dac3afa1ce"
+    },
+    "current-read-index-more-keys-batch32-snap128-run1/client-2-samples-ns.json.gz": {
+      "bytes": 75914,
+      "sha256": "65f73db59a637a512516038ecfc4fd80b7b382dcbd1f8e8d0382f654ad78bc3e"
+    },
+    "current-read-index-more-keys-batch32-snap128-run1/client-3-samples-ns.json.gz": {
+      "bytes": 76057,
+      "sha256": "cea9963cf624f6843d044db50b0119db2adf2224fec0673e919c9c68a003a60b"
+    },
+    "current-read-index-more-keys-batch32-snap128-run1/client-4-samples-ns.json.gz": {
+      "bytes": 76016,
+      "sha256": "ecc96d1a70bd3631763c143c83144e68128644eb1c1ebcabbdaaccb2127f6e81"
+    },
+    "current-read-index-more-keys-batch32-snap128-run1/client-5-samples-ns.json.gz": {
+      "bytes": 76131,
+      "sha256": "6e78116ddf4d9f2360e7dae1c74aa8735fc2bc4a47f53ea83f1150c897e660eb"
+    },
+    "current-read-index-more-keys-batch32-snap128-run1/client-6-samples-ns.json.gz": {
+      "bytes": 75869,
+      "sha256": "d33e222660299589ed5dd80b4ed749bd38b20628a7c09a5665186067ed3db31b"
+    },
+    "current-read-index-more-keys-batch32-snap128-run1/client-7-samples-ns.json.gz": {
+      "bytes": 75954,
+      "sha256": "a96bb828bd3fb6cd31f0bc033e3380dc3e3d8cf175d5467629e938177fa49d82"
+    },
+    "current-read-index-more-keys-batch32-snap128-run1/commands.json": {
+      "bytes": 1602,
+      "sha256": "d37e721356c4315f292328c1b3dcfb2da68a3bea214dddd606f3ee8cf9280882"
+    },
+    "current-read-index-more-keys-batch32-snap128-run1/node-1.log": {
+      "bytes": 114,
+      "sha256": "176bcd92c763400a1b77a080c6e9b5b55eeaa47a8afebcd59553c79e793b8bf9"
+    },
+    "current-read-index-more-keys-batch32-snap128-run1/node-2.log": {
+      "bytes": 114,
+      "sha256": "7555efaf891ec8c00c39f75841646cd4130b84714331896f7fdde3800551ec49"
+    },
+    "current-read-index-more-keys-batch32-snap128-run1/node-3.log": {
+      "bytes": 168,
+      "sha256": "3a5ef7cbdf3697f234bbf03e9fa9bfe0de27fad734d50d9bbaa7a3099a39c94e"
+    },
+    "current-read-index-more-keys-batch32-snap128-run1/resource-samples.json": {
+      "bytes": 51512,
+      "sha256": "495a93e67735e8806b58e1667327d86f8fb54c6d23fdeec673aacdd53e8e0fd2"
+    },
+    "current-read-index-more-keys-batch32-snap128-run1/result.json": {
+      "bytes": 24063,
+      "sha256": "efbba4c37510385f5170e9543799f3d66b43c21d25b4b00da83584d237756e61"
+    },
+    "current-read-index-more-keys-batch32-snap128-run1/timeline.json": {
+      "bytes": 2508,
+      "sha256": "e705a76dcb3dae6974e19286badf80a6054f555c63b1984a3dac5f9d177ae7ab"
+    },
+    "current-read-index-more-keys-batch32-snap128-run1/workload.json": {
+      "bytes": 173,
+      "sha256": "acfed4ad3dc5325de488cb115e0841bce56008314a232cf4f0487cb0c3aa8caf"
+    },
+    "current-read-index-more-keys-batch32-snap128-run2/client-0-samples-ns.json.gz": {
+      "bytes": 67217,
+      "sha256": "9e7c036228d1237ef7a05d597f94c46abf56e89e05d84cabffbb09b1ce13bb58"
+    },
+    "current-read-index-more-keys-batch32-snap128-run2/client-1-samples-ns.json.gz": {
+      "bytes": 67313,
+      "sha256": "4489450fbf2b70836e4890871cf07a2bfcdd742b1c5a445a61582aaf41774ab7"
+    },
+    "current-read-index-more-keys-batch32-snap128-run2/client-2-samples-ns.json.gz": {
+      "bytes": 67184,
+      "sha256": "725d853b253725be16dcf5ed3df3fad29fa2dd23f5d55dfd6eff323aff867b1a"
+    },
+    "current-read-index-more-keys-batch32-snap128-run2/client-3-samples-ns.json.gz": {
+      "bytes": 67138,
+      "sha256": "824f0732ca36042915c8716ab7e637810d2c115a1be39477ab02867142eeeb65"
+    },
+    "current-read-index-more-keys-batch32-snap128-run2/client-4-samples-ns.json.gz": {
+      "bytes": 67179,
+      "sha256": "7f7a2243300265a8fe225600c10e8fc72ee2e46e229fa908ce9e982ce94740f1"
+    },
+    "current-read-index-more-keys-batch32-snap128-run2/client-5-samples-ns.json.gz": {
+      "bytes": 67412,
+      "sha256": "040bd6e0ae8a7d4d602e61d11b7b2bf4f2738001379370cdde937d982dfdeab3"
+    },
+    "current-read-index-more-keys-batch32-snap128-run2/client-6-samples-ns.json.gz": {
+      "bytes": 67260,
+      "sha256": "ca51b69bbb481cc31eb9fb1bee57786849767a5eb19992198e0428c0a17cd45d"
+    },
+    "current-read-index-more-keys-batch32-snap128-run2/client-7-samples-ns.json.gz": {
+      "bytes": 67150,
+      "sha256": "a7f183d4a26a7e18a6ecae7df41e373946fd8ccae274d8c8c3945e855e2987de"
+    },
+    "current-read-index-more-keys-batch32-snap128-run2/commands.json": {
+      "bytes": 1602,
+      "sha256": "8ff8893d5c4dc471fcb52f20d54b2dd783c2f9756d9f1ad6e900d03b963b73c3"
+    },
+    "current-read-index-more-keys-batch32-snap128-run2/node-1.log": {
+      "bytes": 114,
+      "sha256": "7645255e88298135f33a415f8cc5238304c52a1a93e0e50776fd5c9ff275eb71"
+    },
+    "current-read-index-more-keys-batch32-snap128-run2/node-2.log": {
+      "bytes": 114,
+      "sha256": "f884b9e79f1a9ef16364e6b87f47b3c57bc9753c5c3f0c615a55c922c3afe3cc"
+    },
+    "current-read-index-more-keys-batch32-snap128-run2/node-3.log": {
+      "bytes": 168,
+      "sha256": "6ed16d40337660e58fee6be16a51ef5f62027f2d9073ee573769970eb4730809"
+    },
+    "current-read-index-more-keys-batch32-snap128-run2/resource-samples.json": {
+      "bytes": 51504,
+      "sha256": "eb14865cdb346b82b67111a2e2eb0ec89a22ae5c193074d158b12d8159559782"
+    },
+    "current-read-index-more-keys-batch32-snap128-run2/result.json": {
+      "bytes": 24068,
+      "sha256": "e6a1494d60127642acff75dffe0bb7b0379292489d5c82cb7262bed0f447bbf7"
+    },
+    "current-read-index-more-keys-batch32-snap128-run2/timeline.json": {
+      "bytes": 2514,
+      "sha256": "a54788f13ee63a411b26edc6e918f5051e39a946179cac451e3d966a8363372d"
+    },
+    "current-read-index-more-keys-batch32-snap128-run2/workload.json": {
+      "bytes": 173,
+      "sha256": "acfed4ad3dc5325de488cb115e0841bce56008314a232cf4f0487cb0c3aa8caf"
+    },
+    "current-read-index-more-keys-batch32-snap128-run3/client-0-samples-ns.json.gz": {
+      "bytes": 65469,
+      "sha256": "0d8f3f37cf20e2c10d0b48664e86962b70efeb958e212c20c4facf8a3b12a8db"
+    },
+    "current-read-index-more-keys-batch32-snap128-run3/client-1-samples-ns.json.gz": {
+      "bytes": 65542,
+      "sha256": "e0dba5a4284d1b953f1f88e3c47927fb8a6270d04049bf72fa7b2791986dd2cc"
+    },
+    "current-read-index-more-keys-batch32-snap128-run3/client-2-samples-ns.json.gz": {
+      "bytes": 65275,
+      "sha256": "5b7892df9543b4814af98bde4f5cb8a1c8ccc267077d8a42925000e3663a183e"
+    },
+    "current-read-index-more-keys-batch32-snap128-run3/client-3-samples-ns.json.gz": {
+      "bytes": 65348,
+      "sha256": "051764c90034fa18e848cd90e9abe3398355ee5d57e0aab55d7cf500bb31a5d3"
+    },
+    "current-read-index-more-keys-batch32-snap128-run3/client-4-samples-ns.json.gz": {
+      "bytes": 65324,
+      "sha256": "42bc56f3600809ec47744eb265302f5be56d3807d4eb84ecdb525124ac2bffc6"
+    },
+    "current-read-index-more-keys-batch32-snap128-run3/client-5-samples-ns.json.gz": {
+      "bytes": 65433,
+      "sha256": "8a36ad88ce19d56890fbd3f771df0c0b65e217bad84ab395008ceb14c988e7b9"
+    },
+    "current-read-index-more-keys-batch32-snap128-run3/client-6-samples-ns.json.gz": {
+      "bytes": 65305,
+      "sha256": "3633758606e91248106e6401bd24e844dac86cf515374467a7df1315992b43b8"
+    },
+    "current-read-index-more-keys-batch32-snap128-run3/client-7-samples-ns.json.gz": {
+      "bytes": 65588,
+      "sha256": "8787bfcdc3986bc984f258720ac58ed383e094d512729f35014abb1303a6cd6c"
+    },
+    "current-read-index-more-keys-batch32-snap128-run3/commands.json": {
+      "bytes": 1602,
+      "sha256": "bc288d2cc9b2d730d2d4bbd42f3f85f406edccd20a55cc7e3c36d4b85ef0116c"
+    },
+    "current-read-index-more-keys-batch32-snap128-run3/node-1.log": {
+      "bytes": 114,
+      "sha256": "a0be3a64b68081495255e923403d91f19ca1477a1e6151f8f7e80237c9508591"
+    },
+    "current-read-index-more-keys-batch32-snap128-run3/node-2.log": {
+      "bytes": 114,
+      "sha256": "534a5213f7c3ed42b0d0a61a864aef74fcf2827fdfab5e23a2090622afbfc768"
+    },
+    "current-read-index-more-keys-batch32-snap128-run3/node-3.log": {
+      "bytes": 168,
+      "sha256": "eff2e2673654abcd2209575e2a3af96d65a1fae9236e468e967efe317f8b69b2"
+    },
+    "current-read-index-more-keys-batch32-snap128-run3/resource-samples.json": {
+      "bytes": 51941,
+      "sha256": "d69b5625d4160c5dedd7b36455e1b6c8d6038f1e84cc9357a0bd660a19560444"
+    },
+    "current-read-index-more-keys-batch32-snap128-run3/result.json": {
+      "bytes": 24065,
+      "sha256": "66ee7ab35e1d49ed76f741804eca439aad530c6a5f701b0d23bcd9ccfbdd1054"
+    },
+    "current-read-index-more-keys-batch32-snap128-run3/timeline.json": {
+      "bytes": 2515,
+      "sha256": "53470d534fcdb7458bd42671cd2a180889d896e25a32e718fe6f9ffaf59ee0ee"
+    },
+    "current-read-index-more-keys-batch32-snap128-run3/workload.json": {
+      "bytes": 173,
+      "sha256": "acfed4ad3dc5325de488cb115e0841bce56008314a232cf4f0487cb0c3aa8caf"
+    },
+    "current-read-index-read-only-batch32-snap128-run1/client-0-samples-ns.json.gz": {
+      "bytes": 255848,
+      "sha256": "244e8633bc7578ade7e8914ae042fbf6ed978e5e9c6eaaa87385345b2da55854"
+    },
+    "current-read-index-read-only-batch32-snap128-run1/client-1-samples-ns.json.gz": {
+      "bytes": 255221,
+      "sha256": "3812bab8b9a86c6d72650d9dfeb0d332fb70b108d536d9f123b6faf12db930fa"
+    },
+    "current-read-index-read-only-batch32-snap128-run1/client-2-samples-ns.json.gz": {
+      "bytes": 256070,
+      "sha256": "c4b1f28a1f475d47d81e6b9112b442895881144518f57e48168e40ff2cc1e8bd"
+    },
+    "current-read-index-read-only-batch32-snap128-run1/client-3-samples-ns.json.gz": {
+      "bytes": 256129,
+      "sha256": "3b4e2775e9ec18a0c6e8ab3848076c3182fccd1e4ab4b4d22e4cc2b9eaa72740"
+    },
+    "current-read-index-read-only-batch32-snap128-run1/client-4-samples-ns.json.gz": {
+      "bytes": 255528,
+      "sha256": "2fe6851067475b335587561c5f2e84e74fc7248cb66396c788ba59d1c111f8de"
+    },
+    "current-read-index-read-only-batch32-snap128-run1/client-5-samples-ns.json.gz": {
+      "bytes": 255722,
+      "sha256": "cb220663edc455cd671632f632b74f7c3e1822e5392a04df98c52d6f05f65f5b"
+    },
+    "current-read-index-read-only-batch32-snap128-run1/client-6-samples-ns.json.gz": {
+      "bytes": 255417,
+      "sha256": "22dbb5e8cfa5b0e08c76a72b9f696aa90bf82ec8a107cf16ec4a27ae55690c22"
+    },
+    "current-read-index-read-only-batch32-snap128-run1/client-7-samples-ns.json.gz": {
+      "bytes": 255915,
+      "sha256": "84775f20f570f9c9e3ff6a3c103dbeae2da427f3633c0730f4de6a493ad9491e"
+    },
+    "current-read-index-read-only-batch32-snap128-run1/commands.json": {
+      "bytes": 1602,
+      "sha256": "9ec5f15fa0c21f84d276260a3ed06f3dd16f5be379eac51d6d569e88b2079d94"
+    },
+    "current-read-index-read-only-batch32-snap128-run1/node-1.log": {
+      "bytes": 114,
+      "sha256": "bf25b2f7225be0bb8e6c9c3dcdd2e67d2198e3e5107c1bc8984eb872e43d1904"
+    },
+    "current-read-index-read-only-batch32-snap128-run1/node-2.log": {
+      "bytes": 114,
+      "sha256": "4bdd103e1fd8fc5986b3fd7a2f21dad51b4f8332abc19797aaf77e173f844c7a"
+    },
+    "current-read-index-read-only-batch32-snap128-run1/node-3.log": {
+      "bytes": 168,
+      "sha256": "268caadef9e8dbf5e8c2b9c436412c9790ba458e14f681ad996907c2a247cc77"
+    },
+    "current-read-index-read-only-batch32-snap128-run1/resource-samples.json": {
+      "bytes": 51605,
+      "sha256": "71dbc9713928e3765204f99692913749d3ae3e8d8580f6d94f511d1654390e4e"
+    },
+    "current-read-index-read-only-batch32-snap128-run1/result.json": {
+      "bytes": 12036,
+      "sha256": "e2c1d181c502683d67d5d36dbdcf61fd9e57d3e6c53dafcff7f11bf9c4224d5d"
+    },
+    "current-read-index-read-only-batch32-snap128-run1/timeline.json": {
+      "bytes": 2543,
+      "sha256": "3e2df9178e2b5473867ab3acdb5616e47af636cd3eae4d3d5f297943a6e5546e"
+    },
+    "current-read-index-read-only-batch32-snap128-run1/workload.json": {
+      "bytes": 170,
+      "sha256": "0a2c826aa1e09ccdf948dba5d1c5dee0e12fc58c9d34a332967e8e7df9f1ae06"
+    },
+    "current-read-index-read-only-batch32-snap128-run2/client-0-samples-ns.json.gz": {
+      "bytes": 240041,
+      "sha256": "f3f68ae57752390fc7da3ff043cbd7e1e551a13c344554076ab0a45e2b889d2b"
+    },
+    "current-read-index-read-only-batch32-snap128-run2/client-1-samples-ns.json.gz": {
+      "bytes": 239287,
+      "sha256": "175583faca9fdb5ea944bf38bfac213d2db7c5276bb4292ea6fbd96ed083e926"
+    },
+    "current-read-index-read-only-batch32-snap128-run2/client-2-samples-ns.json.gz": {
+      "bytes": 239750,
+      "sha256": "14e1094e9c1d719f262a1f69f79824185ed3daed42c3d0c313625884cfccfc65"
+    },
+    "current-read-index-read-only-batch32-snap128-run2/client-3-samples-ns.json.gz": {
+      "bytes": 239031,
+      "sha256": "3ac1e7d229a2774eb826a2ff57856cd78a1c422256afe85b11eb7936c10f32d2"
+    },
+    "current-read-index-read-only-batch32-snap128-run2/client-4-samples-ns.json.gz": {
+      "bytes": 240045,
+      "sha256": "47a0096b5da8d31d63a5c3802dd374b5d8c9193f497f67d1067c0a3363bbe9fc"
+    },
+    "current-read-index-read-only-batch32-snap128-run2/client-5-samples-ns.json.gz": {
+      "bytes": 239929,
+      "sha256": "2cc5e0b2c9ac558f3b6a8858cc6bd5bf4001ecb2173e516ddc3e2b0dcece12eb"
+    },
+    "current-read-index-read-only-batch32-snap128-run2/client-6-samples-ns.json.gz": {
+      "bytes": 240626,
+      "sha256": "13c95c021b321b8a9d60cc565dd0a149701e318a04c314b1a34bef5b89e4cf89"
+    },
+    "current-read-index-read-only-batch32-snap128-run2/client-7-samples-ns.json.gz": {
+      "bytes": 239829,
+      "sha256": "b9118d2aee946bf91e4827f9780e9dbda1ba3622bfaeaaa81f1da7873cab4717"
+    },
+    "current-read-index-read-only-batch32-snap128-run2/commands.json": {
+      "bytes": 1602,
+      "sha256": "5feb02628263f72384a248d1cde6da4dfde6c757c0d5eea5d4772110a276c7f7"
+    },
+    "current-read-index-read-only-batch32-snap128-run2/node-1.log": {
+      "bytes": 114,
+      "sha256": "5f77b57689b847a3487e7dbc9309c2362395f6d6153179b59e06f8c7153592ee"
+    },
+    "current-read-index-read-only-batch32-snap128-run2/node-2.log": {
+      "bytes": 114,
+      "sha256": "52432e4a25e37265be0768bdb938632908f995162b170f5486d9ff3d1e9ed2f1"
+    },
+    "current-read-index-read-only-batch32-snap128-run2/node-3.log": {
+      "bytes": 168,
+      "sha256": "1f32198c957ae9600d192ae38a8ea15cde67da69c74d77f2c078d25fe6df1b76"
+    },
+    "current-read-index-read-only-batch32-snap128-run2/resource-samples.json": {
+      "bytes": 51216,
+      "sha256": "b04e40a3e9fcbb1c3c4824eccbd0e4a8bcf7fb56290452c88534d51f1356c05c"
+    },
+    "current-read-index-read-only-batch32-snap128-run2/result.json": {
+      "bytes": 12024,
+      "sha256": "c63f805e891eb1515cc5e805c481088296766ecee46466a76627ac321703d075"
+    },
+    "current-read-index-read-only-batch32-snap128-run2/timeline.json": {
+      "bytes": 2539,
+      "sha256": "6a739a76bdec506f618d73fb5c3798772657c78c28137d206c341b70fea5f26f"
+    },
+    "current-read-index-read-only-batch32-snap128-run2/workload.json": {
+      "bytes": 170,
+      "sha256": "0a2c826aa1e09ccdf948dba5d1c5dee0e12fc58c9d34a332967e8e7df9f1ae06"
+    },
+    "current-read-index-read-only-batch32-snap128-run3/client-0-samples-ns.json.gz": {
+      "bytes": 200104,
+      "sha256": "406c33d5f9e4b29a688e7c8647259740abd79d9df6015826f69e7e7e8d937e0b"
+    },
+    "current-read-index-read-only-batch32-snap128-run3/client-1-samples-ns.json.gz": {
+      "bytes": 199743,
+      "sha256": "07b837db4c7174915af4ef85285574335a1e05513930f7814818602d3f325174"
+    },
+    "current-read-index-read-only-batch32-snap128-run3/client-2-samples-ns.json.gz": {
+      "bytes": 199373,
+      "sha256": "61050628e76917183626631c88d5ad46f890bb569b973b4910661c8a6eb3e969"
+    },
+    "current-read-index-read-only-batch32-snap128-run3/client-3-samples-ns.json.gz": {
+      "bytes": 198906,
+      "sha256": "37064554955d6c5f9c4cfa8bb79d0da7d219b3a197f7cc01362e84fcce5e712d"
+    },
+    "current-read-index-read-only-batch32-snap128-run3/client-4-samples-ns.json.gz": {
+      "bytes": 199703,
+      "sha256": "219bf7078c002db6d6bdf53a1e0fd4bd9f99e512e0b6fa9aa5fcea43c5637ded"
+    },
+    "current-read-index-read-only-batch32-snap128-run3/client-5-samples-ns.json.gz": {
+      "bytes": 199526,
+      "sha256": "e2fe830f517f16272ac0485a418b53765ced6cb4a8732c6a59077af77039ece5"
+    },
+    "current-read-index-read-only-batch32-snap128-run3/client-6-samples-ns.json.gz": {
+      "bytes": 200106,
+      "sha256": "1ba135845724b2e35dd82192c5156ff67f534ef993329047e0062f0ce622e2a4"
+    },
+    "current-read-index-read-only-batch32-snap128-run3/client-7-samples-ns.json.gz": {
+      "bytes": 199761,
+      "sha256": "0e00637a1b550071429fd8991d08b2f2ddc3be4f4b49b739b4c533bf42e68ac8"
+    },
+    "current-read-index-read-only-batch32-snap128-run3/commands.json": {
+      "bytes": 1602,
+      "sha256": "8de866023b4dbcd2f7a074c35eb57c419eede2b7ec36fe9142b6e479fd71754c"
+    },
+    "current-read-index-read-only-batch32-snap128-run3/node-1.log": {
+      "bytes": 114,
+      "sha256": "55b3fc947833edea5b6615f4ee3a143424ce09060e280c6b2a150c1e535a84eb"
+    },
+    "current-read-index-read-only-batch32-snap128-run3/node-2.log": {
+      "bytes": 114,
+      "sha256": "a74df52a51f4270d44805dccd83c32d84d97d12ad3019d41099eca0ebace9334"
+    },
+    "current-read-index-read-only-batch32-snap128-run3/node-3.log": {
+      "bytes": 168,
+      "sha256": "6634b3d05f873d2f04a538c423250856998e2c1e51ff622ecfad8e78b0a2328b"
+    },
+    "current-read-index-read-only-batch32-snap128-run3/resource-samples.json": {
+      "bytes": 51206,
+      "sha256": "2a4b2b4ae904d950753d80e0ce404c977e94e7d944e54fb482ed5551b3066e85"
+    },
+    "current-read-index-read-only-batch32-snap128-run3/result.json": {
+      "bytes": 12023,
+      "sha256": "38f18ac4576ac09cacfa99657c8ac695e284559132e1e03d38d8693999770a7b"
+    },
+    "current-read-index-read-only-batch32-snap128-run3/timeline.json": {
+      "bytes": 2540,
+      "sha256": "cd424674d677011fcbd16c7e805c7c23430a3f44a61c46ce08590510152425df"
+    },
+    "current-read-index-read-only-batch32-snap128-run3/workload.json": {
+      "bytes": 170,
+      "sha256": "0a2c826aa1e09ccdf948dba5d1c5dee0e12fc58c9d34a332967e8e7df9f1ae06"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run1/client-0-samples-ns.json.gz": {
+      "bytes": 68952,
+      "sha256": "611e97bd2aa12a3b1c9f87654e06f814d290666fbe593cb0bf8e5c9a13be4500"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run1/client-1-samples-ns.json.gz": {
+      "bytes": 69098,
+      "sha256": "20ed700fd2a915d48dc7dfb5b71f3d75fc24a539795770a9cb071ade56a0b914"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run1/client-2-samples-ns.json.gz": {
+      "bytes": 68985,
+      "sha256": "b11821b1623eef5d140cbaa4bf09a776fe2eae051cc22b49ea9d5e0fc98c7399"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run1/client-3-samples-ns.json.gz": {
+      "bytes": 68965,
+      "sha256": "e1666c9749c163da3007b5fc448aab41771cc2441d41b5163c9514fe6086174d"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run1/client-4-samples-ns.json.gz": {
+      "bytes": 68958,
+      "sha256": "1b48a78a1534e32d025712297650bb3af47152a0d83b76d6f21d1593ee96b6c2"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run1/client-5-samples-ns.json.gz": {
+      "bytes": 69077,
+      "sha256": "0855095311d10a0109cd6616025832b09240cae1d7513507890d497f9ea24b32"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run1/client-6-samples-ns.json.gz": {
+      "bytes": 68954,
+      "sha256": "4725490cd545518831217ccb8a2eb2e37a4f49a1b8c47e14a466ed6dd7be7f19"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run1/client-7-samples-ns.json.gz": {
+      "bytes": 68993,
+      "sha256": "e188c9e40c6d5d0b5ed9f350b80bfc4f18aba05af3a8f3d0dcdb9657f0be2e7d"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run1/commands.json": {
+      "bytes": 1608,
+      "sha256": "8f75f00dcd7fc5d79344077211a9bf7088489ba7029b9c7996b5f8a6453e18c6"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run1/node-1.log": {
+      "bytes": 114,
+      "sha256": "387cf8b93df0b75928db38c2c64c4f16f24fcf8cddf4acba649a70537465eba4"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run1/node-2.log": {
+      "bytes": 114,
+      "sha256": "1403131851d358c9e35f289aa22dbbcaf677a77bd93c189baaa269956e05221c"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run1/node-3.log": {
+      "bytes": 168,
+      "sha256": "b59f66cfdcf84955da12b923a8a176622f1bb10ea9e29f1ecadcb21b487f567f"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run1/resource-samples.json": {
+      "bytes": 51278,
+      "sha256": "2281693cac514826447fb856b50930f4b40cd5924b9e45722f551f26f5b5da82"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run1/result.json": {
+      "bytes": 12420,
+      "sha256": "d3af3b97aac0e4de8b8a6aa789f1395f52ad5b3f48069a1b6b9b72c1c7ed25aa"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run1/timeline.json": {
+      "bytes": 2512,
+      "sha256": "ad106268b1ac8ddec0cf2ff001a7e7e6a842334900a76c8e2e4f3c5ca50c2457"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run1/workload.json": {
+      "bytes": 171,
+      "sha256": "dbed41e97fc5c866329bab65b593d9555f6a9fe3ecf9674a8506bbcf145f2d14"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run2/client-0-samples-ns.json.gz": {
+      "bytes": 64683,
+      "sha256": "a572f7673ac2ac5146d2e4af1f331da49395031fe182abb9367fda6f26de3e03"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run2/client-1-samples-ns.json.gz": {
+      "bytes": 64682,
+      "sha256": "876dbbfdc1df88a550880545ac4b02cccb22a59bba9f3457ddef38c7275808ee"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run2/client-2-samples-ns.json.gz": {
+      "bytes": 64745,
+      "sha256": "d3bf4bbf9d661d29365dba8d2ae2c582adcc952ad9fb295f200559dc727cb1ab"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run2/client-3-samples-ns.json.gz": {
+      "bytes": 64766,
+      "sha256": "e241f31a908d01970feb60580e5607115921c7b7d013bfd1ec88cb1f95ddd76a"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run2/client-4-samples-ns.json.gz": {
+      "bytes": 64818,
+      "sha256": "32deea180e910118ec5fe7dc96ffbed205f261e065de88d2c00f0c9b895d4f81"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run2/client-5-samples-ns.json.gz": {
+      "bytes": 64672,
+      "sha256": "458e154d0a98433812253cd0a6c46c5ac283079d57300cd82b9387ff66412746"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run2/client-6-samples-ns.json.gz": {
+      "bytes": 64774,
+      "sha256": "7e9a8d11a3a6967a819e75d15371ce4ddfec7ce5d1949c208c19e42ba8aff697"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run2/client-7-samples-ns.json.gz": {
+      "bytes": 64734,
+      "sha256": "5944a20b286254d33130f7b31ded7e7220b82bff2e6c66f16106e7fe1df0c6e7"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run2/commands.json": {
+      "bytes": 1608,
+      "sha256": "16eb9e0886b8f3dc6b58a477e2636f9cd5fc92e69178809270a45fd492077e71"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run2/node-1.log": {
+      "bytes": 114,
+      "sha256": "d122210107a38a00037da6e5a70195cae128d657fad661f1d56de75493bf27c9"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run2/node-2.log": {
+      "bytes": 114,
+      "sha256": "7b73db3f4977d6db75ac129adf08346655670b319c3368b6e402d50694e0f576"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run2/node-3.log": {
+      "bytes": 168,
+      "sha256": "cf4fde13beb1da02fec38c227f69a159b1126803888eae40b2f1e2f2a9b3af35"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run2/resource-samples.json": {
+      "bytes": 51264,
+      "sha256": "17b363e7a6cc827323ec62253fe592ac092ddff3bfca5d0bcdb2cff90ff468e6"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run2/result.json": {
+      "bytes": 12424,
+      "sha256": "665c0a46d69ab9dff42563d01f269c5a24a9840e83ca0b7d52e92bad7b7e2e27"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run2/timeline.json": {
+      "bytes": 2513,
+      "sha256": "4e5eb2d0f22abfba3879123f000ef0d2e594e96646f129d3ea69287725f62e1a"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run2/workload.json": {
+      "bytes": 171,
+      "sha256": "dbed41e97fc5c866329bab65b593d9555f6a9fe3ecf9674a8506bbcf145f2d14"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run3/client-0-samples-ns.json.gz": {
+      "bytes": 59725,
+      "sha256": "b4e0a38fa8ff9e4632ccf1ce44fe4862c55b9e6857a2fc9e533a7b136a7e071b"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run3/client-1-samples-ns.json.gz": {
+      "bytes": 59517,
+      "sha256": "2857ef1b751fa012563eec1ff99b1e31c68522b29308c8c92d0e597975f225c0"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run3/client-2-samples-ns.json.gz": {
+      "bytes": 59652,
+      "sha256": "413dd657465d38b0ce955d26514f74f96a0d231649991000b028b6c4eba38556"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run3/client-3-samples-ns.json.gz": {
+      "bytes": 59704,
+      "sha256": "789a8eb4fff518cc9bb23b40bca84cb7c5db8c0eb5b1bbe7a27b5a977f66d87c"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run3/client-4-samples-ns.json.gz": {
+      "bytes": 59788,
+      "sha256": "0be7fa372b302a3bdd1b614a3109c10158ceca9080eda6f5cacdd789dfbfafe4"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run3/client-5-samples-ns.json.gz": {
+      "bytes": 59791,
+      "sha256": "c9e44cde4dc056f1fc29e337e7ea6ac9db689b9e48b56434a545d807eca00472"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run3/client-6-samples-ns.json.gz": {
+      "bytes": 59991,
+      "sha256": "6bd347189e3dc0d8981a8b3b805f1b186d48ce2994e94efc7601bbc5b48dd3d0"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run3/client-7-samples-ns.json.gz": {
+      "bytes": 59601,
+      "sha256": "5c915df7789ffde37847b0183efb0eb108786a5c6dcbf12554e0d5ca8f2d6ba0"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run3/commands.json": {
+      "bytes": 1608,
+      "sha256": "08bf4987ccddd826af08737b0e50aec06c8e0463614c72be3d4685a074ee6aea"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run3/node-1.log": {
+      "bytes": 114,
+      "sha256": "f979a8683574552c4e362e69fa90127ab61ff7e6f31f25d81629b9bc11fd6c09"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run3/node-2.log": {
+      "bytes": 114,
+      "sha256": "758cb94340ae21fefedde7673eef5f99b8489c4fd37357fb95486d2ea6e35da7"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run3/node-3.log": {
+      "bytes": 168,
+      "sha256": "acd3e524f8f4142f82f7035d2b0274660873b5e127cb4cdf58a8717e04aecec1"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run3/resource-samples.json": {
+      "bytes": 51676,
+      "sha256": "cc8f18149251fecd779038f29089615e84ae91c1dba23269bdec029d7e4417c8"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run3/result.json": {
+      "bytes": 12445,
+      "sha256": "f24804ca54e64da22498f8d3a99675eac3c60f8a690dc379674511152b3f5a9a"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run3/timeline.json": {
+      "bytes": 2511,
+      "sha256": "9ace16a1aa0e321bcc3cd623ec4cd2294fb851988bdba1b237c5b85e4a550cc8"
+    },
+    "current-read-index-write-heavy-batch32-snap128-run3/workload.json": {
+      "bytes": 171,
+      "sha256": "dbed41e97fc5c866329bab65b593d9555f6a9fe3ecf9674a8506bbcf145f2d14"
+    },
+    "manifest.json": {
+      "bytes": 761494,
+      "sha256": "3de01c97f277f10f063416899a5d92e0cb7fc2041789d7fd554d6428d46988e8"
+    },
+    "source-manifest.json": {
+      "bytes": 13979,
+      "sha256": "5c4793194e4413cfdf088fa371ae0042c5b0f6a28ff8d87849cf6ae29b5ab17b"
+    },
+    "source.tar.gz": {
+      "bytes": 190167,
+      "sha256": "856e793c1573ac47726c4d03cf9b565321f0cb89c1fb5186df909d3ea8eefd3e"
+    },
+    "summary.json": {
+      "bytes": 6833,
+      "sha256": "55112598dfe785d304ac699f9f550672f07b225e3f642265d8c62f321ffb1ac9"
+    },
+    "summary.md": {
+      "bytes": 2152,
+      "sha256": "8ccf574641d13cbd529cf6644b6800db660f96cf0416c719665ed1fbec7a7e29"
+    }
+  }
+}

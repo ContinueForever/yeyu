@@ -1,0 +1,283 @@
+Test project /home/hermes/yeyu/source/build-asan
+        Start 121: cluster_snapshot_runtime
+        Start 115: network_idle_integration
+  1/125 Test #121: cluster_snapshot_runtime ..................................................................***Failed   10.91 sec
+test_adaptive_cadence_keeps_byte_trigger_and_recovers_cold_and_hot_values (__main__.SnapshotTests.test_adaptive_cadence_keeps_byte_trigger_and_recovers_cold_and_hot_values) ... ok
+test_cumulative_payload_exceeds_old_limit_then_all_nodes_restart (__main__.SnapshotTests.test_cumulative_payload_exceeds_old_limit_then_all_nodes_restart) ... ok
+test_offline_follower_restarts_mid_transfer_then_recovers_deletes_and_updates (__main__.SnapshotTests.test_offline_follower_restarts_mid_transfer_then_recovers_deletes_and_updates) ... FAIL
+
+======================================================================
+FAIL: test_offline_follower_restarts_mid_transfer_then_recovers_deletes_and_updates (__main__.SnapshotTests.test_offline_follower_restarts_mid_transfer_then_recovers_deletes_and_updates)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/hermes/yeyu/source/tests/test_cluster_snapshot.py", line 121, in test_offline_follower_restarts_mid_transfer_then_recovers_deletes_and_updates
+    leader = cluster.leader()
+  File "/home/hermes/yeyu/source/tests/test_cluster.py", line 160, in leader
+    raise AssertionError(self.diagnostics())
+AssertionError: node 1: 16:43:04.902 INFO  [acceptor] listening on 127.0.0.1:60333
+
+node 2: yewukv-node: provide --id --port --data-dir and three unique --members
+
+node 3: 16:43:04.902 INFO  [acceptor] listening on 127.0.0.1:54741
+
+
+----------------------------------------------------------------------
+Ran 3 tests in 10.845s
+
+FAILED (failures=1)
+
+        Start 113: network_integration
+  2/125 Test #113: network_integration .......................................................................   Passed   14.65 sec
+        Start 122: cluster_resource_runtime
+  3/125 Test #115: network_idle_integration ..................................................................   Passed   33.16 sec
+        Start  86: RaftReadIndex.SeededReadsWithPartitionsRestartsAndSnapshotsKeepCommittedFence
+  4/125 Test #122: cluster_resource_runtime ..................................................................   Passed   14.36 sec
+        Start 118: cluster_failover_recovery
+  5/125 Test  #86: RaftReadIndex.SeededReadsWithPartitionsRestartsAndSnapshotsKeepCommittedFence .............   Passed    8.16 sec
+        Start 123: cluster_fault_campaign_smoke
+  6/125 Test #118: cluster_failover_recovery .................................................................   Passed    8.39 sec
+        Start 114: network_rpc_integration
+  7/125 Test #123: cluster_fault_campaign_smoke ..............................................................   Passed    8.00 sec
+        Start  74: RaftNode.FixedSeedChaosPreservesCommittedHistoryAndConvergesAfterHealing
+  8/125 Test #114: network_rpc_integration ...................................................................   Passed    5.10 sec
+        Start 124: cluster_read_index
+  9/125 Test  #74: RaftNode.FixedSeedChaosPreservesCommittedHistoryAndConvergesAfterHealing ..................   Passed    6.00 sec
+        Start 125: config_application
+ 10/125 Test #124: cluster_read_index ........................................................................   Passed    3.55 sec
+        Start   3: TcpConnection.IdleDeadlineAlsoClosesStalledDrain
+ 11/125 Test   #3: TcpConnection.IdleDeadlineAlsoClosesStalledDrain ..........................................   Passed    1.14 sec
+        Start  16: RpcClient.MissingResponseTimesOutAndLateResponseDoesNotCompleteAnotherCall
+ 12/125 Test  #16: RpcClient.MissingResponseTimesOutAndLateResponseDoesNotCompleteAnotherCall ................   Passed    0.34 sec
+        Start  61: RaftJournal.AppendsOnlyDeltaAndLeavesLargeCheckpointUntouched
+ 13/125 Test #125: config_application ........................................................................   Passed    3.32 sec
+        Start 112: StorageServer.RpcBusyAndResponseOrder
+ 14/125 Test  #61: RaftJournal.AppendsOnlyDeltaAndLeavesLargeCheckpointUntouched .............................   Passed    0.32 sec
+        Start 111: StorageServer.TextBusyAndResponseOrder
+ 15/125 Test #112: StorageServer.RpcBusyAndResponseOrder .....................................................   Passed    0.31 sec
+        Start  54: RaftFileStore.RejectsInvalidConfigurationAndOversizedPublishedImage
+ 16/125 Test #111: StorageServer.TextBusyAndResponseOrder ....................................................   Passed    0.31 sec
+        Start 116: wal_process_recovery
+ 17/125 Test #116: wal_process_recovery ......................................................................   Passed    0.16 sec
+        Start 117: benchmark_accounting
+ 18/125 Test #117: benchmark_accounting ......................................................................   Passed    0.10 sec
+        Start  73: RaftNode.BackfillsLongLogsInBoundedBatches
+ 19/125 Test  #73: RaftNode.BackfillsLongLogsInBoundedBatches ................................................   Passed    0.07 sec
+        Start  63: RaftJournal.EveryIncompleteFinalRecordIsTruncatedButAcknowledgedPrefixRemains
+ 20/125 Test  #63: RaftJournal.EveryIncompleteFinalRecordIsTruncatedButAcknowledgedPrefixRemains .............   Passed    0.09 sec
+        Start  75: RaftNode.SendsChunkedSnapshotToOfflineFollowerAndContinuesReplication
+ 21/125 Test  #54: RaftFileStore.RejectsInvalidConfigurationAndOversizedPublishedImage .......................   Passed    0.56 sec
+        Start  68: RaftJournal.SigkillAtAppendBoundariesRecoversWholeOldOrNewSuffix
+ 22/125 Test  #75: RaftNode.SendsChunkedSnapshotToOfflineFollowerAndContinuesReplication .....................   Passed    0.08 sec
+        Start 119: linearizability_checker
+ 23/125 Test  #68: RaftJournal.SigkillAtAppendBoundariesRecoversWholeOldOrNewSuffix ..........................   Passed    0.06 sec
+        Start  58: RaftFileStore.SigkillDuringSuffixReplacementRecoversAWholeOldOrNewImage
+ 24/125 Test #119: linearizability_checker ...................................................................   Passed    0.06 sec
+        Start 120: cluster_backup_manifest
+ 25/125 Test  #58: RaftFileStore.SigkillDuringSuffixReplacementRecoversAWholeOldOrNewImage ...................   Passed    0.07 sec
+        Start  51: RaftFileStore.RejectsChecksumDamageAndEveryTruncatedImageWithoutRepair
+ 26/125 Test #120: cluster_backup_manifest ...................................................................   Passed    0.07 sec
+        Start  90: RaftSnapshot.SigkillAtEveryPublishBoundaryRecoversWholeSnapshotAndSuffix
+ 27/125 Test  #51: RaftFileStore.RejectsChecksumDamageAndEveryTruncatedImageWithoutRepair ....................   Passed    0.07 sec
+        Start  69: RaftJournal.SigkillAtCheckpointBoundariesKeepsCheckpointAndJournalPaired
+ 28/125 Test  #90: RaftSnapshot.SigkillAtEveryPublishBoundaryRecoversWholeSnapshotAndSuffix ..................   Passed    0.06 sec
+        Start  87: RaftSnapshot.CompactsCommittedPrefixAndRecoversSnapshotWithUncommittedSuffix
+ 29/125 Test  #69: RaftJournal.SigkillAtCheckpointBoundariesKeepsCheckpointAndJournalPaired ..................   Passed    0.07 sec
+        Start  65: RaftJournal.RollsCheckpointGenerationAndReclaimsObsoleteJournal
+ 30/125 Test  #87: RaftSnapshot.CompactsCommittedPrefixAndRecoversSnapshotWithUncommittedSuffix ..............   Passed    0.05 sec
+        Start  79: RaftNode.BatchesDurableProposalsWithoutRelaxingMajorityCommit
+ 31/125 Test  #65: RaftJournal.RollsCheckpointGenerationAndReclaimsObsoleteJournal ...........................   Passed    0.05 sec
+        Start  71: RaftNode.IsolatedOldLeaderCannotCommitReadsOrWritesAndConflictIsReplaced
+ 32/125 Test  #79: RaftNode.BatchesDurableProposalsWithoutRelaxingMajorityCommit .............................   Passed    0.05 sec
+        Start  72: RaftNode.AcknowledgedPrefixSurvivesLeaderAndAllNodeRestarts
+ 33/125 Test  #71: RaftNode.IsolatedOldLeaderCannotCommitReadsOrWritesAndConflictIsReplaced ..................   Passed    0.06 sec
+        Start  76: RaftNode.FollowerCompactionAheadOfLostAcknowledgementDoesNotLivelock
+ 34/125 Test  #72: RaftNode.AcknowledgedPrefixSurvivesLeaderAndAllNodeRestarts ...............................   Passed    0.06 sec
+        Start   5: TcpConnection.WaitingForFirstReplyCannotAccumulateUnboundedCompletedResponses
+ 35/125 Test  #76: RaftNode.FollowerCompactionAheadOfLostAcknowledgementDoesNotLivelock ......................   Passed    0.06 sec
+        Start  82: RaftReadIndex.IsolatedOldLeaderCannotReadAndLateOldTermReplyCannotReleaseRead
+ 36/125 Test   #5: TcpConnection.WaitingForFirstReplyCannotAccumulateUnboundedCompletedResponses .............   Passed    0.04 sec
+        Start  45: RaftFileStore.SupportsDurableSuffixTruncationAndAppend
+ 37/125 Test  #82: RaftReadIndex.IsolatedOldLeaderCannotReadAndLateOldTermReplyCannotReleaseRead .............   Passed    0.05 sec
+        Start  66: RaftJournal.MissingCheckpointOrActiveJournalFailsClosed
+ 38/125 Test  #45: RaftFileStore.SupportsDurableSuffixTruncationAndAppend ....................................   Passed    0.04 sec
+        Start  52: RaftFileStore.RejectsStructurallyInvalidImagesEvenWithValidChecksums
+ 39/125 Test  #66: RaftJournal.MissingCheckpointOrActiveJournalFailsClosed ...................................   Passed    0.05 sec
+        Start  57: RaftFileStore.InjectedPersistenceFailuresRequireReopenAtEveryBoundary
+ 40/125 Test  #52: RaftFileStore.RejectsStructurallyInvalidImagesEvenWithValidChecksums ......................   Passed    0.05 sec
+        Start 110: StorageExecutor.CapacityCountsRunningOperation
+ 41/125 Test #110: StorageExecutor.CapacityCountsRunningOperation ............................................   Passed    0.04 sec
+        Start  70: RaftNode.ElectsOneLeaderAndCommitsCurrentTermNoopBeforeClientCommands
+ 42/125 Test  #57: RaftFileStore.InjectedPersistenceFailuresRequireReopenAtEveryBoundary .....................   Passed    0.05 sec
+        Start   1: Buffer.AppendAndTake
+ 43/125 Test  #70: RaftNode.ElectsOneLeaderAndCommitsCurrentTermNoopBeforeClientCommands .....................   Passed    0.05 sec
+ 44/125 Test   #1: Buffer.AppendAndTake ......................................................................   Passed    0.04 sec
+        Start  64: RaftJournal.RejectsCompleteCorruptRecordIncludingFinalRecordAndHeaderLength
+        Start  78: RaftNode.RejectsUnknownPeersAndFutureTermEntriesWithoutMutatingState
+ 45/125 Test  #78: RaftNode.RejectsUnknownPeersAndFutureTermEntriesWithoutMutatingState ......................   Passed    0.06 sec
+        Start  20: RpcClient.PendingLimitRejectsExcessCallsWithoutSendingThem
+ 46/125 Test  #64: RaftJournal.RejectsCompleteCorruptRecordIncludingFinalRecordAndHeaderLength ...............   Passed    0.07 sec
+        Start  80: RaftReadIndex.RequiresCurrentTermCommitAndFreshQuorumWithoutWritingLog
+ 47/125 Test  #80: RaftReadIndex.RequiresCurrentTermCommitAndFreshQuorumWithoutWritingLog ....................   Passed    0.05 sec
+        Start  25: TextProtocol.Malformed
+ 48/125 Test  #20: RpcClient.PendingLimitRejectsExcessCallsWithoutSendingThem ................................   Passed    0.06 sec
+        Start  31: RaftElection.PersistenceFailurePreventsVotingOrLeadership
+ 49/125 Test  #31: RaftElection.PersistenceFailurePreventsVotingOrLeadership .................................   Passed    0.05 sec
+        Start  91: RaftSnapshot.ChunkRetriesAndReceiverRestartNeverPublishPartialState
+ 50/125 Test  #25: TextProtocol.Malformed ....................................................................   Passed    0.05 sec
+        Start  81: RaftReadIndex.IgnoresWrongContextSequenceAndDuplicateAcknowledgements
+ 51/125 Test  #91: RaftSnapshot.ChunkRetriesAndReceiverRestartNeverPublishPartialState .......................   Passed    0.05 sec
+        Start  67: RaftJournal.JournalFailurePoisonsInstanceUntilReopenAtAllAppendBoundaries
+ 52/125 Test  #81: RaftReadIndex.IgnoresWrongContextSequenceAndDuplicateAcknowledgements .....................   Passed    0.05 sec
+        Start  59: RaftFileStore.AcknowledgedVotesAndAppendsSurviveSigkill
+ 53/125 Test  #67: RaftJournal.JournalFailurePoisonsInstanceUntilReopenAtAllAppendBoundaries .................   Passed    0.06 sec
+        Start  53: RaftFileStore.RejectsSymlinkAndNonRegularPublishedState
+ 54/125 Test  #59: RaftFileStore.AcknowledgedVotesAndAppendsSurviveSigkill ...................................   Passed    0.06 sec
+        Start  47: RaftFileStore.RejectsInvalidSuffixWithoutChangingPersistedState
+ 55/125 Test  #47: RaftFileStore.RejectsInvalidSuffixWithoutChangingPersistedState ...........................   Passed    0.05 sec
+        Start  10: FrameCodec.ConsumesOneOfMultipleFramesAndKeepsTrailingPartialFrame
+ 56/125 Test  #53: RaftFileStore.RejectsSymlinkAndNonRegularPublishedState ...................................   Passed    0.06 sec
+        Start  83: RaftReadIndex.CancelledRoundCannotSatisfyLaterRead
+ 57/125 Test  #10: FrameCodec.ConsumesOneOfMultipleFramesAndKeepsTrailingPartialFrame ........................   Passed    0.05 sec
+        Start  41: RaftFileStore.InitializesAndRecoversHardStateAndBinaryCommands
+ 58/125 Test  #83: RaftReadIndex.CancelledRoundCannotSatisfyLaterRead ........................................   Passed    0.06 sec
+        Start  28: RaftElection.NeverGrantsTwoVotesInOneTermEvenAfterRestart
+ 59/125 Test  #41: RaftFileStore.InitializesAndRecoversHardStateAndBinaryCommands ............................   Passed    0.05 sec
+        Start  98: KvStateMachine.InvalidSnapshotLeavesLiveStateUntouched
+ 60/125 Test  #28: RaftElection.NeverGrantsTwoVotesInOneTermEvenAfterRestart .................................   Passed    0.04 sec
+        Start  18: RpcClient.DestructorCompletesPendingCallWithShutdown
+ 61/125 Test  #98: KvStateMachine.InvalidSnapshotLeavesLiveStateUntouched ....................................   Passed    0.05 sec
+        Start  62: RaftJournal.ReplacementAndTruncationReplayWithoutResurrectingOldSuffix
+ 62/125 Test  #18: RpcClient.DestructorCompletesPendingCallWithShutdown ......................................   Passed    0.05 sec
+        Start  77: RaftNode.PersistenceFailurePreventsElectionOrAppendAcknowledgement
+ 63/125 Test  #62: RaftJournal.ReplacementAndTruncationReplayWithoutResurrectingOldSuffix ....................   Passed    0.05 sec
+        Start   6: TcpConnection.OutstandingRequestCountIsBoundedEvenForTinyResponses
+ 64/125 Test  #77: RaftNode.PersistenceFailurePreventsElectionOrAppendAcknowledgement ........................   Passed    0.07 sec
+        Start  97: KvStateMachine.SnapshotRestoresDeterministicCapacityDecisionsIncludingEmptyBinaryValues
+ 65/125 Test   #6: TcpConnection.OutstandingRequestCountIsBoundedEvenForTinyResponses ........................   Passed    0.05 sec
+        Start  44: RaftFileStore.LogCoreReplacesConflictingSuffixAcrossRestart
+ 66/125 Test  #97: KvStateMachine.SnapshotRestoresDeterministicCapacityDecisionsIncludingEmptyBinaryValues ...   Passed    0.06 sec
+        Start  49: RaftFileStore.LocksDirectoryAndReleasesLockAfterCloseOrConstructorFailure
+ 67/125 Test  #44: RaftFileStore.LogCoreReplacesConflictingSuffixAcrossRestart ...............................   Passed    0.05 sec
+        Start  46: RaftFileStore.RejectsTermRegressionAndVoteChangesWithoutTouchingImage
+ 68/125 Test  #49: RaftFileStore.LocksDirectoryAndReleasesLockAfterCloseOrConstructorFailure .................   Passed    0.04 sec
+        Start 102: WalEngine.TruncatesIncompleteTailAndContinuesSequence
+ 69/125 Test  #46: RaftFileStore.RejectsTermRegressionAndVoteChangesWithoutTouchingImage .....................   Passed    0.04 sec
+        Start   8: FrameCodec.WaitsForSplitHeaderWithoutConsumingOrChangingOutput
+ 70/125 Test #102: WalEngine.TruncatesIncompleteTailAndContinuesSequence .....................................   Passed    0.04 sec
+        Start  99: KvStateMachine.SnapshotBytesMatchProtobufLengthBoundariesAndRepeatedUpdates
+ 71/125 Test   #8: FrameCodec.WaitsForSplitHeaderWithoutConsumingOrChangingOutput ............................   Passed    0.05 sec
+        Start 106: WalEngine.IgnoresInterruptedCompactionAndCanRetry
+ 72/125 Test  #99: KvStateMachine.SnapshotBytesMatchProtobufLengthBoundariesAndRepeatedUpdates ...............   Passed    0.05 sec
+        Start  60: RaftJournal.MigratesLegacyImageAndRecoversBinarySuffixAndVote
+ 73/125 Test #106: WalEngine.IgnoresInterruptedCompactionAndCanRetry .........................................   Passed    0.05 sec
+        Start 104: WalEngine.EnforcesExclusiveDataDirectoryOwnership
+ 74/125 Test  #60: RaftJournal.MigratesLegacyImageAndRecoversBinarySuffixAndVote .............................   Passed    0.05 sec
+        Start  89: RaftSnapshot.SnapshotCapacityRejectionDoesNotReplaceDurableImage
+ 75/125 Test #104: WalEngine.EnforcesExclusiveDataDirectoryOwnership .........................................   Passed    0.06 sec
+        Start  35: RaftLog.ReportsConflictHintsWithoutChangingLog
+ 76/125 Test  #89: RaftSnapshot.SnapshotCapacityRejectionDoesNotReplaceDurableImage ..........................   Passed    0.05 sec
+        Start 105: WalEngine.CompactionPreservesOnlyLiveValuesAndAllowsFurtherWrites
+ 77/125 Test  #35: RaftLog.ReportsConflictHintsWithoutChangingLog ............................................   Passed    0.04 sec
+        Start  30: RaftElection.MajorityPromotesOnceAndHigherTermDemotes
+ 78/125 Test #105: WalEngine.CompactionPreservesOnlyLiveValuesAndAllowsFurtherWrites .........................   Passed    0.05 sec
+        Start  21: RpcClient.InvalidAddressIsReportedWithoutBlockingDNS
+ 79/125 Test  #30: RaftElection.MajorityPromotesOnceAndHigherTermDemotes .....................................   Passed    0.05 sec
+        Start   7: FrameCodec.EncodesNetworkOrderLengthAndBinaryPayload
+ 80/125 Test  #21: RpcClient.InvalidAddressIsReportedWithoutBlockingDNS ......................................   Passed    0.05 sec
+        Start  43: RaftFileStore.ElectionCannotVoteTwiceAfterRealReopen
+ 81/125 Test   #7: FrameCodec.EncodesNetworkOrderLengthAndBinaryPayload ......................................   Passed    0.04 sec
+        Start  19: RpcClient.ConnectionFailureReturnsIOError
+ 82/125 Test  #43: RaftFileStore.ElectionCannotVoteTwiceAfterRealReopen ......................................   Passed    0.04 sec
+        Start  15: RpcClient.ConcurrentCallsMatchResponsesReturnedInReverseOrder
+ 83/125 Test  #19: RpcClient.ConnectionFailureReturnsIOError .................................................   Passed    0.04 sec
+        Start  22: TextProtocol.PutGetDelPing
+ 84/125 Test  #15: RpcClient.ConcurrentCallsMatchResponsesReturnedInReverseOrder .............................   Passed    0.04 sec
+        Start  23: TextProtocol.HalfPacketReturnsZero
+ 85/125 Test  #22: TextProtocol.PutGetDelPing ................................................................   Passed    0.04 sec
+        Start  14: FrameCodec.RejectsInvalidPayloadLengthsOnEncode
+ 86/125 Test  #23: TextProtocol.HalfPacketReturnsZero ........................................................   Passed    0.04 sec
+        Start  56: RaftFileStore.AppendFailurePoisonsLogBeforeAnySuccessOrCommit
+ 87/125 Test  #14: FrameCodec.RejectsInvalidPayloadLengthsOnEncode ...........................................   Passed    0.04 sec
+        Start 109: StorageExecutor.BoundedFifoAndDrain
+ 88/125 Test  #56: RaftFileStore.AppendFailurePoisonsLogBeforeAnySuccessOrCommit .............................   Passed    0.04 sec
+        Start  13: FrameCodec.AcceptsMaximumPayloadAtExactBoundary
+ 89/125 Test #109: StorageExecutor.BoundedFifoAndDrain .......................................................   Passed    0.04 sec
+        Start 108: WalEngine.FullWalStillAllowsDurableDeletion
+ 90/125 Test  #13: FrameCodec.AcceptsMaximumPayloadAtExactBoundary ...........................................   Passed    0.05 sec
+        Start  40: RaftLog.RejectsMalformedRecoveredAndIncomingTermOrder
+ 91/125 Test #108: WalEngine.FullWalStillAllowsDurableDeletion ...............................................   Passed    0.05 sec
+        Start 107: WalEngine.AutomaticallyCompactsWhenAppendReachesLimit
+ 92/125 Test  #40: RaftLog.RejectsMalformedRecoveredAndIncomingTermOrder .....................................   Passed    0.04 sec
+        Start  50: RaftFileStore.IgnoresStaleTemporaryImageAndReplacesItOnNextWrite
+ 93/125 Test #107: WalEngine.AutomaticallyCompactsWhenAppendReachesLimit .....................................   Passed    0.05 sec
+        Start   9: FrameCodec.WaitsForSplitPayload
+ 94/125 Test  #50: RaftFileStore.IgnoresStaleTemporaryImageAndReplacesItOnNextWrite ..........................   Passed    0.04 sec
+        Start  88: RaftSnapshot.InstallationRetainsOnlySuffixWithMatchingBoundaryTerm
+ 95/125 Test  #88: RaftSnapshot.InstallationRetainsOnlySuffixWithMatchingBoundaryTerm ........................   Passed    0.05 sec
+        Start 103: WalEngine.RejectsCorruptCompleteRecordWithoutTruncation
+ 96/125 Test   #9: FrameCodec.WaitsForSplitPayload ...........................................................   Passed    0.07 sec
+        Start  24: TextProtocol.MultipleCommandsInOneBuffer
+ 97/125 Test #103: WalEngine.RejectsCorruptCompleteRecordWithoutTruncation ...................................   Passed    0.07 sec
+        Start  27: RaftElection.PersistsSelfVoteBeforeCampaignProducesRequests
+ 98/125 Test  #24: TextProtocol.MultipleCommandsInOneBuffer ..................................................   Passed    0.05 sec
+        Start  33: RaftLog.AppendsDurablyBeforeSuccessAndAdvancesFollowerCommit
+ 99/125 Test  #27: RaftElection.PersistsSelfVoteBeforeCampaignProducesRequests ...............................   Passed    0.05 sec
+        Start  55: RaftFileStore.FilesystemFailurePoisonsElectionWithoutPublishingVotes
+100/125 Test  #33: RaftLog.AppendsDurablyBeforeSuccessAndAdvancesFollowerCommit ..............................   Passed    0.06 sec
+        Start  37: RaftLog.ShortHeartbeatCannotCommitUnmentionedFollowerSuffix
+101/125 Test  #55: RaftFileStore.FilesystemFailurePoisonsElectionWithoutPublishingVotes ......................   Passed    0.04 sec
+        Start  11: FrameCodec.RejectsZeroLengthWithoutConsuming
+102/125 Test  #37: RaftLog.ShortHeartbeatCannotCommitUnmentionedFollowerSuffix ...............................   Passed    0.04 sec
+        Start 100: KvStateMachine.ReplaysLegacySuccessfulWritesWithoutApplyingNewCapacityRetroactively
+103/125 Test  #11: FrameCodec.RejectsZeroLengthWithoutConsuming ..............................................   Passed    0.04 sec
+        Start  34: RaftLog.ReplacesOnlyConflictingUncommittedSuffix
+104/125 Test #100: KvStateMachine.ReplaysLegacySuccessfulWritesWithoutApplyingNewCapacityRetroactively .......   Passed    0.04 sec
+        Start  17: RpcClient.PeerDisconnectFailsOutstandingCallsAndDoesNotReconnect
+105/125 Test  #34: RaftLog.ReplacesOnlyConflictingUncommittedSuffix ..........................................   Passed    0.05 sec
+        Start  92: RaftSnapshot.RejectsMalformedOrInvalidApplicationSnapshotsBeforePublication
+106/125 Test  #17: RpcClient.PeerDisconnectFailsOutstandingCallsAndDoesNotReconnect ..........................   Passed    0.05 sec
+        Start  48: RaftFileStore.EnforcesCapacityBeforeIOAndCanTruncateToMakeRoom
+107/125 Test  #92: RaftSnapshot.RejectsMalformedOrInvalidApplicationSnapshotsBeforePublication ...............   Passed    0.05 sec
+        Start  96: KvStateMachine.CapacityRejectsNewOrGrowingValuesAndDeletionReclaimsSpace
+108/125 Test  #48: RaftFileStore.EnforcesCapacityBeforeIOAndCanTruncateToMakeRoom ............................   Passed    0.05 sec
+        Start   4: TcpConnection.OutOfOrderCompletionsDrainInRequestOrderAfterHalfClose
+109/125 Test   #4: TcpConnection.OutOfOrderCompletionsDrainInRequestOrderAfterHalfClose ......................   Passed    0.05 sec
+        Start  29: RaftElection.ComparesLastLogTermBeforeIndexAndPersistsNewTerm
+110/125 Test  #96: KvStateMachine.CapacityRejectsNewOrGrowingValuesAndDeletionReclaimsSpace ..................   Passed    0.06 sec
+        Start  93: RaftSnapshot.DiskFailurePreventsSnapshotInstallationAcknowledgement
+111/125 Test  #29: RaftElection.ComparesLastLogTermBeforeIndexAndPersistsNewTerm .............................   Passed    0.05 sec
+        Start  26: MemEngine.PutGetDelete
+112/125 Test  #93: RaftSnapshot.DiskFailurePreventsSnapshotInstallationAcknowledgement .......................   Passed    0.05 sec
+        Start  12: FrameCodec.RejectsOversizedLengthAsSoonAsHeaderArrives
+113/125 Test  #26: MemEngine.PutGetDelete ....................................................................   Passed    0.04 sec
+        Start 101: WalEngine.ReplaysBinaryValuesAndDeletes
+114/125 Test  #12: FrameCodec.RejectsOversizedLengthAsSoonAsHeaderArrives ....................................   Passed    0.04 sec
+        Start  39: RaftLog.PersistenceFailurePoisonsLogWithoutAcknowledgingAppend
+115/125 Test #101: WalEngine.ReplaysBinaryValuesAndDeletes ...................................................   Passed    0.04 sec
+        Start  32: RaftElection.SameTermLeaderMessageDemotesCandidate
+116/125 Test  #39: RaftLog.PersistenceFailurePoisonsLogWithoutAcknowledgingAppend ............................   Passed    0.05 sec
+        Start  36: RaftLog.RejectsCommittedOverwriteAndSameTermDifferentCommand
+117/125 Test  #32: RaftElection.SameTermLeaderMessageDemotesCandidate ........................................   Passed    0.05 sec
+        Start   2: Buffer.ConsumeResets
+118/125 Test  #36: RaftLog.RejectsCommittedOverwriteAndSameTermDifferentCommand ..............................   Passed    0.05 sec
+        Start  38: RaftLog.LeaderOnlyAdvancesMajorityCommitThroughCurrentTermEntry
+119/125 Test   #2: Buffer.ConsumeResets ......................................................................   Passed    0.06 sec
+        Start  42: RaftFileStore.FastChecksumMatchesIndependentBitwiseEncoderForBinaryImages
+120/125 Test  #38: RaftLog.LeaderOnlyAdvancesMajorityCommitThroughCurrentTermEntry ...........................   Passed    0.06 sec
+        Start  84: RaftReadIndex.FreshRoundSharesUnsentProposalAndConfirmsBeforeApplication
+121/125 Test  #42: RaftFileStore.FastChecksumMatchesIndependentBitwiseEncoderForBinaryImages .................   Passed    0.06 sec
+        Start  85: RaftReadIndex.HandedOffReplicationCannotConfirmALaterRead
+122/125 Test  #84: RaftReadIndex.FreshRoundSharesUnsentProposalAndConfirmsBeforeApplication ..................   Passed    0.06 sec
+        Start  94: SnapshotPolicy.LargeLiveStateAmortizesEntryTriggeredImages
+123/125 Test  #85: RaftReadIndex.HandedOffReplicationCannotConfirmALaterRead .................................   Passed    0.05 sec
+        Start  95: SnapshotPolicy.ByteTriggerAndApplicationBoundaryRemainHardConditions
+124/125 Test  #94: SnapshotPolicy.LargeLiveStateAmortizesEntryTriggeredImages ................................   Passed    0.06 sec
+125/125 Test  #95: SnapshotPolicy.ByteTriggerAndApplicationBoundaryRemainHardConditions ......................   Passed    0.05 sec
+
+99% tests passed, 1 tests failed out of 125
+
+Total Test time (real) =  62.22 sec
+
+The following tests FAILED:
+	121 - cluster_snapshot_runtime (Failed)
+Errors while running CTest

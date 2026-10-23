@@ -1,0 +1,3406 @@
+Start testing: Oct 22 16:45 CST
+----------------------------------------------------------
+121/125 Testing: cluster_snapshot_runtime
+121/125 Test: cluster_snapshot_runtime
+Command: "/usr/bin/python3" "/home/hermes/yeyu/source/tests/test_cluster_snapshot.py" "--node" "/home/hermes/yeyu/source/build-asan/bin/yewukv-node" "--client" "/home/hermes/yeyu/source/build-asan/bin/yewukv-client" "--suite" "snapshot"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"cluster_snapshot_runtime" start time: Oct 22 16:45 CST
+Output:
+----------------------------------------------------------
+test_adaptive_cadence_keeps_byte_trigger_and_recovers_cold_and_hot_values (__main__.SnapshotTests.test_adaptive_cadence_keeps_byte_trigger_and_recovers_cold_and_hot_values) ... ok
+test_cumulative_payload_exceeds_old_limit_then_all_nodes_restart (__main__.SnapshotTests.test_cumulative_payload_exceeds_old_limit_then_all_nodes_restart) ... ok
+test_offline_follower_restarts_mid_transfer_then_recovers_deletes_and_updates (__main__.SnapshotTests.test_offline_follower_restarts_mid_transfer_then_recovers_deletes_and_updates) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 13.901s
+
+OK
+<end of output>
+Test time =  13.97 sec
+----------------------------------------------------------
+Test Passed.
+"cluster_snapshot_runtime" end time: Oct 22 16:45 CST
+"cluster_snapshot_runtime" time elapsed: 00:00:13
+----------------------------------------------------------
+
+113/125 Testing: network_integration
+113/125 Test: network_integration
+Command: "/usr/bin/python3" "/home/hermes/yeyu/source/tests/test_network.py" "--server" "/home/hermes/yeyu/source/build-asan/bin/yewukv-server"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"network_integration" start time: Oct 22 16:45 CST
+Output:
+----------------------------------------------------------
+test_disconnects_and_concurrent_clients (__main__.NetworkTests.test_disconnects_and_concurrent_clients) ... ok
+test_half_close_preserves_all_responses (__main__.NetworkTests.test_half_close_preserves_all_responses) ... ok
+test_invalid_arguments_are_rejected (__main__.NetworkTests.test_invalid_arguments_are_rejected) ... ok
+test_line_limit_rejects_only_offending_connection (__main__.NetworkTests.test_line_limit_rejects_only_offending_connection) ... ok
+test_occupied_port_is_rejected (__main__.NetworkTests.test_occupied_port_is_rejected) ... ok
+test_pipeline_and_fragmented_commands (__main__.NetworkTests.test_pipeline_and_fragmented_commands) ... ok
+test_signals_stop_idle_active_and_slow_connections (__main__.NetworkTests.test_signals_stop_idle_active_and_slow_connections) ... ok
+test_sigterm_drains_generated_responses_without_reset (__main__.NetworkTests.test_sigterm_drains_generated_responses_without_reset) ... ok
+test_slow_reader_is_disconnected_at_output_limit (__main__.NetworkTests.test_slow_reader_is_disconnected_at_output_limit) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 14.619s
+
+OK
+<end of output>
+Test time =  14.68 sec
+----------------------------------------------------------
+Test Passed.
+"network_integration" end time: Oct 22 16:45 CST
+"network_integration" time elapsed: 00:00:14
+----------------------------------------------------------
+
+115/125 Testing: network_idle_integration
+115/125 Test: network_idle_integration
+Command: "/usr/bin/python3" "/home/hermes/yeyu/source/tests/test_idle_network.py" "--server" "/home/hermes/yeyu/source/build-asan/bin/yewukv-server"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"network_idle_integration" start time: Oct 22 16:45 CST
+Output:
+----------------------------------------------------------
+test_idle_and_partial_requests_close_while_active_connection_survives (__main__.IdleNetworkTests.test_idle_and_partial_requests_close_while_active_connection_survives) ... ok
+test_zero_disables_idle_eviction (__main__.IdleNetworkTests.test_zero_disables_idle_eviction) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 33.162s
+
+OK
+<end of output>
+Test time =  33.23 sec
+----------------------------------------------------------
+Test Passed.
+"network_idle_integration" end time: Oct 22 16:45 CST
+"network_idle_integration" time elapsed: 00:00:33
+----------------------------------------------------------
+
+86/125 Testing: RaftReadIndex.SeededReadsWithPartitionsRestartsAndSnapshotsKeepCommittedFence
+86/125 Test: RaftReadIndex.SeededReadsWithPartitionsRestartsAndSnapshotsKeepCommittedFence
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftReadIndex.SeededReadsWithPartitionsRestartsAndSnapshotsKeepCommittedFence" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftReadIndex.SeededReadsWithPartitionsRestartsAndSnapshotsKeepCommittedFence" start time: Oct 22 16:45 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftReadIndex.SeededReadsWithPartitionsRestartsAndSnapshotsKeepCommittedFence
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftReadIndex
+[ RUN      ] RaftReadIndex.SeededReadsWithPartitionsRestartsAndSnapshotsKeepCommittedFence
+[       OK ] RaftReadIndex.SeededReadsWithPartitionsRestartsAndSnapshotsKeepCommittedFence (7807 ms)
+[----------] 1 test from RaftReadIndex (7807 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (7807 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   7.93 sec
+----------------------------------------------------------
+Test Passed.
+"RaftReadIndex.SeededReadsWithPartitionsRestartsAndSnapshotsKeepCommittedFence" end time: Oct 22 16:45 CST
+"RaftReadIndex.SeededReadsWithPartitionsRestartsAndSnapshotsKeepCommittedFence" time elapsed: 00:00:07
+----------------------------------------------------------
+
+122/125 Testing: cluster_resource_runtime
+122/125 Test: cluster_resource_runtime
+Command: "/usr/bin/python3" "/home/hermes/yeyu/source/tests/test_cluster_snapshot.py" "--node" "/home/hermes/yeyu/source/build-asan/bin/yewukv-node" "--client" "/home/hermes/yeyu/source/build-asan/bin/yewukv-client" "--suite" "resource" "--fault-library" "/home/hermes/yeyu/source/build-asan/tests/libyewu_test_io_fault.so" "--asan-runtime" "/usr/lib/gcc/x86_64-linux-gnu/15/libasan.so"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"cluster_resource_runtime" start time: Oct 22 16:45 CST
+Output:
+----------------------------------------------------------
+test_enospc_and_sync_error_stop_leader_without_false_success (__main__.ResourceTests.test_enospc_and_sync_error_stop_leader_without_false_success) ... ok
+test_one_node_capacity_limit_preserves_majority_and_recovers_without_deleting_data (__main__.ResourceTests.test_one_node_capacity_limit_preserves_majority_and_recovers_without_deleting_data) ... ok
+test_pending_and_event_queue_backpressure_and_recovery (__main__.ResourceTests.test_pending_and_event_queue_backpressure_and_recovery) ... ok
+test_short_writes_and_slow_follower_sync_preserve_acknowledged_data (__main__.ResourceTests.test_short_writes_and_slow_follower_sync_preserve_acknowledged_data) ... ok
+test_slow_reader_is_disconnected_while_other_clients_keep_working (__main__.ResourceTests.test_slow_reader_is_disconnected_while_other_clients_keep_working) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 14.383s
+
+OK
+<end of output>
+Test time =  14.45 sec
+----------------------------------------------------------
+Test Passed.
+"cluster_resource_runtime" end time: Oct 22 16:45 CST
+"cluster_resource_runtime" time elapsed: 00:00:14
+----------------------------------------------------------
+
+118/125 Testing: cluster_failover_recovery
+118/125 Test: cluster_failover_recovery
+Command: "/usr/bin/python3" "/home/hermes/yeyu/source/tests/test_cluster.py" "--node" "/home/hermes/yeyu/source/build-asan/bin/yewukv-node" "--client" "/home/hermes/yeyu/source/build-asan/bin/yewukv-client"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"cluster_failover_recovery" start time: Oct 22 16:45 CST
+Output:
+----------------------------------------------------------
+....
+----------------------------------------------------------------------
+Ran 4 tests in 8.533s
+
+OK
+<end of output>
+Test time =   8.59 sec
+----------------------------------------------------------
+Test Passed.
+"cluster_failover_recovery" end time: Oct 22 16:46 CST
+"cluster_failover_recovery" time elapsed: 00:00:08
+----------------------------------------------------------
+
+123/125 Testing: cluster_fault_campaign_smoke
+123/125 Test: cluster_fault_campaign_smoke
+Command: "/usr/bin/python3" "/home/hermes/yeyu/source/scripts/cluster-soak.py" "--node" "/home/hermes/yeyu/source/build-asan/bin/yewukv-node" "--client" "/home/hermes/yeyu/source/build-asan/bin/yewukv-client" "--epochs" "6" "--evidence-root" "/home/hermes/yeyu/source/build-asan/tests/soak-evidence"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"cluster_fault_campaign_smoke" start time: Oct 22 16:45 CST
+Output:
+----------------------------------------------------------
+{"epoch": 0, "fault": "leader-kill", "checked_operations": 54, "elapsed_seconds": 0.805550716992002}
+{
+  "command": [
+    "/home/hermes/yeyu/source/scripts/cluster-soak.py",
+    "--node",
+    "/home/hermes/yeyu/source/build-asan/bin/yewukv-node",
+    "--client",
+    "/home/hermes/yeyu/source/build-asan/bin/yewukv-client",
+    "--epochs",
+    "6",
+    "--evidence-root",
+    "/home/hermes/yeyu/source/build-asan/tests/soak-evidence"
+  ],
+  "environment": {
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.43",
+    "cpu_model": "11th Gen Intel(R) Core(TM) i7-11800H @ 2.30GHz",
+    "logical_cpus": 4,
+    "cpu_affinity": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "memory": "MemTotal:        8141396 kB",
+    "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+    "load_average": [
+      0.96728515625,
+      0.859375,
+      0.63623046875
+    ],
+    "server_sha256": "9b1842d7c27a29411812b00cffccd1425f9c08af607006db9612fb8423c3460d",
+    "build": {
+      "CMAKE_BUILD_TYPE": "Debug",
+      "CMAKE_CXX_COMPILER": "/usr/bin/c++",
+      "CMAKE_CXX_FLAGS": "",
+      "CMAKE_CXX_FLAGS_DEBUG": "-g",
+      "CMAKE_CXX_FLAGS_MINSIZEREL": "-Os -DNDEBUG",
+      "CMAKE_CXX_FLAGS_RELEASE": "-O3 -DNDEBUG",
+      "CMAKE_CXX_FLAGS_RELWITHDEBINFO": "-O2 -g -DNDEBUG",
+      "YEWUKV_ENABLE_SANITIZERS": "ON",
+      "CMAKE_CXX_FLAGS-ADVANCED": "1",
+      "CMAKE_CXX_FLAGS_DEBUG-ADVANCED": "1",
+      "CMAKE_CXX_FLAGS_MINSIZEREL-ADVANCED": "1",
+      "CMAKE_CXX_FLAGS_RELEASE-ADVANCED": "1",
+      "CMAKE_CXX_FLAGS_RELWITHDEBINFO-ADVANCED": "1"
+    },
+    "compiler_version": "c++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+  },
+  "source_manifest_sha256": "632cbd301baac54ed52bac6f5a4f241200308179255412287c5b55cbdb78fc7e",
+  "status": "complete",
+  "note": "Three loopback processes on one host. Fresh per-epoch keys; exhaustive per-key oracle <=9 operations/key.",
+  "final_recovery": {
+    "all_node_sigkill": true,
+    "anchor_checked": true,
+    "durable_ring_values": [
+      {
+        "key": "736f616b2d72696e672d30",
+        "value": "61636b6e6f776c65646765642d65706f63682d30"
+      },
+      {
+        "key": "736f616b2d72696e672d31",
+        "value": "61636b6e6f776c65646765642d65706f63682d31"
+      },
+      {
+        "key": "736f616b2d72696e672d32",
+        "value": "61636b6e6f776c65646765642d65706f63682d32"
+      },
+      {
+        "key": "736f616b2d72696e672d33",
+        "value": "61636b6e6f776c65646765642d65706f63682d33"
+      },
+      {
+        "key": "736f616b2d72696e672d34",
+        "value": "61636b6e6f776c65646765642d65706f63682d34"
+      },
+      {
+        "key": "736f616b2d72696e672d35",
+        "value": "61636b6e6f776c65646765642d65706f63682d35"
+      }
+    ]
+  },
+  "elapsed_seconds": 7.475145541000529,
+  "epochs": 6,
+  "attempted_operations": 324,
+  "checked_operations": 322,
+  "unknown_writes": 1
+}
+<end of output>
+Test time =   7.63 sec
+----------------------------------------------------------
+Test Passed.
+"cluster_fault_campaign_smoke" end time: Oct 22 16:46 CST
+"cluster_fault_campaign_smoke" time elapsed: 00:00:07
+----------------------------------------------------------
+
+114/125 Testing: network_rpc_integration
+114/125 Test: network_rpc_integration
+Command: "/usr/bin/python3" "/home/hermes/yeyu/source/tests/test_rpc_network.py" "--server" "/home/hermes/yeyu/source/build-asan/bin/yewukv-server"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"network_rpc_integration" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+test_coalesced_requests_preserve_ids_and_binary_values (__main__.RpcNetworkTests.test_coalesced_requests_preserve_ids_and_binary_values) ... ok
+test_fragmented_header_and_payload (__main__.RpcNetworkTests.test_fragmented_header_and_payload) ... ok
+test_invalid_frame_lengths_and_protobuf_close_only_the_peer (__main__.RpcNetworkTests.test_invalid_frame_lengths_and_protobuf_close_only_the_peer) ... ok
+test_invalid_protocol_option_is_rejected (__main__.RpcNetworkTests.test_invalid_protocol_option_is_rejected) ... ok
+test_invalid_request_fields_return_errors_without_closing (__main__.RpcNetworkTests.test_invalid_request_fields_return_errors_without_closing) ... ok
+test_maximum_frame_and_oversized_response_are_bounded (__main__.RpcNetworkTests.test_maximum_frame_and_oversized_response_are_bounded) ... ok
+test_rpc_and_text_modes_are_separate (__main__.RpcNetworkTests.test_rpc_and_text_modes_are_separate) ... ok
+test_rpc_signals_stop_cleanly (__main__.RpcNetworkTests.test_rpc_signals_stop_cleanly) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 5.043s
+
+OK
+<end of output>
+Test time =   5.11 sec
+----------------------------------------------------------
+Test Passed.
+"network_rpc_integration" end time: Oct 22 16:46 CST
+"network_rpc_integration" time elapsed: 00:00:05
+----------------------------------------------------------
+
+74/125 Testing: RaftNode.FixedSeedChaosPreservesCommittedHistoryAndConvergesAfterHealing
+74/125 Test: RaftNode.FixedSeedChaosPreservesCommittedHistoryAndConvergesAfterHealing
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftNode.FixedSeedChaosPreservesCommittedHistoryAndConvergesAfterHealing" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftNode.FixedSeedChaosPreservesCommittedHistoryAndConvergesAfterHealing" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftNode.FixedSeedChaosPreservesCommittedHistoryAndConvergesAfterHealing
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftNode
+[ RUN      ] RaftNode.FixedSeedChaosPreservesCommittedHistoryAndConvergesAfterHealing
+[       OK ] RaftNode.FixedSeedChaosPreservesCommittedHistoryAndConvergesAfterHealing (5623 ms)
+[----------] 1 test from RaftNode (5624 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (5624 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   5.75 sec
+----------------------------------------------------------
+Test Passed.
+"RaftNode.FixedSeedChaosPreservesCommittedHistoryAndConvergesAfterHealing" end time: Oct 22 16:46 CST
+"RaftNode.FixedSeedChaosPreservesCommittedHistoryAndConvergesAfterHealing" time elapsed: 00:00:05
+----------------------------------------------------------
+
+124/125 Testing: cluster_read_index
+124/125 Test: cluster_read_index
+Command: "/usr/bin/python3" "/home/hermes/yeyu/source/tests/test_read_index.py" "--node" "/home/hermes/yeyu/source/build-asan/bin/yewukv-node" "--client" "/home/hermes/yeyu/source/build-asan/bin/yewukv-client"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"cluster_read_index" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+test_pipelined_get_waits_for_preceding_put_to_apply (__main__.ReadIndexTests.test_pipelined_get_waits_for_preceding_put_to_apply) ... ok
+test_pure_reads_change_neither_log_nor_persistent_bytes (__main__.ReadIndexTests.test_pure_reads_change_neither_log_nor_persistent_bytes) ... ok
+test_read_queue_is_bounded_and_old_leader_never_returns_local_value (__main__.ReadIndexTests.test_read_queue_is_bounded_and_old_leader_never_returns_local_value) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 3.471s
+
+OK
+<end of output>
+Test time =   3.53 sec
+----------------------------------------------------------
+Test Passed.
+"cluster_read_index" end time: Oct 22 16:46 CST
+"cluster_read_index" time elapsed: 00:00:03
+----------------------------------------------------------
+
+3/125 Testing: TcpConnection.IdleDeadlineAlsoClosesStalledDrain
+3/125 Test: TcpConnection.IdleDeadlineAlsoClosesStalledDrain
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=TcpConnection.IdleDeadlineAlsoClosesStalledDrain" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"TcpConnection.IdleDeadlineAlsoClosesStalledDrain" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = TcpConnection.IdleDeadlineAlsoClosesStalledDrain
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from TcpConnection
+[ RUN      ] TcpConnection.IdleDeadlineAlsoClosesStalledDrain
+[       OK ] TcpConnection.IdleDeadlineAlsoClosesStalledDrain (1100 ms)
+[----------] 1 test from TcpConnection (1100 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1100 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   1.14 sec
+----------------------------------------------------------
+Test Passed.
+"TcpConnection.IdleDeadlineAlsoClosesStalledDrain" end time: Oct 22 16:46 CST
+"TcpConnection.IdleDeadlineAlsoClosesStalledDrain" time elapsed: 00:00:01
+----------------------------------------------------------
+
+125/125 Testing: config_application
+125/125 Test: config_application
+Command: "/usr/bin/python3" "/home/hermes/yeyu/source/tests/test_config_app.py" "--node" "/home/hermes/yeyu/source/build-asan/bin/yewukv-node" "--client" "/home/hermes/yeyu/source/build-asan/bin/yewukv-client"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"config_application" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+test_publish_reload_failover_unavailability_and_full_restart (__main__.ConfigApplicationTests.test_publish_reload_failover_unavailability_and_full_restart) ... /usr/lib/python3.14/tempfile.py:484: ResourceWarning: Implicitly cleaning up <HTTPError 503: 'Service Unavailable'>
+  _warnings.warn(self.warn_message, ResourceWarning)
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 3.238s
+
+OK
+<end of output>
+Test time =   3.31 sec
+----------------------------------------------------------
+Test Passed.
+"config_application" end time: Oct 22 16:46 CST
+"config_application" time elapsed: 00:00:03
+----------------------------------------------------------
+
+54/125 Testing: RaftFileStore.RejectsInvalidConfigurationAndOversizedPublishedImage
+54/125 Test: RaftFileStore.RejectsInvalidConfigurationAndOversizedPublishedImage
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftFileStore.RejectsInvalidConfigurationAndOversizedPublishedImage" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftFileStore.RejectsInvalidConfigurationAndOversizedPublishedImage" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftFileStore.RejectsInvalidConfigurationAndOversizedPublishedImage
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftFileStore
+[ RUN      ] RaftFileStore.RejectsInvalidConfigurationAndOversizedPublishedImage
+[       OK ] RaftFileStore.RejectsInvalidConfigurationAndOversizedPublishedImage (482 ms)
+[----------] 1 test from RaftFileStore (482 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (483 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.53 sec
+----------------------------------------------------------
+Test Passed.
+"RaftFileStore.RejectsInvalidConfigurationAndOversizedPublishedImage" end time: Oct 22 16:46 CST
+"RaftFileStore.RejectsInvalidConfigurationAndOversizedPublishedImage" time elapsed: 00:00:00
+----------------------------------------------------------
+
+16/125 Testing: RpcClient.MissingResponseTimesOutAndLateResponseDoesNotCompleteAnotherCall
+16/125 Test: RpcClient.MissingResponseTimesOutAndLateResponseDoesNotCompleteAnotherCall
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RpcClient.MissingResponseTimesOutAndLateResponseDoesNotCompleteAnotherCall" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RpcClient.MissingResponseTimesOutAndLateResponseDoesNotCompleteAnotherCall" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RpcClient.MissingResponseTimesOutAndLateResponseDoesNotCompleteAnotherCall
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RpcClient
+[ RUN      ] RpcClient.MissingResponseTimesOutAndLateResponseDoesNotCompleteAnotherCall
+[       OK ] RpcClient.MissingResponseTimesOutAndLateResponseDoesNotCompleteAnotherCall (302 ms)
+[----------] 1 test from RpcClient (302 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (302 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.34 sec
+----------------------------------------------------------
+Test Passed.
+"RpcClient.MissingResponseTimesOutAndLateResponseDoesNotCompleteAnotherCall" end time: Oct 22 16:46 CST
+"RpcClient.MissingResponseTimesOutAndLateResponseDoesNotCompleteAnotherCall" time elapsed: 00:00:00
+----------------------------------------------------------
+
+61/125 Testing: RaftJournal.AppendsOnlyDeltaAndLeavesLargeCheckpointUntouched
+61/125 Test: RaftJournal.AppendsOnlyDeltaAndLeavesLargeCheckpointUntouched
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftJournal.AppendsOnlyDeltaAndLeavesLargeCheckpointUntouched" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftJournal.AppendsOnlyDeltaAndLeavesLargeCheckpointUntouched" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftJournal.AppendsOnlyDeltaAndLeavesLargeCheckpointUntouched
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftJournal
+[ RUN      ] RaftJournal.AppendsOnlyDeltaAndLeavesLargeCheckpointUntouched
+[       OK ] RaftJournal.AppendsOnlyDeltaAndLeavesLargeCheckpointUntouched (230 ms)
+[----------] 1 test from RaftJournal (230 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (230 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.27 sec
+----------------------------------------------------------
+Test Passed.
+"RaftJournal.AppendsOnlyDeltaAndLeavesLargeCheckpointUntouched" end time: Oct 22 16:46 CST
+"RaftJournal.AppendsOnlyDeltaAndLeavesLargeCheckpointUntouched" time elapsed: 00:00:00
+----------------------------------------------------------
+
+112/125 Testing: StorageServer.RpcBusyAndResponseOrder
+112/125 Test: StorageServer.RpcBusyAndResponseOrder
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=StorageServer.RpcBusyAndResponseOrder" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"StorageServer.RpcBusyAndResponseOrder" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = StorageServer.RpcBusyAndResponseOrder
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from StorageServer
+[ RUN      ] StorageServer.RpcBusyAndResponseOrder
+16:46:12.134 INFO  [acceptor] listening on 0.0.0.0:33115
+16:46:12.267 INFO  [acceptor] listening on 0.0.0.0:55975
+[       OK ] StorageServer.RpcBusyAndResponseOrder (266 ms)
+[----------] 1 test from StorageServer (266 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (266 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.30 sec
+----------------------------------------------------------
+Test Passed.
+"StorageServer.RpcBusyAndResponseOrder" end time: Oct 22 16:46 CST
+"StorageServer.RpcBusyAndResponseOrder" time elapsed: 00:00:00
+----------------------------------------------------------
+
+116/125 Testing: wal_process_recovery
+116/125 Test: wal_process_recovery
+Command: "/usr/bin/python3" "/home/hermes/yeyu/source/tests/test_wal_recovery.py" "--server" "/home/hermes/yeyu/source/build-asan/bin/yewukv-server"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"wal_process_recovery" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.097s
+
+OK
+<end of output>
+Test time =   0.15 sec
+----------------------------------------------------------
+Test Passed.
+"wal_process_recovery" end time: Oct 22 16:46 CST
+"wal_process_recovery" time elapsed: 00:00:00
+----------------------------------------------------------
+
+111/125 Testing: StorageServer.TextBusyAndResponseOrder
+111/125 Test: StorageServer.TextBusyAndResponseOrder
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=StorageServer.TextBusyAndResponseOrder" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"StorageServer.TextBusyAndResponseOrder" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = StorageServer.TextBusyAndResponseOrder
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from StorageServer
+[ RUN      ] StorageServer.TextBusyAndResponseOrder
+16:46:12.330 INFO  [acceptor] listening on 0.0.0.0:42427
+16:46:12.463 INFO  [acceptor] listening on 0.0.0.0:57329
+[       OK ] StorageServer.TextBusyAndResponseOrder (267 ms)
+[----------] 1 test from StorageServer (267 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (267 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.31 sec
+----------------------------------------------------------
+Test Passed.
+"StorageServer.TextBusyAndResponseOrder" end time: Oct 22 16:46 CST
+"StorageServer.TextBusyAndResponseOrder" time elapsed: 00:00:00
+----------------------------------------------------------
+
+117/125 Testing: benchmark_accounting
+117/125 Test: benchmark_accounting
+Command: "/usr/bin/python3" "/home/hermes/yeyu/source/tests/test_benchmark.py"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"benchmark_accounting" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.004s
+
+OK
+<end of output>
+Test time =   0.08 sec
+----------------------------------------------------------
+Test Passed.
+"benchmark_accounting" end time: Oct 22 16:46 CST
+"benchmark_accounting" time elapsed: 00:00:00
+----------------------------------------------------------
+
+63/125 Testing: RaftJournal.EveryIncompleteFinalRecordIsTruncatedButAcknowledgedPrefixRemains
+63/125 Test: RaftJournal.EveryIncompleteFinalRecordIsTruncatedButAcknowledgedPrefixRemains
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftJournal.EveryIncompleteFinalRecordIsTruncatedButAcknowledgedPrefixRemains" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftJournal.EveryIncompleteFinalRecordIsTruncatedButAcknowledgedPrefixRemains" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftJournal.EveryIncompleteFinalRecordIsTruncatedButAcknowledgedPrefixRemains
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftJournal
+[ RUN      ] RaftJournal.EveryIncompleteFinalRecordIsTruncatedButAcknowledgedPrefixRemains
+[       OK ] RaftJournal.EveryIncompleteFinalRecordIsTruncatedButAcknowledgedPrefixRemains (20 ms)
+[----------] 1 test from RaftJournal (20 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (21 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.06 sec
+----------------------------------------------------------
+Test Passed.
+"RaftJournal.EveryIncompleteFinalRecordIsTruncatedButAcknowledgedPrefixRemains" end time: Oct 22 16:46 CST
+"RaftJournal.EveryIncompleteFinalRecordIsTruncatedButAcknowledgedPrefixRemains" time elapsed: 00:00:00
+----------------------------------------------------------
+
+73/125 Testing: RaftNode.BackfillsLongLogsInBoundedBatches
+73/125 Test: RaftNode.BackfillsLongLogsInBoundedBatches
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftNode.BackfillsLongLogsInBoundedBatches" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftNode.BackfillsLongLogsInBoundedBatches" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftNode.BackfillsLongLogsInBoundedBatches
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftNode
+[ RUN      ] RaftNode.BackfillsLongLogsInBoundedBatches
+[       OK ] RaftNode.BackfillsLongLogsInBoundedBatches (14 ms)
+[----------] 1 test from RaftNode (14 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (14 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.06 sec
+----------------------------------------------------------
+Test Passed.
+"RaftNode.BackfillsLongLogsInBoundedBatches" end time: Oct 22 16:46 CST
+"RaftNode.BackfillsLongLogsInBoundedBatches" time elapsed: 00:00:00
+----------------------------------------------------------
+
+75/125 Testing: RaftNode.SendsChunkedSnapshotToOfflineFollowerAndContinuesReplication
+75/125 Test: RaftNode.SendsChunkedSnapshotToOfflineFollowerAndContinuesReplication
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftNode.SendsChunkedSnapshotToOfflineFollowerAndContinuesReplication" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftNode.SendsChunkedSnapshotToOfflineFollowerAndContinuesReplication" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftNode.SendsChunkedSnapshotToOfflineFollowerAndContinuesReplication
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftNode
+[ RUN      ] RaftNode.SendsChunkedSnapshotToOfflineFollowerAndContinuesReplication
+[       OK ] RaftNode.SendsChunkedSnapshotToOfflineFollowerAndContinuesReplication (18 ms)
+[----------] 1 test from RaftNode (18 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (18 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.06 sec
+----------------------------------------------------------
+Test Passed.
+"RaftNode.SendsChunkedSnapshotToOfflineFollowerAndContinuesReplication" end time: Oct 22 16:46 CST
+"RaftNode.SendsChunkedSnapshotToOfflineFollowerAndContinuesReplication" time elapsed: 00:00:00
+----------------------------------------------------------
+
+42/125 Testing: RaftFileStore.FastChecksumMatchesIndependentBitwiseEncoderForBinaryImages
+42/125 Test: RaftFileStore.FastChecksumMatchesIndependentBitwiseEncoderForBinaryImages
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftFileStore.FastChecksumMatchesIndependentBitwiseEncoderForBinaryImages" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftFileStore.FastChecksumMatchesIndependentBitwiseEncoderForBinaryImages" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftFileStore.FastChecksumMatchesIndependentBitwiseEncoderForBinaryImages
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftFileStore
+[ RUN      ] RaftFileStore.FastChecksumMatchesIndependentBitwiseEncoderForBinaryImages
+[       OK ] RaftFileStore.FastChecksumMatchesIndependentBitwiseEncoderForBinaryImages (8 ms)
+[----------] 1 test from RaftFileStore (8 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (8 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.05 sec
+----------------------------------------------------------
+Test Passed.
+"RaftFileStore.FastChecksumMatchesIndependentBitwiseEncoderForBinaryImages" end time: Oct 22 16:46 CST
+"RaftFileStore.FastChecksumMatchesIndependentBitwiseEncoderForBinaryImages" time elapsed: 00:00:00
+----------------------------------------------------------
+
+94/125 Testing: SnapshotPolicy.LargeLiveStateAmortizesEntryTriggeredImages
+94/125 Test: SnapshotPolicy.LargeLiveStateAmortizesEntryTriggeredImages
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=SnapshotPolicy.LargeLiveStateAmortizesEntryTriggeredImages" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"SnapshotPolicy.LargeLiveStateAmortizesEntryTriggeredImages" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = SnapshotPolicy.LargeLiveStateAmortizesEntryTriggeredImages
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from SnapshotPolicy
+[ RUN      ] SnapshotPolicy.LargeLiveStateAmortizesEntryTriggeredImages
+[       OK ] SnapshotPolicy.LargeLiveStateAmortizesEntryTriggeredImages (0 ms)
+[----------] 1 test from SnapshotPolicy (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"SnapshotPolicy.LargeLiveStateAmortizesEntryTriggeredImages" end time: Oct 22 16:46 CST
+"SnapshotPolicy.LargeLiveStateAmortizesEntryTriggeredImages" time elapsed: 00:00:00
+----------------------------------------------------------
+
+69/125 Testing: RaftJournal.SigkillAtCheckpointBoundariesKeepsCheckpointAndJournalPaired
+69/125 Test: RaftJournal.SigkillAtCheckpointBoundariesKeepsCheckpointAndJournalPaired
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftJournal.SigkillAtCheckpointBoundariesKeepsCheckpointAndJournalPaired" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftJournal.SigkillAtCheckpointBoundariesKeepsCheckpointAndJournalPaired" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftJournal.SigkillAtCheckpointBoundariesKeepsCheckpointAndJournalPaired
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftJournal
+[ RUN      ] RaftJournal.SigkillAtCheckpointBoundariesKeepsCheckpointAndJournalPaired
+[       OK ] RaftJournal.SigkillAtCheckpointBoundariesKeepsCheckpointAndJournalPaired (17 ms)
+[----------] 1 test from RaftJournal (17 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (17 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.06 sec
+----------------------------------------------------------
+Test Passed.
+"RaftJournal.SigkillAtCheckpointBoundariesKeepsCheckpointAndJournalPaired" end time: Oct 22 16:46 CST
+"RaftJournal.SigkillAtCheckpointBoundariesKeepsCheckpointAndJournalPaired" time elapsed: 00:00:00
+----------------------------------------------------------
+
+68/125 Testing: RaftJournal.SigkillAtAppendBoundariesRecoversWholeOldOrNewSuffix
+68/125 Test: RaftJournal.SigkillAtAppendBoundariesRecoversWholeOldOrNewSuffix
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftJournal.SigkillAtAppendBoundariesRecoversWholeOldOrNewSuffix" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftJournal.SigkillAtAppendBoundariesRecoversWholeOldOrNewSuffix" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftJournal.SigkillAtAppendBoundariesRecoversWholeOldOrNewSuffix
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftJournal
+[ RUN      ] RaftJournal.SigkillAtAppendBoundariesRecoversWholeOldOrNewSuffix
+[       OK ] RaftJournal.SigkillAtAppendBoundariesRecoversWholeOldOrNewSuffix (13 ms)
+[----------] 1 test from RaftJournal (13 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (13 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.06 sec
+----------------------------------------------------------
+Test Passed.
+"RaftJournal.SigkillAtAppendBoundariesRecoversWholeOldOrNewSuffix" end time: Oct 22 16:46 CST
+"RaftJournal.SigkillAtAppendBoundariesRecoversWholeOldOrNewSuffix" time elapsed: 00:00:00
+----------------------------------------------------------
+
+58/125 Testing: RaftFileStore.SigkillDuringSuffixReplacementRecoversAWholeOldOrNewImage
+58/125 Test: RaftFileStore.SigkillDuringSuffixReplacementRecoversAWholeOldOrNewImage
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftFileStore.SigkillDuringSuffixReplacementRecoversAWholeOldOrNewImage" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftFileStore.SigkillDuringSuffixReplacementRecoversAWholeOldOrNewImage" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftFileStore.SigkillDuringSuffixReplacementRecoversAWholeOldOrNewImage
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftFileStore
+[ RUN      ] RaftFileStore.SigkillDuringSuffixReplacementRecoversAWholeOldOrNewImage
+[       OK ] RaftFileStore.SigkillDuringSuffixReplacementRecoversAWholeOldOrNewImage (14 ms)
+[----------] 1 test from RaftFileStore (14 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (14 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.05 sec
+----------------------------------------------------------
+Test Passed.
+"RaftFileStore.SigkillDuringSuffixReplacementRecoversAWholeOldOrNewImage" end time: Oct 22 16:46 CST
+"RaftFileStore.SigkillDuringSuffixReplacementRecoversAWholeOldOrNewImage" time elapsed: 00:00:00
+----------------------------------------------------------
+
+51/125 Testing: RaftFileStore.RejectsChecksumDamageAndEveryTruncatedImageWithoutRepair
+51/125 Test: RaftFileStore.RejectsChecksumDamageAndEveryTruncatedImageWithoutRepair
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftFileStore.RejectsChecksumDamageAndEveryTruncatedImageWithoutRepair" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftFileStore.RejectsChecksumDamageAndEveryTruncatedImageWithoutRepair" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftFileStore.RejectsChecksumDamageAndEveryTruncatedImageWithoutRepair
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftFileStore
+[ RUN      ] RaftFileStore.RejectsChecksumDamageAndEveryTruncatedImageWithoutRepair
+[       OK ] RaftFileStore.RejectsChecksumDamageAndEveryTruncatedImageWithoutRepair (10 ms)
+[----------] 1 test from RaftFileStore (10 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (10 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.05 sec
+----------------------------------------------------------
+Test Passed.
+"RaftFileStore.RejectsChecksumDamageAndEveryTruncatedImageWithoutRepair" end time: Oct 22 16:46 CST
+"RaftFileStore.RejectsChecksumDamageAndEveryTruncatedImageWithoutRepair" time elapsed: 00:00:00
+----------------------------------------------------------
+
+120/125 Testing: cluster_backup_manifest
+120/125 Test: cluster_backup_manifest
+Command: "/usr/bin/python3" "/home/hermes/yeyu/source/tests/test_cluster_backup.py"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"cluster_backup_manifest" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+..
+----------------------------------------------------------------------
+Ran 2 tests in 0.005s
+
+OK
+<end of output>
+Test time =   0.05 sec
+----------------------------------------------------------
+Test Passed.
+"cluster_backup_manifest" end time: Oct 22 16:46 CST
+"cluster_backup_manifest" time elapsed: 00:00:00
+----------------------------------------------------------
+
+119/125 Testing: linearizability_checker
+119/125 Test: linearizability_checker
+Command: "/usr/bin/python3" "/home/hermes/yeyu/source/tests/test_linearizability.py"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"linearizability_checker" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.000s
+
+OK
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"linearizability_checker" end time: Oct 22 16:46 CST
+"linearizability_checker" time elapsed: 00:00:00
+----------------------------------------------------------
+
+90/125 Testing: RaftSnapshot.SigkillAtEveryPublishBoundaryRecoversWholeSnapshotAndSuffix
+90/125 Test: RaftSnapshot.SigkillAtEveryPublishBoundaryRecoversWholeSnapshotAndSuffix
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftSnapshot.SigkillAtEveryPublishBoundaryRecoversWholeSnapshotAndSuffix" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftSnapshot.SigkillAtEveryPublishBoundaryRecoversWholeSnapshotAndSuffix" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftSnapshot.SigkillAtEveryPublishBoundaryRecoversWholeSnapshotAndSuffix
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftSnapshot
+[ RUN      ] RaftSnapshot.SigkillAtEveryPublishBoundaryRecoversWholeSnapshotAndSuffix
+[       OK ] RaftSnapshot.SigkillAtEveryPublishBoundaryRecoversWholeSnapshotAndSuffix (13 ms)
+[----------] 1 test from RaftSnapshot (13 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (13 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.05 sec
+----------------------------------------------------------
+Test Passed.
+"RaftSnapshot.SigkillAtEveryPublishBoundaryRecoversWholeSnapshotAndSuffix" end time: Oct 22 16:46 CST
+"RaftSnapshot.SigkillAtEveryPublishBoundaryRecoversWholeSnapshotAndSuffix" time elapsed: 00:00:00
+----------------------------------------------------------
+
+84/125 Testing: RaftReadIndex.FreshRoundSharesUnsentProposalAndConfirmsBeforeApplication
+84/125 Test: RaftReadIndex.FreshRoundSharesUnsentProposalAndConfirmsBeforeApplication
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftReadIndex.FreshRoundSharesUnsentProposalAndConfirmsBeforeApplication" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftReadIndex.FreshRoundSharesUnsentProposalAndConfirmsBeforeApplication" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftReadIndex.FreshRoundSharesUnsentProposalAndConfirmsBeforeApplication
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftReadIndex
+[ RUN      ] RaftReadIndex.FreshRoundSharesUnsentProposalAndConfirmsBeforeApplication
+[       OK ] RaftReadIndex.FreshRoundSharesUnsentProposalAndConfirmsBeforeApplication (2 ms)
+[----------] 1 test from RaftReadIndex (2 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (2 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftReadIndex.FreshRoundSharesUnsentProposalAndConfirmsBeforeApplication" end time: Oct 22 16:46 CST
+"RaftReadIndex.FreshRoundSharesUnsentProposalAndConfirmsBeforeApplication" time elapsed: 00:00:00
+----------------------------------------------------------
+
+64/125 Testing: RaftJournal.RejectsCompleteCorruptRecordIncludingFinalRecordAndHeaderLength
+64/125 Test: RaftJournal.RejectsCompleteCorruptRecordIncludingFinalRecordAndHeaderLength
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftJournal.RejectsCompleteCorruptRecordIncludingFinalRecordAndHeaderLength" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftJournal.RejectsCompleteCorruptRecordIncludingFinalRecordAndHeaderLength" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftJournal.RejectsCompleteCorruptRecordIncludingFinalRecordAndHeaderLength
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftJournal
+[ RUN      ] RaftJournal.RejectsCompleteCorruptRecordIncludingFinalRecordAndHeaderLength
+[       OK ] RaftJournal.RejectsCompleteCorruptRecordIncludingFinalRecordAndHeaderLength (3 ms)
+[----------] 1 test from RaftJournal (3 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (3 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftJournal.RejectsCompleteCorruptRecordIncludingFinalRecordAndHeaderLength" end time: Oct 22 16:46 CST
+"RaftJournal.RejectsCompleteCorruptRecordIncludingFinalRecordAndHeaderLength" time elapsed: 00:00:00
+----------------------------------------------------------
+
+85/125 Testing: RaftReadIndex.HandedOffReplicationCannotConfirmALaterRead
+85/125 Test: RaftReadIndex.HandedOffReplicationCannotConfirmALaterRead
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftReadIndex.HandedOffReplicationCannotConfirmALaterRead" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftReadIndex.HandedOffReplicationCannotConfirmALaterRead" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftReadIndex.HandedOffReplicationCannotConfirmALaterRead
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftReadIndex
+[ RUN      ] RaftReadIndex.HandedOffReplicationCannotConfirmALaterRead
+[       OK ] RaftReadIndex.HandedOffReplicationCannotConfirmALaterRead (2 ms)
+[----------] 1 test from RaftReadIndex (2 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (2 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftReadIndex.HandedOffReplicationCannotConfirmALaterRead" end time: Oct 22 16:46 CST
+"RaftReadIndex.HandedOffReplicationCannotConfirmALaterRead" time elapsed: 00:00:00
+----------------------------------------------------------
+
+65/125 Testing: RaftJournal.RollsCheckpointGenerationAndReclaimsObsoleteJournal
+65/125 Test: RaftJournal.RollsCheckpointGenerationAndReclaimsObsoleteJournal
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftJournal.RollsCheckpointGenerationAndReclaimsObsoleteJournal" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftJournal.RollsCheckpointGenerationAndReclaimsObsoleteJournal" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftJournal.RollsCheckpointGenerationAndReclaimsObsoleteJournal
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftJournal
+[ RUN      ] RaftJournal.RollsCheckpointGenerationAndReclaimsObsoleteJournal
+[       OK ] RaftJournal.RollsCheckpointGenerationAndReclaimsObsoleteJournal (4 ms)
+[----------] 1 test from RaftJournal (4 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (4 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftJournal.RollsCheckpointGenerationAndReclaimsObsoleteJournal" end time: Oct 22 16:46 CST
+"RaftJournal.RollsCheckpointGenerationAndReclaimsObsoleteJournal" time elapsed: 00:00:00
+----------------------------------------------------------
+
+71/125 Testing: RaftNode.IsolatedOldLeaderCannotCommitReadsOrWritesAndConflictIsReplaced
+71/125 Test: RaftNode.IsolatedOldLeaderCannotCommitReadsOrWritesAndConflictIsReplaced
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftNode.IsolatedOldLeaderCannotCommitReadsOrWritesAndConflictIsReplaced" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftNode.IsolatedOldLeaderCannotCommitReadsOrWritesAndConflictIsReplaced" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftNode.IsolatedOldLeaderCannotCommitReadsOrWritesAndConflictIsReplaced
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftNode
+[ RUN      ] RaftNode.IsolatedOldLeaderCannotCommitReadsOrWritesAndConflictIsReplaced
+[       OK ] RaftNode.IsolatedOldLeaderCannotCommitReadsOrWritesAndConflictIsReplaced (8 ms)
+[----------] 1 test from RaftNode (8 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (8 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.05 sec
+----------------------------------------------------------
+Test Passed.
+"RaftNode.IsolatedOldLeaderCannotCommitReadsOrWritesAndConflictIsReplaced" end time: Oct 22 16:46 CST
+"RaftNode.IsolatedOldLeaderCannotCommitReadsOrWritesAndConflictIsReplaced" time elapsed: 00:00:00
+----------------------------------------------------------
+
+67/125 Testing: RaftJournal.JournalFailurePoisonsInstanceUntilReopenAtAllAppendBoundaries
+67/125 Test: RaftJournal.JournalFailurePoisonsInstanceUntilReopenAtAllAppendBoundaries
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftJournal.JournalFailurePoisonsInstanceUntilReopenAtAllAppendBoundaries" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftJournal.JournalFailurePoisonsInstanceUntilReopenAtAllAppendBoundaries" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftJournal.JournalFailurePoisonsInstanceUntilReopenAtAllAppendBoundaries
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftJournal
+[ RUN      ] RaftJournal.JournalFailurePoisonsInstanceUntilReopenAtAllAppendBoundaries
+[       OK ] RaftJournal.JournalFailurePoisonsInstanceUntilReopenAtAllAppendBoundaries (2 ms)
+[----------] 1 test from RaftJournal (2 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (2 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftJournal.JournalFailurePoisonsInstanceUntilReopenAtAllAppendBoundaries" end time: Oct 22 16:46 CST
+"RaftJournal.JournalFailurePoisonsInstanceUntilReopenAtAllAppendBoundaries" time elapsed: 00:00:00
+----------------------------------------------------------
+
+87/125 Testing: RaftSnapshot.CompactsCommittedPrefixAndRecoversSnapshotWithUncommittedSuffix
+87/125 Test: RaftSnapshot.CompactsCommittedPrefixAndRecoversSnapshotWithUncommittedSuffix
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftSnapshot.CompactsCommittedPrefixAndRecoversSnapshotWithUncommittedSuffix" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftSnapshot.CompactsCommittedPrefixAndRecoversSnapshotWithUncommittedSuffix" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftSnapshot.CompactsCommittedPrefixAndRecoversSnapshotWithUncommittedSuffix
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftSnapshot
+[ RUN      ] RaftSnapshot.CompactsCommittedPrefixAndRecoversSnapshotWithUncommittedSuffix
+[       OK ] RaftSnapshot.CompactsCommittedPrefixAndRecoversSnapshotWithUncommittedSuffix (1 ms)
+[----------] 1 test from RaftSnapshot (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (2 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftSnapshot.CompactsCommittedPrefixAndRecoversSnapshotWithUncommittedSuffix" end time: Oct 22 16:46 CST
+"RaftSnapshot.CompactsCommittedPrefixAndRecoversSnapshotWithUncommittedSuffix" time elapsed: 00:00:00
+----------------------------------------------------------
+
+76/125 Testing: RaftNode.FollowerCompactionAheadOfLostAcknowledgementDoesNotLivelock
+76/125 Test: RaftNode.FollowerCompactionAheadOfLostAcknowledgementDoesNotLivelock
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftNode.FollowerCompactionAheadOfLostAcknowledgementDoesNotLivelock" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftNode.FollowerCompactionAheadOfLostAcknowledgementDoesNotLivelock" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftNode.FollowerCompactionAheadOfLostAcknowledgementDoesNotLivelock
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftNode
+[ RUN      ] RaftNode.FollowerCompactionAheadOfLostAcknowledgementDoesNotLivelock
+[       OK ] RaftNode.FollowerCompactionAheadOfLostAcknowledgementDoesNotLivelock (8 ms)
+[----------] 1 test from RaftNode (8 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (8 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.05 sec
+----------------------------------------------------------
+Test Passed.
+"RaftNode.FollowerCompactionAheadOfLostAcknowledgementDoesNotLivelock" end time: Oct 22 16:46 CST
+"RaftNode.FollowerCompactionAheadOfLostAcknowledgementDoesNotLivelock" time elapsed: 00:00:00
+----------------------------------------------------------
+
+72/125 Testing: RaftNode.AcknowledgedPrefixSurvivesLeaderAndAllNodeRestarts
+72/125 Test: RaftNode.AcknowledgedPrefixSurvivesLeaderAndAllNodeRestarts
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftNode.AcknowledgedPrefixSurvivesLeaderAndAllNodeRestarts" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftNode.AcknowledgedPrefixSurvivesLeaderAndAllNodeRestarts" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftNode.AcknowledgedPrefixSurvivesLeaderAndAllNodeRestarts
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftNode
+[ RUN      ] RaftNode.AcknowledgedPrefixSurvivesLeaderAndAllNodeRestarts
+[       OK ] RaftNode.AcknowledgedPrefixSurvivesLeaderAndAllNodeRestarts (10 ms)
+[----------] 1 test from RaftNode (10 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (10 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.06 sec
+----------------------------------------------------------
+Test Passed.
+"RaftNode.AcknowledgedPrefixSurvivesLeaderAndAllNodeRestarts" end time: Oct 22 16:46 CST
+"RaftNode.AcknowledgedPrefixSurvivesLeaderAndAllNodeRestarts" time elapsed: 00:00:00
+----------------------------------------------------------
+
+82/125 Testing: RaftReadIndex.IsolatedOldLeaderCannotReadAndLateOldTermReplyCannotReleaseRead
+82/125 Test: RaftReadIndex.IsolatedOldLeaderCannotReadAndLateOldTermReplyCannotReleaseRead
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftReadIndex.IsolatedOldLeaderCannotReadAndLateOldTermReplyCannotReleaseRead" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftReadIndex.IsolatedOldLeaderCannotReadAndLateOldTermReplyCannotReleaseRead" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftReadIndex.IsolatedOldLeaderCannotReadAndLateOldTermReplyCannotReleaseRead
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftReadIndex
+[ RUN      ] RaftReadIndex.IsolatedOldLeaderCannotReadAndLateOldTermReplyCannotReleaseRead
+[       OK ] RaftReadIndex.IsolatedOldLeaderCannotReadAndLateOldTermReplyCannotReleaseRead (7 ms)
+[----------] 1 test from RaftReadIndex (7 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (7 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.05 sec
+----------------------------------------------------------
+Test Passed.
+"RaftReadIndex.IsolatedOldLeaderCannotReadAndLateOldTermReplyCannotReleaseRead" end time: Oct 22 16:46 CST
+"RaftReadIndex.IsolatedOldLeaderCannotReadAndLateOldTermReplyCannotReleaseRead" time elapsed: 00:00:00
+----------------------------------------------------------
+
+79/125 Testing: RaftNode.BatchesDurableProposalsWithoutRelaxingMajorityCommit
+79/125 Test: RaftNode.BatchesDurableProposalsWithoutRelaxingMajorityCommit
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftNode.BatchesDurableProposalsWithoutRelaxingMajorityCommit" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftNode.BatchesDurableProposalsWithoutRelaxingMajorityCommit" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftNode.BatchesDurableProposalsWithoutRelaxingMajorityCommit
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftNode
+[ RUN      ] RaftNode.BatchesDurableProposalsWithoutRelaxingMajorityCommit
+[       OK ] RaftNode.BatchesDurableProposalsWithoutRelaxingMajorityCommit (3 ms)
+[----------] 1 test from RaftNode (3 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (3 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftNode.BatchesDurableProposalsWithoutRelaxingMajorityCommit" end time: Oct 22 16:46 CST
+"RaftNode.BatchesDurableProposalsWithoutRelaxingMajorityCommit" time elapsed: 00:00:00
+----------------------------------------------------------
+
+81/125 Testing: RaftReadIndex.IgnoresWrongContextSequenceAndDuplicateAcknowledgements
+81/125 Test: RaftReadIndex.IgnoresWrongContextSequenceAndDuplicateAcknowledgements
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftReadIndex.IgnoresWrongContextSequenceAndDuplicateAcknowledgements" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftReadIndex.IgnoresWrongContextSequenceAndDuplicateAcknowledgements" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftReadIndex.IgnoresWrongContextSequenceAndDuplicateAcknowledgements
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftReadIndex
+[ RUN      ] RaftReadIndex.IgnoresWrongContextSequenceAndDuplicateAcknowledgements
+[       OK ] RaftReadIndex.IgnoresWrongContextSequenceAndDuplicateAcknowledgements (2 ms)
+[----------] 1 test from RaftReadIndex (2 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (2 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.05 sec
+----------------------------------------------------------
+Test Passed.
+"RaftReadIndex.IgnoresWrongContextSequenceAndDuplicateAcknowledgements" end time: Oct 22 16:46 CST
+"RaftReadIndex.IgnoresWrongContextSequenceAndDuplicateAcknowledgements" time elapsed: 00:00:00
+----------------------------------------------------------
+
+83/125 Testing: RaftReadIndex.CancelledRoundCannotSatisfyLaterRead
+83/125 Test: RaftReadIndex.CancelledRoundCannotSatisfyLaterRead
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftReadIndex.CancelledRoundCannotSatisfyLaterRead" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftReadIndex.CancelledRoundCannotSatisfyLaterRead" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftReadIndex.CancelledRoundCannotSatisfyLaterRead
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftReadIndex
+[ RUN      ] RaftReadIndex.CancelledRoundCannotSatisfyLaterRead
+[       OK ] RaftReadIndex.CancelledRoundCannotSatisfyLaterRead (2 ms)
+[----------] 1 test from RaftReadIndex (2 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (2 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.05 sec
+----------------------------------------------------------
+Test Passed.
+"RaftReadIndex.CancelledRoundCannotSatisfyLaterRead" end time: Oct 22 16:46 CST
+"RaftReadIndex.CancelledRoundCannotSatisfyLaterRead" time elapsed: 00:00:00
+----------------------------------------------------------
+
+80/125 Testing: RaftReadIndex.RequiresCurrentTermCommitAndFreshQuorumWithoutWritingLog
+80/125 Test: RaftReadIndex.RequiresCurrentTermCommitAndFreshQuorumWithoutWritingLog
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftReadIndex.RequiresCurrentTermCommitAndFreshQuorumWithoutWritingLog" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftReadIndex.RequiresCurrentTermCommitAndFreshQuorumWithoutWritingLog" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftReadIndex.RequiresCurrentTermCommitAndFreshQuorumWithoutWritingLog
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftReadIndex
+[ RUN      ] RaftReadIndex.RequiresCurrentTermCommitAndFreshQuorumWithoutWritingLog
+[       OK ] RaftReadIndex.RequiresCurrentTermCommitAndFreshQuorumWithoutWritingLog (1 ms)
+[----------] 1 test from RaftReadIndex (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftReadIndex.RequiresCurrentTermCommitAndFreshQuorumWithoutWritingLog" end time: Oct 22 16:46 CST
+"RaftReadIndex.RequiresCurrentTermCommitAndFreshQuorumWithoutWritingLog" time elapsed: 00:00:00
+----------------------------------------------------------
+
+57/125 Testing: RaftFileStore.InjectedPersistenceFailuresRequireReopenAtEveryBoundary
+57/125 Test: RaftFileStore.InjectedPersistenceFailuresRequireReopenAtEveryBoundary
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftFileStore.InjectedPersistenceFailuresRequireReopenAtEveryBoundary" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftFileStore.InjectedPersistenceFailuresRequireReopenAtEveryBoundary" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftFileStore.InjectedPersistenceFailuresRequireReopenAtEveryBoundary
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftFileStore
+[ RUN      ] RaftFileStore.InjectedPersistenceFailuresRequireReopenAtEveryBoundary
+[       OK ] RaftFileStore.InjectedPersistenceFailuresRequireReopenAtEveryBoundary (2 ms)
+[----------] 1 test from RaftFileStore (2 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (2 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftFileStore.InjectedPersistenceFailuresRequireReopenAtEveryBoundary" end time: Oct 22 16:46 CST
+"RaftFileStore.InjectedPersistenceFailuresRequireReopenAtEveryBoundary" time elapsed: 00:00:00
+----------------------------------------------------------
+
+52/125 Testing: RaftFileStore.RejectsStructurallyInvalidImagesEvenWithValidChecksums
+52/125 Test: RaftFileStore.RejectsStructurallyInvalidImagesEvenWithValidChecksums
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftFileStore.RejectsStructurallyInvalidImagesEvenWithValidChecksums" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftFileStore.RejectsStructurallyInvalidImagesEvenWithValidChecksums" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftFileStore.RejectsStructurallyInvalidImagesEvenWithValidChecksums
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftFileStore
+[ RUN      ] RaftFileStore.RejectsStructurallyInvalidImagesEvenWithValidChecksums
+[       OK ] RaftFileStore.RejectsStructurallyInvalidImagesEvenWithValidChecksums (2 ms)
+[----------] 1 test from RaftFileStore (2 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (2 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftFileStore.RejectsStructurallyInvalidImagesEvenWithValidChecksums" end time: Oct 22 16:46 CST
+"RaftFileStore.RejectsStructurallyInvalidImagesEvenWithValidChecksums" time elapsed: 00:00:00
+----------------------------------------------------------
+
+45/125 Testing: RaftFileStore.SupportsDurableSuffixTruncationAndAppend
+45/125 Test: RaftFileStore.SupportsDurableSuffixTruncationAndAppend
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftFileStore.SupportsDurableSuffixTruncationAndAppend" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftFileStore.SupportsDurableSuffixTruncationAndAppend" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftFileStore.SupportsDurableSuffixTruncationAndAppend
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftFileStore
+[ RUN      ] RaftFileStore.SupportsDurableSuffixTruncationAndAppend
+[       OK ] RaftFileStore.SupportsDurableSuffixTruncationAndAppend (1 ms)
+[----------] 1 test from RaftFileStore (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftFileStore.SupportsDurableSuffixTruncationAndAppend" end time: Oct 22 16:46 CST
+"RaftFileStore.SupportsDurableSuffixTruncationAndAppend" time elapsed: 00:00:00
+----------------------------------------------------------
+
+20/125 Testing: RpcClient.PendingLimitRejectsExcessCallsWithoutSendingThem
+20/125 Test: RpcClient.PendingLimitRejectsExcessCallsWithoutSendingThem
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RpcClient.PendingLimitRejectsExcessCallsWithoutSendingThem" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RpcClient.PendingLimitRejectsExcessCallsWithoutSendingThem" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RpcClient.PendingLimitRejectsExcessCallsWithoutSendingThem
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RpcClient
+[ RUN      ] RpcClient.PendingLimitRejectsExcessCallsWithoutSendingThem
+[       OK ] RpcClient.PendingLimitRejectsExcessCallsWithoutSendingThem (1 ms)
+[----------] 1 test from RpcClient (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RpcClient.PendingLimitRejectsExcessCallsWithoutSendingThem" end time: Oct 22 16:46 CST
+"RpcClient.PendingLimitRejectsExcessCallsWithoutSendingThem" time elapsed: 00:00:00
+----------------------------------------------------------
+
+62/125 Testing: RaftJournal.ReplacementAndTruncationReplayWithoutResurrectingOldSuffix
+62/125 Test: RaftJournal.ReplacementAndTruncationReplayWithoutResurrectingOldSuffix
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftJournal.ReplacementAndTruncationReplayWithoutResurrectingOldSuffix" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftJournal.ReplacementAndTruncationReplayWithoutResurrectingOldSuffix" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftJournal.ReplacementAndTruncationReplayWithoutResurrectingOldSuffix
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftJournal
+[ RUN      ] RaftJournal.ReplacementAndTruncationReplayWithoutResurrectingOldSuffix
+[       OK ] RaftJournal.ReplacementAndTruncationReplayWithoutResurrectingOldSuffix (1 ms)
+[----------] 1 test from RaftJournal (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (2 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftJournal.ReplacementAndTruncationReplayWithoutResurrectingOldSuffix" end time: Oct 22 16:46 CST
+"RaftJournal.ReplacementAndTruncationReplayWithoutResurrectingOldSuffix" time elapsed: 00:00:00
+----------------------------------------------------------
+
+66/125 Testing: RaftJournal.MissingCheckpointOrActiveJournalFailsClosed
+66/125 Test: RaftJournal.MissingCheckpointOrActiveJournalFailsClosed
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftJournal.MissingCheckpointOrActiveJournalFailsClosed" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftJournal.MissingCheckpointOrActiveJournalFailsClosed" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftJournal.MissingCheckpointOrActiveJournalFailsClosed
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftJournal
+[ RUN      ] RaftJournal.MissingCheckpointOrActiveJournalFailsClosed
+[       OK ] RaftJournal.MissingCheckpointOrActiveJournalFailsClosed (1 ms)
+[----------] 1 test from RaftJournal (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftJournal.MissingCheckpointOrActiveJournalFailsClosed" end time: Oct 22 16:46 CST
+"RaftJournal.MissingCheckpointOrActiveJournalFailsClosed" time elapsed: 00:00:00
+----------------------------------------------------------
+
+5/125 Testing: TcpConnection.WaitingForFirstReplyCannotAccumulateUnboundedCompletedResponses
+5/125 Test: TcpConnection.WaitingForFirstReplyCannotAccumulateUnboundedCompletedResponses
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=TcpConnection.WaitingForFirstReplyCannotAccumulateUnboundedCompletedResponses" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"TcpConnection.WaitingForFirstReplyCannotAccumulateUnboundedCompletedResponses" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = TcpConnection.WaitingForFirstReplyCannotAccumulateUnboundedCompletedResponses
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from TcpConnection
+[ RUN      ] TcpConnection.WaitingForFirstReplyCannotAccumulateUnboundedCompletedResponses
+[       OK ] TcpConnection.WaitingForFirstReplyCannotAccumulateUnboundedCompletedResponses (1 ms)
+[----------] 1 test from TcpConnection (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.05 sec
+----------------------------------------------------------
+Test Passed.
+"TcpConnection.WaitingForFirstReplyCannotAccumulateUnboundedCompletedResponses" end time: Oct 22 16:46 CST
+"TcpConnection.WaitingForFirstReplyCannotAccumulateUnboundedCompletedResponses" time elapsed: 00:00:00
+----------------------------------------------------------
+
+95/125 Testing: SnapshotPolicy.ByteTriggerAndApplicationBoundaryRemainHardConditions
+95/125 Test: SnapshotPolicy.ByteTriggerAndApplicationBoundaryRemainHardConditions
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=SnapshotPolicy.ByteTriggerAndApplicationBoundaryRemainHardConditions" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"SnapshotPolicy.ByteTriggerAndApplicationBoundaryRemainHardConditions" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = SnapshotPolicy.ByteTriggerAndApplicationBoundaryRemainHardConditions
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from SnapshotPolicy
+[ RUN      ] SnapshotPolicy.ByteTriggerAndApplicationBoundaryRemainHardConditions
+[       OK ] SnapshotPolicy.ByteTriggerAndApplicationBoundaryRemainHardConditions (0 ms)
+[----------] 1 test from SnapshotPolicy (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"SnapshotPolicy.ByteTriggerAndApplicationBoundaryRemainHardConditions" end time: Oct 22 16:46 CST
+"SnapshotPolicy.ByteTriggerAndApplicationBoundaryRemainHardConditions" time elapsed: 00:00:00
+----------------------------------------------------------
+
+78/125 Testing: RaftNode.RejectsUnknownPeersAndFutureTermEntriesWithoutMutatingState
+78/125 Test: RaftNode.RejectsUnknownPeersAndFutureTermEntriesWithoutMutatingState
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftNode.RejectsUnknownPeersAndFutureTermEntriesWithoutMutatingState" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftNode.RejectsUnknownPeersAndFutureTermEntriesWithoutMutatingState" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftNode.RejectsUnknownPeersAndFutureTermEntriesWithoutMutatingState
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftNode
+[ RUN      ] RaftNode.RejectsUnknownPeersAndFutureTermEntriesWithoutMutatingState
+[       OK ] RaftNode.RejectsUnknownPeersAndFutureTermEntriesWithoutMutatingState (0 ms)
+[----------] 1 test from RaftNode (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftNode.RejectsUnknownPeersAndFutureTermEntriesWithoutMutatingState" end time: Oct 22 16:46 CST
+"RaftNode.RejectsUnknownPeersAndFutureTermEntriesWithoutMutatingState" time elapsed: 00:00:00
+----------------------------------------------------------
+
+70/125 Testing: RaftNode.ElectsOneLeaderAndCommitsCurrentTermNoopBeforeClientCommands
+70/125 Test: RaftNode.ElectsOneLeaderAndCommitsCurrentTermNoopBeforeClientCommands
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftNode.ElectsOneLeaderAndCommitsCurrentTermNoopBeforeClientCommands" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftNode.ElectsOneLeaderAndCommitsCurrentTermNoopBeforeClientCommands" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftNode.ElectsOneLeaderAndCommitsCurrentTermNoopBeforeClientCommands
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftNode
+[ RUN      ] RaftNode.ElectsOneLeaderAndCommitsCurrentTermNoopBeforeClientCommands
+[       OK ] RaftNode.ElectsOneLeaderAndCommitsCurrentTermNoopBeforeClientCommands (3 ms)
+[----------] 1 test from RaftNode (3 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (3 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftNode.ElectsOneLeaderAndCommitsCurrentTermNoopBeforeClientCommands" end time: Oct 22 16:46 CST
+"RaftNode.ElectsOneLeaderAndCommitsCurrentTermNoopBeforeClientCommands" time elapsed: 00:00:00
+----------------------------------------------------------
+
+91/125 Testing: RaftSnapshot.ChunkRetriesAndReceiverRestartNeverPublishPartialState
+91/125 Test: RaftSnapshot.ChunkRetriesAndReceiverRestartNeverPublishPartialState
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftSnapshot.ChunkRetriesAndReceiverRestartNeverPublishPartialState" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftSnapshot.ChunkRetriesAndReceiverRestartNeverPublishPartialState" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftSnapshot.ChunkRetriesAndReceiverRestartNeverPublishPartialState
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftSnapshot
+[ RUN      ] RaftSnapshot.ChunkRetriesAndReceiverRestartNeverPublishPartialState
+[       OK ] RaftSnapshot.ChunkRetriesAndReceiverRestartNeverPublishPartialState (2 ms)
+[----------] 1 test from RaftSnapshot (2 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (2 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftSnapshot.ChunkRetriesAndReceiverRestartNeverPublishPartialState" end time: Oct 22 16:46 CST
+"RaftSnapshot.ChunkRetriesAndReceiverRestartNeverPublishPartialState" time elapsed: 00:00:00
+----------------------------------------------------------
+
+59/125 Testing: RaftFileStore.AcknowledgedVotesAndAppendsSurviveSigkill
+59/125 Test: RaftFileStore.AcknowledgedVotesAndAppendsSurviveSigkill
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftFileStore.AcknowledgedVotesAndAppendsSurviveSigkill" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftFileStore.AcknowledgedVotesAndAppendsSurviveSigkill" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftFileStore.AcknowledgedVotesAndAppendsSurviveSigkill
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftFileStore
+[ RUN      ] RaftFileStore.AcknowledgedVotesAndAppendsSurviveSigkill
+[       OK ] RaftFileStore.AcknowledgedVotesAndAppendsSurviveSigkill (4 ms)
+[----------] 1 test from RaftFileStore (4 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (4 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftFileStore.AcknowledgedVotesAndAppendsSurviveSigkill" end time: Oct 22 16:46 CST
+"RaftFileStore.AcknowledgedVotesAndAppendsSurviveSigkill" time elapsed: 00:00:00
+----------------------------------------------------------
+
+97/125 Testing: KvStateMachine.SnapshotRestoresDeterministicCapacityDecisionsIncludingEmptyBinaryValues
+97/125 Test: KvStateMachine.SnapshotRestoresDeterministicCapacityDecisionsIncludingEmptyBinaryValues
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=KvStateMachine.SnapshotRestoresDeterministicCapacityDecisionsIncludingEmptyBinaryValues" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"KvStateMachine.SnapshotRestoresDeterministicCapacityDecisionsIncludingEmptyBinaryValues" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = KvStateMachine.SnapshotRestoresDeterministicCapacityDecisionsIncludingEmptyBinaryValues
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from KvStateMachine
+[ RUN      ] KvStateMachine.SnapshotRestoresDeterministicCapacityDecisionsIncludingEmptyBinaryValues
+[       OK ] KvStateMachine.SnapshotRestoresDeterministicCapacityDecisionsIncludingEmptyBinaryValues (0 ms)
+[----------] 1 test from KvStateMachine (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"KvStateMachine.SnapshotRestoresDeterministicCapacityDecisionsIncludingEmptyBinaryValues" end time: Oct 22 16:46 CST
+"KvStateMachine.SnapshotRestoresDeterministicCapacityDecisionsIncludingEmptyBinaryValues" time elapsed: 00:00:00
+----------------------------------------------------------
+
+110/125 Testing: StorageExecutor.CapacityCountsRunningOperation
+110/125 Test: StorageExecutor.CapacityCountsRunningOperation
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=StorageExecutor.CapacityCountsRunningOperation" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"StorageExecutor.CapacityCountsRunningOperation" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = StorageExecutor.CapacityCountsRunningOperation
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from StorageExecutor
+[ RUN      ] StorageExecutor.CapacityCountsRunningOperation
+[       OK ] StorageExecutor.CapacityCountsRunningOperation (0 ms)
+[----------] 1 test from StorageExecutor (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"StorageExecutor.CapacityCountsRunningOperation" end time: Oct 22 16:46 CST
+"StorageExecutor.CapacityCountsRunningOperation" time elapsed: 00:00:00
+----------------------------------------------------------
+
+99/125 Testing: KvStateMachine.SnapshotBytesMatchProtobufLengthBoundariesAndRepeatedUpdates
+99/125 Test: KvStateMachine.SnapshotBytesMatchProtobufLengthBoundariesAndRepeatedUpdates
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=KvStateMachine.SnapshotBytesMatchProtobufLengthBoundariesAndRepeatedUpdates" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"KvStateMachine.SnapshotBytesMatchProtobufLengthBoundariesAndRepeatedUpdates" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = KvStateMachine.SnapshotBytesMatchProtobufLengthBoundariesAndRepeatedUpdates
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from KvStateMachine
+[ RUN      ] KvStateMachine.SnapshotBytesMatchProtobufLengthBoundariesAndRepeatedUpdates
+[       OK ] KvStateMachine.SnapshotBytesMatchProtobufLengthBoundariesAndRepeatedUpdates (0 ms)
+[----------] 1 test from KvStateMachine (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"KvStateMachine.SnapshotBytesMatchProtobufLengthBoundariesAndRepeatedUpdates" end time: Oct 22 16:46 CST
+"KvStateMachine.SnapshotBytesMatchProtobufLengthBoundariesAndRepeatedUpdates" time elapsed: 00:00:00
+----------------------------------------------------------
+
+25/125 Testing: TextProtocol.Malformed
+25/125 Test: TextProtocol.Malformed
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=TextProtocol.Malformed" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"TextProtocol.Malformed" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = TextProtocol.Malformed
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from TextProtocol
+[ RUN      ] TextProtocol.Malformed
+[       OK ] TextProtocol.Malformed (0 ms)
+[----------] 1 test from TextProtocol (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"TextProtocol.Malformed" end time: Oct 22 16:46 CST
+"TextProtocol.Malformed" time elapsed: 00:00:00
+----------------------------------------------------------
+
+77/125 Testing: RaftNode.PersistenceFailurePreventsElectionOrAppendAcknowledgement
+77/125 Test: RaftNode.PersistenceFailurePreventsElectionOrAppendAcknowledgement
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftNode.PersistenceFailurePreventsElectionOrAppendAcknowledgement" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftNode.PersistenceFailurePreventsElectionOrAppendAcknowledgement" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftNode.PersistenceFailurePreventsElectionOrAppendAcknowledgement
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftNode
+[ RUN      ] RaftNode.PersistenceFailurePreventsElectionOrAppendAcknowledgement
+[       OK ] RaftNode.PersistenceFailurePreventsElectionOrAppendAcknowledgement (0 ms)
+[----------] 1 test from RaftNode (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftNode.PersistenceFailurePreventsElectionOrAppendAcknowledgement" end time: Oct 22 16:46 CST
+"RaftNode.PersistenceFailurePreventsElectionOrAppendAcknowledgement" time elapsed: 00:00:00
+----------------------------------------------------------
+
+53/125 Testing: RaftFileStore.RejectsSymlinkAndNonRegularPublishedState
+53/125 Test: RaftFileStore.RejectsSymlinkAndNonRegularPublishedState
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftFileStore.RejectsSymlinkAndNonRegularPublishedState" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftFileStore.RejectsSymlinkAndNonRegularPublishedState" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftFileStore.RejectsSymlinkAndNonRegularPublishedState
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftFileStore
+[ RUN      ] RaftFileStore.RejectsSymlinkAndNonRegularPublishedState
+[       OK ] RaftFileStore.RejectsSymlinkAndNonRegularPublishedState (2 ms)
+[----------] 1 test from RaftFileStore (2 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (2 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftFileStore.RejectsSymlinkAndNonRegularPublishedState" end time: Oct 22 16:46 CST
+"RaftFileStore.RejectsSymlinkAndNonRegularPublishedState" time elapsed: 00:00:00
+----------------------------------------------------------
+
+1/125 Testing: Buffer.AppendAndTake
+1/125 Test: Buffer.AppendAndTake
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=Buffer.AppendAndTake" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"Buffer.AppendAndTake" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = Buffer.AppendAndTake
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Buffer
+[ RUN      ] Buffer.AppendAndTake
+[       OK ] Buffer.AppendAndTake (0 ms)
+[----------] 1 test from Buffer (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"Buffer.AppendAndTake" end time: Oct 22 16:46 CST
+"Buffer.AppendAndTake" time elapsed: 00:00:00
+----------------------------------------------------------
+
+96/125 Testing: KvStateMachine.CapacityRejectsNewOrGrowingValuesAndDeletionReclaimsSpace
+96/125 Test: KvStateMachine.CapacityRejectsNewOrGrowingValuesAndDeletionReclaimsSpace
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=KvStateMachine.CapacityRejectsNewOrGrowingValuesAndDeletionReclaimsSpace" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"KvStateMachine.CapacityRejectsNewOrGrowingValuesAndDeletionReclaimsSpace" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = KvStateMachine.CapacityRejectsNewOrGrowingValuesAndDeletionReclaimsSpace
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from KvStateMachine
+[ RUN      ] KvStateMachine.CapacityRejectsNewOrGrowingValuesAndDeletionReclaimsSpace
+[       OK ] KvStateMachine.CapacityRejectsNewOrGrowingValuesAndDeletionReclaimsSpace (0 ms)
+[----------] 1 test from KvStateMachine (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"KvStateMachine.CapacityRejectsNewOrGrowingValuesAndDeletionReclaimsSpace" end time: Oct 22 16:46 CST
+"KvStateMachine.CapacityRejectsNewOrGrowingValuesAndDeletionReclaimsSpace" time elapsed: 00:00:00
+----------------------------------------------------------
+
+31/125 Testing: RaftElection.PersistenceFailurePreventsVotingOrLeadership
+31/125 Test: RaftElection.PersistenceFailurePreventsVotingOrLeadership
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftElection.PersistenceFailurePreventsVotingOrLeadership" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftElection.PersistenceFailurePreventsVotingOrLeadership" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftElection.PersistenceFailurePreventsVotingOrLeadership
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftElection
+[ RUN      ] RaftElection.PersistenceFailurePreventsVotingOrLeadership
+[       OK ] RaftElection.PersistenceFailurePreventsVotingOrLeadership (0 ms)
+[----------] 1 test from RaftElection (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftElection.PersistenceFailurePreventsVotingOrLeadership" end time: Oct 22 16:46 CST
+"RaftElection.PersistenceFailurePreventsVotingOrLeadership" time elapsed: 00:00:00
+----------------------------------------------------------
+
+98/125 Testing: KvStateMachine.InvalidSnapshotLeavesLiveStateUntouched
+98/125 Test: KvStateMachine.InvalidSnapshotLeavesLiveStateUntouched
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=KvStateMachine.InvalidSnapshotLeavesLiveStateUntouched" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"KvStateMachine.InvalidSnapshotLeavesLiveStateUntouched" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = KvStateMachine.InvalidSnapshotLeavesLiveStateUntouched
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from KvStateMachine
+[ RUN      ] KvStateMachine.InvalidSnapshotLeavesLiveStateUntouched
+[       OK ] KvStateMachine.InvalidSnapshotLeavesLiveStateUntouched (0 ms)
+[----------] 1 test from KvStateMachine (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"KvStateMachine.InvalidSnapshotLeavesLiveStateUntouched" end time: Oct 22 16:46 CST
+"KvStateMachine.InvalidSnapshotLeavesLiveStateUntouched" time elapsed: 00:00:00
+----------------------------------------------------------
+
+9/125 Testing: FrameCodec.WaitsForSplitPayload
+9/125 Test: FrameCodec.WaitsForSplitPayload
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=FrameCodec.WaitsForSplitPayload" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"FrameCodec.WaitsForSplitPayload" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = FrameCodec.WaitsForSplitPayload
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from FrameCodec
+[ RUN      ] FrameCodec.WaitsForSplitPayload
+[       OK ] FrameCodec.WaitsForSplitPayload (0 ms)
+[----------] 1 test from FrameCodec (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"FrameCodec.WaitsForSplitPayload" end time: Oct 22 16:46 CST
+"FrameCodec.WaitsForSplitPayload" time elapsed: 00:00:00
+----------------------------------------------------------
+
+47/125 Testing: RaftFileStore.RejectsInvalidSuffixWithoutChangingPersistedState
+47/125 Test: RaftFileStore.RejectsInvalidSuffixWithoutChangingPersistedState
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftFileStore.RejectsInvalidSuffixWithoutChangingPersistedState" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftFileStore.RejectsInvalidSuffixWithoutChangingPersistedState" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftFileStore.RejectsInvalidSuffixWithoutChangingPersistedState
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftFileStore
+[ RUN      ] RaftFileStore.RejectsInvalidSuffixWithoutChangingPersistedState
+[       OK ] RaftFileStore.RejectsInvalidSuffixWithoutChangingPersistedState (3 ms)
+[----------] 1 test from RaftFileStore (3 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (3 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftFileStore.RejectsInvalidSuffixWithoutChangingPersistedState" end time: Oct 22 16:46 CST
+"RaftFileStore.RejectsInvalidSuffixWithoutChangingPersistedState" time elapsed: 00:00:00
+----------------------------------------------------------
+
+103/125 Testing: WalEngine.RejectsCorruptCompleteRecordWithoutTruncation
+103/125 Test: WalEngine.RejectsCorruptCompleteRecordWithoutTruncation
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=WalEngine.RejectsCorruptCompleteRecordWithoutTruncation" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"WalEngine.RejectsCorruptCompleteRecordWithoutTruncation" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = WalEngine.RejectsCorruptCompleteRecordWithoutTruncation
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from WalEngine
+[ RUN      ] WalEngine.RejectsCorruptCompleteRecordWithoutTruncation
+[       OK ] WalEngine.RejectsCorruptCompleteRecordWithoutTruncation (0 ms)
+[----------] 1 test from WalEngine (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"WalEngine.RejectsCorruptCompleteRecordWithoutTruncation" end time: Oct 22 16:46 CST
+"WalEngine.RejectsCorruptCompleteRecordWithoutTruncation" time elapsed: 00:00:00
+----------------------------------------------------------
+
+104/125 Testing: WalEngine.EnforcesExclusiveDataDirectoryOwnership
+104/125 Test: WalEngine.EnforcesExclusiveDataDirectoryOwnership
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=WalEngine.EnforcesExclusiveDataDirectoryOwnership" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"WalEngine.EnforcesExclusiveDataDirectoryOwnership" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = WalEngine.EnforcesExclusiveDataDirectoryOwnership
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from WalEngine
+[ RUN      ] WalEngine.EnforcesExclusiveDataDirectoryOwnership
+[       OK ] WalEngine.EnforcesExclusiveDataDirectoryOwnership (0 ms)
+[----------] 1 test from WalEngine (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"WalEngine.EnforcesExclusiveDataDirectoryOwnership" end time: Oct 22 16:46 CST
+"WalEngine.EnforcesExclusiveDataDirectoryOwnership" time elapsed: 00:00:00
+----------------------------------------------------------
+
+6/125 Testing: TcpConnection.OutstandingRequestCountIsBoundedEvenForTinyResponses
+6/125 Test: TcpConnection.OutstandingRequestCountIsBoundedEvenForTinyResponses
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=TcpConnection.OutstandingRequestCountIsBoundedEvenForTinyResponses" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"TcpConnection.OutstandingRequestCountIsBoundedEvenForTinyResponses" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = TcpConnection.OutstandingRequestCountIsBoundedEvenForTinyResponses
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from TcpConnection
+[ RUN      ] TcpConnection.OutstandingRequestCountIsBoundedEvenForTinyResponses
+[       OK ] TcpConnection.OutstandingRequestCountIsBoundedEvenForTinyResponses (1 ms)
+[----------] 1 test from TcpConnection (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"TcpConnection.OutstandingRequestCountIsBoundedEvenForTinyResponses" end time: Oct 22 16:46 CST
+"TcpConnection.OutstandingRequestCountIsBoundedEvenForTinyResponses" time elapsed: 00:00:00
+----------------------------------------------------------
+
+60/125 Testing: RaftJournal.MigratesLegacyImageAndRecoversBinarySuffixAndVote
+60/125 Test: RaftJournal.MigratesLegacyImageAndRecoversBinarySuffixAndVote
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftJournal.MigratesLegacyImageAndRecoversBinarySuffixAndVote" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftJournal.MigratesLegacyImageAndRecoversBinarySuffixAndVote" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftJournal.MigratesLegacyImageAndRecoversBinarySuffixAndVote
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftJournal
+[ RUN      ] RaftJournal.MigratesLegacyImageAndRecoversBinarySuffixAndVote
+[       OK ] RaftJournal.MigratesLegacyImageAndRecoversBinarySuffixAndVote (3 ms)
+[----------] 1 test from RaftJournal (3 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (3 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftJournal.MigratesLegacyImageAndRecoversBinarySuffixAndVote" end time: Oct 22 16:46 CST
+"RaftJournal.MigratesLegacyImageAndRecoversBinarySuffixAndVote" time elapsed: 00:00:00
+----------------------------------------------------------
+
+10/125 Testing: FrameCodec.ConsumesOneOfMultipleFramesAndKeepsTrailingPartialFrame
+10/125 Test: FrameCodec.ConsumesOneOfMultipleFramesAndKeepsTrailingPartialFrame
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=FrameCodec.ConsumesOneOfMultipleFramesAndKeepsTrailingPartialFrame" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"FrameCodec.ConsumesOneOfMultipleFramesAndKeepsTrailingPartialFrame" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = FrameCodec.ConsumesOneOfMultipleFramesAndKeepsTrailingPartialFrame
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from FrameCodec
+[ RUN      ] FrameCodec.ConsumesOneOfMultipleFramesAndKeepsTrailingPartialFrame
+[       OK ] FrameCodec.ConsumesOneOfMultipleFramesAndKeepsTrailingPartialFrame (0 ms)
+[----------] 1 test from FrameCodec (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"FrameCodec.ConsumesOneOfMultipleFramesAndKeepsTrailingPartialFrame" end time: Oct 22 16:46 CST
+"FrameCodec.ConsumesOneOfMultipleFramesAndKeepsTrailingPartialFrame" time elapsed: 00:00:00
+----------------------------------------------------------
+
+89/125 Testing: RaftSnapshot.SnapshotCapacityRejectionDoesNotReplaceDurableImage
+89/125 Test: RaftSnapshot.SnapshotCapacityRejectionDoesNotReplaceDurableImage
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftSnapshot.SnapshotCapacityRejectionDoesNotReplaceDurableImage" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftSnapshot.SnapshotCapacityRejectionDoesNotReplaceDurableImage" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftSnapshot.SnapshotCapacityRejectionDoesNotReplaceDurableImage
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftSnapshot
+[ RUN      ] RaftSnapshot.SnapshotCapacityRejectionDoesNotReplaceDurableImage
+[       OK ] RaftSnapshot.SnapshotCapacityRejectionDoesNotReplaceDurableImage (1 ms)
+[----------] 1 test from RaftSnapshot (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftSnapshot.SnapshotCapacityRejectionDoesNotReplaceDurableImage" end time: Oct 22 16:46 CST
+"RaftSnapshot.SnapshotCapacityRejectionDoesNotReplaceDurableImage" time elapsed: 00:00:00
+----------------------------------------------------------
+
+41/125 Testing: RaftFileStore.InitializesAndRecoversHardStateAndBinaryCommands
+41/125 Test: RaftFileStore.InitializesAndRecoversHardStateAndBinaryCommands
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftFileStore.InitializesAndRecoversHardStateAndBinaryCommands" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftFileStore.InitializesAndRecoversHardStateAndBinaryCommands" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftFileStore.InitializesAndRecoversHardStateAndBinaryCommands
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftFileStore
+[ RUN      ] RaftFileStore.InitializesAndRecoversHardStateAndBinaryCommands
+[       OK ] RaftFileStore.InitializesAndRecoversHardStateAndBinaryCommands (1 ms)
+[----------] 1 test from RaftFileStore (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftFileStore.InitializesAndRecoversHardStateAndBinaryCommands" end time: Oct 22 16:46 CST
+"RaftFileStore.InitializesAndRecoversHardStateAndBinaryCommands" time elapsed: 00:00:00
+----------------------------------------------------------
+
+106/125 Testing: WalEngine.IgnoresInterruptedCompactionAndCanRetry
+106/125 Test: WalEngine.IgnoresInterruptedCompactionAndCanRetry
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=WalEngine.IgnoresInterruptedCompactionAndCanRetry" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"WalEngine.IgnoresInterruptedCompactionAndCanRetry" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = WalEngine.IgnoresInterruptedCompactionAndCanRetry
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from WalEngine
+[ RUN      ] WalEngine.IgnoresInterruptedCompactionAndCanRetry
+[       OK ] WalEngine.IgnoresInterruptedCompactionAndCanRetry (0 ms)
+[----------] 1 test from WalEngine (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"WalEngine.IgnoresInterruptedCompactionAndCanRetry" end time: Oct 22 16:46 CST
+"WalEngine.IgnoresInterruptedCompactionAndCanRetry" time elapsed: 00:00:00
+----------------------------------------------------------
+
+8/125 Testing: FrameCodec.WaitsForSplitHeaderWithoutConsumingOrChangingOutput
+8/125 Test: FrameCodec.WaitsForSplitHeaderWithoutConsumingOrChangingOutput
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=FrameCodec.WaitsForSplitHeaderWithoutConsumingOrChangingOutput" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"FrameCodec.WaitsForSplitHeaderWithoutConsumingOrChangingOutput" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = FrameCodec.WaitsForSplitHeaderWithoutConsumingOrChangingOutput
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from FrameCodec
+[ RUN      ] FrameCodec.WaitsForSplitHeaderWithoutConsumingOrChangingOutput
+[       OK ] FrameCodec.WaitsForSplitHeaderWithoutConsumingOrChangingOutput (0 ms)
+[----------] 1 test from FrameCodec (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"FrameCodec.WaitsForSplitHeaderWithoutConsumingOrChangingOutput" end time: Oct 22 16:46 CST
+"FrameCodec.WaitsForSplitHeaderWithoutConsumingOrChangingOutput" time elapsed: 00:00:00
+----------------------------------------------------------
+
+18/125 Testing: RpcClient.DestructorCompletesPendingCallWithShutdown
+18/125 Test: RpcClient.DestructorCompletesPendingCallWithShutdown
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RpcClient.DestructorCompletesPendingCallWithShutdown" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RpcClient.DestructorCompletesPendingCallWithShutdown" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RpcClient.DestructorCompletesPendingCallWithShutdown
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RpcClient
+[ RUN      ] RpcClient.DestructorCompletesPendingCallWithShutdown
+[       OK ] RpcClient.DestructorCompletesPendingCallWithShutdown (1 ms)
+[----------] 1 test from RpcClient (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RpcClient.DestructorCompletesPendingCallWithShutdown" end time: Oct 22 16:46 CST
+"RpcClient.DestructorCompletesPendingCallWithShutdown" time elapsed: 00:00:00
+----------------------------------------------------------
+
+30/125 Testing: RaftElection.MajorityPromotesOnceAndHigherTermDemotes
+30/125 Test: RaftElection.MajorityPromotesOnceAndHigherTermDemotes
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftElection.MajorityPromotesOnceAndHigherTermDemotes" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftElection.MajorityPromotesOnceAndHigherTermDemotes" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftElection.MajorityPromotesOnceAndHigherTermDemotes
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftElection
+[ RUN      ] RaftElection.MajorityPromotesOnceAndHigherTermDemotes
+[       OK ] RaftElection.MajorityPromotesOnceAndHigherTermDemotes (0 ms)
+[----------] 1 test from RaftElection (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftElection.MajorityPromotesOnceAndHigherTermDemotes" end time: Oct 22 16:46 CST
+"RaftElection.MajorityPromotesOnceAndHigherTermDemotes" time elapsed: 00:00:00
+----------------------------------------------------------
+
+92/125 Testing: RaftSnapshot.RejectsMalformedOrInvalidApplicationSnapshotsBeforePublication
+92/125 Test: RaftSnapshot.RejectsMalformedOrInvalidApplicationSnapshotsBeforePublication
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftSnapshot.RejectsMalformedOrInvalidApplicationSnapshotsBeforePublication" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftSnapshot.RejectsMalformedOrInvalidApplicationSnapshotsBeforePublication" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftSnapshot.RejectsMalformedOrInvalidApplicationSnapshotsBeforePublication
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftSnapshot
+[ RUN      ] RaftSnapshot.RejectsMalformedOrInvalidApplicationSnapshotsBeforePublication
+[       OK ] RaftSnapshot.RejectsMalformedOrInvalidApplicationSnapshotsBeforePublication (2 ms)
+[----------] 1 test from RaftSnapshot (2 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (2 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftSnapshot.RejectsMalformedOrInvalidApplicationSnapshotsBeforePublication" end time: Oct 22 16:46 CST
+"RaftSnapshot.RejectsMalformedOrInvalidApplicationSnapshotsBeforePublication" time elapsed: 00:00:00
+----------------------------------------------------------
+
+33/125 Testing: RaftLog.AppendsDurablyBeforeSuccessAndAdvancesFollowerCommit
+33/125 Test: RaftLog.AppendsDurablyBeforeSuccessAndAdvancesFollowerCommit
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftLog.AppendsDurablyBeforeSuccessAndAdvancesFollowerCommit" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftLog.AppendsDurablyBeforeSuccessAndAdvancesFollowerCommit" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftLog.AppendsDurablyBeforeSuccessAndAdvancesFollowerCommit
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftLog
+[ RUN      ] RaftLog.AppendsDurablyBeforeSuccessAndAdvancesFollowerCommit
+[       OK ] RaftLog.AppendsDurablyBeforeSuccessAndAdvancesFollowerCommit (0 ms)
+[----------] 1 test from RaftLog (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftLog.AppendsDurablyBeforeSuccessAndAdvancesFollowerCommit" end time: Oct 22 16:46 CST
+"RaftLog.AppendsDurablyBeforeSuccessAndAdvancesFollowerCommit" time elapsed: 00:00:00
+----------------------------------------------------------
+
+44/125 Testing: RaftFileStore.LogCoreReplacesConflictingSuffixAcrossRestart
+44/125 Test: RaftFileStore.LogCoreReplacesConflictingSuffixAcrossRestart
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftFileStore.LogCoreReplacesConflictingSuffixAcrossRestart" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftFileStore.LogCoreReplacesConflictingSuffixAcrossRestart" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftFileStore.LogCoreReplacesConflictingSuffixAcrossRestart
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftFileStore
+[ RUN      ] RaftFileStore.LogCoreReplacesConflictingSuffixAcrossRestart
+[       OK ] RaftFileStore.LogCoreReplacesConflictingSuffixAcrossRestart (1 ms)
+[----------] 1 test from RaftFileStore (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftFileStore.LogCoreReplacesConflictingSuffixAcrossRestart" end time: Oct 22 16:46 CST
+"RaftFileStore.LogCoreReplacesConflictingSuffixAcrossRestart" time elapsed: 00:00:00
+----------------------------------------------------------
+
+93/125 Testing: RaftSnapshot.DiskFailurePreventsSnapshotInstallationAcknowledgement
+93/125 Test: RaftSnapshot.DiskFailurePreventsSnapshotInstallationAcknowledgement
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftSnapshot.DiskFailurePreventsSnapshotInstallationAcknowledgement" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftSnapshot.DiskFailurePreventsSnapshotInstallationAcknowledgement" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftSnapshot.DiskFailurePreventsSnapshotInstallationAcknowledgement
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftSnapshot
+[ RUN      ] RaftSnapshot.DiskFailurePreventsSnapshotInstallationAcknowledgement
+[       OK ] RaftSnapshot.DiskFailurePreventsSnapshotInstallationAcknowledgement (1 ms)
+[----------] 1 test from RaftSnapshot (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftSnapshot.DiskFailurePreventsSnapshotInstallationAcknowledgement" end time: Oct 22 16:46 CST
+"RaftSnapshot.DiskFailurePreventsSnapshotInstallationAcknowledgement" time elapsed: 00:00:00
+----------------------------------------------------------
+
+88/125 Testing: RaftSnapshot.InstallationRetainsOnlySuffixWithMatchingBoundaryTerm
+88/125 Test: RaftSnapshot.InstallationRetainsOnlySuffixWithMatchingBoundaryTerm
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftSnapshot.InstallationRetainsOnlySuffixWithMatchingBoundaryTerm" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftSnapshot.InstallationRetainsOnlySuffixWithMatchingBoundaryTerm" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftSnapshot.InstallationRetainsOnlySuffixWithMatchingBoundaryTerm
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftSnapshot
+[ RUN      ] RaftSnapshot.InstallationRetainsOnlySuffixWithMatchingBoundaryTerm
+[       OK ] RaftSnapshot.InstallationRetainsOnlySuffixWithMatchingBoundaryTerm (0 ms)
+[----------] 1 test from RaftSnapshot (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftSnapshot.InstallationRetainsOnlySuffixWithMatchingBoundaryTerm" end time: Oct 22 16:46 CST
+"RaftSnapshot.InstallationRetainsOnlySuffixWithMatchingBoundaryTerm" time elapsed: 00:00:00
+----------------------------------------------------------
+
+24/125 Testing: TextProtocol.MultipleCommandsInOneBuffer
+24/125 Test: TextProtocol.MultipleCommandsInOneBuffer
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=TextProtocol.MultipleCommandsInOneBuffer" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"TextProtocol.MultipleCommandsInOneBuffer" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = TextProtocol.MultipleCommandsInOneBuffer
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from TextProtocol
+[ RUN      ] TextProtocol.MultipleCommandsInOneBuffer
+[       OK ] TextProtocol.MultipleCommandsInOneBuffer (0 ms)
+[----------] 1 test from TextProtocol (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"TextProtocol.MultipleCommandsInOneBuffer" end time: Oct 22 16:46 CST
+"TextProtocol.MultipleCommandsInOneBuffer" time elapsed: 00:00:00
+----------------------------------------------------------
+
+28/125 Testing: RaftElection.NeverGrantsTwoVotesInOneTermEvenAfterRestart
+28/125 Test: RaftElection.NeverGrantsTwoVotesInOneTermEvenAfterRestart
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftElection.NeverGrantsTwoVotesInOneTermEvenAfterRestart" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftElection.NeverGrantsTwoVotesInOneTermEvenAfterRestart" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftElection.NeverGrantsTwoVotesInOneTermEvenAfterRestart
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftElection
+[ RUN      ] RaftElection.NeverGrantsTwoVotesInOneTermEvenAfterRestart
+[       OK ] RaftElection.NeverGrantsTwoVotesInOneTermEvenAfterRestart (0 ms)
+[----------] 1 test from RaftElection (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftElection.NeverGrantsTwoVotesInOneTermEvenAfterRestart" end time: Oct 22 16:46 CST
+"RaftElection.NeverGrantsTwoVotesInOneTermEvenAfterRestart" time elapsed: 00:00:00
+----------------------------------------------------------
+
+21/125 Testing: RpcClient.InvalidAddressIsReportedWithoutBlockingDNS
+21/125 Test: RpcClient.InvalidAddressIsReportedWithoutBlockingDNS
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RpcClient.InvalidAddressIsReportedWithoutBlockingDNS" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RpcClient.InvalidAddressIsReportedWithoutBlockingDNS" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RpcClient.InvalidAddressIsReportedWithoutBlockingDNS
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RpcClient
+[ RUN      ] RpcClient.InvalidAddressIsReportedWithoutBlockingDNS
+[       OK ] RpcClient.InvalidAddressIsReportedWithoutBlockingDNS (0 ms)
+[----------] 1 test from RpcClient (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RpcClient.InvalidAddressIsReportedWithoutBlockingDNS" end time: Oct 22 16:46 CST
+"RpcClient.InvalidAddressIsReportedWithoutBlockingDNS" time elapsed: 00:00:00
+----------------------------------------------------------
+
+105/125 Testing: WalEngine.CompactionPreservesOnlyLiveValuesAndAllowsFurtherWrites
+105/125 Test: WalEngine.CompactionPreservesOnlyLiveValuesAndAllowsFurtherWrites
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=WalEngine.CompactionPreservesOnlyLiveValuesAndAllowsFurtherWrites" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"WalEngine.CompactionPreservesOnlyLiveValuesAndAllowsFurtherWrites" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = WalEngine.CompactionPreservesOnlyLiveValuesAndAllowsFurtherWrites
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from WalEngine
+[ RUN      ] WalEngine.CompactionPreservesOnlyLiveValuesAndAllowsFurtherWrites
+[       OK ] WalEngine.CompactionPreservesOnlyLiveValuesAndAllowsFurtherWrites (0 ms)
+[----------] 1 test from WalEngine (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"WalEngine.CompactionPreservesOnlyLiveValuesAndAllowsFurtherWrites" end time: Oct 22 16:46 CST
+"WalEngine.CompactionPreservesOnlyLiveValuesAndAllowsFurtherWrites" time elapsed: 00:00:00
+----------------------------------------------------------
+
+49/125 Testing: RaftFileStore.LocksDirectoryAndReleasesLockAfterCloseOrConstructorFailure
+49/125 Test: RaftFileStore.LocksDirectoryAndReleasesLockAfterCloseOrConstructorFailure
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftFileStore.LocksDirectoryAndReleasesLockAfterCloseOrConstructorFailure" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftFileStore.LocksDirectoryAndReleasesLockAfterCloseOrConstructorFailure" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftFileStore.LocksDirectoryAndReleasesLockAfterCloseOrConstructorFailure
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftFileStore
+[ RUN      ] RaftFileStore.LocksDirectoryAndReleasesLockAfterCloseOrConstructorFailure
+[       OK ] RaftFileStore.LocksDirectoryAndReleasesLockAfterCloseOrConstructorFailure (1 ms)
+[----------] 1 test from RaftFileStore (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (2 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftFileStore.LocksDirectoryAndReleasesLockAfterCloseOrConstructorFailure" end time: Oct 22 16:46 CST
+"RaftFileStore.LocksDirectoryAndReleasesLockAfterCloseOrConstructorFailure" time elapsed: 00:00:00
+----------------------------------------------------------
+
+27/125 Testing: RaftElection.PersistsSelfVoteBeforeCampaignProducesRequests
+27/125 Test: RaftElection.PersistsSelfVoteBeforeCampaignProducesRequests
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftElection.PersistsSelfVoteBeforeCampaignProducesRequests" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftElection.PersistsSelfVoteBeforeCampaignProducesRequests" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftElection.PersistsSelfVoteBeforeCampaignProducesRequests
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftElection
+[ RUN      ] RaftElection.PersistsSelfVoteBeforeCampaignProducesRequests
+[       OK ] RaftElection.PersistsSelfVoteBeforeCampaignProducesRequests (0 ms)
+[----------] 1 test from RaftElection (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftElection.PersistsSelfVoteBeforeCampaignProducesRequests" end time: Oct 22 16:46 CST
+"RaftElection.PersistsSelfVoteBeforeCampaignProducesRequests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+102/125 Testing: WalEngine.TruncatesIncompleteTailAndContinuesSequence
+102/125 Test: WalEngine.TruncatesIncompleteTailAndContinuesSequence
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=WalEngine.TruncatesIncompleteTailAndContinuesSequence" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"WalEngine.TruncatesIncompleteTailAndContinuesSequence" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = WalEngine.TruncatesIncompleteTailAndContinuesSequence
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from WalEngine
+[ RUN      ] WalEngine.TruncatesIncompleteTailAndContinuesSequence
+[       OK ] WalEngine.TruncatesIncompleteTailAndContinuesSequence (0 ms)
+[----------] 1 test from WalEngine (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"WalEngine.TruncatesIncompleteTailAndContinuesSequence" end time: Oct 22 16:46 CST
+"WalEngine.TruncatesIncompleteTailAndContinuesSequence" time elapsed: 00:00:00
+----------------------------------------------------------
+
+13/125 Testing: FrameCodec.AcceptsMaximumPayloadAtExactBoundary
+13/125 Test: FrameCodec.AcceptsMaximumPayloadAtExactBoundary
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=FrameCodec.AcceptsMaximumPayloadAtExactBoundary" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"FrameCodec.AcceptsMaximumPayloadAtExactBoundary" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = FrameCodec.AcceptsMaximumPayloadAtExactBoundary
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from FrameCodec
+[ RUN      ] FrameCodec.AcceptsMaximumPayloadAtExactBoundary
+[       OK ] FrameCodec.AcceptsMaximumPayloadAtExactBoundary (0 ms)
+[----------] 1 test from FrameCodec (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"FrameCodec.AcceptsMaximumPayloadAtExactBoundary" end time: Oct 22 16:46 CST
+"FrameCodec.AcceptsMaximumPayloadAtExactBoundary" time elapsed: 00:00:00
+----------------------------------------------------------
+
+108/125 Testing: WalEngine.FullWalStillAllowsDurableDeletion
+108/125 Test: WalEngine.FullWalStillAllowsDurableDeletion
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=WalEngine.FullWalStillAllowsDurableDeletion" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"WalEngine.FullWalStillAllowsDurableDeletion" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = WalEngine.FullWalStillAllowsDurableDeletion
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from WalEngine
+[ RUN      ] WalEngine.FullWalStillAllowsDurableDeletion
+[       OK ] WalEngine.FullWalStillAllowsDurableDeletion (0 ms)
+[----------] 1 test from WalEngine (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"WalEngine.FullWalStillAllowsDurableDeletion" end time: Oct 22 16:46 CST
+"WalEngine.FullWalStillAllowsDurableDeletion" time elapsed: 00:00:00
+----------------------------------------------------------
+
+46/125 Testing: RaftFileStore.RejectsTermRegressionAndVoteChangesWithoutTouchingImage
+46/125 Test: RaftFileStore.RejectsTermRegressionAndVoteChangesWithoutTouchingImage
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftFileStore.RejectsTermRegressionAndVoteChangesWithoutTouchingImage" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftFileStore.RejectsTermRegressionAndVoteChangesWithoutTouchingImage" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftFileStore.RejectsTermRegressionAndVoteChangesWithoutTouchingImage
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftFileStore
+[ RUN      ] RaftFileStore.RejectsTermRegressionAndVoteChangesWithoutTouchingImage
+[       OK ] RaftFileStore.RejectsTermRegressionAndVoteChangesWithoutTouchingImage (1 ms)
+[----------] 1 test from RaftFileStore (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftFileStore.RejectsTermRegressionAndVoteChangesWithoutTouchingImage" end time: Oct 22 16:46 CST
+"RaftFileStore.RejectsTermRegressionAndVoteChangesWithoutTouchingImage" time elapsed: 00:00:00
+----------------------------------------------------------
+
+7/125 Testing: FrameCodec.EncodesNetworkOrderLengthAndBinaryPayload
+7/125 Test: FrameCodec.EncodesNetworkOrderLengthAndBinaryPayload
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=FrameCodec.EncodesNetworkOrderLengthAndBinaryPayload" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"FrameCodec.EncodesNetworkOrderLengthAndBinaryPayload" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = FrameCodec.EncodesNetworkOrderLengthAndBinaryPayload
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from FrameCodec
+[ RUN      ] FrameCodec.EncodesNetworkOrderLengthAndBinaryPayload
+[       OK ] FrameCodec.EncodesNetworkOrderLengthAndBinaryPayload (0 ms)
+[----------] 1 test from FrameCodec (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"FrameCodec.EncodesNetworkOrderLengthAndBinaryPayload" end time: Oct 22 16:46 CST
+"FrameCodec.EncodesNetworkOrderLengthAndBinaryPayload" time elapsed: 00:00:00
+----------------------------------------------------------
+
+48/125 Testing: RaftFileStore.EnforcesCapacityBeforeIOAndCanTruncateToMakeRoom
+48/125 Test: RaftFileStore.EnforcesCapacityBeforeIOAndCanTruncateToMakeRoom
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftFileStore.EnforcesCapacityBeforeIOAndCanTruncateToMakeRoom" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftFileStore.EnforcesCapacityBeforeIOAndCanTruncateToMakeRoom" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftFileStore.EnforcesCapacityBeforeIOAndCanTruncateToMakeRoom
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftFileStore
+[ RUN      ] RaftFileStore.EnforcesCapacityBeforeIOAndCanTruncateToMakeRoom
+[       OK ] RaftFileStore.EnforcesCapacityBeforeIOAndCanTruncateToMakeRoom (2 ms)
+[----------] 1 test from RaftFileStore (2 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (2 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftFileStore.EnforcesCapacityBeforeIOAndCanTruncateToMakeRoom" end time: Oct 22 16:46 CST
+"RaftFileStore.EnforcesCapacityBeforeIOAndCanTruncateToMakeRoom" time elapsed: 00:00:00
+----------------------------------------------------------
+
+43/125 Testing: RaftFileStore.ElectionCannotVoteTwiceAfterRealReopen
+43/125 Test: RaftFileStore.ElectionCannotVoteTwiceAfterRealReopen
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftFileStore.ElectionCannotVoteTwiceAfterRealReopen" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftFileStore.ElectionCannotVoteTwiceAfterRealReopen" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftFileStore.ElectionCannotVoteTwiceAfterRealReopen
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftFileStore
+[ RUN      ] RaftFileStore.ElectionCannotVoteTwiceAfterRealReopen
+[       OK ] RaftFileStore.ElectionCannotVoteTwiceAfterRealReopen (1 ms)
+[----------] 1 test from RaftFileStore (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftFileStore.ElectionCannotVoteTwiceAfterRealReopen" end time: Oct 22 16:46 CST
+"RaftFileStore.ElectionCannotVoteTwiceAfterRealReopen" time elapsed: 00:00:00
+----------------------------------------------------------
+
+35/125 Testing: RaftLog.ReportsConflictHintsWithoutChangingLog
+35/125 Test: RaftLog.ReportsConflictHintsWithoutChangingLog
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftLog.ReportsConflictHintsWithoutChangingLog" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftLog.ReportsConflictHintsWithoutChangingLog" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftLog.ReportsConflictHintsWithoutChangingLog
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftLog
+[ RUN      ] RaftLog.ReportsConflictHintsWithoutChangingLog
+[       OK ] RaftLog.ReportsConflictHintsWithoutChangingLog (0 ms)
+[----------] 1 test from RaftLog (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Passed.
+"RaftLog.ReportsConflictHintsWithoutChangingLog" end time: Oct 22 16:46 CST
+"RaftLog.ReportsConflictHintsWithoutChangingLog" time elapsed: 00:00:00
+----------------------------------------------------------
+
+17/125 Testing: RpcClient.PeerDisconnectFailsOutstandingCallsAndDoesNotReconnect
+17/125 Test: RpcClient.PeerDisconnectFailsOutstandingCallsAndDoesNotReconnect
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RpcClient.PeerDisconnectFailsOutstandingCallsAndDoesNotReconnect" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RpcClient.PeerDisconnectFailsOutstandingCallsAndDoesNotReconnect" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RpcClient.PeerDisconnectFailsOutstandingCallsAndDoesNotReconnect
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RpcClient
+[ RUN      ] RpcClient.PeerDisconnectFailsOutstandingCallsAndDoesNotReconnect
+[       OK ] RpcClient.PeerDisconnectFailsOutstandingCallsAndDoesNotReconnect (1 ms)
+[----------] 1 test from RpcClient (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RpcClient.PeerDisconnectFailsOutstandingCallsAndDoesNotReconnect" end time: Oct 22 16:46 CST
+"RpcClient.PeerDisconnectFailsOutstandingCallsAndDoesNotReconnect" time elapsed: 00:00:00
+----------------------------------------------------------
+
+107/125 Testing: WalEngine.AutomaticallyCompactsWhenAppendReachesLimit
+107/125 Test: WalEngine.AutomaticallyCompactsWhenAppendReachesLimit
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=WalEngine.AutomaticallyCompactsWhenAppendReachesLimit" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"WalEngine.AutomaticallyCompactsWhenAppendReachesLimit" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = WalEngine.AutomaticallyCompactsWhenAppendReachesLimit
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from WalEngine
+[ RUN      ] WalEngine.AutomaticallyCompactsWhenAppendReachesLimit
+[       OK ] WalEngine.AutomaticallyCompactsWhenAppendReachesLimit (0 ms)
+[----------] 1 test from WalEngine (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"WalEngine.AutomaticallyCompactsWhenAppendReachesLimit" end time: Oct 22 16:46 CST
+"WalEngine.AutomaticallyCompactsWhenAppendReachesLimit" time elapsed: 00:00:00
+----------------------------------------------------------
+
+15/125 Testing: RpcClient.ConcurrentCallsMatchResponsesReturnedInReverseOrder
+15/125 Test: RpcClient.ConcurrentCallsMatchResponsesReturnedInReverseOrder
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RpcClient.ConcurrentCallsMatchResponsesReturnedInReverseOrder" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RpcClient.ConcurrentCallsMatchResponsesReturnedInReverseOrder" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RpcClient.ConcurrentCallsMatchResponsesReturnedInReverseOrder
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RpcClient
+[ RUN      ] RpcClient.ConcurrentCallsMatchResponsesReturnedInReverseOrder
+[       OK ] RpcClient.ConcurrentCallsMatchResponsesReturnedInReverseOrder (2 ms)
+[----------] 1 test from RpcClient (2 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (2 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RpcClient.ConcurrentCallsMatchResponsesReturnedInReverseOrder" end time: Oct 22 16:46 CST
+"RpcClient.ConcurrentCallsMatchResponsesReturnedInReverseOrder" time elapsed: 00:00:00
+----------------------------------------------------------
+
+22/125 Testing: TextProtocol.PutGetDelPing
+22/125 Test: TextProtocol.PutGetDelPing
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=TextProtocol.PutGetDelPing" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"TextProtocol.PutGetDelPing" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = TextProtocol.PutGetDelPing
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from TextProtocol
+[ RUN      ] TextProtocol.PutGetDelPing
+[       OK ] TextProtocol.PutGetDelPing (0 ms)
+[----------] 1 test from TextProtocol (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"TextProtocol.PutGetDelPing" end time: Oct 22 16:46 CST
+"TextProtocol.PutGetDelPing" time elapsed: 00:00:00
+----------------------------------------------------------
+
+38/125 Testing: RaftLog.LeaderOnlyAdvancesMajorityCommitThroughCurrentTermEntry
+38/125 Test: RaftLog.LeaderOnlyAdvancesMajorityCommitThroughCurrentTermEntry
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftLog.LeaderOnlyAdvancesMajorityCommitThroughCurrentTermEntry" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftLog.LeaderOnlyAdvancesMajorityCommitThroughCurrentTermEntry" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftLog.LeaderOnlyAdvancesMajorityCommitThroughCurrentTermEntry
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftLog
+[ RUN      ] RaftLog.LeaderOnlyAdvancesMajorityCommitThroughCurrentTermEntry
+[       OK ] RaftLog.LeaderOnlyAdvancesMajorityCommitThroughCurrentTermEntry (0 ms)
+[----------] 1 test from RaftLog (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftLog.LeaderOnlyAdvancesMajorityCommitThroughCurrentTermEntry" end time: Oct 22 16:46 CST
+"RaftLog.LeaderOnlyAdvancesMajorityCommitThroughCurrentTermEntry" time elapsed: 00:00:00
+----------------------------------------------------------
+
+34/125 Testing: RaftLog.ReplacesOnlyConflictingUncommittedSuffix
+34/125 Test: RaftLog.ReplacesOnlyConflictingUncommittedSuffix
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftLog.ReplacesOnlyConflictingUncommittedSuffix" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftLog.ReplacesOnlyConflictingUncommittedSuffix" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftLog.ReplacesOnlyConflictingUncommittedSuffix
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftLog
+[ RUN      ] RaftLog.ReplacesOnlyConflictingUncommittedSuffix
+[       OK ] RaftLog.ReplacesOnlyConflictingUncommittedSuffix (0 ms)
+[----------] 1 test from RaftLog (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftLog.ReplacesOnlyConflictingUncommittedSuffix" end time: Oct 22 16:46 CST
+"RaftLog.ReplacesOnlyConflictingUncommittedSuffix" time elapsed: 00:00:00
+----------------------------------------------------------
+
+19/125 Testing: RpcClient.ConnectionFailureReturnsIOError
+19/125 Test: RpcClient.ConnectionFailureReturnsIOError
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RpcClient.ConnectionFailureReturnsIOError" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RpcClient.ConnectionFailureReturnsIOError" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RpcClient.ConnectionFailureReturnsIOError
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RpcClient
+[ RUN      ] RpcClient.ConnectionFailureReturnsIOError
+[       OK ] RpcClient.ConnectionFailureReturnsIOError (0 ms)
+[----------] 1 test from RpcClient (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RpcClient.ConnectionFailureReturnsIOError" end time: Oct 22 16:46 CST
+"RpcClient.ConnectionFailureReturnsIOError" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/125 Testing: Buffer.ConsumeResets
+2/125 Test: Buffer.ConsumeResets
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=Buffer.ConsumeResets" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"Buffer.ConsumeResets" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = Buffer.ConsumeResets
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from Buffer
+[ RUN      ] Buffer.ConsumeResets
+[       OK ] Buffer.ConsumeResets (0 ms)
+[----------] 1 test from Buffer (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"Buffer.ConsumeResets" end time: Oct 22 16:46 CST
+"Buffer.ConsumeResets" time elapsed: 00:00:00
+----------------------------------------------------------
+
+50/125 Testing: RaftFileStore.IgnoresStaleTemporaryImageAndReplacesItOnNextWrite
+50/125 Test: RaftFileStore.IgnoresStaleTemporaryImageAndReplacesItOnNextWrite
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftFileStore.IgnoresStaleTemporaryImageAndReplacesItOnNextWrite" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftFileStore.IgnoresStaleTemporaryImageAndReplacesItOnNextWrite" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftFileStore.IgnoresStaleTemporaryImageAndReplacesItOnNextWrite
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftFileStore
+[ RUN      ] RaftFileStore.IgnoresStaleTemporaryImageAndReplacesItOnNextWrite
+[       OK ] RaftFileStore.IgnoresStaleTemporaryImageAndReplacesItOnNextWrite (1 ms)
+[----------] 1 test from RaftFileStore (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftFileStore.IgnoresStaleTemporaryImageAndReplacesItOnNextWrite" end time: Oct 22 16:46 CST
+"RaftFileStore.IgnoresStaleTemporaryImageAndReplacesItOnNextWrite" time elapsed: 00:00:00
+----------------------------------------------------------
+
+109/125 Testing: StorageExecutor.BoundedFifoAndDrain
+109/125 Test: StorageExecutor.BoundedFifoAndDrain
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=StorageExecutor.BoundedFifoAndDrain" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"StorageExecutor.BoundedFifoAndDrain" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = StorageExecutor.BoundedFifoAndDrain
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from StorageExecutor
+[ RUN      ] StorageExecutor.BoundedFifoAndDrain
+[       OK ] StorageExecutor.BoundedFifoAndDrain (0 ms)
+[----------] 1 test from StorageExecutor (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"StorageExecutor.BoundedFifoAndDrain" end time: Oct 22 16:46 CST
+"StorageExecutor.BoundedFifoAndDrain" time elapsed: 00:00:00
+----------------------------------------------------------
+
+40/125 Testing: RaftLog.RejectsMalformedRecoveredAndIncomingTermOrder
+40/125 Test: RaftLog.RejectsMalformedRecoveredAndIncomingTermOrder
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftLog.RejectsMalformedRecoveredAndIncomingTermOrder" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftLog.RejectsMalformedRecoveredAndIncomingTermOrder" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftLog.RejectsMalformedRecoveredAndIncomingTermOrder
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftLog
+[ RUN      ] RaftLog.RejectsMalformedRecoveredAndIncomingTermOrder
+[       OK ] RaftLog.RejectsMalformedRecoveredAndIncomingTermOrder (0 ms)
+[----------] 1 test from RaftLog (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftLog.RejectsMalformedRecoveredAndIncomingTermOrder" end time: Oct 22 16:46 CST
+"RaftLog.RejectsMalformedRecoveredAndIncomingTermOrder" time elapsed: 00:00:00
+----------------------------------------------------------
+
+56/125 Testing: RaftFileStore.AppendFailurePoisonsLogBeforeAnySuccessOrCommit
+56/125 Test: RaftFileStore.AppendFailurePoisonsLogBeforeAnySuccessOrCommit
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftFileStore.AppendFailurePoisonsLogBeforeAnySuccessOrCommit" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftFileStore.AppendFailurePoisonsLogBeforeAnySuccessOrCommit" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftFileStore.AppendFailurePoisonsLogBeforeAnySuccessOrCommit
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftFileStore
+[ RUN      ] RaftFileStore.AppendFailurePoisonsLogBeforeAnySuccessOrCommit
+[       OK ] RaftFileStore.AppendFailurePoisonsLogBeforeAnySuccessOrCommit (1 ms)
+[----------] 1 test from RaftFileStore (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftFileStore.AppendFailurePoisonsLogBeforeAnySuccessOrCommit" end time: Oct 22 16:46 CST
+"RaftFileStore.AppendFailurePoisonsLogBeforeAnySuccessOrCommit" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/125 Testing: TcpConnection.OutOfOrderCompletionsDrainInRequestOrderAfterHalfClose
+4/125 Test: TcpConnection.OutOfOrderCompletionsDrainInRequestOrderAfterHalfClose
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=TcpConnection.OutOfOrderCompletionsDrainInRequestOrderAfterHalfClose" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"TcpConnection.OutOfOrderCompletionsDrainInRequestOrderAfterHalfClose" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = TcpConnection.OutOfOrderCompletionsDrainInRequestOrderAfterHalfClose
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from TcpConnection
+[ RUN      ] TcpConnection.OutOfOrderCompletionsDrainInRequestOrderAfterHalfClose
+[       OK ] TcpConnection.OutOfOrderCompletionsDrainInRequestOrderAfterHalfClose (0 ms)
+[----------] 1 test from TcpConnection (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"TcpConnection.OutOfOrderCompletionsDrainInRequestOrderAfterHalfClose" end time: Oct 22 16:46 CST
+"TcpConnection.OutOfOrderCompletionsDrainInRequestOrderAfterHalfClose" time elapsed: 00:00:00
+----------------------------------------------------------
+
+14/125 Testing: FrameCodec.RejectsInvalidPayloadLengthsOnEncode
+14/125 Test: FrameCodec.RejectsInvalidPayloadLengthsOnEncode
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=FrameCodec.RejectsInvalidPayloadLengthsOnEncode" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"FrameCodec.RejectsInvalidPayloadLengthsOnEncode" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = FrameCodec.RejectsInvalidPayloadLengthsOnEncode
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from FrameCodec
+[ RUN      ] FrameCodec.RejectsInvalidPayloadLengthsOnEncode
+[       OK ] FrameCodec.RejectsInvalidPayloadLengthsOnEncode (0 ms)
+[----------] 1 test from FrameCodec (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"FrameCodec.RejectsInvalidPayloadLengthsOnEncode" end time: Oct 22 16:46 CST
+"FrameCodec.RejectsInvalidPayloadLengthsOnEncode" time elapsed: 00:00:00
+----------------------------------------------------------
+
+55/125 Testing: RaftFileStore.FilesystemFailurePoisonsElectionWithoutPublishingVotes
+55/125 Test: RaftFileStore.FilesystemFailurePoisonsElectionWithoutPublishingVotes
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftFileStore.FilesystemFailurePoisonsElectionWithoutPublishingVotes" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftFileStore.FilesystemFailurePoisonsElectionWithoutPublishingVotes" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftFileStore.FilesystemFailurePoisonsElectionWithoutPublishingVotes
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftFileStore
+[ RUN      ] RaftFileStore.FilesystemFailurePoisonsElectionWithoutPublishingVotes
+[       OK ] RaftFileStore.FilesystemFailurePoisonsElectionWithoutPublishingVotes (1 ms)
+[----------] 1 test from RaftFileStore (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftFileStore.FilesystemFailurePoisonsElectionWithoutPublishingVotes" end time: Oct 22 16:46 CST
+"RaftFileStore.FilesystemFailurePoisonsElectionWithoutPublishingVotes" time elapsed: 00:00:00
+----------------------------------------------------------
+
+23/125 Testing: TextProtocol.HalfPacketReturnsZero
+23/125 Test: TextProtocol.HalfPacketReturnsZero
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=TextProtocol.HalfPacketReturnsZero" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"TextProtocol.HalfPacketReturnsZero" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = TextProtocol.HalfPacketReturnsZero
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from TextProtocol
+[ RUN      ] TextProtocol.HalfPacketReturnsZero
+[       OK ] TextProtocol.HalfPacketReturnsZero (0 ms)
+[----------] 1 test from TextProtocol (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"TextProtocol.HalfPacketReturnsZero" end time: Oct 22 16:46 CST
+"TextProtocol.HalfPacketReturnsZero" time elapsed: 00:00:00
+----------------------------------------------------------
+
+37/125 Testing: RaftLog.ShortHeartbeatCannotCommitUnmentionedFollowerSuffix
+37/125 Test: RaftLog.ShortHeartbeatCannotCommitUnmentionedFollowerSuffix
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftLog.ShortHeartbeatCannotCommitUnmentionedFollowerSuffix" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftLog.ShortHeartbeatCannotCommitUnmentionedFollowerSuffix" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftLog.ShortHeartbeatCannotCommitUnmentionedFollowerSuffix
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftLog
+[ RUN      ] RaftLog.ShortHeartbeatCannotCommitUnmentionedFollowerSuffix
+[       OK ] RaftLog.ShortHeartbeatCannotCommitUnmentionedFollowerSuffix (0 ms)
+[----------] 1 test from RaftLog (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftLog.ShortHeartbeatCannotCommitUnmentionedFollowerSuffix" end time: Oct 22 16:46 CST
+"RaftLog.ShortHeartbeatCannotCommitUnmentionedFollowerSuffix" time elapsed: 00:00:00
+----------------------------------------------------------
+
+32/125 Testing: RaftElection.SameTermLeaderMessageDemotesCandidate
+32/125 Test: RaftElection.SameTermLeaderMessageDemotesCandidate
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftElection.SameTermLeaderMessageDemotesCandidate" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftElection.SameTermLeaderMessageDemotesCandidate" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftElection.SameTermLeaderMessageDemotesCandidate
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftElection
+[ RUN      ] RaftElection.SameTermLeaderMessageDemotesCandidate
+[       OK ] RaftElection.SameTermLeaderMessageDemotesCandidate (0 ms)
+[----------] 1 test from RaftElection (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftElection.SameTermLeaderMessageDemotesCandidate" end time: Oct 22 16:46 CST
+"RaftElection.SameTermLeaderMessageDemotesCandidate" time elapsed: 00:00:00
+----------------------------------------------------------
+
+36/125 Testing: RaftLog.RejectsCommittedOverwriteAndSameTermDifferentCommand
+36/125 Test: RaftLog.RejectsCommittedOverwriteAndSameTermDifferentCommand
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftLog.RejectsCommittedOverwriteAndSameTermDifferentCommand" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftLog.RejectsCommittedOverwriteAndSameTermDifferentCommand" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftLog.RejectsCommittedOverwriteAndSameTermDifferentCommand
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftLog
+[ RUN      ] RaftLog.RejectsCommittedOverwriteAndSameTermDifferentCommand
+[       OK ] RaftLog.RejectsCommittedOverwriteAndSameTermDifferentCommand (0 ms)
+[----------] 1 test from RaftLog (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftLog.RejectsCommittedOverwriteAndSameTermDifferentCommand" end time: Oct 22 16:46 CST
+"RaftLog.RejectsCommittedOverwriteAndSameTermDifferentCommand" time elapsed: 00:00:00
+----------------------------------------------------------
+
+29/125 Testing: RaftElection.ComparesLastLogTermBeforeIndexAndPersistsNewTerm
+29/125 Test: RaftElection.ComparesLastLogTermBeforeIndexAndPersistsNewTerm
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftElection.ComparesLastLogTermBeforeIndexAndPersistsNewTerm" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftElection.ComparesLastLogTermBeforeIndexAndPersistsNewTerm" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftElection.ComparesLastLogTermBeforeIndexAndPersistsNewTerm
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftElection
+[ RUN      ] RaftElection.ComparesLastLogTermBeforeIndexAndPersistsNewTerm
+[       OK ] RaftElection.ComparesLastLogTermBeforeIndexAndPersistsNewTerm (0 ms)
+[----------] 1 test from RaftElection (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftElection.ComparesLastLogTermBeforeIndexAndPersistsNewTerm" end time: Oct 22 16:46 CST
+"RaftElection.ComparesLastLogTermBeforeIndexAndPersistsNewTerm" time elapsed: 00:00:00
+----------------------------------------------------------
+
+39/125 Testing: RaftLog.PersistenceFailurePoisonsLogWithoutAcknowledgingAppend
+39/125 Test: RaftLog.PersistenceFailurePoisonsLogWithoutAcknowledgingAppend
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=RaftLog.PersistenceFailurePoisonsLogWithoutAcknowledgingAppend" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"RaftLog.PersistenceFailurePoisonsLogWithoutAcknowledgingAppend" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftLog.PersistenceFailurePoisonsLogWithoutAcknowledgingAppend
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftLog
+[ RUN      ] RaftLog.PersistenceFailurePoisonsLogWithoutAcknowledgingAppend
+[       OK ] RaftLog.PersistenceFailurePoisonsLogWithoutAcknowledgingAppend (0 ms)
+[----------] 1 test from RaftLog (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftLog.PersistenceFailurePoisonsLogWithoutAcknowledgingAppend" end time: Oct 22 16:46 CST
+"RaftLog.PersistenceFailurePoisonsLogWithoutAcknowledgingAppend" time elapsed: 00:00:00
+----------------------------------------------------------
+
+11/125 Testing: FrameCodec.RejectsZeroLengthWithoutConsuming
+11/125 Test: FrameCodec.RejectsZeroLengthWithoutConsuming
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=FrameCodec.RejectsZeroLengthWithoutConsuming" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"FrameCodec.RejectsZeroLengthWithoutConsuming" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = FrameCodec.RejectsZeroLengthWithoutConsuming
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from FrameCodec
+[ RUN      ] FrameCodec.RejectsZeroLengthWithoutConsuming
+[       OK ] FrameCodec.RejectsZeroLengthWithoutConsuming (0 ms)
+[----------] 1 test from FrameCodec (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"FrameCodec.RejectsZeroLengthWithoutConsuming" end time: Oct 22 16:46 CST
+"FrameCodec.RejectsZeroLengthWithoutConsuming" time elapsed: 00:00:00
+----------------------------------------------------------
+
+100/125 Testing: KvStateMachine.ReplaysLegacySuccessfulWritesWithoutApplyingNewCapacityRetroactively
+100/125 Test: KvStateMachine.ReplaysLegacySuccessfulWritesWithoutApplyingNewCapacityRetroactively
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=KvStateMachine.ReplaysLegacySuccessfulWritesWithoutApplyingNewCapacityRetroactively" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"KvStateMachine.ReplaysLegacySuccessfulWritesWithoutApplyingNewCapacityRetroactively" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = KvStateMachine.ReplaysLegacySuccessfulWritesWithoutApplyingNewCapacityRetroactively
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from KvStateMachine
+[ RUN      ] KvStateMachine.ReplaysLegacySuccessfulWritesWithoutApplyingNewCapacityRetroactively
+[       OK ] KvStateMachine.ReplaysLegacySuccessfulWritesWithoutApplyingNewCapacityRetroactively (0 ms)
+[----------] 1 test from KvStateMachine (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"KvStateMachine.ReplaysLegacySuccessfulWritesWithoutApplyingNewCapacityRetroactively" end time: Oct 22 16:46 CST
+"KvStateMachine.ReplaysLegacySuccessfulWritesWithoutApplyingNewCapacityRetroactively" time elapsed: 00:00:00
+----------------------------------------------------------
+
+26/125 Testing: MemEngine.PutGetDelete
+26/125 Test: MemEngine.PutGetDelete
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=MemEngine.PutGetDelete" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"MemEngine.PutGetDelete" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = MemEngine.PutGetDelete
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from MemEngine
+[ RUN      ] MemEngine.PutGetDelete
+[       OK ] MemEngine.PutGetDelete (0 ms)
+[----------] 1 test from MemEngine (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"MemEngine.PutGetDelete" end time: Oct 22 16:46 CST
+"MemEngine.PutGetDelete" time elapsed: 00:00:00
+----------------------------------------------------------
+
+101/125 Testing: WalEngine.ReplaysBinaryValuesAndDeletes
+101/125 Test: WalEngine.ReplaysBinaryValuesAndDeletes
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=WalEngine.ReplaysBinaryValuesAndDeletes" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"WalEngine.ReplaysBinaryValuesAndDeletes" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = WalEngine.ReplaysBinaryValuesAndDeletes
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from WalEngine
+[ RUN      ] WalEngine.ReplaysBinaryValuesAndDeletes
+[       OK ] WalEngine.ReplaysBinaryValuesAndDeletes (0 ms)
+[----------] 1 test from WalEngine (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"WalEngine.ReplaysBinaryValuesAndDeletes" end time: Oct 22 16:46 CST
+"WalEngine.ReplaysBinaryValuesAndDeletes" time elapsed: 00:00:00
+----------------------------------------------------------
+
+12/125 Testing: FrameCodec.RejectsOversizedLengthAsSoonAsHeaderArrives
+12/125 Test: FrameCodec.RejectsOversizedLengthAsSoonAsHeaderArrives
+Command: "/home/hermes/yeyu/source/build-asan/bin/yewu_tests" "--gtest_filter=FrameCodec.RejectsOversizedLengthAsSoonAsHeaderArrives" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build-asan/tests
+"FrameCodec.RejectsOversizedLengthAsSoonAsHeaderArrives" start time: Oct 22 16:46 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = FrameCodec.RejectsOversizedLengthAsSoonAsHeaderArrives
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from FrameCodec
+[ RUN      ] FrameCodec.RejectsOversizedLengthAsSoonAsHeaderArrives
+[       OK ] FrameCodec.RejectsOversizedLengthAsSoonAsHeaderArrives (0 ms)
+[----------] 1 test from FrameCodec (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"FrameCodec.RejectsOversizedLengthAsSoonAsHeaderArrives" end time: Oct 22 16:46 CST
+"FrameCodec.RejectsOversizedLengthAsSoonAsHeaderArrives" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Oct 22 16:46 CST

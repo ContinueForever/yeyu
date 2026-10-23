@@ -1,0 +1,22 @@
+{
+  "git_head": "29dcd629c9579f07493b2f892d87e22818c1a910",
+  "measured_node_sha256": "83d034f19c3a003b86b7b362a0f822033a763a30e027d3367b5c3ba972a41cb4",
+  "measured_client_sha256": "f5b516a4e2a40875e4a4e21a474cc87a7277497c387d7f7b6f1f5c5adeab5cd9",
+  "sanitizer_node_sha256": "08a016ce4ff32af96bdb5dbf48b9d15cd85ac0ac3f755518a0c58661236f402d",
+  "baseline_node_sha256": "afda2098f33fb7013446aef349fe977b7f576cd1f47b24f7a64fc6122a52cfc0",
+  "normal_tests": 120,
+  "sanitizer_tests": 120,
+  "disk_tests": 13,
+  "notes": [
+    "Sanitizer uses leak detection.",
+    "Network and sanitizer tests ran in the permitted local execution environment.",
+    "Measurements are same-host and use disk-backed workspace data.",
+    "Experiment source archives identify the exact runtime source, including uncommitted changes.",
+    "Final clang-format 18 changes only two whitespace positions; rebuilt code and read-only data match the measured binary."
+  ],
+  "final_node_sha256": "83d034f19c3a003b86b7b362a0f822033a763a30e027d3367b5c3ba972a41cb4",
+  "post_format_sections_identical": {
+    ".text": true,
+    ".rodata": true
+  }
+}

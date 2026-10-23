@@ -1,0 +1,8 @@
+11:08:58.900 INFO  [acceptor] listening on 127.0.0.1:33201
+node=1 event=role role=follower term=1 last=0 commit=0
+11:08:59.950 INFO  [acceptor] listening on 127.0.0.1:33201
+node=1 event=role role=follower term=1 last=1 commit=0
+11:09:00.208 INFO  [acceptor] listening on 127.0.0.1:33201
+node=1 event=role role=follower term=1 last=1 commit=0
+node=1 event=role role=candidate term=2 last=56 commit=56
+node=1 event=role role=follower term=3 last=56 commit=56
