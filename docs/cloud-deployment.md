@@ -86,6 +86,9 @@ done
 
 ## 日常管理与升级
 
+基础演练完成后，按[跨机压测操作](cloud-benchmark.md)连接现有集群测量。
+该工具只更新发压端 Python 文件，不需要替换或重新安装节点程序。
+
 ```bash
 sudo systemctl stop yewukv-node@1.service
 sudo systemctl start yewukv-node@1.service

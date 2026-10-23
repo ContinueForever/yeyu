@@ -50,6 +50,11 @@ add_test(NAME benchmark_accounting
   COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test_benchmark.py)
 set_tests_properties(benchmark_accounting PROPERTIES TIMEOUT 10)
 
+add_test(NAME remote_benchmark_accounting
+  COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test_remote_benchmark.py
+          --node $<TARGET_FILE:yewukv-node> --client $<TARGET_FILE:yewukv-client>)
+set_tests_properties(remote_benchmark_accounting PROPERTIES TIMEOUT 120)
+
 add_test(NAME cluster_failover_recovery
   COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test_cluster.py
           --node $<TARGET_FILE:yewukv-node> --client $<TARGET_FILE:yewukv-client>)

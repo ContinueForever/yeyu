@@ -1,5 +1,11 @@
 # Benchmarks and experiment evidence
 
+To measure an **existing three-machine deployment**, use
+[`remote_matrix.py`](remote_matrix.py) and the [cloud benchmark guide](../docs/cloud-benchmark.md).
+It discovers the stable leader, retains checked per-request samples and compares
+1/4/8/16/32 connections under three read/write mixes. It does not launch nodes.
+The local runners below create their own same-host clusters instead.
+
 The [2026-10-22 follow-up report](../docs/local-followup-20261022.md) adds frozen-binary
 read scheduling and same-current-binary fixed/adaptive checkpoint controls,
 including all-node crash/recovery checks at 1/8/15 MiB of cold values.
