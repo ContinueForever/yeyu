@@ -39,12 +39,13 @@ git diff --check
 
 `benchmarks/results/` 用于本机运行目录；新结果默认忽略，其中少数已跟踪目录属于早期公开基线。新公开证据放在 `benchmarks/published/<experiment>/`，保留命令、环境、版本、源码、原始样本、失败记录和校验清单。节点数据目录、可执行文件、业务备份和密钥不属于公开证据。
 
-三轮已发布证据可独立核验，无需启动服务器：
+已发布证据可离线核验，无需启动服务器：
 
 ```bash
 python3 scripts/verify-evidence.py benchmarks/published/local-20261021
 python3 scripts/verify-local-optimization.py benchmarks/published/local-optimization-20261021
 python3 scripts/verify-local-followup.py benchmarks/published/local-followup-20261022
+python3 scripts/verify-cloud-evidence.py benchmarks/published/cloud-20261023
 ```
 
 不要直接覆盖已发布样本或其清单。新增实验使用新目录，按照[实验复现说明](benchmarks/README.md)记录实际结果，并在[文档索引](docs/README.md#实验与验收)添加入口。旧报告对应归档的历史实现，当前构建可能采用不同默认策略。

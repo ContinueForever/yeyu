@@ -1,0 +1,156 @@
+{
+  "format_version": 1,
+  "imported_at_utc": "2026-10-23T14:23:57.519663+00:00",
+  "tested_commit": "909df769ae2d9b0579a31f9d89745e589da86819",
+  "original_archives": [
+    {
+      "node_id": 1,
+      "filename": "yewukv-evidence-node1-Fy1899hV.tar.gz",
+      "bytes": 19510,
+      "sha256": "3dbc32c77ab66ba0f20182b8dc97d8dc290ad301e7035c37238df9d281d629e8"
+    },
+    {
+      "node_id": 2,
+      "filename": "yewukv-evidence-node2-0cjbLm8k.tar.gz",
+      "bytes": 16811,
+      "sha256": "c6ce354fec59b16d6800a0e13ff673614105d9a62e232b7e334bbb7f4a3a8e0b"
+    },
+    {
+      "node_id": 3,
+      "filename": "yewukv-evidence-node3-NgMQJ0iV.tar.gz",
+      "bytes": 17439,
+      "sha256": "859b41abfba8b09c114c555fad093878a168d238b7a107aa6f1db298c521e040"
+    }
+  ],
+  "binary_sha256": {
+    "yewukv-node": "6bb46da21f4a3284cace8536eec9d2c8867e67cc9a3f187ea532ef0308575b02",
+    "yewukv-client": "f4022c9fb1c886f439804638b7c243aed564dcb473848f86f63ed4d53e2c5774"
+  },
+  "redaction": "private IPv4 and hostnames only",
+  "files": {
+    "README.md": {
+      "bytes": 2930,
+      "sha256": "0dafef0e7920455d8f478811347245c48573f6549f020ed4709e32a7c88b27a2"
+    },
+    "nodes/node-1/ctest.log.gz": {
+      "bytes": 13424,
+      "sha256": "ebfda416d7ead29c9334a1c3ff8055695ff213a4a601b2264bb2bd7610d2c83a"
+    },
+    "nodes/node-1/current-boot-id.txt": {
+      "bytes": 37,
+      "sha256": "61d673d5f8956e1f6a9f3cd29efaf18ccbd7e869b6009922ecc9bc32a6d113ec"
+    },
+    "nodes/node-1/environment.txt": {
+      "bytes": 4872,
+      "sha256": "64ef0d0a5bf147e0de6f70ff3fa08c273f419580b550ff87572b22dacb97beb0"
+    },
+    "nodes/node-1/node.env": {
+      "bytes": 112,
+      "sha256": "4b11d7ba4121d60bf029ad091624d7d00649880bee3163c6df01b617d6935e25"
+    },
+    "nodes/node-1/service.log": {
+      "bytes": 11738,
+      "sha256": "30226c3b58a495241cb20e976b9c951976cbc440dfb8134e4e483c57a6bf72d8"
+    },
+    "nodes/node-1/status.json": {
+      "bytes": 925,
+      "sha256": "f1881f418258e3cd3627c02b7bc0fa42042482e764aded046713dd93b9886a77"
+    },
+    "nodes/node-1/yewukv-all-stopped-20261023T133735Z.log": {
+      "bytes": 179,
+      "sha256": "17cca93dac63889730ca6538529f3f3e9abc33d92beed16a2ba38e3716dbe734"
+    },
+    "nodes/node-1/yewukv-failover-20261023T130640Z.log": {
+      "bytes": 3005,
+      "sha256": "c3455632ee7b8f84c512ff40f277ab6805b1e113046ad26490d1d4281da3238c"
+    },
+    "nodes/node-1/yewukv-full-recovery-20261023T133845Z.log": {
+      "bytes": 3020,
+      "sha256": "4a58125552218205aa7fc4ef2cc6ea0dd16934ccdc346acbdecd62b1c701291e"
+    },
+    "nodes/node-1/yewukv-full-stop-node1-20261023T133657Z.log": {
+      "bytes": 100,
+      "sha256": "4c8a299972c99eae2e0eead997a81ed578a8223ad6295c4bb50065ca063ca9f1"
+    },
+    "nodes/node-1/yewukv-minority-20261023T132652Z.log": {
+      "bytes": 2133,
+      "sha256": "f4aed35b985bcb1b1678db480d9c1a9b6a526117622d16d6393adb3efad12033"
+    },
+    "nodes/node-1/yewukv-reboot-20261023T131528Z.log": {
+      "bytes": 1151,
+      "sha256": "5856fd49cc30036ee5748a3645117868e5735a50d6e87726194602faba070273"
+    },
+    "nodes/node-2/ctest.log.gz": {
+      "bytes": 12941,
+      "sha256": "d0a21903fa8ec76b17184a7fe8c73b689795da5adc307e96d9bfc499b4cbb03d"
+    },
+    "nodes/node-2/current-boot-id.txt": {
+      "bytes": 37,
+      "sha256": "d105fd4eba9b8fdcb449797992bfc5ed5c588c6344fbdd31638d6880af5eca07"
+    },
+    "nodes/node-2/environment.txt": {
+      "bytes": 4884,
+      "sha256": "e5e5c999cb1d86c5d6d8274c7480b4a25a6107da6f77fd22e138f01cd9473c00"
+    },
+    "nodes/node-2/node.env": {
+      "bytes": 112,
+      "sha256": "72deccdb433290af675c983137ab1e07a648f98d70954a523f43ad7251ed064c"
+    },
+    "nodes/node-2/service.log": {
+      "bytes": 3082,
+      "sha256": "4819043ad04209bfbccf0608ae3fa152e87da0f7597d0e93d3991eb9fa0c27a5"
+    },
+    "nodes/node-2/status.json": {
+      "bytes": 920,
+      "sha256": "c2b02c4346cb20cc9c0fd42bcfc730e70024bbfc80313401f357079814f55af4"
+    },
+    "nodes/node-2/yewukv-full-stop-node2-20261023T133706Z.log": {
+      "bytes": 100,
+      "sha256": "ff5d89d286663a307daa2a76673d0c8c695a1ca92c6646209ac8f8ed36a7ba5b"
+    },
+    "nodes/node-3/ctest.log.gz": {
+      "bytes": 12935,
+      "sha256": "11964c15b06bc8ba0526b8296f18c38366832985154b5224a9605f24b49b5202"
+    },
+    "nodes/node-3/current-boot-id.txt": {
+      "bytes": 37,
+      "sha256": "ad3538555ff00da5a8352a13ad56dc0d72893699732bc92372a53a985001eab8"
+    },
+    "nodes/node-3/environment.txt": {
+      "bytes": 4872,
+      "sha256": "69d96ce16b767daac9eb49bc818e49824fa6a9be94bc950f81c9b7560ea08a52"
+    },
+    "nodes/node-3/node.env": {
+      "bytes": 112,
+      "sha256": "7d80033b232725fa60ddda6d3a65436db16515a192a1406224369e75ed81a321"
+    },
+    "nodes/node-3/service.log": {
+      "bytes": 4582,
+      "sha256": "3bf990dbfcfaefda56dfe4c00df0d33ca9033790f4dacfecd49a4845c1c55be5"
+    },
+    "nodes/node-3/status.json": {
+      "bytes": 919,
+      "sha256": "ef1a506d2da28b1bb2a2403fab61f673eea689420752987e9da9bd82265d9e26"
+    },
+    "nodes/node-3/yewukv-before-reboot.boot-id": {
+      "bytes": 37,
+      "sha256": "a28f43b2c559a0673181e86ecd2372016708c39004ce8a8dad68a24977dc56e0"
+    },
+    "nodes/node-3/yewukv-full-stop-node3-20261023T133715Z.log": {
+      "bytes": 100,
+      "sha256": "56138c87345125f9799c3220508824738180d4390b16c8edb47fdd5b2e6f62a2"
+    },
+    "nodes/node-3/yewukv-second-failover-20261023T130953Z.log": {
+      "bytes": 3021,
+      "sha256": "fc7477a6c1d5ce0fe5487cdd119a723383606b1fdd866d26230abaeec90d9b6d"
+    },
+    "source-manifest.json": {
+      "bytes": 14893,
+      "sha256": "f675ac9e8109eabe5b36bfbdd04a5215539fc69416db3a3c1c13c835dc804d9d"
+    },
+    "source.tar.gz": {
+      "bytes": 204190,
+      "sha256": "273387473a0294370771d9b5ebbff423a279b48bc6d536b9cb0ada6fa82c7ad2"
+    }
+  }
+}

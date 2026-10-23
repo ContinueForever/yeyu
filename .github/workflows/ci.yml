@@ -43,6 +43,7 @@ jobs:
           python3 scripts/verify-evidence.py benchmarks/published/local-20261021
           python3 scripts/verify-local-optimization.py benchmarks/published/local-optimization-20261021
           python3 scripts/verify-local-followup.py benchmarks/published/local-followup-20261022
+          python3 scripts/verify-cloud-evidence.py benchmarks/published/cloud-20261023
       - name: clang-format check
         run: |
           files=$(git ls-files '*.cc' '*.h')
