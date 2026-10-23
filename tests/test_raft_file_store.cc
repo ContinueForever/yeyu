@@ -98,6 +98,30 @@ TEST(RaftFileStore, InitializesAndRecoversHardStateAndBinaryCommands) {
   EXPECT_FALSE(recovered.failed());
 }
 
+TEST(RaftFileStore, FastChecksumMatchesIndependentBitwiseEncoderForBinaryImages) {
+  std::string binary;
+  for (int i = 0; i < 256; ++i) binary.push_back(static_cast<char>(i));
+  for (size_t size : {size_t{0}, size_t{1}, size_t{7}, size_t{255}, size_t{256}, size_t{4097}}) {
+    SCOPED_TRACE(size);
+    TemporaryDirectory directory;
+    FileStore store(directory.path());
+    ASSERT_TRUE(store.Save({1, 1}).ok());
+    std::string payload;
+    while (payload.size() < size) payload += binary;
+    payload.resize(size);
+    ASSERT_TRUE(store.ReplaceFrom(1, {{1, 1, payload}}).ok());
+    const auto image = ReadFile(directory.file());
+    auto expected = image;
+    Rechecksum(&expected);
+    EXPECT_EQ(image, expected);
+    ASSERT_TRUE(store.SaveSnapshot({1, 1, payload}, {}).ok());
+    const auto snapshot = ReadFile(directory.file());
+    expected = snapshot;
+    Rechecksum(&expected);
+    EXPECT_EQ(snapshot, expected);
+  }
+}
+
 TEST(RaftFileStore, ElectionCannotVoteTwiceAfterRealReopen) {
   TemporaryDirectory directory;
   {

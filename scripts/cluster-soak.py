@@ -10,6 +10,7 @@ import json
 import math
 from pathlib import Path
 import random
+import signal
 import sys
 import threading
 import tempfile
@@ -27,12 +28,13 @@ def save(path, value):
     baseline.save(path, value)
 
 
-def epoch(cluster, number, seed, output):
+def epoch(cluster, number, seed, output, durable_ring):
     history, attempts, faults = [], [], []
     lock = threading.Lock()
     barrier = threading.Barrier(4)
     leader = cluster.leader()
-    fault_kind = ("leader-kill", "follower-partition", "directed-partition", "link-delay", "all-restart")[number % 5]
+    fault_kind = ("leader-kill", "follower-partition", "directed-partition", "link-delay",
+                  "all-restart", "leader-pause")[number % 6]
     started = time.monotonic()
 
     def client(client_id):
@@ -72,9 +74,17 @@ def epoch(cluster, number, seed, output):
         barrier.wait(timeout=5)
         time.sleep(0.04)
         chosen = (leader + 1 + seed % 2) % 3
-        faults.append(dict(kind=fault_kind, node=(leader if fault_kind == "leader-kill" else chosen) + 1,
+        faults.append(dict(kind=fault_kind, node=(leader if fault_kind in ("leader-kill", "leader-pause") else chosen) + 1,
                            started_ns=time.monotonic_ns()))
-        if fault_kind == "leader-kill":
+        if fault_kind == "leader-pause":
+            process = cluster.processes[leader]
+            process.send_signal(signal.SIGSTOP)
+            try:
+                time.sleep(1.4)
+            finally:
+                if process.poll() is None:
+                    process.send_signal(signal.SIGCONT)
+        elif fault_kind == "leader-kill":
             cluster.kill(leader)
             time.sleep(0.35)
             cluster.start(leader)
@@ -108,14 +118,44 @@ def epoch(cluster, number, seed, output):
     if len(history) < 12 or not check(history):
         raise AssertionError(f"history failed: epoch={number} seed={seed}")
     cluster.eventually_value(b"soak-durable", b"acknowledged-before-faults", timeout=15)
+    # Keep dependencies across epochs as well as the bounded per-key model.
+    # These sequential, acknowledged ring writes are outside the concurrent
+    # model count; every subsequent fault must preserve their latest values.
+    verified = []
+    for key, value in sorted(durable_ring.items()):
+        begin = time.monotonic_ns()
+        target = cluster.eventually_value(key, value, timeout=15)
+        verified.append(dict(key=key.hex(), value=value.hex(), code=0, node=target + 1,
+                             start=begin, end=time.monotonic_ns()))
+    key, value = f"soak-ring-{number % 32}".encode(), f"acknowledged-epoch-{number}".encode()
+    deadline = time.monotonic() + 15
+    while True:
+        try:
+            begin = time.monotonic_ns()
+            leader = cluster.leader(timeout=4)
+            if cluster.call(leader, "put", key, value)["code"] == 0:
+                acknowledged = dict(key=key.hex(), value=value.hex(), code=0, node=leader + 1,
+                                    start=begin, end=time.monotonic_ns())
+                break
+        except (OSError, EOFError):
+            pass
+        if time.monotonic() >= deadline:
+            raise AssertionError("durable ring update was not acknowledged")
+        time.sleep(.05)
+    durable_ring[key] = value
+    trace["durability"] = dict(verified_before_update=verified,
+                               acknowledged_update=acknowledged)
+    save(output / f"epoch-{number:05d}.json", trace)
     states = [cluster.status(i) for i in range(3)]
+    successful_after_heal = [op["end"] for op in attempts if op["code"] in (0, 1) and
+                             op["end"] >= faults[-1]["healed_ns"]]
     result = dict(epoch=number, seed=seed, fault=fault_kind, checked_operations=len(history),
                   attempted_operations=len(attempts), unknown_writes=sum(op.get("optional", False) for op in history),
+                  durable_ring_values_checked=len(verified),
                   elapsed_seconds=time.monotonic() - started,
                   observed_first_success_after_heal_seconds=(
-                      min([op["end"] for op in attempts if op["code"] in (0, 1) and
-                           op["end"] >= faults[-1]["healed_ns"]] or [time.monotonic_ns()]) -
-                      faults[-1]["healed_ns"]) / 1e9,
+                      (min(successful_after_heal) - faults[-1]["healed_ns"]) / 1e9
+                      if successful_after_heal else None),
                   epoch_completion_after_heal_seconds=(time.monotonic_ns() - faults[-1]["healed_ns"]) / 1e9,
                   states=states, checked=True)
     save(output / f"epoch-{number:05d}-result.json", result)
@@ -147,9 +187,11 @@ def main():
     runtime.mkdir()
     manifest = dict(command=sys.argv, environment=baseline.environment(harness.NODE),
                     source_manifest_sha256=baseline.source_snapshot(output), status="running",
+                    requested_duration_seconds=args.duration_seconds, requested_epochs=args.epochs,
+                    durable_ring_capacity=32,
                     note="Three loopback processes on one host. Fresh per-epoch keys; exhaustive per-key oracle <=9 operations/key.")
     save(output / "manifest.json", manifest)
-    results = []
+    results, durable_ring = [], {}
     cluster = harness.Cluster(runtime, extra_args=["--snapshot-entries", "16"])
     started = time.monotonic()
     try:
@@ -158,7 +200,7 @@ def main():
             raise AssertionError("initial durable write failed")
         while (time.monotonic() - started < args.duration_seconds if args.duration_seconds else len(results) < args.epochs):
             number = len(results)
-            result = epoch(cluster, number, seeds[number % len(seeds)], output)
+            result = epoch(cluster, number, seeds[number % len(seeds)], output, durable_ring)
             results.append(result)
             save(output / "progress.json", dict(epochs=len(results), elapsed_seconds=time.monotonic() - started,
                  checked_operations=sum(r["checked_operations"] for r in results), latest=result))
@@ -169,6 +211,11 @@ def main():
         for node in range(3):
             cluster.start(node)
         cluster.eventually_value(b"soak-durable", b"acknowledged-before-faults", timeout=15)
+        for key, value in sorted(durable_ring.items()):
+            cluster.eventually_value(key, value, timeout=15)
+        manifest["final_recovery"] = dict(all_node_sigkill=True, anchor_checked=True,
+            durable_ring_values=[dict(key=key.hex(), value=value.hex())
+                                 for key, value in sorted(durable_ring.items())])
         if baseline.digest(harness.NODE) != manifest["environment"]["server_sha256"]:
             raise AssertionError("binary changed during fault campaign")
         manifest["status"] = "complete"

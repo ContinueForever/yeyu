@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <limits>
+#include <iterator>
 #include <stdexcept>
 #include <utility>
 
@@ -112,13 +113,15 @@ Result<AppendReply> RaftLog::HandleAppend(const AppendRequest& request) {
     if (first_index <= commit_index_)
       return Status::Corruption("AppendEntries would overwrite a committed entry");
     std::vector<LogEntry> suffix(request.entries.begin() + first_new, request.entries.end());
-    std::vector<LogEntry> replacement(
-        entries_.begin(),
-        entries_.begin() + static_cast<size_t>(first_index - snapshot_.index - 1));
-    replacement.insert(replacement.end(), suffix.begin(), suffix.end());
+    const auto prefix = static_cast<size_t>(first_index - snapshot_.index - 1);
+    // Keep the already persisted prefix in place. Prepare allocations before
+    // saving; publishing a small append must not copy the entire retained log.
+    entries_.reserve(prefix + suffix.size());
     Status status = PersistSuffix(first_index, suffix);
     if (!status.ok()) return status;
-    entries_.swap(replacement);
+    entries_.resize(prefix);
+    entries_.insert(entries_.end(), std::make_move_iterator(suffix.begin()),
+                    std::make_move_iterator(suffix.end()));
   }
 
   const uint64_t last_in_request =

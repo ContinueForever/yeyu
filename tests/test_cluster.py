@@ -94,16 +94,32 @@ class Cluster:
         self.extra_args = extra_args or []
         self.node_args = node_args or {}
         self.node_env = node_env or {}
-        self.ports = []
-        while len(self.ports) < 3:
-            port = free_port()
-            if port not in self.ports:
-                self.ports.append(port)
         self.blocked = set()
         self.delays = {}
         self.stop = threading.Event()
-        self.proxies = {(i, j): Proxy(i, j, self.ports[j], self.blocked, self.stop, self.delays)
-                        for i in range(3) for j in range(3) if i != j}
+        self.proxies = {}
+        reservations = []
+        try:
+            # Keep node ports bound until all proxy listeners have bound. A
+            # released ephemeral port could otherwise be selected by a proxy,
+            # yielding duplicate member endpoints or an occupied node port.
+            for _ in range(3):
+                reservation = socket.socket()
+                reservations.append(reservation)
+                reservation.bind(("127.0.0.1", 0))
+            self.ports = [reservation.getsockname()[1] for reservation in reservations]
+            for i in range(3):
+                for j in range(3):
+                    if i != j:
+                        self.proxies[i, j] = Proxy(i, j, self.ports[j], self.blocked, self.stop, self.delays)
+        except BaseException:
+            self.stop.set()
+            for proxy in self.proxies.values():
+                proxy.close()
+            raise
+        finally:
+            for reservation in reservations:
+                reservation.close()
         self.processes = [None] * 3
         for i in range(3):
             self.start(i)

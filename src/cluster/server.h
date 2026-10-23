@@ -26,6 +26,10 @@ struct Options {
   size_t max_state_bytes = 64 * 1024 * 1024;
   size_t event_queue_capacity = 4096;
   size_t pending_capacity = 1024;
+  bool journal = true;
+  bool read_index = true;
+  bool adaptive_snapshots = true;
+  size_t journal_checkpoint_bytes = 4 * 1024 * 1024;
 };
 
 class Server {

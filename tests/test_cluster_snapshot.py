@@ -38,6 +38,47 @@ def evidence(name, value):
 
 
 class SnapshotTests(unittest.TestCase):
+    def test_adaptive_cadence_keeps_byte_trigger_and_recovers_cold_and_hot_values(self):
+        for policy in ("fixed", "adaptive"):
+            with self.subTest(policy=policy), tempfile.TemporaryDirectory(prefix="yewukv-snapshot-policy-") as directory:
+                cluster = harness.Cluster(directory, extra_args=["--snapshot-entries", "8",
+                    "--snapshot-bytes", "65536", "--snapshot-policy", policy])
+                try:
+                    leader = cluster.leader()
+                    cold = b"c" * 8192
+                    for i in range(32):
+                        self.assertEqual(cluster.call(leader, "put", f"cold-{i}".encode(), cold)["code"], 0)
+                    wait_for(cluster, lambda: all(cluster.status(i)["applied_index"] ==
+                             cluster.status(leader)["last_index"] for i in range(3)))
+                    before = cluster.status(leader)
+                    for i in range(24):
+                        self.assertEqual(cluster.call(leader, "put", b"hot", b"small")["code"], 0)
+                    middle = cluster.status(leader)
+                    self.assertEqual(middle["snapshot_policy"], policy)
+                    if policy == "adaptive":
+                        self.assertEqual(middle["snapshots_saved"], before["snapshots_saved"])
+                    else:
+                        self.assertGreater(middle["snapshots_saved"], before["snapshots_saved"])
+                    # The byte trigger still compacts even while entry cadence
+                    # is amortized against the larger live image.
+                    for i in range(96):
+                        value = str(i).encode().ljust(1024, b"h")
+                        self.assertEqual(cluster.call(leader, "put", b"hot", value)["code"], 0)
+                    after = cluster.status(leader)
+                    self.assertGreater(after["snapshot_index"], middle["snapshot_index"])
+                    self.assertLess(after["retained_log_bytes"], 65536)
+                    for i in range(3):
+                        cluster.kill(i)
+                    for i in range(3):
+                        cluster.start(i)
+                    leader = cluster.eventually_value(b"hot", value)
+                    for i in range(32):
+                        self.assertEqual(cluster.call(leader, "get", f"cold-{i}".encode())["value"], cold)
+                    evidence(f"snapshot-policy-{policy}", dict(before=before, middle=middle,
+                             after=after, checked_cold_keys=32, all_node_sigkill=True, checked=True))
+                finally:
+                    cluster.close()
+
     def test_cumulative_payload_exceeds_old_limit_then_all_nodes_restart(self):
         with tempfile.TemporaryDirectory(prefix="yewukv-snapshot-capacity-") as directory:
             cluster = harness.Cluster(directory)
@@ -139,7 +180,7 @@ class ResourceTests(unittest.TestCase):
 
     def test_enospc_and_sync_error_stop_leader_without_false_success(self):
         self.assertTrue(FAULT_LIBRARY and FAULT_LIBRARY.exists())
-        for mode in ("write", "sync"):
+        for mode in ("write", "sync", "torn-write"):
             with self.subTest(mode=mode), tempfile.TemporaryDirectory(prefix="yewukv-io-fault-") as directory:
                 arm = [Path(directory) / f"arm-{i}" for i in range(3)]
                 preload = str(FAULT_LIBRARY)
@@ -165,7 +206,45 @@ class ResourceTests(unittest.TestCase):
                     wait_for(cluster, lambda: cluster.status(leader)["applied_index"] >= 2)
                     evidence(f"resource-io-{mode}", dict(failed_leader=leader + 1,
                              injected_errno="ENOSPC" if mode == "write" else "EIO",
+                             partial_record_written=(mode == "torn-write"),
                              acknowledged_value_recovered=True, checked=True))
+                finally:
+                    cluster.close()
+
+    def test_short_writes_and_slow_follower_sync_preserve_acknowledged_data(self):
+        self.assertTrue(FAULT_LIBRARY and FAULT_LIBRARY.exists())
+        for mode in ("short-write", "slow-sync"):
+            with self.subTest(mode=mode), tempfile.TemporaryDirectory(prefix="yewukv-io-delay-") as directory:
+                arm = [Path(directory) / f"arm-{i}" for i in range(3)]
+                preload = str(FAULT_LIBRARY)
+                if ASAN_RUNTIME:
+                    preload = f"{ASAN_RUNTIME}:{preload}"
+                environments = {i: {"LD_PRELOAD": preload, "YEWUKV_TEST_IO_FAULT": str(arm[i]),
+                                     "YEWUKV_TEST_IO_MODE": mode} for i in range(3)}
+                cluster = harness.Cluster(directory, node_env=environments)
+                acknowledged = []
+                try:
+                    leader = cluster.leader()
+                    target = leader if mode == "short-write" else (leader + 1) % 3
+                    self.assertEqual(cluster.call(leader, "put", b"anchor", b"safe")["code"], 0)
+                    arm[target].touch()
+                    for i in range(24):
+                        key, value = f"io-{i}".encode(), bytes([i]) * 1024
+                        self.assertEqual(cluster.call(leader, "put", key, value)["code"], 0)
+                        acknowledged.append((key, value))
+                    arm[target].unlink()
+                    wait_for(cluster, lambda: cluster.status(target)["applied_index"] >=
+                             cluster.status(leader)["commit_index"])
+                    for i in range(3):
+                        cluster.kill(i)
+                    for i in range(3):
+                        cluster.start(i)
+                    leader = cluster.eventually_value(b"anchor", b"safe")
+                    for key, value in acknowledged:
+                        self.assertEqual(cluster.call(leader, "get", key)["value"], value)
+                    evidence(f"resource-io-{mode}", dict(acknowledged_puts=len(acknowledged),
+                             injected_node=target + 1, acknowledged_values_recovered=True,
+                             checked=True))
                 finally:
                     cluster.close()
 

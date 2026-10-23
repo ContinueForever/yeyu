@@ -25,6 +25,7 @@ core.*
 data/
 cluster-runtime/
 raft.state*
+raft.wal.*
 cluster.identity
 LOCK
 *.wal

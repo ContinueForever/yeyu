@@ -39,7 +39,10 @@ jobs:
           if-no-files-found: ignore
       - name: Verify published experiment evidence
         if: matrix.sanitizers == 'OFF'
-        run: python3 scripts/verify-evidence.py benchmarks/published/local-20261021
+        run: |
+          python3 scripts/verify-evidence.py benchmarks/published/local-20261021
+          python3 scripts/verify-local-optimization.py benchmarks/published/local-optimization-20261021
+          python3 scripts/verify-local-followup.py benchmarks/published/local-followup-20261022
       - name: clang-format check
         run: |
           files=$(git ls-files '*.cc' '*.h')

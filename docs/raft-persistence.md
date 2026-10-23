@@ -1,6 +1,6 @@
 # Raft 磁盘持久化（2026-10-20）
 
-`raft::FileStore` 为 `Election`、`RaftLog` 提供真实磁盘存储，并通过 `raft::Node` 接入三节点运行时。下文保留 v1 磁盘基线说明；v2 快照及日志回收见[快照契约](snapshots.md)。当前服务的多数派提交、日志读屏障及故障验证见[集群说明](cluster.md)。
+`raft::FileStore` 为 `Election`、`RaftLog` 提供真实磁盘存储，并通过 `raft::Node` 接入三节点运行时。当前运行时默认使用[增量 journal 与 v3 检查点](journal.md)，读路径默认使用[ReadIndex](read-index.md)。下文保留 image 模式的 v1 磁盘基线说明；v2 快照及日志回收见[快照契约](snapshots.md)。当前服务的多数派提交及故障验证见[集群说明](cluster.md)。
 
 ## 数据及接口
 

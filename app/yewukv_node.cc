@@ -51,7 +51,21 @@ int main(int argc, char** argv) {
         options.event_queue_capacity = static_cast<size_t>(Number(value, 8192));
       else if (option == "--pending-limit")
         options.pending_capacity = static_cast<size_t>(Number(value, 8192));
-      else if (option == "--members") {
+      else if (option == "--journal-checkpoint-bytes")
+        options.journal_checkpoint_bytes = static_cast<size_t>(Number(value, 64 * 1024 * 1024));
+      else if (option == "--snapshot-policy") {
+        if (value != "adaptive" && value != "fixed")
+          throw std::invalid_argument("--snapshot-policy must be adaptive or fixed");
+        options.adaptive_snapshots = value == "adaptive";
+      } else if (option == "--raft-store") {
+        if (value != "journal" && value != "image")
+          throw std::invalid_argument("--raft-store must be journal or image");
+        options.journal = value == "journal";
+      } else if (option == "--read-mode") {
+        if (value != "read-index" && value != "log")
+          throw std::invalid_argument("--read-mode must be read-index or log");
+        options.read_index = value == "read-index";
+      } else if (option == "--members") {
         std::stringstream input(value);
         std::string member;
         while (std::getline(input, member, ',')) {

@@ -1,7 +1,55 @@
 # Benchmarks and experiment evidence
 
+The [2026-10-22 follow-up report](../docs/local-followup-20261022.md) adds frozen-binary
+read scheduling and same-current-binary fixed/adaptive checkpoint controls,
+including all-node crash/recovery checks at 1/8/15 MiB of cold values.
+
+The [2026-10-21 journal / ReadIndex optimization report](../docs/local-optimization-20261021.md)
+compares three modes of the same binary. Reproduce it without running another load concurrently:
+
+Use its archived source for the historical implementation. Running the tool
+against a current build measures the current code and defaults, including the
+adaptive snapshot policy; it does not reproduce the old implementation exactly.
+
+```bash
+python3 benchmarks/local_optimization.py --node build/bin/yewukv-node \
+  --output benchmarks/results/my-local-optimization --duration-seconds 10 --repeats 3
+python3 benchmarks/local_optimization.py --verify benchmarks/results/my-local-optimization
+python3 scripts/verify-local-optimization.py benchmarks/published/local-optimization-20261021
+```
+
+Modes are image+log reads, journal+log reads and journal+ReadIndex. The matrix
+interleaves four profiles and three repetitions, records raw latency/completion
+samples, CPU/RSS, and three-node persistence bytes plus encoding/CRC, write and
+sync/publication times. Every GET checks the expected value. Pure ReadIndex reads
+must produce zero persistent bytes and no log growth. Keep all runs, including
+failures. Mode comparisons use fresh directories; journal directories cannot be
+opened in image mode.
+
+The follow-up tool compares a frozen prior binary with the current binary,
+including a same-current-binary log-read control and a fixed/adaptive checkpoint
+control. Freeze both binaries before running; do not rebuild or run another load
+until the experiment finishes:
+
+```bash
+python3 benchmarks/local_followup.py --baseline /absolute/path/to/prior/yewukv-node \
+  --node build/bin/yewukv-node --suite reads --duration-seconds 15 --repeats 3 \
+  --output benchmarks/results/my-read-followup
+python3 benchmarks/local_followup.py --baseline /absolute/path/to/prior/yewukv-node \
+  --node build/bin/yewukv-node --suite snapshots --duration-seconds 15 --repeats 3 \
+  --output benchmarks/results/my-checkpoint-followup
+python3 benchmarks/local_followup.py --verify benchmarks/results/my-read-followup
+```
+
+The snapshot suite preloads 1/8/15 MiB of cold values, then updates small hot
+keys. Each run kills all three nodes and checks every final cold/hot value after
+restart. Samples retain operation kinds, P99.9 and maximum latency as well as
+P50/P95/P99. Prefill and recovery are outside the measurement window. A frozen
+baseline without new pause counters reports zero for missing counters; do not
+interpret those as zero baseline checkpoint cost.
+
 The [2026-10-21 acceptance report](../docs/local-acceptance-20261021.md)
-describes the current snapshot cluster. Its [published evidence](published/local-20261021/README.md)
+describes the earlier image/log snapshot cluster. Its [published evidence](published/local-20261021/README.md)
 includes raw latency samples, all 948 fault histories and SHA-256 checksums.
 
 M1 single-node RPC development baseline (run the server with `--protocol rpc`):

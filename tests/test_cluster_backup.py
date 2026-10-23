@@ -10,6 +10,25 @@ spec.loader.exec_module(backup)
 
 
 class BackupTests(unittest.TestCase):
+    def test_journal_checkpoint_requires_its_exact_generation(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            for i in (1, 2, 3):
+                node = root / f"node-{i}"
+                node.mkdir()
+                image = bytearray(68)
+                image[:8] = b"YRFT\x00\x00\x00\x03"
+                image[56:64] = (7).to_bytes(8, "big")
+                (node / "raft.state").write_bytes(image)
+                (node / "cluster.identity").write_text(str(i))
+                (node / "raft.wal.6").write_bytes(b"old generation")
+            with self.assertRaises(ValueError):
+                backup.manifest(root)
+            for i in (1, 2, 3):
+                (root / f"node-{i}/raft.wal.7").write_bytes(b"")
+            backup.manifest(root)
+            backup.verify(root)
+
     def test_manifest_detects_damage_extra_files_missing_nodes_and_symlinks(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

@@ -17,10 +17,9 @@ struct DurableState {
   Snapshot snapshot;
 };
 
-// A correctness-first store for one Raft node, in a dedicated directory.
-// Each change replaces a checksummed image containing hard state, an optional
-// snapshot and retained log. OK follows fdatasync, rename and directory fsync.
-// This rewrites the full image; snapshot compaction bounds its retained log.
+// Durable state for one node. Image mode preserves the original implementation
+// for compatibility and controlled benchmarks. Journal mode appends synced
+// deltas and occasionally publishes an atomic, generation-bound checkpoint.
 class FileStore final : public HardStateStore, public LogStore {
  public:
   static constexpr size_t kMaxStateBytes = 64 * 1024 * 1024;
@@ -31,10 +30,15 @@ class FileStore final : public HardStateStore, public LogStore {
     kBeforeFileSync,
     kBeforeRename,
     kBeforeDirectorySync,
-    kAfterDirectorySync
+    kAfterDirectorySync,
+    kBeforeJournalWrite,
+    kBeforeJournalSync,
+    kAfterJournalSync
   };
   struct Options {
     size_t max_state_bytes = kMaxStateBytes;
+    bool journal = false;
+    size_t journal_checkpoint_bytes = 4 * 1024 * 1024;
     // Optional deterministic fault/crash injection. Runs under the store lock,
     // including initial creation. Do not reenter the store from this callback.
     // Throwing poisons this instance, even if rename has already succeeded.
@@ -46,6 +50,15 @@ class FileStore final : public HardStateStore, public LogStore {
     uint64_t persist_nanoseconds = 0;
     uint64_t snapshots = 0;
     uint64_t state_bytes = 0;
+    uint64_t checkpoint_saves = 0;
+    uint64_t journal_saves = 0;
+    uint64_t journal_bytes = 0;
+    uint64_t checkpoint_bytes = 0;
+    uint64_t encode_nanoseconds = 0;
+    uint64_t sync_nanoseconds = 0;
+    uint64_t write_nanoseconds = 0;
+    uint64_t file_syncs = 0;
+    uint64_t directory_syncs = 0;
   };
 
   explicit FileStore(std::string directory);
@@ -66,12 +79,19 @@ class FileStore final : public HardStateStore, public LogStore {
  private:
   void Recover();
   Status Persist(DurableState next);
+  Status Checkpoint(DurableState next);
+  Status AppendDelta(uint32_t kind, const std::string& payload);
+  void RecoverJournal();
+  void RemoveOldJournals();
   Status CheckUsable() const;
   void Close();
 
   Options options_;
   int directory_fd_ = -1;
   int lock_fd_ = -1;
+  int journal_fd_ = -1;
+  uint64_t generation_ = 0;
+  uint64_t journal_sequence_ = 0;
   DurableState state_;
   bool failed_ = false;
   Metrics metrics_;

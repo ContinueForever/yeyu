@@ -13,7 +13,7 @@
 
 ## 已实现的持久化基础
 
-`FileStore` 将 term/vote 和包含 index、term、二进制命令的日志存入一个带 CRC 的原子镜像，完成文件同步、原子替换及目录同步后才返回成功。重启恢复、真实进程 SIGKILL、持久化边界故障注入和损坏镜像检查已有测试。格式、接口示例和容量边界见[持久化说明](raft-persistence.md)。
+`FileStore` 默认将 term/vote 和带 index、term 的日志变更同步追加到 journal，按代次原子发布检查点；原 image 模式仍保留。只有相应持久化成功才返回成功，格式和原子性见[journal 契约](journal.md)。重启恢复、真实进程 SIGKILL、持久化边界故障注入和损坏镜像检查已有测试。格式、接口示例和容量边界见[持久化说明](raft-persistence.md)。
 
 当前 `WalEngine` 记录的是**已经应用**的 KV 变更，格式没有 Raft term/index，也不能表示完整但未提交的日志；不能将它直接当作 Raft 复制日志。
 
@@ -21,8 +21,8 @@
 
 选举、日志及磁盘存储由同一个节点状态机串行驱动。接收方先检查固定成员 ID、目标 ID、消息序号及任期，持久化新 term/vote 后才交给日志核心；发起投票或确认追加之前等待存储成功。Leader 使用 `nextIndex/matchIndex` 及关联请求序号处理回复，忽略旧回复；按条数和字节数切分复制批次。配置文件将磁盘目录绑定到固定 node ID 和成员地址，拒绝更换配置后复用数据。
 
-新 Leader 先持久化当前任期的 no-op。PUT/GET/DEL/PING 均追加日志，由多数派提交后按序应用；不使用本地缓存直接回答业务读。`status` 是本地诊断，不能作为一致性读接口。角色改变后先取消旧 Leader 的等待请求，再应用新提交日志，避免同一个索引被替换后错误回应旧请求。
+新 Leader 先持久化当前任期的 no-op。PUT/DEL/PING 追加日志，由多数派提交后按序应用。GET 默认使用[ReadIndex](read-index.md)，取得本轮多数派确认并等待应用位置；可选 log 模式保留旧路径。`status` 是本地诊断，不能作为一致性读接口。角色改变后先取消旧 Leader 的等待请求，再应用新提交日志，避免同一个索引被替换后错误回应旧请求。
 
-`FileStore` 将快照的 lastIncludedIndex/Term、KV 状态、hard state 与剩余日志原子保存。启动先恢复快照及其 applied/commit 下界；快照之后的日志由协议重新确认提交后回放，未提交尾部不会直接应用。无快照的 v1 镜像仍从空状态机恢复。详见[快照契约](snapshots.md)。
+`FileStore` 默认[增量追加 journal](journal.md)，在检查点将快照的 lastIncludedIndex/Term、KV 状态、hard state 与剩余日志原子保存。启动先恢复快照及其 applied/commit 下界；快照之后的日志由协议重新确认提交后回放，未提交尾部不会直接应用。无快照的 v1 镜像仍从空状态机恢复。详见[快照契约](snapshots.md)。
 
 真实进程测试已覆盖 Leader SIGKILL、客户端可达但 peer 链路完全隔离、旧 Leader 回归、全节点重启、日志追赶及并发历史校验。当前证据为有界测试，不是形式化证明；跨机器、真实断电及成员变更尚未验收。本机快照、资源失败和持续故障验收记录见[本轮验收报告](local-acceptance-20261021.md)。

@@ -145,5 +145,5 @@ repository tells a real engineering story rather than just containing code.
 ## Open questions (resolve when implementing)
 
 - WAL fsync policy vs group commit batching (measure P99 on cloud SSDs).
-- ReadIndex vs LeaseRead: start with ReadIndex (no clock dependence).
+- The cluster now defaults to quorum-based ReadIndex without clock leases; see [the read contract](read-index.md).
 - Fixed shard table first; Region split + Epoch only after failover is solid.

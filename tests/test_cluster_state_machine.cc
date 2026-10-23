@@ -1,11 +1,30 @@
 #include <gtest/gtest.h>
 
 #include "cluster/state_machine.h"
+#include "cluster/snapshot_policy.h"
 
 namespace {
 using yewukv::cluster::StateMachine;
 using yewukv::rpc::KvRequest;
 using yewukv::rpc::KvResponse;
+
+TEST(SnapshotPolicy, LargeLiveStateAmortizesEntryTriggeredImages) {
+  using yewukv::cluster::ShouldSnapshot;
+  EXPECT_FALSE(ShouldSnapshot(128, 0, 20000, 15 * 1024 * 1024, 128, 1024 * 1024, true));
+  EXPECT_TRUE(ShouldSnapshot(128, 0, 20000, 15 * 1024 * 1024, 128, 1024 * 1024, false));
+  EXPECT_FALSE(ShouldSnapshot(128, 0, 65535, 256 * 1024, 128, 1024 * 1024, true));
+  EXPECT_TRUE(ShouldSnapshot(128, 0, 65536, 256 * 1024, 128, 1024 * 1024, true));
+  EXPECT_TRUE(ShouldSnapshot(128, 0, 20000, 8192, 128, 1024 * 1024, true));
+}
+
+TEST(SnapshotPolicy, ByteTriggerAndApplicationBoundaryRemainHardConditions) {
+  using yewukv::cluster::ShouldSnapshot;
+  for (bool adaptive : {false, true}) {
+    EXPECT_TRUE(ShouldSnapshot(11, 10, 1024 * 1024, 15 * 1024 * 1024, 128, 1024 * 1024, adaptive));
+    EXPECT_FALSE(ShouldSnapshot(10, 10, 1024 * 1024, 15 * 1024 * 1024, 128, 1024 * 1024, adaptive));
+    EXPECT_FALSE(ShouldSnapshot(11, 10, 100, 8192, 128, 1024 * 1024, adaptive));
+  }
+}
 
 KvRequest Put(const std::string& key, const std::string& value) {
   KvRequest request;

@@ -8,6 +8,17 @@ from pathlib import Path, PurePosixPath
 MANIFEST = "backup-manifest.json"
 
 
+def check_journals(root):
+    for node in (1, 2, 3):
+        image = (root / f"node-{node}/raft.state").read_bytes()
+        if image[:8] == b"YRFT\x00\x00\x00\x03":
+            if len(image) < 68:
+                raise ValueError("truncated journal checkpoint")
+            generation = int.from_bytes(image[56:64], "big")
+            if not generation or not (root / f"node-{node}/raft.wal.{generation}").is_file():
+                raise ValueError("backup is missing the checkpoint-bound journal")
+
+
 def hashes(root):
     result = {}
     for path in sorted(root.rglob("*")):
@@ -23,6 +34,7 @@ def manifest(root):
         for name in ("raft.state", "cluster.identity"):
             if not (root / f"node-{node}" / name).is_file():
                 raise ValueError(f"backup is missing node-{node}/{name}")
+    check_journals(root)
     (root / MANIFEST).write_text(json.dumps({"schema": 1, "files": hashes(root)}, indent=2) + "\n")
 
 
@@ -40,6 +52,7 @@ def verify(root):
         for name in ("raft.state", "cluster.identity"):
             if f"node-{node}/{name}" not in data["files"]:
                 raise ValueError("incomplete cluster backup")
+    check_journals(root)
 
 
 def verify_local(root):

@@ -1,11 +1,13 @@
 #include "cluster/server.h"
 
 #include "cluster/state_machine.h"
+#include "cluster/snapshot_policy.h"
 
 #include <fcntl.h>
 #include <unistd.h>
 
 #include <atomic>
+#include <algorithm>
 #include <cerrno>
 #include <cstdio>
 #include <chrono>
@@ -60,6 +62,7 @@ raft::PeerMessage EncodeMessage(const Message& message) {
       append->set_prev_log_index(message.append.prev_index);
       append->set_prev_log_term(message.append.prev_term);
       append->set_leader_commit(message.append.leader_commit);
+      append->set_read_context(message.read_context);
       for (const auto& entry : message.append.entries) {
         auto* encoded = append->add_entries();
         encoded->set_index(entry.index);
@@ -74,6 +77,7 @@ raft::PeerMessage EncodeMessage(const Message& message) {
       wire.mutable_append_reply()->set_conflict_index(message.conflict_index);
       wire.mutable_append_reply()->set_conflict_term(message.conflict_term);
       wire.mutable_append_reply()->set_match_index(message.match_index);
+      wire.mutable_append_reply()->set_read_context(message.read_context);
       break;
     case MessageKind::kSnapshot: {
       auto* snapshot = wire.mutable_snapshot();
@@ -125,6 +129,7 @@ std::optional<Message> DecodeMessage(const raft::PeerMessage& wire) {
       message.append.prev_index = wire.append().prev_log_index();
       message.append.prev_term = wire.append().prev_log_term();
       message.append.leader_commit = wire.append().leader_commit();
+      message.read_context = wire.append().read_context();
       if (wire.append().entries_size() > static_cast<int>(raft::Node::kMaxAppendEntries))
         return std::nullopt;
       for (const auto& entry : wire.append().entries()) {
@@ -139,6 +144,7 @@ std::optional<Message> DecodeMessage(const raft::PeerMessage& wire) {
       message.match_index = wire.append_reply().match_index();
       message.conflict_index = wire.append_reply().conflict_index();
       message.conflict_term = wire.append_reply().conflict_term();
+      message.read_context = wire.append_reply().read_context();
       break;
     case raft::PeerMessage::kSnapshot:
       if (wire.snapshot().leader_id() != wire.from()) return std::nullopt;
@@ -196,6 +202,8 @@ raft::Node::Config NodeConfig(const Options& options) {
 raft::FileStore::Options StoreConfig(const Options& options) {
   raft::FileStore::Options config;
   config.max_state_bytes = options.max_state_bytes;
+  config.journal = options.journal;
+  config.journal_checkpoint_bytes = options.journal_checkpoint_bytes;
   return config;
 }
 
@@ -257,6 +265,14 @@ struct Server::Impl {
     std::optional<Message> queued;
     std::thread thread;
   };
+  struct Read {
+    Pending pending;
+    KvRequest request;
+    uint64_t minimum_index;
+    uint64_t term;
+    uint64_t context = 0;
+    std::optional<uint64_t> index;
+  };
 
   Options options;
   raft::FileStore store;
@@ -265,6 +281,7 @@ struct Server::Impl {
   StateMachine state_machine;
   std::map<uint64_t, Pending> pending;
   std::vector<std::pair<Pending, std::string>> staged;
+  std::deque<Read> reads;
   uint64_t applied_index = 0;
   std::vector<std::unique_ptr<Peer>> peers;
   std::mutex mutex;
@@ -279,6 +296,14 @@ struct Server::Impl {
   uint64_t installed_snapshots = 0;
   uint64_t completed_commands = 0;
   uint64_t quorum_timeouts = 0;
+  uint64_t read_index_completed = 0;
+  uint64_t read_quorum_rounds = 0;
+  uint64_t read_overlapped_requests = 0;
+  uint64_t append_requests = 0;
+  uint64_t read_append_requests = 0;
+  uint64_t read_append_with_entries = 0;
+  uint64_t snapshot_pause_ns = 0;
+  uint64_t snapshot_pause_max_ns = 0;
 
   explicit Impl(Options selected)
       : options(std::move(selected)),
@@ -420,7 +445,27 @@ struct Server::Impl {
            << ",\"snapshots_installed\":" << installed_snapshots
            << ",\"busy_rejections\":" << busy_rejections.load()
            << ",\"completed_commands\":" << completed_commands
-           << ",\"quorum_timeouts\":" << quorum_timeouts << '}';
+           << ",\"quorum_timeouts\":" << quorum_timeouts << ",\"read_pending\":" << reads.size()
+           << ",\"read_index_completed\":" << read_index_completed
+           << ",\"read_quorum_rounds\":" << read_quorum_rounds
+           << ",\"read_overlapped_requests\":" << read_overlapped_requests
+           << ",\"append_requests\":" << append_requests
+           << ",\"read_append_requests\":" << read_append_requests
+           << ",\"read_append_with_entries\":" << read_append_with_entries
+           << ",\"snapshot_pause_ns\":" << snapshot_pause_ns
+           << ",\"snapshot_pause_max_ns\":" << snapshot_pause_max_ns << ",\"snapshot_policy\":\""
+           << (options.adaptive_snapshots ? "adaptive" : "fixed") << '"' << ",\"storage_mode\":\""
+           << (options.journal ? "journal" : "image") << '"' << ",\"read_mode\":\""
+           << (options.read_index ? "read-index" : "log") << '"'
+           << ",\"disk_checkpoint_saves\":" << metrics.checkpoint_saves
+           << ",\"disk_journal_saves\":" << metrics.journal_saves
+           << ",\"journal_bytes\":" << metrics.journal_bytes
+           << ",\"checkpoint_bytes\":" << metrics.checkpoint_bytes
+           << ",\"disk_encode_ns\":" << metrics.encode_nanoseconds
+           << ",\"disk_sync_ns\":" << metrics.sync_nanoseconds
+           << ",\"disk_write_ns\":" << metrics.write_nanoseconds
+           << ",\"disk_file_syncs\":" << metrics.file_syncs
+           << ",\"disk_directory_syncs\":" << metrics.directory_syncs << '}';
       response.set_value(json.str());
     } else if (!ValidCommand(request)) {
       response.set_code(KvResponse::INVALID_ARGUMENT);
@@ -428,10 +473,16 @@ struct Server::Impl {
     } else if (!node.IsLeader()) {
       response.set_code(KvResponse::NOT_LEADER);
       response.set_error("not leader; discover leader before submitting");
-    } else if (pending.size() + staged.size() >= options.pending_capacity) {
+    } else if (pending.size() + staged.size() + reads.size() >= options.pending_capacity) {
       ++busy_rejections;
       response.set_code(KvResponse::BUSY);
       response.set_error("too many pending proposals");
+    } else if (options.read_index && request.has_get()) {
+      reads.push_back(
+          Read{Pending{weak, ordered, request.request_id(),
+                       Clock::now() + std::chrono::milliseconds(options.request_timeout_ms)},
+               request, node.LastIndex() + staged.size(), node.term(), 0, std::nullopt});
+      return;
     } else {
       auto command = request;
       command.set_state_machine_version(1);
@@ -484,12 +535,21 @@ struct Server::Impl {
     }
     Apply();
     if (state_machine.encoded_bytes() <= raft::FileStore::kMaxSnapshotBytes &&
-        applied_index > node.snapshot().index &&
-        (applied_index - node.snapshot().index >= options.snapshot_entries ||
-         node.RetainedBytes() >= options.snapshot_bytes)) {
+        ShouldSnapshot(applied_index, node.snapshot().index, node.RetainedBytes(),
+                       state_machine.encoded_bytes(), options.snapshot_entries,
+                       options.snapshot_bytes, options.adaptive_snapshots)) {
+      const auto started = Clock::now();
       const auto status = node.Compact(applied_index, state_machine.Serialize());
       if (!status.ok()) throw std::runtime_error(status.ToString());
+      const auto elapsed = static_cast<uint64_t>(
+          std::chrono::duration_cast<std::chrono::nanoseconds>(Clock::now() - started).count());
+      snapshot_pause_ns += elapsed;
+      snapshot_pause_max_ns = std::max(snapshot_pause_max_ns, elapsed);
     }
+    // Start fresh quorum confirmation before proposing this batch's writes.
+    // Confirmation overlaps replication; completion still waits for BOTH the
+    // ReadIndex and the request's earlier-write application fence.
+    FinishReads();
     if (!staged.empty()) {
       if (!node.IsLeader()) {
         for (const auto& operation : staged) {
@@ -539,6 +599,13 @@ struct Server::Impl {
                 << " last=" << node.LastIndex() << " commit=" << node.CommitIndex() << '\n';
     }
     for (auto& message : node.TakeMessages()) {
+      if (message.kind == MessageKind::kAppend) {
+        ++append_requests;
+        if (message.read_context != 0) {
+          ++read_append_requests;
+          if (!message.append.entries.empty()) ++read_append_with_entries;
+        }
+      }
       for (auto& peer : peers) {
         if (peer->id != message.to) continue;
         std::lock_guard<std::mutex> lock(peer->mutex);
@@ -547,6 +614,56 @@ struct Server::Impl {
         break;
       }
     }
+  }
+
+  void FinishReads() {
+    for (const auto& state : node.TakeReadStates()) {
+      for (auto& read : reads)
+        if (read.context == state.context && read.term == state.term) read.index = state.index;
+    }
+    const auto now = Clock::now();
+    for (auto it = reads.begin(); it != reads.end();) {
+      const bool unavailable =
+          !node.IsLeader() || it->term != node.term() || now >= it->pending.deadline;
+      const bool ready_to_read =
+          it->index && applied_index >= *it->index && applied_index >= it->minimum_index;
+      if (!unavailable && !ready_to_read && !it->pending.connection.expired()) {
+        ++it;
+        continue;
+      }
+      auto response = Response(it->pending.request_id);
+      if (unavailable) {
+        ++quorum_timeouts;
+        response.set_code(KvResponse::UNAVAILABLE);
+        response.set_error("read quorum unavailable or leadership changed");
+      } else if (ready_to_read) {
+        state_machine.Apply(it->request, &response);
+        ++read_index_completed;
+      }
+      Respond(it->pending.connection, it->pending.ordered, std::move(response));
+      const auto context = it->context;
+      it = reads.erase(it);
+      if (context != 0 && std::none_of(reads.begin(), reads.end(), [context](const Read& read) {
+            return read.context == context;
+          }))
+        node.CancelRead(context);
+    }
+    if (!node.IsLeader() || reads.empty() ||
+        std::any_of(reads.begin(), reads.end(),
+                    [](const Read& read) { return read.context != 0 && !read.index; }))
+      return;
+    if (std::none_of(reads.begin(), reads.end(),
+                     [](const Read& read) { return read.context == 0; }))
+      return;
+    auto context = node.ReadIndex();
+    if (!context.ok()) return;  // Includes the initial current-term commit gate.
+    ++read_quorum_rounds;
+    // Only requests already received before this quorum round may share it.
+    for (auto& read : reads)
+      if (read.context == 0) {
+        read.context = context.value();
+        if (read.minimum_index > applied_index) ++read_overlapped_requests;
+      }
   }
 
   void Work() {

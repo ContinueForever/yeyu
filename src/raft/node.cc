@@ -60,6 +60,8 @@ Status Node::Campaign() {
   const auto status = election_.Campaign(log_.LastIndex(), log_.LastTerm(), &votes);
   if (!status.ok()) return status;
   leader_id_ = 0;
+  read_.reset();
+  read_states_.clear();
   ResetElection();
   for (const auto& vote : votes) {
     Message message;
@@ -112,8 +114,14 @@ void Node::BecomeLeader() {
 
 void Node::SendAppend(uint64_t peer) {
   if (!IsLeader()) return;
+  progress_.at(peer).send_pending = true;
+}
+
+void Node::FlushAppend(uint64_t peer) {
+  if (!IsLeader()) return;
   auto& progress = progress_.at(peer);
-  if (progress.inflight) return;
+  if (!progress.send_pending || progress.inflight) return;
+  progress.send_pending = false;
   Message message;
   message.kind = MessageKind::kAppend;
   message.from = id();
@@ -146,6 +154,8 @@ void Node::SendAppend(uint64_t peer) {
   message.append.prev_index = progress.next - 1;
   message.append.prev_term = log_.TermAt(progress.next - 1);
   message.append.leader_commit = log_.CommitIndex();
+  if (read_ && read_->term == term()) message.read_context = read_->context;
+  progress.read_context = message.read_context;
   size_t bytes = 0;
   for (size_t i = static_cast<size_t>(progress.next - log_.snapshot().index - 1);
        i < log_.entries().size(); ++i) {
@@ -230,6 +240,7 @@ std::optional<Message> Node::Receive(const Message& message) {
       return std::nullopt;
     }
     reply.term = term();
+    reply.read_context = message.read_context;
     reply.success = result.value().success;
     reply.conflict_index = result.value().conflict_index;
     reply.conflict_term = result.value().conflict_term;
@@ -279,13 +290,21 @@ std::optional<Message> Node::Receive(const Message& message) {
     return std::nullopt;
   }
   if (message.kind != MessageKind::kAppendReply || progress.sending_snapshot) return std::nullopt;
+  if (read_ && message.success && message.match_index == progress.sent_last &&
+      read_->term == term() && message.read_context == read_->context &&
+      message.read_context == progress.read_context) {
+    // Fixed three voters: this leader plus one distinct configured peer is a
+    // quorum. The reply has already passed term and in-flight sequence checks.
+    read_states_.push_back(*read_);
+    read_.reset();
+  }
   progress.inflight = false;
   if (message.success) {
     if (message.match_index != progress.sent_last) return std::nullopt;
     progress.matched = std::max(progress.matched, progress.sent_last);
     progress.next = progress.matched + 1;
     AdvanceCommit();
-    if (progress.next <= log_.LastIndex()) SendAppend(message.from);
+    if (progress.next <= log_.LastIndex() || read_) SendAppend(message.from);
   } else {
     if (message.conflict_index > progress.next && message.conflict_index <= log_.LastIndex() + 1 &&
         message.conflict_index - 1 >= log_.snapshot().index &&
@@ -301,6 +320,36 @@ std::optional<Message> Node::Receive(const Message& message) {
     SendAppend(message.from);
   }
   return std::nullopt;
+}
+
+Result<uint64_t> Node::ReadIndex() {
+  if (!IsLeader()) return Status::Busy("read index requires the current leader");
+  if (read_ && read_->term != term()) read_.reset();
+  if (read_) return Status::Busy("a read quorum round is already in flight");
+  if (log_.TermAt(log_.CommitIndex()) != term())
+    return Status::Busy("leader has not committed an entry in its current term");
+  const auto context = NextSequence();
+  if (failed()) return Status::IOError("Raft sequence exhausted");
+  read_ = ReadState{context, log_.CommitIndex(), term()};
+  Broadcast();
+  return context;
+}
+
+std::vector<ReadState> Node::TakeReadStates() {
+  if (!IsLeader()) {
+    read_.reset();
+    read_states_.clear();
+    return {};
+  }
+  std::vector<ReadState> result;
+  for (const auto& state : read_states_)
+    if (state.term == term()) result.push_back(state);
+  read_states_.clear();
+  return result;
+}
+
+void Node::CancelRead(uint64_t context) {
+  if (read_ && read_->context == context) read_.reset();
 }
 
 Result<uint64_t> Node::Propose(std::string command) {
@@ -334,6 +383,10 @@ Result<std::vector<uint64_t>> Node::ProposeBatch(std::vector<std::string> comman
 }
 
 std::vector<Message> Node::TakeMessages() {
+  // Construct requests at the transport handoff, after the owner's current
+  // batch of proposals and read registrations. A fresh read context can share
+  // that batch's replication; already handed-off requests are never retagged.
+  for (const auto& [peer, progress] : progress_) FlushAppend(peer);
   return std::exchange(messages_, {});
 }
 std::vector<LogEntry> Node::TakeCommitted() {

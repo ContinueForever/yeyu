@@ -7,22 +7,28 @@ and the current-term-only leader majority rule. Persistence failure poisons
 either instance. Tests use both in-memory fault-injection stores and the
 disk-backed `FileStore`, which implements `HardStateStore` and `LogStore`.
 
-`FileStore` persists the current term, vote, snapshot and retained indexed/termed
-log suffix in one checksummed atomic image (v1 images remain readable). It syncs the file before rename and syncs
-the directory before success. Reopen validates the complete image; an I/O
-failure poisons the instance until reopened. See
+`FileStore` supports the original atomic image and runtime-default incremental
+journal with generation-bound checkpoints; v1/v2 images can be imported.
+See [the journal contract](../../docs/journal.md). Deltas are synced before
+acknowledgement; checkpoints sync the file, publish by rename and sync the
+directory. Reopen validates the checkpoint and journal; an I/O failure poisons
+the instance until reopened. See
 [`docs/raft-persistence.md`](../../docs/raft-persistence.md) for crash boundaries,
 limits and the difference from the KV WAL.
 
 `Node` integrates these cores for three fixed voters. Logical `Tick` calls drive
 randomized elections, heartbeats and RPC retries; correlated replies update
 per-peer next/match indexes. A new leader durably appends a current-term no-op.
-`ProposeBatch` shares one local durable replacement across up to 32 commands;
+`ProposeBatch` shares one local durable save across up to 32 commands;
 requests still complete only after majority commitment and ordered application.
+Append/snapshot sends are queued until `TakeMessages()` constructs and hands
+them to the transport. Drivers must drain messages after each owner batch;
+this lets fresh read contexts share replication without retagging in-flight RPCs.
 
 `cluster::Server` supplies real clocks, bounded work queues, peer transports and
-KV application. Every read goes through the replicated log; local `status` is
-diagnostic only. See [`docs/cluster.md`](../../docs/cluster.md) for the protocol,
+KV application. GET defaults to ReadIndex with a current-term commit gate,
+a fresh correlated quorum and an application fence; log reads remain selectable.
+See [the read contract](../../docs/read-index.md). Local `status` is diagnostic only. See [`docs/cluster.md`](../../docs/cluster.md) for the protocol,
 fault tests, deployment, and current single-host/capacity limitations.
 
 `RaftLog` indexes its retained suffix relative to the durable snapshot boundary.

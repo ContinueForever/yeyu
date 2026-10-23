@@ -39,12 +39,20 @@ struct Message {
   uint64_t conflict_index = 0;
   uint64_t conflict_term = 0;
   SnapshotChunk snapshot;
+  uint64_t read_context = 0;
+};
+
+struct ReadState {
+  uint64_t context = 0;
+  uint64_t index = 0;
+  uint64_t term = 0;
 };
 
 // A single-owner, deterministic fixed-three-voter node. Tick is a logical clock;
 // Receive returns at most one direct reply and queues any new outbound requests.
 // Empty commands are reserved for leadership no-ops. The caller applies ONLY
-// TakeCommitted(), in order, and never serves a local read without commitment.
+// TakeCommitted(), in order. ReadIndex requires a fresh correlated quorum and
+// a current-term committed entry; the caller additionally waits for application.
 class Node {
  public:
   static constexpr size_t kMaxCommandBytes = 16 * 1024;
@@ -73,6 +81,9 @@ class Node {
   std::vector<LogEntry> TakeCommitted();
   std::optional<Snapshot> TakeInstalledSnapshot();
   Status Compact(uint64_t applied_index, std::string data);
+  Result<uint64_t> ReadIndex();
+  std::vector<ReadState> TakeReadStates();
+  void CancelRead(uint64_t context);
 
   bool failed() const { return failed_ || election_.failed() || log_.failed(); }
   bool IsLeader() const { return !failed() && election_.role() == Role::kLeader; }
@@ -92,8 +103,10 @@ class Node {
     uint64_t matched = 0;
     uint64_t sequence = 0;
     uint64_t sent_last = 0;
+    uint64_t read_context = 0;
     uint32_t age = 0;
     bool inflight = false;
+    bool send_pending = false;
     bool sending_snapshot = false;
     std::shared_ptr<const Snapshot> snapshot;
     size_t snapshot_offset = 0;
@@ -102,6 +115,7 @@ class Node {
   void ResetElection();
   void BecomeLeader();
   void SendAppend(uint64_t peer);
+  void FlushAppend(uint64_t peer);
   void Broadcast();
   void AdvanceCommit();
   void Collect(std::vector<LogEntry> entries);
@@ -129,6 +143,8 @@ class Node {
   uint32_t election_timeout_ = 0;
   uint32_t heartbeat_elapsed_ = 0;
   bool failed_ = false;
+  std::optional<ReadState> read_;
+  std::vector<ReadState> read_states_;
 };
 
 }  // namespace yewukv::raft

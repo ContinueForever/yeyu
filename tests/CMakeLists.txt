@@ -8,6 +8,7 @@ add_executable(yewu_tests
   test_raft_election.cc
   test_raft_log.cc
   test_raft_file_store.cc
+  test_raft_journal.cc
   test_raft_node.cc
   test_raft_snapshot.cc
   test_cluster_state_machine.cc
@@ -84,6 +85,14 @@ set_tests_properties(cluster_resource_runtime PROPERTIES TIMEOUT 120)
 
 add_test(NAME cluster_fault_campaign_smoke
   COMMAND ${Python3_EXECUTABLE} ${PROJECT_SOURCE_DIR}/scripts/cluster-soak.py
-          ${snapshot_test_args} --epochs 5
+          ${snapshot_test_args} --epochs 6
           --evidence-root ${CMAKE_CURRENT_BINARY_DIR}/soak-evidence)
 set_tests_properties(cluster_fault_campaign_smoke PROPERTIES TIMEOUT 120)
+
+add_test(NAME cluster_read_index
+  COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test_read_index.py ${snapshot_test_args})
+set_tests_properties(cluster_read_index PROPERTIES TIMEOUT 90)
+
+add_test(NAME config_application
+  COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test_config_app.py ${snapshot_test_args})
+set_tests_properties(config_application PROPERTIES TIMEOUT 90)

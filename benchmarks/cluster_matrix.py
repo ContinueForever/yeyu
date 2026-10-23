@@ -52,7 +52,7 @@ def value_for(client_id, key_id, version, size):
 def load_client(client_id, config, port, barrier, clock, ready):
     generator = random.Random(1701 + client_id)
     versions = [0] * config["keys_per_client"]
-    samples, offsets, puts, gets, request_id = [], [], 0, 0, 0
+    samples, offsets, write_flags, puts, gets, request_id = [], [], [], 0, 0, 0
     keys = [f"client-{client_id}-key-{i}".encode() for i in range(len(versions))]
     try:
         with socket.create_connection(("127.0.0.1", port), 20) as connection:
@@ -80,11 +80,13 @@ def load_client(client_id, config, port, barrier, clock, ready):
                 completed = time.perf_counter_ns()
                 samples.append(completed - begin)
                 offsets.append(completed - measurement_begin)
+                write_flags.append(int(operation == "put"))
                 puts += operation == "put"
                 gets += operation == "get"
             finished = time.perf_counter_ns()
         return dict(client_id=client_id, samples=samples, offsets=offsets,
-                    puts=puts, gets=gets, finished_ns=finished)
+                    write_flags=write_flags, puts=puts, gets=gets, finished_ns=finished,
+                    final_versions=versions)
     except BaseException as error:
         ready.put(("error", repr(error)))
         barrier.abort()
@@ -103,9 +105,11 @@ def load_process(ids, config, port, barrier, clock, started, ready, done, output
         for result in results:
             samples = result.pop("samples")
             offsets = result.pop("offsets")
+            write_flags = result.pop("write_flags")
             name = f"client-{result['client_id']}-samples-ns.json.gz"
             with gzip.open(Path(output) / name, "wt") as target:
-                json.dump(dict(latency_ns=samples, completed_offset_ns=offsets), target)
+                json.dump(dict(latency_ns=samples, completed_offset_ns=offsets,
+                               write_flags=write_flags), target)
             result.update(samples_file=name, operations=len(samples))
         done.put(dict(results=results, cpu_seconds=cpu_seconds))
     except BaseException as error:
@@ -123,7 +127,7 @@ def proc_stats(pid):
 
 
 class LocalCluster:
-    def __init__(self, node, output, batch, snapshot_entries, snapshot_bytes):
+    def __init__(self, node, output, batch, snapshot_entries, snapshot_bytes, extra_args=None):
         self.output = output
         self.processes, self.logs = [], []
         reservations = [socket.socket() for _ in range(3)]
@@ -140,6 +144,7 @@ class LocalCluster:
                            "--data-dir", str(output / f"node-{i + 1}"), "--proposal-batch-size", str(batch),
                            "--snapshot-entries", str(snapshot_entries), "--snapshot-bytes", str(snapshot_bytes),
                            "--request-timeout-ms", "10000"]
+                command.extend(extra_args or [])
                 commands.append(command)
                 log = (output / f"node-{i + 1}.log").open("w")
                 self.logs.append(log)
@@ -184,12 +189,15 @@ class LocalCluster:
 
 
 def run_one(args, profile, repeat, batch, snapshot_entries):
-    output = args.output / f"{profile}-batch{batch}-snap{snapshot_entries}-run{repeat}"
+    variant = getattr(args, "variant", "")
+    tag = f"{variant}-" if variant else ""
+    output = args.output / f"{tag}{profile}-batch{batch}-snap{snapshot_entries}-run{repeat}"
     output.mkdir()
     config = dict(PROFILES[profile], duration_seconds=args.duration_seconds,
                   snapshot_entries=snapshot_entries, snapshot_bytes=args.snapshot_bytes)
     baseline.save(output / "workload.json", config)
-    cluster = LocalCluster(args.node, output, batch, snapshot_entries, args.snapshot_bytes)
+    cluster = LocalCluster(args.node, output, batch, snapshot_entries, args.snapshot_bytes,
+                           getattr(args, "node_options", None))
     context = mp.get_context("spawn")
     clock, started = context.Value("q", 0), context.Event()
     ready, done = context.Queue(), context.Queue()
@@ -211,6 +219,9 @@ def run_one(args, profile, repeat, batch, snapshot_entries):
 
     sampler = None
     try:
+        prepare = getattr(args, "prepare_cluster", None)
+        if prepare:
+            prepare(cluster, config)
         for process in processes:
             process.start()
         for _ in range(config["clients"]):
@@ -268,8 +279,13 @@ def run_one(args, profile, repeat, batch, snapshot_entries):
         latencies.sort()
         server_cpu = sum(a["cpu_seconds"] - b["cpu_seconds"] for a, b in zip(cpu_after, cpu_before))
         client_cpu = sum(result["cpu_seconds"] for result in results)
-        metrics = {name: sum(a[name] - b[name] for a, b in zip(after, before)) for name in
-                   ("disk_saves", "disk_bytes", "disk_persist_ns", "snapshots_saved", "snapshots_installed")}
+        metric_names = ("disk_saves", "disk_bytes", "disk_persist_ns", "snapshots_saved", "snapshots_installed",
+                        "disk_encode_ns", "disk_sync_ns", "disk_write_ns", "disk_file_syncs", "disk_directory_syncs",
+                        "disk_checkpoint_saves", "disk_journal_saves", "read_index_completed", "read_quorum_rounds")
+        metric_names += ("read_overlapped_requests", "append_requests", "read_append_requests",
+                         "read_append_with_entries", "snapshot_pause_ns")
+        metrics = {name: sum(a.get(name, 0) - b.get(name, 0) for a, b in zip(after, before))
+                   for name in metric_names}
         result = dict(profile=profile, repeat=repeat, batch_size=batch, **config,
                       operations=len(latencies), completed_puts=sum(client["puts"] for client in clients),
                       completed_gets=sum(client["gets"] for client in clients), failures=0,
@@ -284,6 +300,11 @@ def run_one(args, profile, repeat, batch, snapshot_entries):
                       before=before, after=after, disk_metrics_include_post_load_replication_drain=True,
                       metrics_exclude_preload_and_warmup=True, client_results=clients, **metrics)
         baseline.save(output / "resource-samples.json", samples)
+        if variant:
+            result["variant"] = variant
+        validate = getattr(args, "validate_cluster", None)
+        if validate:
+            result["recovery_validation"] = validate(cluster, config, clients)
         baseline.save(output / "timeline.json", timeline)
         baseline.save(output / "result.json", result)
         print(json.dumps({k: result[k] for k in ("profile", "repeat", "batch_size", "operations", "ops_per_second", "p99_ms")}), flush=True)

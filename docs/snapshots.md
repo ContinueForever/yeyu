@@ -1,12 +1,12 @@
 # Raft 快照、日志回收与容量契约
 
-实现日期：2026-10-21。当前仍是固定三个 voter、单 Raft Group 的本机开发服务。
+实现日期：2026-10-21；2026-10-22 增加自适应回收节奏和暂停观测。当前仍是固定三个 voter、单 Raft Group 的本机开发服务。
 
 ## 快照覆盖什么
 
-运行时只在 KV 已按序应用后调用 `Node::Compact(applied_index, state)`。快照保存按 key 排序的二进制 KV 数据、lastIncludedIndex 和 lastIncludedTerm；已删除的 key 不进入快照。读取和 no-op 虽不改变 map，也占据日志位置，因此快照边界包含它们。
+运行时只在 KV 已按序应用后调用 `Node::Compact(applied_index, state)`。快照保存按 key 排序的二进制 KV 数据、lastIncludedIndex 和 lastIncludedTerm；已删除的 key 不进入快照。默认 ReadIndex 的 GET 不占日志位置；旧 log 读模式和 no-op 仍占据位置。
 
-`FileStore` 将 hard state、快照及保留后缀写入同一个带 CRC32 的镜像，依次完成临时文件写入、`fdatasync`、原子替换和目录 `fsync`。旧前缀只在整个新镜像持久化成功后从内存回收。四个发布边界均有 SIGKILL 测试，恢复结果是完整旧镜像或完整新镜像。
+`FileStore` 默认通过[增量 journal](journal.md)追加普通变更；生成／安装快照时，将 hard state、快照及保留后缀写入同一个带 CRC32 的检查点，先同步新代次 journal，再依次完成临时文件写入、`fdatasync`、原子替换和目录 `fsync`。旧前缀只在整个新镜像持久化成功后从内存回收。四个发布边界均有 SIGKILL 测试，恢复结果是完整旧镜像或完整新镜像。
 
 重启先恢复快照中的 KV 和 applied/commit 下界，剩余日志不能直接当成已提交数据。新 Leader 的当前任期 no-op 重新建立多数派提交前缀，之后按序应用后缀。
 
@@ -22,7 +22,7 @@ Leader 发现副本需要的日志已被回收时，通过 `InstallSnapshot` 发
 
 ## 文件格式与兼容性
 
-没有快照时继续使用 v1 格式；新程序能读取原有 v1 文件。首次快照后使用 v2：
+以下描述保留的 image 模式：无快照使用 v1，首次快照后使用 v2。默认 journal 模式使用带 generation 的 v3 检查点，也可导入 v1/v2，格式见[journal 契约](journal.md)。v2 格式如下：
 
 | 字段 | 字节数 |
 | --- | ---: |
@@ -41,16 +41,19 @@ v2 固定头为 56 字节，日志索引从 lastIncludedIndex + 1 开始。损�
 
 ## 容量与背压
 
-默认在已应用后缀达到 128 条或保留日志达到 1 MiB 时生成快照。这是触发阈值，批次可以越过阈值；未提交日志也不能提前删除。
+默认使用 `--snapshot-policy adaptive`。保留日志达到 `--snapshot-bytes`（默认 1 MiB）仍无条件触发快照；已应用后缀达到 `--snapshot-entries`（默认 128）时，另要求保留日志至少达到 `min(snapshot_bytes, live_snapshot_bytes / 4)`，避免大活跃集合因少量小更新反复重写。`fixed` 保留原先“条目数或字节数”任一达到即生成的策略，便于比较与控制恢复后缀长度。
+
+这是触发阈值，批次可以越过阈值；没有新应用条目时不生成快照，未提交日志也不能提前删除。自适应策略可能保留更多日志条目，因此启动重放时间与回收频率需要一并测量。默认容量仍受 16 MiB 活跃快照、1 MiB 日志触发和 64 MiB 逻辑状态上限约束；自定义阈值也应与容量上限匹配。
 
 | 配置或限制 | 默认值 | 行为 |
 | --- | ---: | --- |
 | `--snapshot-entries` | 128 | 已应用位置距快照边界的触发阈值 |
+| `--snapshot-policy` | adaptive | 大状态下按日志字节摊薄条目触发的全量重写；fixed 为旧策略 |
 | `--snapshot-bytes` | 1048576 | 保留日志字节触发阈值 |
-| `--max-state-bytes` | 67108864 | 原子镜像硬上限，测试可调小；达到上限保守停用 |
+| `--max-state-bytes` | 67108864 | 逻辑状态编码上限，测试可调小；达到上限保守停用 |
 | 活跃 KV 的编码快照 | 16777216 | 新 PUT 不能超过，返回 BUSY 且不改变 map；DEL、缩小 value 可回收空间 |
 | `--event-queue` | 4096 | 运行时事件队列上限，最高 8192 |
-| `--pending-limit` | 1024 | 等待提案上限，最高 8192 |
+| `--pending-limit` | 1024 | 等待写提案与 ReadIndex 读的总上限，最高 8192 |
 | 单连接未回复请求 | 4096 | 超限关闭连接 |
 | 单连接待排序回复加输出缓冲 | 1 MiB | 超限关闭慢连接 |
 
@@ -60,7 +63,7 @@ v2 固定头为 56 字节，日志索引从 lastIncludedIndex + 1 开始。损�
 
 ## 观测与验证
 
-`status` 增加 snapshot_index、snapshot_bytes、live_snapshot_bytes、retained_entries、retained_log_bytes、state_bytes、snapshots_saved、snapshots_installed、busy_rejections、completed_commands 和 quorum_timeouts。持久化计数是完成的原子镜像发布次数，不是 fsync 系统调用次数。
+`status` 包含 snapshot_index、snapshot_bytes、live_snapshot_bytes、retained_entries、retained_log_bytes、state_bytes、snapshots_saved、snapshots_installed、busy_rejections、completed_commands 和 quorum_timeouts。新增 snapshot_policy、snapshot_pause_ns 和 snapshot_pause_max_ns；暂停耗时覆盖状态序列化、验证、检查点同步及发布，按进程累计。它不是请求延迟，也不能把累计最大值相减作为测量窗口的最大值。持久化计数分别区分 journal、检查点和同步次数。
 
 ```bash
 ctest --test-dir build --output-on-failure -j2
@@ -71,6 +74,6 @@ python3 benchmarks/cluster_matrix.py --node build/bin/yewukv-node \
   --duration-seconds 10 --repeats 3 --output benchmarks/results/my-matrix
 ```
 
-完整证据和本轮结果见[本机验收报告](local-acceptance-20261021.md)。快照控制了历史日志增长，但每次持久化仍重写快照及后缀，尚未实现分段追加 WAL。镜像发布期间还会存在一份临时文件；state_bytes 只统计已发布文件。当前仍使用日志读，未实现 ReadIndex；分片、成员变更、跨机器、真实断电和生产验收也不在本轮结论内。
+历史证据见[本机验收报告](local-acceptance-20261021.md)与[journal / ReadIndex 优化](local-optimization-20261021.md)。默认普通变更已使用追加 journal，GET 已使用 ReadIndex；生成检查点仍同步重写快照及后缀。发布期间还会存在临时文件和新代次 journal；state_bytes 统计逻辑状态，不是目录占用或块设备物理写入量。分片、成员变更、跨机器、真实断电和生产验收仍不在本机结论内。
 
 设计依据：[Raft 原论文第 7 节](https://raft.github.io/raft.pdf)。故障历史方法参考 [etcd 鲁棒性测试](https://github.com/etcd-io/etcd/blob/main/tests/robustness/README.md)。

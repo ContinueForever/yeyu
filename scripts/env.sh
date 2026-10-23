@@ -1,12 +1,23 @@
 #!/usr/bin/env bash
 # Source this file before configuring/building:
 #   source scripts/env.sh
-# Activates the user-space conda toolchain installed under ~/.micromamba.
+# Prefer an explicitly selected or existing legacy Conda environment; otherwise
+# use the system toolchain documented in README.md.
 _YEWU_ENV="${YEWU_TOOLCHAIN:-$HOME/.micromamba/envs/yewu}"
-if [[ ! -x "$_YEWU_ENV/bin/cmake" ]]; then
-  echo "[env] toolchain not found at $_YEWU_ENV" >&2
-  return 1 2>/dev/null || exit 1
+export YEWU_ENV=""
+if [[ -z "${YEWU_TOOLCHAIN:-}" && ! -x "$_YEWU_ENV/bin/cmake" ]]; then
+  if ! command -v cmake >/dev/null || ! command -v ctest >/dev/null; then
+    echo "[env] install the system dependencies listed in README.md" >&2
+    return 1 2>/dev/null || exit 1
+  fi
+  return 0 2>/dev/null || exit 0
 fi
+for _YEWU_TOOL in cmake ctest x86_64-conda-linux-gnu-gcc x86_64-conda-linux-gnu-g++; do
+  if [[ ! -x "$_YEWU_ENV/bin/$_YEWU_TOOL" ]]; then
+    echo "[env] toolchain executable missing: $_YEWU_ENV/bin/$_YEWU_TOOL" >&2
+    return 1 2>/dev/null || exit 1
+  fi
+done
 export PATH="$_YEWU_ENV/bin:$PATH"
 export CC="$_YEWU_ENV/bin/x86_64-conda-linux-gnu-gcc"
 export CXX="$_YEWU_ENV/bin/x86_64-conda-linux-gnu-g++"

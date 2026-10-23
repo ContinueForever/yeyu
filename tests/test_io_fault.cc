@@ -1,10 +1,13 @@
-// Test-only interposer. It touches only writes/syncs of raft.state.tmp, and only
+// Test-only interposer. It touches only Raft checkpoint/journal writes/syncs, and only
 // while the per-process arm file exists. No production binary links this file.
 #include <dlfcn.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <time.h>
 
 #include <cerrno>
+#include <algorithm>
+#include <atomic>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -21,7 +24,10 @@ bool Armed(int fd) {
   target[size] = '\0';
   const char* suffix = "/raft.state.tmp";
   const size_t length = std::strlen(suffix);
-  return static_cast<size_t>(size) >= length && std::strcmp(target + size - length, suffix) == 0;
+  const char* basename = std::strrchr(target, '/');
+  return (static_cast<size_t>(size) >= length &&
+          std::strcmp(target + size - length, suffix) == 0) ||
+         (basename && std::strncmp(basename + 1, "raft.wal.", 9) == 0);
 }
 }  // namespace
 
@@ -29,9 +35,19 @@ extern "C" ssize_t write(int fd, const void* data, size_t size) {
   using Write = ssize_t (*)(int, const void*, size_t);
   static const auto actual = reinterpret_cast<Write>(::dlsym(RTLD_NEXT, "write"));
   const char* mode = std::getenv("YEWUKV_TEST_IO_MODE");
-  if (Armed(fd) && (!mode || std::strcmp(mode, "sync") != 0)) {
-    errno = ENOSPC;
-    return -1;
+  if (Armed(fd)) {
+    if (mode && std::strcmp(mode, "short-write") == 0)
+      return actual(fd, data, std::min(size, size_t{17}));
+    if (mode && std::strcmp(mode, "torn-write") == 0) {
+      static std::atomic<bool> wrote_prefix{false};
+      if (!wrote_prefix.exchange(true)) return actual(fd, data, std::min(size, size_t{17}));
+      errno = EIO;
+      return -1;
+    }
+    if (!mode || (std::strcmp(mode, "sync") != 0 && std::strcmp(mode, "slow-sync") != 0)) {
+      errno = ENOSPC;
+      return -1;
+    }
   }
   return actual(fd, data, size);
 }
@@ -43,6 +59,12 @@ extern "C" int fdatasync(int fd) {
   if (Armed(fd) && mode && std::strcmp(mode, "sync") == 0) {
     errno = EIO;
     return -1;
+  }
+  if (Armed(fd) && mode && std::strcmp(mode, "slow-sync") == 0) {
+    // Delay only test Raft descriptors; unrelated process I/O stays untouched.
+    timespec delay{0, 250 * 1000 * 1000};
+    while (::nanosleep(&delay, &delay) != 0 && errno == EINTR) {
+    }
   }
   return actual(fd);
 }

@@ -1,0 +1,43 @@
+name: extended-local-reliability
+on:
+  workflow_dispatch:
+    inputs:
+      duration_seconds:
+        description: "Same-host fault campaign duration (seconds, 60–3600)"
+        required: true
+        default: "1200"
+permissions:
+  contents: read
+jobs:
+  fault-history:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 85
+    env:
+      SOAK_SECONDS: ${{ inputs.duration_seconds }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install and build
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y g++ cmake ninja-build protobuf-compiler libprotobuf-dev libgtest-dev python3
+          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=RelWithDebInfo
+          cmake --build build -j2
+      - name: Verify requested duration
+        run: |
+          python3 -c 'import os; n=int(os.environ["SOAK_SECONDS"]); assert 60 <= n <= 3600'
+      - name: Full regression
+        run: ctest --test-dir build --output-on-failure -j2
+      - name: Run and retain fault histories
+        run: |
+          python3 scripts/cluster-soak.py --node build/bin/yewukv-node --client build/bin/yewukv-client \
+            --output build/extended-soak --duration-seconds "$SOAK_SECONDS"
+      - name: Retain reports and reproductions
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: extended-local-fault-history
+          path: |
+            build/extended-soak/
+            build/Testing/Temporary/LastTest.log
+            build/cluster-history.json
+            build/cluster-evidence/
