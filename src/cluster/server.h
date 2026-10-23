@@ -16,6 +16,7 @@ struct Endpoint {
 struct Options {
   uint64_t id = 0;
   uint16_t port = 0;
+  std::string listen_host = "127.0.0.1";
   std::map<uint64_t, Endpoint> members;
   std::string directory;
   uint32_t seed = 1;

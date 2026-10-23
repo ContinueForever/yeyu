@@ -15,6 +15,8 @@ class TcpServer {
   TcpServer(uint16_t port, int worker_threads = 0,
             std::chrono::seconds idle_timeout = std::chrono::seconds{60},
             bool loopback_only = false);
+  explicit TcpServer(const InetAddress& address, int worker_threads = 0,
+                     std::chrono::seconds idle_timeout = std::chrono::seconds{60});
   ~TcpServer();
 
   void SetMessageCallback(TcpConnection::MessageCallback cb) { message_cb_ = std::move(cb); }

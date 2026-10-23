@@ -96,3 +96,7 @@ set_tests_properties(cluster_read_index PROPERTIES TIMEOUT 90)
 add_test(NAME config_application
   COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test_config_app.py ${snapshot_test_args})
 set_tests_properties(config_application PROPERTIES TIMEOUT 90)
+
+add_test(NAME cluster_ipv4_deployment
+  COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test_cluster_address.py ${snapshot_test_args})
+set_tests_properties(cluster_ipv4_deployment PROPERTIES TIMEOUT 90)

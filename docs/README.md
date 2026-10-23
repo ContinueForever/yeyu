@@ -9,6 +9,7 @@
 | 构建、测试、启动和读写 | [项目首页](../README.md) |
 | 修改代码与提交前检查 | [开发说明](../CONTRIBUTING.md) |
 | 本机服务、状态、超时、备份和恢复 | [集群操作](cluster.md) |
+| 三台云服务器私网部署与系统级服务 | [云服务器部署](cloud-deployment.md) |
 | 配置发布、HTTP 消费者和动态刷新 | [配置应用](../examples/README.md) |
 | 跑性能对照或故障活动 | [实验复现](../benchmarks/README.md) |
 | 当前进度、后续方向和放行标准 | [工程路线](roadmap.md) |

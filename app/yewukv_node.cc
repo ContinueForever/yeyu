@@ -33,7 +33,14 @@ int main(int argc, char** argv) {
         options.id = Number(value, UINT64_MAX);
       else if (option == "--port")
         options.port = static_cast<uint16_t>(Number(value, 65535));
-      else if (option == "--data-dir")
+      else if (option == "--listen-host") {
+        in_addr address{};
+        if (::inet_pton(AF_INET, value.c_str(), &address) != 1 ||
+            address.s_addr == htonl(INADDR_ANY) || address.s_addr == htonl(INADDR_BROADCAST) ||
+            IN_MULTICAST(ntohl(address.s_addr)))
+          throw std::invalid_argument("--listen-host must be a specific unicast IPv4 address");
+        options.listen_host = value;
+      } else if (option == "--data-dir")
         options.directory = value;
       else if (option == "--seed")
         options.seed = static_cast<uint32_t>(Number(value, UINT32_MAX));

@@ -309,7 +309,7 @@ struct Server::Impl {
       : options(std::move(selected)),
         store(options.directory, StoreConfig(options)),
         node(NodeConfig(options), store.ReadState(), store, store),
-        server(options.port, 0, std::chrono::seconds{60}, true) {
+        server(net::InetAddress(options.listen_host, options.port)) {
     if (options.request_timeout_ms < 100 || options.request_timeout_ms > 60000 ||
         options.proposal_batch_size == 0 ||
         options.proposal_batch_size > raft::Node::kMaxAppendEntries ||

@@ -1,6 +1,7 @@
 #pragma once
 #include <arpa/inet.h>
 #include <netinet/in.h>
+#include <stdexcept>
 #include <string>
 
 namespace yewukv::net {
@@ -16,7 +17,8 @@ class InetAddress {
   InetAddress(std::string ip, uint16_t port) {
     addr_.sin_family = AF_INET;
     addr_.sin_port = htons(port);
-    ::inet_pton(AF_INET, ip.c_str(), &addr_.sin_addr);
+    if (::inet_pton(AF_INET, ip.c_str(), &addr_.sin_addr) != 1)
+      throw std::invalid_argument("address must be numeric IPv4");
   }
 
   const sockaddr_in& SockAddr() const { return addr_; }
