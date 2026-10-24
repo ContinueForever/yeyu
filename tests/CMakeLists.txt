@@ -3,6 +3,7 @@ add_executable(yewu_tests
   test_tcp_connection.cc
   test_frame_codec.cc
   test_rpc_client.cc
+  test_read_trace.cc
   test_text_protocol.cc
   test_mem_engine.cc
   test_raft_election.cc
@@ -97,6 +98,10 @@ set_tests_properties(cluster_fault_campaign_smoke PROPERTIES TIMEOUT 120)
 add_test(NAME cluster_read_index
   COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test_read_index.py ${snapshot_test_args})
 set_tests_properties(cluster_read_index PROPERTIES TIMEOUT 90)
+
+add_test(NAME cluster_read_trace
+  COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test_read_trace.py ${snapshot_test_args})
+set_tests_properties(cluster_read_trace PROPERTIES TIMEOUT 90)
 
 add_test(NAME config_application
   COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test_config_app.py ${snapshot_test_args})

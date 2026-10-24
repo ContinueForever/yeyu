@@ -60,6 +60,14 @@ int main(int argc, char** argv) {
         options.pending_capacity = static_cast<size_t>(Number(value, 8192));
       else if (option == "--journal-checkpoint-bytes")
         options.journal_checkpoint_bytes = static_cast<size_t>(Number(value, 64 * 1024 * 1024));
+      else if (option == "--trace-prefix")
+        options.trace_prefix = value;
+      else if (option == "--trace-sample-every")
+        options.trace_sample_every = Number(value, 1000000);
+      else if (option == "--trace-slow-ms")
+        options.trace_slow_ms = Number(value, 60000);
+      else if (option == "--trace-max-events")
+        options.trace_max_events = Number(value, 1000000);
       else if (option == "--snapshot-policy") {
         if (value != "adaptive" && value != "fixed")
           throw std::invalid_argument("--snapshot-policy must be adaptive or fixed");

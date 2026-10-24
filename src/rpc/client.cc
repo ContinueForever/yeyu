@@ -17,12 +17,19 @@
 #include <utility>
 
 #include "net/buffer.h"
+#include "common/thread_id.h"
 #include "rpc/frame_codec.h"
 
 namespace yewukv::rpc {
 namespace {
 
 using Clock = std::chrono::steady_clock;
+
+uint64_t CallNow() {
+  return static_cast<uint64_t>(
+      std::chrono::duration_cast<std::chrono::nanoseconds>(Clock::now().time_since_epoch())
+          .count());
+}
 
 class OwnedFd {
  public:
@@ -54,11 +61,13 @@ struct KvClient::Impl {
   struct Pending {
     Clock::time_point deadline;
     std::promise<Result<KvResponse>> promise;
+    std::shared_ptr<CallTiming> timing;
   };
   struct Outbound {
     uint64_t id;
     std::string frame;
     size_t offset = 0;
+    std::shared_ptr<CallTiming> timing;
   };
 
   Impl(const std::string& address, uint16_t port, Options options)
@@ -98,8 +107,10 @@ struct KvClient::Impl {
     if (worker_.joinable()) worker_.join();
   }
 
-  std::future<Result<KvResponse>> Call(KvRequest request, std::chrono::milliseconds timeout) {
+  std::future<Result<KvResponse>> Call(KvRequest request, std::chrono::milliseconds timeout,
+                                       std::shared_ptr<CallTiming> timing) {
     const auto now = Clock::now();
+    if (timing) timing->call_ns = CallNow();
     std::promise<Result<KvResponse>> promise;
     auto future = promise.get_future();
     auto reject = [&](Status status) {
@@ -117,6 +128,7 @@ struct KvClient::Impl {
     // accidentally complete a different call.
     if (next_id_ == 0) return reject(Status::Busy("RPC request ID space exhausted"));
     const uint64_t id = next_id_++;
+    if (timing) timing->request_id = id;
     request.set_request_id(id);
     if (request.ByteSizeLong() > FrameCodec::kMaxPayloadBytes) {
       return reject(Status::InvalidArgument("RPC request exceeds the frame size limit"));
@@ -130,9 +142,9 @@ struct KvClient::Impl {
         queued_bytes_ > options_.max_queued_bytes - frame.size()) {
       return reject(Status::Busy("RPC output queue limit reached"));
     }
-    pending_.emplace(id, Pending{Deadline(now, timeout), std::move(promise)});
+    pending_.emplace(id, Pending{Deadline(now, timeout), std::move(promise), timing});
     queued_bytes_ += frame.size();
-    outbound_.push_back(Outbound{id, std::move(frame), 0});
+    outbound_.push_back(Outbound{id, std::move(frame), 0, std::move(timing)});
     Wake();
     return future;
   }
@@ -192,12 +204,20 @@ struct KvClient::Impl {
     while (!outbound_.empty() && budget > 0) {
       auto& output = outbound_.front();
       const size_t count = std::min(budget, output.frame.size() - output.offset);
+      const auto before_write = output.timing ? CallNow() : 0;
       const ssize_t sent = ::send(fd, output.frame.data() + output.offset, count, MSG_NOSIGNAL);
       if (sent > 0) {
+        if (output.timing && output.offset == 0) {
+          output.timing->io_tid = CurrentThreadId();
+          output.timing->first_write_ns = before_write;
+        }
         output.offset += static_cast<size_t>(sent);
         queued_bytes_ -= static_cast<size_t>(sent);
         budget -= static_cast<size_t>(sent);
-        if (output.offset == output.frame.size()) outbound_.pop_front();
+        if (output.offset == output.frame.size()) {
+          if (output.timing) output.timing->write_done_ns = CallNow();
+          outbound_.pop_front();
+        }
       } else if (sent < 0 && errno == EINTR) {
         continue;
       } else if (sent < 0 && (errno == EAGAIN || errno == EWOULDBLOCK)) {
@@ -234,6 +254,7 @@ struct KvClient::Impl {
           }
           auto found = pending_.find(response.request_id());
           if (found == pending_.end()) continue;  // A late response to an expired call.
+          if (found->second.timing) found->second.timing->decoded_ns = CallNow();
           if (Clock::now() >= found->second.deadline) {
             found->second.promise.set_value(Status::TimedOut("RPC request timed out"));
           } else {
@@ -355,8 +376,9 @@ KvClient::KvClient(std::string address, uint16_t port, Options options)
 KvClient::~KvClient() = default;
 
 std::future<Result<KvResponse>> KvClient::CallAsync(KvRequest request,
-                                                    std::chrono::milliseconds timeout) {
-  return impl_->Call(std::move(request), timeout);
+                                                    std::chrono::milliseconds timeout,
+                                                    std::shared_ptr<CallTiming> timing) {
+  return impl_->Call(std::move(request), timeout, std::move(timing));
 }
 
 }  // namespace yewukv::rpc

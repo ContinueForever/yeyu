@@ -450,7 +450,10 @@ TEST(RaftReadIndex, IgnoresWrongContextSequenceAndDuplicateAcknowledgements) {
   node.Receive(wrong);
   EXPECT_TRUE(node.TakeReadStates().empty());
   node.Receive(reply);
-  ASSERT_EQ(node.TakeReadStates().size(), 1);
+  const auto confirmed = node.TakeReadStates();
+  ASSERT_EQ(confirmed.size(), 1);
+  EXPECT_EQ(confirmed[0].confirmed_by, reply.from);
+  EXPECT_EQ(confirmed[0].confirmed_sequence, reply.sequence);
   node.Receive(reply);
   EXPECT_TRUE(node.TakeReadStates().empty());
 }

@@ -9,6 +9,7 @@ namespace yewukv::net {
 class InetAddress {
  public:
   InetAddress() = default;
+  explicit InetAddress(const sockaddr_in& address) : addr_(address) {}
   explicit InetAddress(uint16_t port, bool loopback_only = false) {
     addr_.sin_family = AF_INET;
     addr_.sin_addr.s_addr = htonl(loopback_only ? INADDR_LOOPBACK : INADDR_ANY);

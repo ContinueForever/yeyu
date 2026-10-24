@@ -2,6 +2,8 @@
 
 #include "cluster/state_machine.h"
 #include "cluster/snapshot_policy.h"
+#include "cluster/read_trace.h"
+#include "common/thread_id.h"
 
 #include <fcntl.h>
 #include <unistd.h>
@@ -263,6 +265,8 @@ struct Server::Impl {
     std::mutex mutex;
     std::condition_variable ready;
     std::optional<Message> queued;
+    uint64_t queued_ns = 0;
+    uint64_t queued_tid = 0;
     std::thread thread;
   };
   struct Read {
@@ -272,9 +276,12 @@ struct Server::Impl {
     uint64_t term;
     uint64_t context = 0;
     std::optional<uint64_t> index;
+    std::optional<ReadTrace> trace;
+    uint64_t trace_ordinal = 0;
   };
 
   Options options;
+  std::shared_ptr<ReadTraceRecorder> trace;
   raft::FileStore store;
   raft::Node node;
   net::TcpServer server;
@@ -304,6 +311,7 @@ struct Server::Impl {
   uint64_t read_append_with_entries = 0;
   uint64_t snapshot_pause_ns = 0;
   uint64_t snapshot_pause_max_ns = 0;
+  uint64_t trace_read_ordinal = 0;
 
   explicit Impl(Options selected)
       : options(std::move(selected)),
@@ -318,6 +326,13 @@ struct Server::Impl {
         options.event_queue_capacity == 0 || options.pending_capacity == 0)
       throw std::invalid_argument("invalid cluster port or request timeout");
     BindIdentity(options, store.ReadState());
+    if (!options.trace_prefix.empty()) {
+      ReadTraceRecorder::Options selected_trace;
+      selected_trace.sample_every = options.trace_sample_every;
+      selected_trace.slow_ns = options.trace_slow_ms * 1000000;
+      selected_trace.max_events = options.trace_max_events;
+      trace = std::make_shared<ReadTraceRecorder>(options.trace_prefix, options.id, selected_trace);
+    }
     if (node.snapshot().index != 0) {
       if (!state_machine.Restore(node.snapshot().data))
         throw std::runtime_error("invalid recovered KV snapshot");
@@ -349,8 +364,17 @@ struct Server::Impl {
         }
         const auto ordered = connection->ReserveResponse();
         const auto request_id = request.request_id();
+        std::optional<ReadTrace> timing;
+        if (request.has_get() && trace && trace->Enabled()) {
+          timing.emplace();
+          timing->received_ns = TraceNow();
+          timing->received_tid = CurrentThreadId();
+          timing->request_id = request_id;
+          timing->client_port = connection->PeerAddress().Port();
+        }
         if (!Enqueue([this, weak = std::weak_ptr<net::TcpConnection>(connection), ordered,
-                      request = std::move(request)] { Handle(weak, ordered, request); })) {
+                      request = std::move(request),
+                      timing] { Handle(weak, ordered, request, timing); })) {
           KvResponse response;
           ++busy_rejections;
           response.set_request_id(request_id);
@@ -370,8 +394,9 @@ struct Server::Impl {
     return true;
   }
 
-  static void Respond(std::weak_ptr<net::TcpConnection> weak, uint64_t ordered,
-                      KvResponse response) {
+  static void Respond(std::weak_ptr<net::TcpConnection> weak, uint64_t ordered, KvResponse response,
+                      std::shared_ptr<ReadTraceRecorder> recorder = {},
+                      std::optional<ReadTrace> timing = {}) {
     if (auto connection = weak.lock()) {
       std::string bytes;
       if (!response.SerializeToString(&bytes) || bytes.empty() ||
@@ -379,7 +404,19 @@ struct Server::Impl {
         connection->ForceClose();
         return;
       }
-      connection->SendOrdered(ordered, rpc::FrameCodec::Encode(bytes));
+      auto frame = rpc::FrameCodec::Encode(bytes);
+      if (timing && recorder) {
+        timing->response_queued_ns = TraceNow();
+        connection->Loop()->RunInLoop(
+            [connection, ordered, frame = std::move(frame), recorder, timing = *timing]() mutable {
+              timing.tcp_loop_ns = TraceNow();
+              timing.tcp_tid = CurrentThreadId();
+              connection->SendOrdered(ordered, std::move(frame));
+              timing.tcp_dispatch_done_ns = TraceNow();
+              recorder->Record(timing);
+            });
+      } else
+        connection->SendOrdered(ordered, std::move(frame));
     }
   }
 
@@ -392,7 +429,12 @@ struct Server::Impl {
     return response;
   }
 
-  void Handle(std::weak_ptr<net::TcpConnection> weak, uint64_t ordered, const KvRequest& request) {
+  void Handle(std::weak_ptr<net::TcpConnection> weak, uint64_t ordered, const KvRequest& request,
+              std::optional<ReadTrace> timing = {}) {
+    if (timing) {
+      timing->handled_ns = TraceNow();
+      timing->handled_tid = CurrentThreadId();
+    }
     auto response = Response(request.request_id());
     if (request.request_id() == 0) {
       response.set_code(KvResponse::INVALID_ARGUMENT);
@@ -465,7 +507,12 @@ struct Server::Impl {
            << ",\"disk_sync_ns\":" << metrics.sync_nanoseconds
            << ",\"disk_write_ns\":" << metrics.write_nanoseconds
            << ",\"disk_file_syncs\":" << metrics.file_syncs
-           << ",\"disk_directory_syncs\":" << metrics.directory_syncs << '}';
+           << ",\"disk_directory_syncs\":" << metrics.directory_syncs
+           << ",\"trace_enabled\":" << (trace && trace->Enabled() ? 1 : 0)
+           << ",\"trace_written\":" << (trace ? trace->written() : 0)
+           << ",\"trace_dropped\":" << (trace ? trace->dropped() : 0)
+           << ",\"trace_limited\":" << (trace && trace->limited() ? 1 : 0)
+           << ",\"trace_failed\":" << (trace && trace->failed() ? 1 : 0) << '}';
       response.set_value(json.str());
     } else if (!ValidCommand(request)) {
       response.set_code(KvResponse::INVALID_ARGUMENT);
@@ -478,10 +525,15 @@ struct Server::Impl {
       response.set_code(KvResponse::BUSY);
       response.set_error("too many pending proposals");
     } else if (options.read_index && request.has_get()) {
+      if (timing) {
+        timing->term = node.term();
+        timing->minimum_index = node.LastIndex() + staged.size();
+      }
       reads.push_back(
           Read{Pending{weak, ordered, request.request_id(),
                        Clock::now() + std::chrono::milliseconds(options.request_timeout_ms)},
-               request, node.LastIndex() + staged.size(), node.term(), 0, std::nullopt});
+               request, node.LastIndex() + staged.size(), node.term(), 0, std::nullopt, timing,
+               timing ? ++trace_read_ordinal : 0});
       return;
     } else {
       auto command = request;
@@ -609,6 +661,8 @@ struct Server::Impl {
       for (auto& peer : peers) {
         if (peer->id != message.to) continue;
         std::lock_guard<std::mutex> lock(peer->mutex);
+        peer->queued_ns = trace && trace->Enabled() ? TraceNow() : 0;
+        peer->queued_tid = peer->queued_ns ? CurrentThreadId() : 0;
         peer->queued = std::move(message);
         peer->ready.notify_one();
         break;
@@ -619,7 +673,15 @@ struct Server::Impl {
   void FinishReads() {
     for (const auto& state : node.TakeReadStates()) {
       for (auto& read : reads)
-        if (read.context == state.context && read.term == state.term) read.index = state.index;
+        if (read.context == state.context && read.term == state.term) {
+          read.index = state.index;
+          if (read.trace) {
+            read.trace->quorum_ns = TraceNow();
+            read.trace->index = state.index;
+            read.trace->confirmed_by = state.confirmed_by;
+            read.trace->confirmed_sequence = state.confirmed_sequence;
+          }
+        }
     }
     const auto now = Clock::now();
     for (auto it = reads.begin(); it != reads.end();) {
@@ -640,7 +702,13 @@ struct Server::Impl {
         state_machine.Apply(it->request, &response);
         ++read_index_completed;
       }
-      Respond(it->pending.connection, it->pending.ordered, std::move(response));
+      std::optional<ReadTrace> timing;
+      if (it->trace) {
+        it->trace->ready_ns = TraceNow();
+        it->trace->code = response.code();
+        if (trace->KeepRead(it->trace_ordinal, *it->trace)) timing = it->trace;
+      }
+      Respond(it->pending.connection, it->pending.ordered, std::move(response), trace, timing);
       const auto context = it->context;
       it = reads.erase(it);
       if (context != 0 && std::none_of(reads.begin(), reads.end(), [context](const Read& read) {
@@ -662,6 +730,10 @@ struct Server::Impl {
     for (auto& read : reads)
       if (read.context == 0) {
         read.context = context.value();
+        if (read.trace) {
+          read.trace->context = context.value();
+          read.trace->context_ns = TraceNow();
+        }
         if (read.minimum_index > applied_index) ++read_overlapped_requests;
       }
   }
@@ -698,11 +770,23 @@ struct Server::Impl {
     std::unique_ptr<rpc::KvClient> client;
     while (!stopping) {
       Message message;
+      std::optional<PeerTrace> timing;
       {
         std::unique_lock<std::mutex> lock(peer.mutex);
         peer.ready.wait(lock, [&] { return stopping || peer.queued.has_value(); });
         if (stopping) return;
         message = std::move(*peer.queued);
+        if (peer.queued_ns && trace && trace->Enabled()) {
+          timing.emplace();
+          timing->scheduled_ns = peer.queued_ns;
+          timing->worker_ns = TraceNow();
+          timing->worker_tid = CurrentThreadId();
+          timing->scheduled_tid = peer.queued_tid;
+          timing->peer_id = peer.id;
+          timing->sequence = message.sequence;
+          timing->context = message.read_context;
+          timing->term = message.term;
+        }
         peer.queued.reset();
       }
       try {
@@ -710,8 +794,19 @@ struct Server::Impl {
           client = std::make_unique<rpc::KvClient>(peer.endpoint.host, peer.endpoint.port);
         KvRequest request;
         *request.mutable_peer() = EncodeMessage(message);
-        auto result = client->CallAsync(std::move(request), 400ms).get();
+        auto transport = timing ? std::make_shared<rpc::KvClient::CallTiming>() : nullptr;
+        auto result = client->CallAsync(std::move(request), 400ms, transport).get();
+        if (timing) {
+          timing->request_id = transport->request_id.load();
+          timing->rpc_tid = transport->io_tid.load();
+          timing->call_ns = transport->call_ns.load();
+          timing->first_write_ns = transport->first_write_ns.load();
+          timing->write_done_ns = transport->write_done_ns.load();
+          timing->decoded_ns = transport->decoded_ns.load();
+          timing->returned_ns = TraceNow();
+        }
         if (!result.ok() || result.value().code() != KvResponse::OK || !result.value().has_peer()) {
+          if (timing) trace->Record(*timing);
           client.reset();
           continue;
         }
@@ -722,11 +817,23 @@ struct Server::Impl {
             (message.kind == MessageKind::kAppend && reply->kind != MessageKind::kAppendReply) ||
             (message.kind == MessageKind::kSnapshot &&
              reply->kind != MessageKind::kSnapshotReply)) {
+          if (timing) trace->Record(*timing);
           client.reset();
           continue;
         }
-        Enqueue([this, reply = std::move(*reply)] { node.Receive(reply); });
+        if (timing) timing->success = 1;
+        if (!Enqueue([this, reply = std::move(*reply), timing]() mutable {
+              if (timing) {
+                timing->node_received_ns = TraceNow();
+                timing->node_tid = CurrentThreadId();
+              }
+              node.Receive(reply);
+              if (timing) trace->Record(*timing);
+            }) &&
+            timing)
+          trace->Record(*timing);
       } catch (...) {
+        if (timing) trace->Record(*timing);
         client.reset();
       }
     }

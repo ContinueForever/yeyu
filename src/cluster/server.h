@@ -31,6 +31,10 @@ struct Options {
   bool read_index = true;
   bool adaptive_snapshots = true;
   size_t journal_checkpoint_bytes = 4 * 1024 * 1024;
+  std::string trace_prefix;
+  uint64_t trace_sample_every = 32;
+  uint64_t trace_slow_ms = 10;
+  uint64_t trace_max_events = 500000;
 };
 
 class Server {

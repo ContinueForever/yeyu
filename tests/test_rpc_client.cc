@@ -17,6 +17,7 @@
 #include <utility>
 
 #include "net/buffer.h"
+#include "common/thread_id.h"
 #include "rpc/client.h"
 #include "rpc/frame_codec.h"
 
@@ -240,6 +241,46 @@ TEST(RpcClient, MissingResponseTimesOutAndLateResponseDoesNotCompleteAnotherCall
   const auto result = current.get();
   ASSERT_TRUE(result.ok()) << result.status().ToString();
   EXPECT_EQ(result.value().value(), "current");
+  EXPECT_NO_THROW(peer.Finish());
+}
+
+TEST(RpcClient, OptionalTimingCorrelatesTheActualWireRequestAndCompleteResponse) {
+  FakePeer peer([](int fd) {
+    const auto request = ReadRequest(fd);
+    std::this_thread::sleep_for(20ms);
+    WriteAll(fd, ResponseFor(request));
+  });
+  KvClient client("127.0.0.1", peer.port());
+  auto timing = std::make_shared<KvClient::CallTiming>();
+  auto pending = client.CallAsync(Get("timed"), 2s, timing);
+  ASSERT_EQ(pending.wait_for(3s), std::future_status::ready);
+  const auto result = pending.get();
+  ASSERT_TRUE(result.ok());
+  EXPECT_EQ(result.value().request_id(), timing->request_id.load());
+  EXPECT_GT(timing->io_tid.load(), 0);
+  EXPECT_NE(timing->io_tid.load(), yewukv::CurrentThreadId());
+  EXPECT_GT(timing->call_ns.load(), 0);
+  EXPECT_GE(timing->first_write_ns.load(), timing->call_ns.load());
+  EXPECT_GE(timing->write_done_ns.load(), timing->first_write_ns.load());
+  EXPECT_GE(timing->decoded_ns.load(), timing->write_done_ns.load() + 10'000'000);
+  EXPECT_NO_THROW(peer.Finish());
+}
+
+TEST(RpcClient, TimeoutRetainsTraceOwnershipWithoutInventingAReceivedResponse) {
+  FakePeer peer([](int fd) {
+    ReadRequest(fd);
+    WaitForClientClose(fd);
+  });
+  auto timing = std::make_shared<KvClient::CallTiming>();
+  {
+    KvClient client("127.0.0.1", peer.port());
+    auto pending = client.CallAsync(Get("no-reply"), 100ms, timing);
+    ASSERT_EQ(pending.wait_for(2s), std::future_status::ready);
+    EXPECT_EQ(pending.get().status().code(), StatusCode::kTimedOut);
+    EXPECT_GT(timing->request_id.load(), 0);
+    EXPECT_GT(timing->write_done_ns.load(), 0);
+    EXPECT_EQ(timing->decoded_ns.load(), 0);
+  }
   EXPECT_NO_THROW(peer.Finish());
 }
 

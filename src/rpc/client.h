@@ -1,6 +1,7 @@
 #pragma once
 
 #include <chrono>
+#include <atomic>
 #include <cstddef>
 #include <cstdint>
 #include <future>
@@ -25,6 +26,17 @@ class KvClient {
     std::chrono::milliseconds connect_timeout{3000};
   };
 
+  // Use a fresh instance per call. Atomics also cover a timed-out call whose partially
+  // written frame can still finish after the future has become ready.
+  struct CallTiming {
+    std::atomic<uint64_t> request_id{0};
+    std::atomic<uint64_t> io_tid{0};
+    std::atomic<uint64_t> call_ns{0};
+    std::atomic<uint64_t> first_write_ns{0};
+    std::atomic<uint64_t> write_done_ns{0};
+    std::atomic<uint64_t> decoded_ns{0};
+  };
+
   KvClient(std::string ipv4_address, uint16_t port);
   KvClient(std::string ipv4_address, uint16_t port, Options options);
   ~KvClient();
@@ -37,7 +49,8 @@ class KvClient {
   // Safe to call from multiple threads. The supplied request_id is replaced by
   // an internally allocated nonzero ID. The deadline includes connection time
   // and local queuing; an expired call is not retried automatically.
-  std::future<Result<KvResponse>> CallAsync(KvRequest request, std::chrono::milliseconds timeout);
+  std::future<Result<KvResponse>> CallAsync(KvRequest request, std::chrono::milliseconds timeout,
+                                            std::shared_ptr<CallTiming> timing = {});
 
  private:
   struct Impl;

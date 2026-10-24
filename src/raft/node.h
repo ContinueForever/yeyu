@@ -46,6 +46,8 @@ struct ReadState {
   uint64_t context = 0;
   uint64_t index = 0;
   uint64_t term = 0;
+  uint64_t confirmed_by = 0;
+  uint64_t confirmed_sequence = 0;
 };
 
 // A single-owner, deterministic fixed-three-voter node. Tick is a logical clock;

@@ -295,7 +295,10 @@ std::optional<Message> Node::Receive(const Message& message) {
       message.read_context == progress.read_context) {
     // Fixed three voters: this leader plus one distinct configured peer is a
     // quorum. The reply has already passed term and in-flight sequence checks.
-    read_states_.push_back(*read_);
+    auto confirmed = *read_;
+    confirmed.confirmed_by = message.from;
+    confirmed.confirmed_sequence = message.sequence;
+    read_states_.push_back(confirmed);
     read_.reset();
   }
   progress.inflight = false;

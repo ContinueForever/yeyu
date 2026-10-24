@@ -54,14 +54,13 @@ void Acceptor::HandleRead() {
   if (!listening_) return;
   for (;;) {
     int saved = 0;
-    int fd = sockops::Accept(listen_fd_, &saved);
+    sockaddr_in address{};
+    int fd = sockops::Accept(listen_fd_, &saved, &address);
     if (fd >= 0) {
       sockops::SetTcpNoDelay(fd, true);
       sockops::SetKeepAlive(fd, true);
       if (new_conn_cb_) {
-        // Peer address is not captured by our Accept wrapper; report empty.
-        InetAddress peer;
-        new_conn_cb_(fd, peer);
+        new_conn_cb_(fd, InetAddress(address));
       } else {
         sockops::Close(fd);
       }

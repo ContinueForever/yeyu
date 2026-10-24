@@ -35,12 +35,13 @@ void SetKeepAlive(int fd, bool on) {
   ::setsockopt(fd, SOL_SOCKET, SO_KEEPALIVE, &v, sizeof(v));
 }
 
-int Accept(int listen_fd, int* saved_errno) {
+int Accept(int listen_fd, int* saved_errno, sockaddr_in* peer_address) {
   sockaddr_in peer{};
   socklen_t len = sizeof(peer);
   int fd =
       ::accept4(listen_fd, reinterpret_cast<sockaddr*>(&peer), &len, SOCK_NONBLOCK | SOCK_CLOEXEC);
   if (fd < 0) *saved_errno = errno;
+  if (fd >= 0 && peer_address) *peer_address = peer;
   return fd;
 }
 
