@@ -1,0 +1,199 @@
+{
+  "status": "complete",
+  "config": {
+    "prefix": "cloudbench-1e89d182932c4b9b",
+    "value_size": 128,
+    "keys_per_client": 8,
+    "seed": 1701,
+    "duration_seconds": 30,
+    "warmup_seconds": 5,
+    "timeout_seconds": 5,
+    "profile": "write-heavy",
+    "clients": 8,
+    "repeat": 2,
+    "write_percent": 90
+  },
+  "clients": [
+    {
+      "client": 0,
+      "status": "complete",
+      "phase": "final-value-check",
+      "failures": 0,
+      "finished_ns": 9110679258894,
+      "final_versions": [
+        342,
+        336,
+        317,
+        319,
+        348,
+        339,
+        317,
+        364
+      ],
+      "samples_file": "client-0.json.gz"
+    },
+    {
+      "client": 1,
+      "status": "complete",
+      "phase": "final-value-check",
+      "failures": 0,
+      "finished_ns": 9110679276348,
+      "final_versions": [
+        305,
+        303,
+        329,
+        331,
+        331,
+        356,
+        360,
+        326
+      ],
+      "samples_file": "client-1.json.gz"
+    },
+    {
+      "client": 2,
+      "status": "complete",
+      "phase": "final-value-check",
+      "failures": 0,
+      "finished_ns": 9110679330643,
+      "final_versions": [
+        304,
+        312,
+        349,
+        354,
+        363,
+        327,
+        289,
+        360
+      ],
+      "samples_file": "client-2.json.gz"
+    },
+    {
+      "client": 3,
+      "status": "complete",
+      "phase": "final-value-check",
+      "failures": 0,
+      "finished_ns": 9110679485216,
+      "final_versions": [
+        356,
+        320,
+        303,
+        349,
+        312,
+        353,
+        372,
+        333
+      ],
+      "samples_file": "client-3.json.gz"
+    },
+    {
+      "client": 4,
+      "status": "complete",
+      "phase": "final-value-check",
+      "failures": 0,
+      "finished_ns": 9110682258446,
+      "final_versions": [
+        307,
+        308,
+        347,
+        356,
+        334,
+        310,
+        355,
+        345
+      ],
+      "samples_file": "client-4.json.gz"
+    },
+    {
+      "client": 5,
+      "status": "complete",
+      "phase": "final-value-check",
+      "failures": 0,
+      "finished_ns": 9110679081022,
+      "final_versions": [
+        349,
+        336,
+        333,
+        331,
+        322,
+        353,
+        344,
+        319
+      ],
+      "samples_file": "client-5.json.gz"
+    },
+    {
+      "client": 6,
+      "status": "complete",
+      "phase": "final-value-check",
+      "failures": 0,
+      "finished_ns": 9110679095654,
+      "final_versions": [
+        326,
+        320,
+        379,
+        350,
+        349,
+        324,
+        321,
+        314
+      ],
+      "samples_file": "client-6.json.gz"
+    },
+    {
+      "client": 7,
+      "status": "complete",
+      "phase": "final-value-check",
+      "failures": 0,
+      "finished_ns": 9110679390675,
+      "final_versions": [
+        343,
+        311,
+        341,
+        345,
+        328,
+        360,
+        305,
+        334
+      ],
+      "samples_file": "client-7.json.gz"
+    }
+  ],
+  "start_ns": 9080674677023,
+  "operations": 20249,
+  "completed_puts": 18250,
+  "completed_gets": 1999,
+  "failures": 0,
+  "elapsed_seconds": 30.007581423,
+  "ops_per_second": 674.7961361684313,
+  "latency": {
+    "all": {
+      "p50_ms": 11.318,
+      "p95_ms": 16.307,
+      "p99_ms": 22.084,
+      "p999_ms": 26.645,
+      "max_ms": 31.261,
+      "samples": 20249
+    },
+    "get": {
+      "p50_ms": 11.396,
+      "p95_ms": 18.396,
+      "p99_ms": 23.818,
+      "p999_ms": 28.094,
+      "max_ms": 30.587,
+      "samples": 1999
+    },
+    "put": {
+      "p50_ms": 11.311,
+      "p95_ms": 15.967,
+      "p99_ms": 21.812,
+      "p999_ms": 26.093,
+      "max_ms": 31.261,
+      "samples": 18250
+    }
+  },
+  "leader_id": 2,
+  "term": 96,
+  "client_processes": 2,
+  "client_process_cpu_seconds_including_setup": 4.070466828000001
+}

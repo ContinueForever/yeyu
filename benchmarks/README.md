@@ -1,5 +1,12 @@
 # Benchmarks and experiment evidence
 
+The [2026-10-24 three-ECS report](../docs/cloud-performance-20261024.md) records
+45 runs and 1,954,767 timed requests across three read/write mixes and five
+concurrency levels. [Published samples, environment records and figures](published/cloud-performance-20261023/README.md)
+can be checked with `python3 scripts/verify-cloud-performance.py benchmarks/published/cloud-performance-20261023`.
+Clients share a Follower VM; this is a bounded closed-loop baseline, with the
+high read tail and 152.175 ms worst request retained.
+
 To measure an **existing three-machine deployment**, use
 [`remote_matrix.py`](remote_matrix.py) and the [cloud benchmark guide](../docs/cloud-benchmark.md).
 It discovers the stable leader, retains checked per-request samples and compares

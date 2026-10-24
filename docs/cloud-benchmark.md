@@ -1,6 +1,6 @@
 # 现有三台 ECS 的跨机压测
 
-工具是 [`benchmarks/remote_matrix.py`](../benchmarks/remote_matrix.py)，只连接已经运行的三个节点，不启动本地集群，不替换服务器程序，不停止或重启节点。先完成[基础正确性演练](cloud-acceptance-20261023.md)，再单独运行性能实验。本页是操作方案，尚未包含实测的云上吞吐量或延迟。
+工具是 [`benchmarks/remote_matrix.py`](../benchmarks/remote_matrix.py)，只连接已经运行的三个节点，不启动本地集群，不替换服务器程序，不停止或重启节点。先完成[基础正确性演练](cloud-acceptance-20261023.md)，再单独运行性能实验。按本文执行的首组 45 轮结果见[2026-10-24 性能报告](cloud-performance-20261024.md)，原始样本与三台环境已有[公开归档](../benchmarks/published/cloud-performance-20261023/README.md)。
 
 ## 测量范围
 

@@ -1,0 +1,66 @@
+{
+  "status": "complete",
+  "config": {
+    "prefix": "cloudbench-1e89d182932c4b9b",
+    "value_size": 128,
+    "keys_per_client": 8,
+    "seed": 1701,
+    "duration_seconds": 30,
+    "warmup_seconds": 5,
+    "timeout_seconds": 5,
+    "profile": "read-only",
+    "clients": 1,
+    "repeat": 3,
+    "write_percent": 0
+  },
+  "clients": [
+    {
+      "client": 0,
+      "status": "complete",
+      "phase": "final-value-check",
+      "failures": 0,
+      "finished_ns": 9794317375952,
+      "final_versions": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "samples_file": "client-0.json.gz"
+    }
+  ],
+  "start_ns": 9764316647117,
+  "operations": 8054,
+  "completed_puts": 0,
+  "completed_gets": 8054,
+  "failures": 0,
+  "elapsed_seconds": 30.000728835,
+  "ops_per_second": 268.4601445616846,
+  "latency": {
+    "all": {
+      "p50_ms": 3.679,
+      "p95_ms": 4.964,
+      "p99_ms": 5.66,
+      "p999_ms": 7.216,
+      "max_ms": 13.567,
+      "samples": 8054
+    },
+    "get": {
+      "p50_ms": 3.679,
+      "p95_ms": 4.964,
+      "p99_ms": 5.66,
+      "p999_ms": 7.216,
+      "max_ms": 13.567,
+      "samples": 8054
+    },
+    "put": null
+  },
+  "leader_id": 2,
+  "term": 96,
+  "client_processes": 1,
+  "client_process_cpu_seconds_including_setup": 1.0869963559999998
+}
