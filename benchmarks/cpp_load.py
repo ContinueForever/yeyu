@@ -21,7 +21,7 @@ def summarize(directory):
     directory = Path(directory)
     result = read(directory / "result.json")
     require(
-        result["schema"] == 1
+        result["schema"] in [1, 2]
         and result["columns"]
         == [
             "latency_ns",
@@ -53,6 +53,9 @@ def summarize(directory):
             if period
             else len(record["samples"])
         )
+        if rate and result["schema"] == 2:
+            total = (duration * rate + 999999999) // 1000000000
+            offered = max(0, (total - 1 - client) // clients + 1)
         require(record["offered_slots"] == offered, "offered schedule differs")
         require(
             len(record["samples"]) <= (result["max_samples"] + clients - 1) // clients,
@@ -73,12 +76,21 @@ def summarize(directory):
                 and -2 <= code <= 7,
                 "invalid interval or response",
             )
-            if period:
+            if period and result["schema"] == 1:
                 require(
                     due >= offset
                     and (due - offset) % period == 0
                     and due > previous_slot,
                     "paced calendar differs",
+                )
+            elif period:
+                index = (due * rate + 999999999) // 1000000000
+                require(
+                    index % clients == client
+                    and due == index * 1000000000 // rate
+                    and index < total
+                    and due > previous_slot,
+                    "exact paced calendar differs",
                 )
             previous_end, previous_slot = end, due
             completed = max(completed, end)

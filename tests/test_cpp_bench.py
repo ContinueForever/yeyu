@@ -28,7 +28,8 @@ class CppBenchTests(unittest.TestCase):
             cluster = harness.Cluster(directory)
             try:
                 leader = cluster.leader()
-                for rate in [0, 50]:
+                for rate in [0, 50, 600]:
+                    clients = 32 if rate == 600 else 4
                     output = root / f"rate-{rate}"
                     prefix = f"bench-test-{rate}"
                     command = [
@@ -38,7 +39,7 @@ class CppBenchTests(unittest.TestCase):
                         "--port",
                         str(cluster.ports[leader]),
                         "--clients",
-                        "4",
+                        str(clients),
                         "--duration-ms",
                         "400",
                         "--warmup-ms",
@@ -55,13 +56,13 @@ class CppBenchTests(unittest.TestCase):
                     self.assertTrue(result["valid"])
                     self.assertEqual(result["failures"], 0)
                     if rate:
-                        self.assertEqual(result["offered_slots"], 20)
+                        self.assertEqual(result["offered_slots"], rate * 400 // 1000)
                     self.assertEqual(
                         result["offered_slots"],
                         result["attempts"] + result["missed_slots"],
                     )
                     reconstructed = final_values(output)
-                    for client in range(4):
+                    for client in range(clients):
                         expected = [
                             bytes([ord("a") + (client + key) % 26]) * 128
                             for key in range(8)

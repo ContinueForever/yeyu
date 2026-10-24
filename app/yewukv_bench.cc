@@ -221,19 +221,15 @@ void Run(int id, const Options& o, Shared& shared, Worker& output) {
     }
     SleepUntil(shared.start, shared);
     const uint64_t duration = static_cast<uint64_t>(o.duration_ms) * 1000000;
-    const uint64_t period =
-        o.offered_rps ? (1000000000ULL * o.clients + o.offered_rps / 2) / o.offered_rps : 0;
-    const uint64_t offset =
-        o.offered_rps ? (1000000000ULL * id + o.offered_rps / 2) / o.offered_rps : 0;
-    output.offered = period && offset < duration ? (duration - 1 - offset) / period + 1 : 0;
+    const bool paced = o.offered_rps != 0;
     uint64_t slot = 0, sequence = 0, random = 0x9e3779b9ULL + id;
     const size_t limit = (static_cast<size_t>(o.max_samples) + o.clients - 1) / o.clients;
     output.samples.reserve(std::min<size_t>(limit, 4096));
     while (!shared.abort && !cancelled) {
       uint64_t scheduled = Ns(Clock::now() - shared.start);
-      if (period) {
+      if (paced) {
         if (slot >= output.offered) break;
-        scheduled = offset + slot * period;
+        scheduled = (static_cast<uint64_t>(id) + slot * o.clients) * 1000000000ULL / o.offered_rps;
         SleepUntil(shared.start + std::chrono::nanoseconds(scheduled), shared);
       }
       if (cancelled || shared.abort) break;
@@ -270,13 +266,18 @@ void Run(int id, const Options& o, Shared& shared, Worker& output) {
         shared.abort = true;
         break;
       }  // Never replay an unknown write.
-      if (period)
-        slot =
-            std::max(slot + 1, began < offset ? 0 : (Ns(end - shared.start) - offset) / period + 1);
+      if (paced) {
+        const uint64_t next_global =
+            ((Ns(end - shared.start) + 1) * o.offered_rps + 999999999ULL) / 1000000000ULL;
+        const uint64_t next_owned = next_global > static_cast<uint64_t>(id)
+                                        ? (next_global - id + o.clients - 1) / o.clients
+                                        : 0;
+        slot = std::max(slot + 1, next_owned);
+      }
     }
     if (cancelled) shared.abort = true;
     if (!shared.abort) SleepUntil(shared.start + std::chrono::nanoseconds(duration), shared);
-    if (!period) output.offered = output.samples.size();
+    if (!paced) output.offered = output.samples.size();
   } catch (...) {
     output.setup_failed = true;
     shared.abort = true;
@@ -299,10 +300,9 @@ int main(int argc, char** argv) {
     std::vector<Worker> results(o.clients);
     if (o.offered_rps) {
       const uint64_t duration = static_cast<uint64_t>(o.duration_ms) * 1000000;
-      const uint64_t period = (1000000000ULL * o.clients + o.offered_rps / 2) / o.offered_rps;
+      const uint64_t total = (duration * o.offered_rps + 999999999ULL) / 1000000000ULL;
       for (int i = 0; i < o.clients; ++i) {
-        const uint64_t offset = (1000000000ULL * i + o.offered_rps / 2) / o.offered_rps;
-        results[i].offered = offset < duration ? (duration - 1 - offset) / period + 1 : 0;
+        results[i].offered = static_cast<uint64_t>(i) < total ? (total - 1 - i) / o.clients + 1 : 0;
       }
     }
     std::vector<std::thread> threads;
@@ -350,7 +350,7 @@ int main(int argc, char** argv) {
     }
     const bool valid = !setup_failed && !limited && !shared.abort;
     std::ofstream file(std::filesystem::path(o.output) / "result.json");
-    file << "{\"schema\":1,\"valid\":" << (valid ? "true" : "false")
+    file << "{\"schema\":2,\"valid\":" << (valid ? "true" : "false")
          << ",\"columns\":[\"latency_ns\",\"scheduled_offset_ns\",\"started_offset_ns\","
             "\"completed_offset_ns\",\"put\",\"code\"]"
          << ",\"start_monotonic_ns\":" << Ns(shared.start.time_since_epoch())

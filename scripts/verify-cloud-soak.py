@@ -39,6 +39,9 @@ def verify(root):
             row = summarize(directory)
             config = read(directory / "result.json")
             require(
+                smoke or config["schema"] == 2, "formal windows require exact calendar"
+            )
+            require(
                 row["valid"]
                 and not row["failures"]
                 and config["duration_ms"] == progress["window_seconds"] * 1000
