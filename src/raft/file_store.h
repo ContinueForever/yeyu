@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstddef>
+#include <array>
 #include <functional>
 #include <mutex>
 #include <string>
@@ -25,6 +26,10 @@ class FileStore final : public HardStateStore, public LogStore {
   static constexpr size_t kMaxStateBytes = 64 * 1024 * 1024;
   static constexpr size_t kMaxCommandBytes = 1024 * 1024;
   static constexpr size_t kMaxSnapshotBytes = 16 * 1024 * 1024;
+  // Non-cumulative, disjoint buckets, followed by one overflow bucket.
+  static constexpr std::array<uint64_t, 15> kLatencyBoundsNs = {
+      10000,    50000,    100000,    500000,    1000000,   2000000,    5000000,   10000000,
+      20000000, 50000000, 100000000, 200000000, 500000000, 1000000000, 5000000000};
 
   enum class PersistPoint {
     kBeforeFileSync,
@@ -59,6 +64,13 @@ class FileStore final : public HardStateStore, public LogStore {
     uint64_t write_nanoseconds = 0;
     uint64_t file_syncs = 0;
     uint64_t directory_syncs = 0;
+    uint64_t crc_nanoseconds = 0;  // Subset of encode_nanoseconds.
+    uint64_t file_sync_nanoseconds = 0;
+    uint64_t directory_sync_nanoseconds = 0;
+    uint64_t checkpoint_max_nanoseconds = 0;
+    uint64_t journal_sync_max_nanoseconds = 0;
+    std::array<uint64_t, 16> checkpoint_duration_buckets{};
+    std::array<uint64_t, 16> journal_sync_duration_buckets{};
   };
 
   explicit FileStore(std::string directory);
@@ -83,6 +95,8 @@ class FileStore final : public HardStateStore, public LogStore {
   Status AppendDelta(uint32_t kind, const std::string& payload);
   void RecoverJournal();
   void RemoveOldJournals();
+  uint64_t SyncFile(int fd, const char* operation);
+  void SyncDirectory(const char* operation);
   Status CheckUsable() const;
   void Close();
 

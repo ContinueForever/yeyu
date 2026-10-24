@@ -1,5 +1,12 @@
 # Benchmarks and experiment evidence
 
+The [persistence/CAS/C++ load tools](../docs/long-window.md) add disjoint
+duration buckets, a bounded revision-aware history oracle, and a Linux C++
+load generator with retained samples, skipped arrivals and graceful cancellation.
+The [short-tooling evidence](published/tooling-20261024/README.md) records
+148/148 ordinary and sanitizer checks. `cloud_soak.py` provides a guarded,
+six-hour measured-window plan; its long-run results require a separate acceptance.
+
 The [latest three-VM engineering report](../docs/engineering-next-20261024.md)
 adds 18 mixed-workload fault epochs, bounded histories, background snapshot
 encoding, closed-loop and paced load, and legacy-to-CAS upgrade probes.

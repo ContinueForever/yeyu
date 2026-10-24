@@ -6,3 +6,6 @@ target_link_libraries(yewukv-client PRIVATE yewu_rpc)
 
 add_executable(yewukv-node yewukv_node.cc)
 target_link_libraries(yewukv-node PRIVATE yewu_cluster)
+
+add_executable(yewukv-bench yewukv_bench.cc)
+target_link_libraries(yewukv-bench PRIVATE yewu_rpc)

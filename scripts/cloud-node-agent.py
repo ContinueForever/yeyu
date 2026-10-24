@@ -8,6 +8,7 @@ import argparse
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import hmac, json, os
 import hashlib
+import shutil
 from pathlib import Path
 import pwd, re, signal, subprocess, threading, time
 
@@ -55,6 +56,10 @@ def main():
             "--collect",
             "--property=Restart=no",
             "--property=UMask=0077",
+            "--property=RuntimeMaxSec=7500",
+            "--property=MemoryMax=512M",
+            "--property=CPUQuota=100%",
+            "--property=TasksMax=192",
             "--property=StandardOutput=append:" + str(root / (case + ".log")),
             "--property=StandardError=append:" + str(root / (case + ".log")),
             *args,
@@ -68,6 +73,17 @@ def main():
                 mode = payload.get("encoder", "sync")
                 proxies = payload.get("proxies", False)
                 program = payload.get("program", "new")
+                policy = payload.get("snapshot_policy", "fixed")
+                checkpoint = payload.get("journal_checkpoint_bytes", 67108864)
+                request_timeout = payload.get("request_timeout_ms", 900)
+                if (
+                    policy not in ["fixed", "adaptive"]
+                    or type(checkpoint) is not int
+                    or not 128 <= checkpoint <= 67108864
+                    or type(request_timeout) is not int
+                    or not 100 <= request_timeout <= 60000
+                ):
+                    raise ValueError("invalid snapshot/persistence options")
                 if program not in ["new", "legacy"] or (
                     program == "legacy" and not case.startswith("legacy-")
                 ):
@@ -135,15 +151,15 @@ def main():
                     "--data-dir",
                     str(directory),
                     "--snapshot-policy",
-                    "fixed",
+                    policy,
                     "--snapshot-entries",
                     str(payload.get("snapshot_entries", 128)),
                     "--snapshot-bytes",
                     str(payload.get("snapshot_bytes", 1048576)),
                     "--journal-checkpoint-bytes",
-                    "67108864",
+                    str(checkpoint),
                     "--request-timeout-ms",
-                    "900",
+                    str(request_timeout),
                     "--pending-limit",
                     str(payload.get("pending_limit", 1024)),
                     "--event-queue",
@@ -170,6 +186,9 @@ def main():
                 stop(proxyunit)
                 active.clear()
                 return dict(stopped=True)
+            if selected == "finish":
+                threading.Thread(target=server.shutdown, daemon=True).start()
+                return dict(shutdown_requested=True)
             if selected == "signal":
                 sig = payload["signal"]
                 assert sig in ["KILL", "STOP", "CONT"]
@@ -212,6 +231,18 @@ def main():
                 )
                 info = dict(
                     properties=props, active=active, monotonic_ns=time.monotonic_ns()
+                )
+                info["free_disk_bytes"] = shutil.disk_usage(data_root).free
+                info["original_service"] = command(
+                    "systemctl",
+                    "show",
+                    f"yewukv-node@{node}.service",
+                    "-p",
+                    "ActiveState",
+                    "-p",
+                    "NRestarts",
+                    "-p",
+                    "DropInPaths",
                 )
                 if pid != "0":
                     p = Path("/proc") / pid

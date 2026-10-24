@@ -115,6 +115,23 @@ add_test(NAME cloud_load_accounting
   COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test_cloud_load_accounting.py)
 set_tests_properties(cloud_load_accounting PROPERTIES TIMEOUT 10)
 
+add_test(NAME revision_history_oracle
+  COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test_revision_history.py)
+set_tests_properties(revision_history_oracle PROPERTIES TIMEOUT 10)
+
+add_test(NAME cluster_revision_fault_history
+  COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test_revision_faults.py ${snapshot_test_args})
+set_tests_properties(cluster_revision_fault_history PROPERTIES TIMEOUT 120)
+
+add_test(NAME cpp_load_generator
+  COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test_cpp_bench.py
+          ${snapshot_test_args} --bench $<TARGET_FILE:yewukv-bench>)
+set_tests_properties(cpp_load_generator PROPERTIES TIMEOUT 60)
+
+add_test(NAME cloud_soak_plan_guard
+  COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test_soak_plan.py)
+set_tests_properties(cloud_soak_plan_guard PROPERTIES TIMEOUT 10)
+
 add_test(NAME config_application
   COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test_config_app.py ${snapshot_test_args})
 set_tests_properties(config_application PROPERTIES TIMEOUT 90)

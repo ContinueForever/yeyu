@@ -49,6 +49,7 @@ python3 scripts/verify-cloud-evidence.py benchmarks/published/cloud-20261023
 python3 scripts/verify-cloud-performance.py benchmarks/published/cloud-performance-20261023
 python3 scripts/verify-cloud-diagnosis.py benchmarks/published/cloud-diagnosis-20261024
 python3 scripts/verify-engineering.py benchmarks/published/engineering-20261024
+python3 scripts/verify-tooling.py benchmarks/published/tooling-20261024
 ```
 
 不要直接覆盖已发布样本或其清单。新增实验使用新目录，按照[实验复现说明](benchmarks/README.md)记录实际结果，并在[文档索引](docs/README.md#实验与验收)添加入口。旧报告对应归档的历史实现，当前构建可能采用不同默认策略。

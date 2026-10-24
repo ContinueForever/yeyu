@@ -21,6 +21,8 @@
 
 ## 验证结果
 
+新增[持久化分阶段指标、CAS 故障历史与 C++ 发压器](docs/long-window.md)，普通／ASan 各 148 项通过，相关[源码与历史](benchmarks/published/tooling-20261024/README.md)可离线核验。六小时云端方案已提供，完成状态以独立实验进度与后续报告为准。
+
 最新[三机工程验证](docs/engineering-next-20261024.md)：普通／ASan 各 143 项通过，状态机／快照组件 TSan 13 项通过。完成 18 轮真实混合负载故障、2,491 个有界模型操作，另完成 42 轮正式负载对照、637,823 次已发计时请求；全部样本及探索轮也保留在[公开归档](benchmarks/published/engineering-20261024/README.md)。
 
 | 本轮变化 | 实测结果与边界 |

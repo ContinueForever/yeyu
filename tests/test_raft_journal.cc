@@ -6,6 +6,7 @@
 #include <filesystem>
 #include <fstream>
 #include <iterator>
+#include <numeric>
 #include <string>
 #include <system_error>
 
@@ -79,6 +80,36 @@ TEST(RaftJournal, MigratesLegacyImageAndRecoversBinarySuffixAndVote) {
     EXPECT_EQ(store.ReadState().entries[1].command, std::string("a\0b", 3));
   }
   EXPECT_THROW(FileStore downgrade(directory.path), std::runtime_error);
+}
+
+TEST(RaftJournal, PhaseMetricsAccountForRolloverAndImagePublication) {
+  for (bool journal : {false, true}) {
+    JournalDirectory directory;
+    FileStore::Options options;
+    options.journal = journal;
+    options.journal_checkpoint_bytes = 128;
+    FileStore store(directory.path, options);
+    ASSERT_TRUE(store.Save({1, 1}).ok());
+    ASSERT_TRUE(store.ReplaceFrom(1, {{1, 1, std::string(65536, 'x')}}).ok());
+    const auto before = store.ReadMetrics();
+    ASSERT_TRUE(store.Save({2, 1}).ok());
+    const auto after = store.ReadMetrics();
+    EXPECT_EQ(std::accumulate(after.checkpoint_duration_buckets.begin(),
+                              after.checkpoint_duration_buckets.end(), uint64_t{0}),
+              after.checkpoint_saves);
+    EXPECT_EQ(std::accumulate(after.journal_sync_duration_buckets.begin(),
+                              after.journal_sync_duration_buckets.end(), uint64_t{0}),
+              after.journal_saves);
+    EXPECT_GT(after.checkpoint_saves, before.checkpoint_saves);
+    EXPECT_GT(after.crc_nanoseconds, before.crc_nanoseconds);
+    EXPECT_LE(after.crc_nanoseconds, after.encode_nanoseconds);
+    EXPECT_GT(after.file_sync_nanoseconds, 0U);
+    EXPECT_GT(after.directory_sync_nanoseconds, 0U);
+    EXPECT_LE(after.file_sync_nanoseconds + after.directory_sync_nanoseconds,
+              after.sync_nanoseconds);
+    EXPECT_LE(after.checkpoint_max_nanoseconds, after.persist_nanoseconds);
+    EXPECT_EQ(store.ReadState().entries.front().command, std::string(65536, 'x'));
+  }
 }
 
 TEST(RaftJournal, AppendsOnlyDeltaAndLeavesLargeCheckpointUntouched) {

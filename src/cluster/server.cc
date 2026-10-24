@@ -531,7 +531,26 @@ struct Server::Impl {
            << ",\"disk_write_ns\":" << metrics.write_nanoseconds
            << ",\"disk_file_syncs\":" << metrics.file_syncs
            << ",\"disk_directory_syncs\":" << metrics.directory_syncs
-           << ",\"trace_enabled\":" << (trace && trace->Enabled() ? 1 : 0)
+           << ",\"disk_crc_ns\":" << metrics.crc_nanoseconds
+           << ",\"disk_file_sync_ns\":" << metrics.file_sync_nanoseconds
+           << ",\"disk_directory_sync_ns\":" << metrics.directory_sync_nanoseconds
+           << ",\"disk_checkpoint_max_ns\":" << metrics.checkpoint_max_nanoseconds
+           << ",\"disk_journal_sync_max_ns\":" << metrics.journal_sync_max_nanoseconds;
+      auto array = [&json](const auto& values) {
+        json << '[';
+        for (size_t i = 0; i < values.size(); ++i) {
+          if (i) json << ',';
+          json << values[i];
+        }
+        json << ']';
+      };
+      json << ",\"disk_latency_bounds_ns\":";
+      array(raft::FileStore::kLatencyBoundsNs);
+      json << ",\"disk_checkpoint_duration_buckets\":";
+      array(metrics.checkpoint_duration_buckets);
+      json << ",\"disk_journal_sync_duration_buckets\":";
+      array(metrics.journal_sync_duration_buckets);
+      json << ",\"trace_enabled\":" << (trace && trace->Enabled() ? 1 : 0)
            << ",\"trace_written\":" << (trace ? trace->written() : 0)
            << ",\"trace_dropped\":" << (trace ? trace->dropped() : 0)
            << ",\"trace_limited\":" << (trace && trace->limited() ? 1 : 0)
