@@ -103,6 +103,18 @@ add_test(NAME cluster_read_trace
   COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test_read_trace.py ${snapshot_test_args})
 set_tests_properties(cluster_read_trace PROPERTIES TIMEOUT 90)
 
+add_test(NAME cluster_cas_background_snapshot
+  COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test_cas_snapshot.py ${snapshot_test_args})
+set_tests_properties(cluster_cas_background_snapshot PROPERTIES TIMEOUT 120)
+
+add_test(NAME scheduler_trace_parser
+  COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test_scheduler_trace.py)
+set_tests_properties(scheduler_trace_parser PROPERTIES TIMEOUT 10)
+
+add_test(NAME cloud_load_accounting
+  COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test_cloud_load_accounting.py)
+set_tests_properties(cloud_load_accounting PROPERTIES TIMEOUT 10)
+
 add_test(NAME config_application
   COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test_config_app.py ${snapshot_test_args})
 set_tests_properties(config_application PROPERTIES TIMEOUT 90)

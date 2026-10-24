@@ -46,6 +46,10 @@ jobs:
           python3 scripts/verify-cloud-evidence.py benchmarks/published/cloud-20261023
           python3 scripts/verify-cloud-performance.py benchmarks/published/cloud-performance-20261023
           python3 tests/test_cloud_performance_evidence.py
+          python3 scripts/verify-cloud-diagnosis.py benchmarks/published/cloud-diagnosis-20261024
+          python3 tests/test_cloud_diagnosis_evidence.py
+          python3 scripts/verify-engineering.py benchmarks/published/engineering-20261024
+          python3 tests/test_engineering_evidence.py
       - name: clang-format check
         run: |
           files=$(git ls-files '*.cc' '*.h')

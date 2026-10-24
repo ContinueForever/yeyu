@@ -1,5 +1,18 @@
 # Benchmarks and experiment evidence
 
+The [latest three-VM engineering report](../docs/engineering-next-20261024.md)
+adds 18 mixed-workload fault epochs, bounded histories, background snapshot
+encoding, closed-loop and paced load, and legacy-to-CAS upgrade probes.
+[Published evidence](published/engineering-20261024/README.md) contains all
+48 load runs, including six separately labeled exploratory runs, every sent
+request and missed-slot accounting. Run
+`python3 scripts/verify-engineering.py benchmarks/published/engineering-20261024`
+offline; its README also documents isolated cloud setup and cleanup.
+
+The [read/scheduling evidence](published/cloud-diagnosis-20261024/README.md)
+publishes the earlier 48 runs and 5,024,663 GETs with numeric traces and full
+decoded scheduler streams. Its verifier does not require private packet captures.
+
 The [2026-10-24 three-ECS report](../docs/cloud-performance-20261024.md) records
 45 runs and 1,954,767 timed requests across three read/write mixes and five
 concurrency levels. [Published samples, environment records and figures](published/cloud-performance-20261023/README.md)

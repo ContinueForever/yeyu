@@ -1,0 +1,68 @@
+{
+  "verified": true,
+  "load_runs": 48,
+  "primary_runs": 42,
+  "attempts": 684964,
+  "primary_attempts": 637823,
+  "failed_measured_requests": 0,
+  "missed_offered_slots": 148257,
+  "faults": {
+    "epochs": 18,
+    "attempts": 2160,
+    "checked_operations": 2491,
+    "unknown_writes": 48,
+    "kinds": {
+      "leader-kill": 3,
+      "leader-pause": 3,
+      "leader-partition": 3,
+      "directed-partition": 3,
+      "link-delay": 3,
+      "all-restart": 3
+    }
+  },
+  "admission": {
+    "attempts": 1024,
+    "ok": 8,
+    "busy": 1016
+  },
+  "original_data_verified": true,
+  "note": "Finite checked histories and co-located load. Missed offered slots are separate from sent-request failures; no independent server capacity or general linearizability proof.",
+  "fault_outcomes": {
+    "0": 1827,
+    "1": 256,
+    "6": 68,
+    "5": 9
+  },
+  "first_success_after_fault_ms": {
+    "leader-kill": [
+      986.841181,
+      725.385732,
+      738.220973
+    ],
+    "leader-pause": [
+      1750.045514,
+      1756.076353,
+      1745.724479
+    ],
+    "leader-partition": [
+      920.705818,
+      915.641849,
+      919.744799
+    ],
+    "directed-partition": [
+      1021.393582,
+      1753.521486,
+      768.193741
+    ],
+    "link-delay": [
+      23.974157,
+      26.298265,
+      17.52884
+    ],
+    "all-restart": [
+      2666.695914,
+      2675.916753,
+      2669.217265
+    ]
+  }
+}

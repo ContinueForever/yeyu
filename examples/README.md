@@ -30,6 +30,6 @@ python3 examples/config_store.py --name checkout serve --poll-seconds 0.5 --stal
 
 默认后端的成功 GET 遵循 ReadIndex 契约；应用层通过轮询缓存，更新可见性是最终的，不能把缓存 HTTP 接口当作直接的线性一致读。超过 `--stale-after` 没有成功刷新后，`/health`、`/hello` 返回 503，`/config` 标记 stale，并保留最后一份有效配置用于诊断。启动时配置不存在或不可读会失败，避免带空配置启动。
 
-发布成功表示 KV 已多数派提交并应用。超时后的发布结果可能未知，示例不会自动重放；可以 show 核对内容 revision 后由操作者决定下一步。多发布者采用最后一次提交覆盖，没有 CAS、版本递增、审计历史、Watch、租约或分布式锁语义。该例用于受控本机环境中的配置发布闭环。
+发布成功表示 KV 已多数派提交并应用。超时后的发布结果可能未知，示例不会自动重放；可以 show 核对内容 revision 后由操作者决定下一步。普通 publish 仍采用最后一次提交覆盖；多发布者可以用 `inspect` 读取整数 `storage_revision`，再通过 `publish --expected-revision N` 条件发布，冲突时显式重新读取与合并。`N=0` 只创建缺失配置。内容 SHA-256 revision 与存储版本的含义不同，详见 [CAS 与迁移契约](../docs/cas.md)。当前仍没有审计历史、Watch、租约或分布式锁语义。
 
 `config_application` 集成测试实际运行发布 CLI 和 HTTP 消费者，验证动态刷新、Leader 强杀、失去多数派后配置过期、恢复、全节点重启和非法配置拒绝。

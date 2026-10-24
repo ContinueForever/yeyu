@@ -1,0 +1,24 @@
+{
+  "status": "verified",
+  "bundles": [
+    {
+      "node": 1,
+      "sha256": "da24d65fe2584243dbbfc6ca5f0f4d3ea18fa1045bbfb6c594970f8468bde1bc",
+      "bytes": 17348,
+      "files": 60
+    },
+    {
+      "node": 2,
+      "sha256": "39ade054ddd293588608419d98107429327a54d5a3c6d400b8fec1b7c948c021",
+      "bytes": 15726,
+      "files": 58
+    },
+    {
+      "node": 3,
+      "sha256": "bede482606d8fadcd6cf3d8b88b244a8ed091023829a27b0203e1fecb7c553af",
+      "bytes": 14302170,
+      "files": 4763
+    }
+  ],
+  "note": "All three original remote bundle SHA-256 values and every extracted inventory entry were independently rechecked after the download-completion logging-only duplicate-node TypeError. No workload was rerun. Bundle hashes refer to retained private unredacted downloads; publication-manifest.json binds this curated export."
+}

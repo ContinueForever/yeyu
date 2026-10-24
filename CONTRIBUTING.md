@@ -47,11 +47,15 @@ python3 scripts/verify-local-optimization.py benchmarks/published/local-optimiza
 python3 scripts/verify-local-followup.py benchmarks/published/local-followup-20261022
 python3 scripts/verify-cloud-evidence.py benchmarks/published/cloud-20261023
 python3 scripts/verify-cloud-performance.py benchmarks/published/cloud-performance-20261023
+python3 scripts/verify-cloud-diagnosis.py benchmarks/published/cloud-diagnosis-20261024
+python3 scripts/verify-engineering.py benchmarks/published/engineering-20261024
 ```
 
 不要直接覆盖已发布样本或其清单。新增实验使用新目录，按照[实验复现说明](benchmarks/README.md)记录实际结果，并在[文档索引](docs/README.md#实验与验收)添加入口。旧报告对应归档的历史实现，当前构建可能采用不同默认策略。
 
 云端性能归档另有 `python3 tests/test_cloud_performance_evidence.py`：在临时副本中修改 P99、矩阵轮次、应用进度、节点程序哈希和请求成功标志，并刷新两层文件清单，要求语义核验仍拒绝。原始归档保持不变。
+
+新增 `tests/test_cloud_diagnosis_evidence.py` 与 `tests/test_engineering_evidence.py` 检查追踪关联、计划到达时刻及不可能的历史读值；CI 运行两份公开归档核验和语义负例。最新实验条件、普通／ASan 143 项及组件 TSan 的范围见[工程报告](docs/engineering-next-20261024.md)。
 
 ## GitHub 检查
 

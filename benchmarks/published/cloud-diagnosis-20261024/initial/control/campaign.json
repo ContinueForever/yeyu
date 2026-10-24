@@ -1,0 +1,362 @@
+{
+  "status": "complete",
+  "root": "/private-experiment/yewukv-readtrace-20261024T033540Z",
+  "identity": [
+    97,
+    3
+  ],
+  "client_node_id": 1,
+  "plan": [
+    {
+      "name": "c8-trace0-r1",
+      "clients": 8,
+      "mode": 0,
+      "repeat": 1
+    },
+    {
+      "name": "c8-trace1-r1",
+      "clients": 8,
+      "mode": 1,
+      "repeat": 1
+    },
+    {
+      "name": "c32-trace0-r1",
+      "clients": 32,
+      "mode": 0,
+      "repeat": 1
+    },
+    {
+      "name": "c32-trace1-r1",
+      "clients": 32,
+      "mode": 1,
+      "repeat": 1
+    },
+    {
+      "name": "c32-trace1-r2",
+      "clients": 32,
+      "mode": 1,
+      "repeat": 2
+    },
+    {
+      "name": "c32-trace0-r2",
+      "clients": 32,
+      "mode": 0,
+      "repeat": 2
+    },
+    {
+      "name": "c8-trace1-r2",
+      "clients": 8,
+      "mode": 1,
+      "repeat": 2
+    },
+    {
+      "name": "c8-trace0-r2",
+      "clients": 8,
+      "mode": 0,
+      "repeat": 2
+    },
+    {
+      "name": "c8-trace0-r3",
+      "clients": 8,
+      "mode": 0,
+      "repeat": 3
+    },
+    {
+      "name": "c8-trace1-r3",
+      "clients": 8,
+      "mode": 1,
+      "repeat": 3
+    },
+    {
+      "name": "c32-trace0-r3",
+      "clients": 32,
+      "mode": 0,
+      "repeat": 3
+    },
+    {
+      "name": "c32-trace1-r3",
+      "clients": 32,
+      "mode": 1,
+      "repeat": 3
+    }
+  ],
+  "completed": [
+    {
+      "name": "c8-trace0-r1",
+      "operations": 28128,
+      "ops_per_second": 1405.9688531134377,
+      "p95_ms": 7.039,
+      "p99_ms": 7.911,
+      "trace": 0,
+      "failures": 0
+    },
+    {
+      "name": "c8-trace1-r1",
+      "operations": 27705,
+      "ops_per_second": 1385.0382688535808,
+      "p95_ms": 7.219,
+      "p99_ms": 8.179,
+      "trace": 1,
+      "failures": 0
+    },
+    {
+      "name": "c32-trace0-r1",
+      "operations": 95724,
+      "ops_per_second": 4784.732914763142,
+      "p95_ms": 8.024,
+      "p99_ms": 9.245,
+      "trace": 0,
+      "failures": 0
+    },
+    {
+      "name": "c32-trace1-r1",
+      "operations": 93632,
+      "ops_per_second": 4679.939971706723,
+      "p95_ms": 8.268,
+      "p99_ms": 9.516,
+      "trace": 1,
+      "failures": 0
+    },
+    {
+      "name": "c32-trace1-r2",
+      "operations": 92609,
+      "ops_per_second": 4628.709844865501,
+      "p95_ms": 8.276,
+      "p99_ms": 9.611,
+      "trace": 1,
+      "failures": 0
+    },
+    {
+      "name": "c32-trace0-r2",
+      "operations": 95210,
+      "ops_per_second": 4758.901295650519,
+      "p95_ms": 8.083,
+      "p99_ms": 9.228,
+      "trace": 0,
+      "failures": 0
+    },
+    {
+      "name": "c8-trace1-r2",
+      "operations": 29138,
+      "ops_per_second": 1456.609764677949,
+      "p95_ms": 7.105,
+      "p99_ms": 7.817,
+      "trace": 1,
+      "failures": 0
+    },
+    {
+      "name": "c8-trace0-r2",
+      "operations": 29456,
+      "ops_per_second": 1472.385827069257,
+      "p95_ms": 6.978,
+      "p99_ms": 7.582,
+      "trace": 0,
+      "failures": 0
+    },
+    {
+      "name": "c8-trace0-r3",
+      "operations": 28046,
+      "ops_per_second": 1401.886539149707,
+      "p95_ms": 7.11,
+      "p99_ms": 8.073,
+      "trace": 0,
+      "failures": 0
+    },
+    {
+      "name": "c8-trace1-r3",
+      "operations": 27250,
+      "ops_per_second": 1362.1686215615773,
+      "p95_ms": 7.304,
+      "p99_ms": 8.245,
+      "trace": 1,
+      "failures": 0
+    },
+    {
+      "name": "c32-trace0-r3",
+      "operations": 95509,
+      "ops_per_second": 4773.574638192202,
+      "p95_ms": 8.075,
+      "p99_ms": 9.292,
+      "trace": 0,
+      "failures": 0
+    },
+    {
+      "name": "c32-trace1-r3",
+      "operations": 92121,
+      "ops_per_second": 4604.721513668519,
+      "p95_ms": 8.362,
+      "p99_ms": 9.453,
+      "trace": 1,
+      "failures": 0
+    }
+  ],
+  "started_ns": 1792813152732823434,
+  "final_cluster": {
+    "states": [
+      {
+        "id": 1,
+        "role": "follower",
+        "term": 97,
+        "leader_id": 3,
+        "last_index": 710821,
+        "commit_index": 710821,
+        "applied_index": 710821,
+        "pending": 0,
+        "keys": 2596,
+        "disk_saves": 259,
+        "disk_bytes": 472966,
+        "disk_persist_ns": 525453348,
+        "snapshot_index": 710601,
+        "snapshot_bytes": 408558,
+        "live_snapshot_bytes": 446774,
+        "retained_entries": 220,
+        "retained_log_bytes": 43625,
+        "state_bytes": 452243,
+        "snapshots_saved": 1,
+        "snapshots_installed": 0,
+        "busy_rejections": 0,
+        "completed_commands": 735,
+        "quorum_timeouts": 0,
+        "read_pending": 0,
+        "read_index_completed": 0,
+        "read_quorum_rounds": 0,
+        "read_overlapped_requests": 0,
+        "append_requests": 0,
+        "read_append_requests": 0,
+        "read_append_with_entries": 0,
+        "snapshot_pause_ns": 17130765,
+        "snapshot_pause_max_ns": 17130765,
+        "snapshot_policy": "adaptive",
+        "storage_mode": "journal",
+        "read_mode": "read-index",
+        "disk_checkpoint_saves": 1,
+        "disk_journal_saves": 258,
+        "journal_bytes": 54816,
+        "checkpoint_bytes": 408823,
+        "disk_encode_ns": 2289026,
+        "disk_sync_ns": 517402753,
+        "disk_write_ns": 5346812,
+        "disk_file_syncs": 260,
+        "disk_directory_syncs": 3,
+        "trace_enabled": 0,
+        "trace_written": 0,
+        "trace_dropped": 0,
+        "trace_limited": 0,
+        "trace_failed": 0
+      },
+      {
+        "id": 2,
+        "role": "follower",
+        "term": 97,
+        "leader_id": 3,
+        "last_index": 710821,
+        "commit_index": 710821,
+        "applied_index": 710821,
+        "pending": 0,
+        "keys": 2596,
+        "disk_saves": 259,
+        "disk_bytes": 472966,
+        "disk_persist_ns": 620320360,
+        "snapshot_index": 710601,
+        "snapshot_bytes": 408558,
+        "live_snapshot_bytes": 446774,
+        "retained_entries": 220,
+        "retained_log_bytes": 43625,
+        "state_bytes": 452243,
+        "snapshots_saved": 1,
+        "snapshots_installed": 0,
+        "busy_rejections": 0,
+        "completed_commands": 735,
+        "quorum_timeouts": 0,
+        "read_pending": 0,
+        "read_index_completed": 0,
+        "read_quorum_rounds": 0,
+        "read_overlapped_requests": 0,
+        "append_requests": 0,
+        "read_append_requests": 0,
+        "read_append_with_entries": 0,
+        "snapshot_pause_ns": 13909563,
+        "snapshot_pause_max_ns": 13909563,
+        "snapshot_policy": "adaptive",
+        "storage_mode": "journal",
+        "read_mode": "read-index",
+        "disk_checkpoint_saves": 1,
+        "disk_journal_saves": 258,
+        "journal_bytes": 54816,
+        "checkpoint_bytes": 408823,
+        "disk_encode_ns": 1812630,
+        "disk_sync_ns": 614733861,
+        "disk_write_ns": 3584081,
+        "disk_file_syncs": 260,
+        "disk_directory_syncs": 3,
+        "trace_enabled": 0,
+        "trace_written": 0,
+        "trace_dropped": 0,
+        "trace_limited": 0,
+        "trace_failed": 0
+      },
+      {
+        "id": 3,
+        "role": "leader",
+        "term": 97,
+        "leader_id": 3,
+        "last_index": 710821,
+        "commit_index": 710821,
+        "applied_index": 710821,
+        "pending": 0,
+        "keys": 2596,
+        "disk_saves": 259,
+        "disk_bytes": 496916,
+        "disk_persist_ns": 539789478,
+        "snapshot_index": 710739,
+        "snapshot_bytes": 432506,
+        "live_snapshot_bytes": 446774,
+        "retained_entries": 82,
+        "retained_log_bytes": 16318,
+        "state_bytes": 448884,
+        "snapshots_saved": 1,
+        "snapshots_installed": 0,
+        "busy_rejections": 0,
+        "completed_commands": 627,
+        "quorum_timeouts": 0,
+        "read_pending": 0,
+        "read_index_completed": 906961,
+        "read_quorum_rounds": 125035,
+        "read_overlapped_requests": 0,
+        "append_requests": 247423,
+        "read_append_requests": 243817,
+        "read_append_with_entries": 0,
+        "snapshot_pause_ns": 17380412,
+        "snapshot_pause_max_ns": 17380412,
+        "snapshot_policy": "adaptive",
+        "storage_mode": "journal",
+        "read_mode": "read-index",
+        "disk_checkpoint_saves": 1,
+        "disk_journal_saves": 258,
+        "journal_bytes": 20331,
+        "checkpoint_bytes": 432773,
+        "disk_encode_ns": 2584092,
+        "disk_sync_ns": 528321797,
+        "disk_write_ns": 8531549,
+        "disk_file_syncs": 260,
+        "disk_directory_syncs": 3,
+        "trace_enabled": 0,
+        "trace_written": 135289,
+        "trace_dropped": 0,
+        "trace_limited": 0,
+        "trace_failed": 0
+      }
+    ],
+    "identity": [
+      97,
+      3
+    ],
+    "protected": {
+      "cloud-check": "7265616479",
+      "failover-check": "7375727669766564",
+      "rejoin-check": "6361756768742d7570",
+      "reboot-check": "616c697665"
+    }
+  },
+  "finished_ns": 1792813509558376955
+}

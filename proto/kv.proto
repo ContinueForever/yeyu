@@ -17,13 +17,26 @@ message DeleteRequest {
   bytes key = 1;
 }
 
+message CompareAndSwapRequest {
+  bytes key = 1;
+  uint64 expected_revision = 2; // Zero means the key must be absent.
+  bytes value = 3;
+}
+
 message PingRequest {}
 message StatusRequest {}
 
 // Deterministic sorted live KV state covering applied committed entries only.
+message SnapshotEntry {
+  bytes key = 1;
+  bytes value = 2;
+  uint64 revision = 3;
+}
+
 message KvSnapshot {
   uint32 version = 1;
-  repeated PutRequest entries = 2;
+  repeated SnapshotEntry entries = 2; // Wire-compatible with v1 PutRequest entries.
+  uint64 revision = 3;
 }
 
 // Every request must have a nonzero request_id and exactly one operation.
@@ -40,6 +53,7 @@ message KvRequest {
     PingRequest ping = 5;
     StatusRequest status = 6;
     yewukv.raft.PeerMessage peer = 7;
+    CompareAndSwapRequest cas = 9;
   }
 }
 
@@ -52,6 +66,7 @@ message KvResponse {
     BUSY = 4;
     NOT_LEADER = 5;  // Request was rejected before proposal; safe to redirect.
     UNAVAILABLE = 6; // Accepted operation may have committed; do not retry blindly.
+    CONFLICT = 7; // Committed comparison failed; value was not replaced.
   }
   uint64 request_id = 1;
   Code code = 2;
@@ -61,4 +76,5 @@ message KvResponse {
   bool is_leader = 6;
   yewukv.raft.PeerMessage peer = 7;
   uint64 raft_term = 8;
+  uint64 revision = 9; // Key revision; zero for absence or pre-migration legacy data.
 }

@@ -1,0 +1,12 @@
+{
+  "name": "paced-500-r1",
+  "clients": 32,
+  "write_percent": 50,
+  "repeat": 1,
+  "encoder": "sync",
+  "cold_keys": 0,
+  "duration_seconds": 6,
+  "warmup_seconds": 2,
+  "offered_rps": 500,
+  "leader_id": 2
+}

@@ -79,15 +79,25 @@ yewukv::rpc::KvRequest MakeRequest(const std::vector<std::string>& command) {
   } else if (command.size() == 3 && command[0] == "put") {
     request.mutable_put()->set_key(command[1]);
     request.mutable_put()->set_value(command[2]);
-  } else if (command.size() == 2 && command[0] == "get") {
+  } else if (command.size() == 2 && (command[0] == "get" || command[0] == "get-meta")) {
     request.mutable_get()->set_key(command[1]);
+  } else if (command.size() == 4 && command[0] == "cas") {
+    uint64_t revision = 0;
+    const auto& value = command[2];
+    const auto [end, error] = std::from_chars(value.data(), value.data() + value.size(), revision);
+    if (error != std::errc{} || end != value.data() + value.size())
+      throw std::invalid_argument("CAS revision must be an unsigned 64-bit integer");
+    request.mutable_cas()->set_key(command[1]);
+    request.mutable_cas()->set_expected_revision(revision);
+    request.mutable_cas()->set_value(command[3]);
   } else if (command.size() == 2 && command[0] == "del") {
     request.mutable_del()->set_key(command[1]);
   } else {
     throw std::invalid_argument(
         "usage: yewukv-client [--host IP] [--port N] "
         "[--nodes IP:port,IP:port,...] [--timeout-ms N] "
-        "ping | status | put KEY VALUE | get KEY | del KEY");
+        "ping | status | put KEY VALUE | get KEY | get-meta KEY | del KEY | cas KEY REVISION "
+        "VALUE");
   }
   return request;
 }
@@ -143,6 +153,10 @@ int main(int argc, char** argv) {
       return 1;
     }
     const auto& response = result.value();
+    if (response.code() == yewukv::rpc::KvResponse::CONFLICT) {
+      std::cerr << "revision conflict; current revision=" << response.revision() << '\n';
+      return 3;
+    }
     if (response.code() == yewukv::rpc::KvResponse::NOT_FOUND) {
       std::cerr << "not found\n";
       return 2;
@@ -151,7 +165,15 @@ int main(int argc, char** argv) {
       std::cerr << (response.error().empty() ? "RPC error" : response.error()) << '\n';
       return 1;
     }
-    if (options.command[0] == "get" || options.command[0] == "status") {
+    if (options.command[0] == "get-meta") {
+      static constexpr char digits[] = "0123456789abcdef";
+      std::cout << "{\"revision\":" << response.revision() << ",\"value_hex\":\"";
+      for (unsigned char byte : response.value())
+        std::cout << digits[byte >> 4] << digits[byte & 15];
+      std::cout << "\"}\n";
+    } else if (options.command[0] == "cas") {
+      std::cout << "{\"revision\":" << response.revision() << "}\n";
+    } else if (options.command[0] == "get" || options.command[0] == "status") {
       std::cout << response.value() << '\n';
     } else {
       std::cout << (options.command[0] == "ping" ? "PONG" : "OK") << '\n';

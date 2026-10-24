@@ -1,0 +1,4 @@
+18:14:45.414 INFO  [acceptor] listening on 192.0.2.3:19101
+node=3 event=role role=candidate term=1 last=0 commit=0
+node=3 event=role role=leader term=1 last=1 commit=0
+node=3 event=role role=follower term=2 last=1 commit=1

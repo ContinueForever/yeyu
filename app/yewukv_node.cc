@@ -68,7 +68,11 @@ int main(int argc, char** argv) {
         options.trace_slow_ms = Number(value, 60000);
       else if (option == "--trace-max-events")
         options.trace_max_events = Number(value, 1000000);
-      else if (option == "--snapshot-policy") {
+      else if (option == "--snapshot-encoder") {
+        if (value != "sync" && value != "background")
+          throw std::invalid_argument("--snapshot-encoder must be sync or background");
+        options.background_snapshot_encoding = value == "background";
+      } else if (option == "--snapshot-policy") {
         if (value != "adaptive" && value != "fixed")
           throw std::invalid_argument("--snapshot-policy must be adaptive or fixed");
         options.adaptive_snapshots = value == "adaptive";

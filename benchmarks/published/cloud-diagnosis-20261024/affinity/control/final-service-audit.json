@@ -1,0 +1,120 @@
+[
+  {
+    "node": 1,
+    "properties": {
+      "MainPID": "60598",
+      "NRestarts": "0",
+      "ActiveState": "active",
+      "DropInPaths": ""
+    },
+    "running_sha256": "6bb46da21f4a3284cace8536eec9d2c8867e67cc9a3f187ea532ef0308575b02",
+    "installed_sha256": "6bb46da21f4a3284cace8536eec9d2c8867e67cc9a3f187ea532ef0308575b02",
+    "threads": {
+      "60598": [
+        0,
+        1
+      ],
+      "60600": [
+        0,
+        1
+      ],
+      "60601": [
+        0,
+        1
+      ],
+      "60602": [
+        0,
+        1
+      ]
+    },
+    "states": {
+      "60598": "S",
+      "60600": "S",
+      "60601": "S",
+      "60602": "S"
+    },
+    "temporary_jobs": ""
+  },
+  {
+    "node": 2,
+    "properties": {
+      "MainPID": "51247",
+      "NRestarts": "0",
+      "ActiveState": "active",
+      "DropInPaths": ""
+    },
+    "running_sha256": "6bb46da21f4a3284cace8536eec9d2c8867e67cc9a3f187ea532ef0308575b02",
+    "installed_sha256": "6bb46da21f4a3284cace8536eec9d2c8867e67cc9a3f187ea532ef0308575b02",
+    "threads": {
+      "51247": [
+        0,
+        1
+      ],
+      "51249": [
+        0,
+        1
+      ],
+      "51250": [
+        0,
+        1
+      ],
+      "51251": [
+        0,
+        1
+      ],
+      "51423": [
+        0,
+        1
+      ],
+      "51436": [
+        0,
+        1
+      ]
+    },
+    "states": {
+      "51247": "S",
+      "51249": "S",
+      "51250": "S",
+      "51251": "S",
+      "51423": "S",
+      "51436": "S"
+    },
+    "temporary_jobs": ""
+  },
+  {
+    "node": 3,
+    "properties": {
+      "MainPID": "48404",
+      "NRestarts": "0",
+      "ActiveState": "active",
+      "DropInPaths": ""
+    },
+    "running_sha256": "6bb46da21f4a3284cace8536eec9d2c8867e67cc9a3f187ea532ef0308575b02",
+    "installed_sha256": "6bb46da21f4a3284cace8536eec9d2c8867e67cc9a3f187ea532ef0308575b02",
+    "threads": {
+      "48404": [
+        0,
+        1
+      ],
+      "48414": [
+        0,
+        1
+      ],
+      "48415": [
+        0,
+        1
+      ],
+      "48416": [
+        0,
+        1
+      ]
+    },
+    "states": {
+      "48404": "S",
+      "48414": "S",
+      "48415": "S",
+      "48416": "S"
+    },
+    "temporary_jobs": ""
+  }
+]

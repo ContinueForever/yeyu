@@ -1,0 +1,470 @@
+{
+  "verified": true,
+  "client_accounting_verified": true,
+  "trace_correlation_verified": true,
+  "final": true,
+  "phases": [
+    {
+      "phase": "leader2",
+      "leader": 2,
+      "client": 3,
+      "identity": [
+        111,
+        2
+      ],
+      "runs": 9,
+      "operations": 1160724,
+      "trace_on_operations": 1160724,
+      "trace_on_slow_operations": 19633,
+      "trace_correlation_verified": true,
+      "matched": 43097,
+      "matched_slow": 6937,
+      "ambiguous_matches": 0,
+      "missing_confirming_peer": 0,
+      "metrics": {
+        "app_ms": {
+          "n": 43097,
+          "p50": 4.230763,
+          "p95": 44.143582,
+          "p99": 46.241025,
+          "max": 88.316973
+        },
+        "apply_finish_ms": {
+          "n": 43097,
+          "p50": 0.014031,
+          "p95": 0.059042,
+          "p99": 0.314664,
+          "max": 40.183129
+        },
+        "boundary_ms": {
+          "n": 43097,
+          "p50": 2.4632870000000002,
+          "p95": 4.122961,
+          "p99": 39.458758,
+          "max": 69.845377
+        },
+        "confirm_finish_ms": {
+          "n": 43097,
+          "p50": 0.00474,
+          "p95": 0.031367,
+          "p99": 0.134653,
+          "max": 40.263767
+        },
+        "context_wait_ms": {
+          "n": 43097,
+          "p50": 0.488163,
+          "p95": 12.508307,
+          "p99": 40.626218,
+          "max": 82.473803
+        },
+        "dispatch_ms": {
+          "n": 43097,
+          "p50": 0.004068,
+          "p95": 0.010318,
+          "p99": 0.033683,
+          "max": 3.705211
+        },
+        "io_queue_ms": {
+          "n": 43097,
+          "p50": 0.056236,
+          "p95": 0.307177,
+          "p99": 0.683736,
+          "max": 40.181272
+        },
+        "peer_call_build_ms": {
+          "n": 43097,
+          "p50": 0.001294,
+          "p95": 0.001943,
+          "p99": 0.008177,
+          "max": 40.150585
+        },
+        "peer_main_queue_ms": {
+          "n": 43097,
+          "p50": 0.008827,
+          "p95": 0.122743,
+          "p99": 0.494735,
+          "max": 41.341856
+        },
+        "peer_response_wait_ms": {
+          "n": 43097,
+          "p50": 0.726765,
+          "p95": 39.764199,
+          "p99": 40.617005,
+          "max": 82.698623
+        },
+        "peer_send_queue_ms": {
+          "n": 43097,
+          "p50": 0.018021,
+          "p95": 0.216924,
+          "p99": 0.672126,
+          "max": 40.706591
+        },
+        "peer_thread_wake_ms": {
+          "n": 43097,
+          "p50": 0.008953,
+          "p95": 0.219546,
+          "p99": 0.561036,
+          "max": 81.480495
+        },
+        "peer_worker_queue_ms": {
+          "n": 43097,
+          "p50": 0.028505,
+          "p95": 0.278942,
+          "p99": 1.007815,
+          "max": 40.363014
+        },
+        "peer_write_ms": {
+          "n": 43097,
+          "p50": 0.004582,
+          "p95": 0.01185,
+          "p99": 0.044817,
+          "max": 40.567237
+        },
+        "pre_confirm_rpc_ms": {
+          "n": 43097,
+          "p50": 0.000854,
+          "p95": 0.002329,
+          "p99": 0.127642,
+          "max": 42.144002
+        },
+        "queue_ms": {
+          "n": 43097,
+          "p50": 0.010763,
+          "p95": 0.231135,
+          "p99": 15.448859,
+          "max": 41.991187
+        },
+        "quorum_wait_ms": {
+          "n": 43097,
+          "p50": 0.907246,
+          "p95": 40.304195,
+          "p99": 41.057902,
+          "max": 82.886569
+        },
+        "serialize_ms": {
+          "n": 43097,
+          "p50": 0.00037,
+          "p95": 0.001581,
+          "p99": 0.002957,
+          "max": 0.549603
+        },
+        "server_ms": {
+          "n": 43097,
+          "p50": 1.601355,
+          "p95": 41.375399,
+          "p99": 42.384041,
+          "max": 83.56747
+        }
+      },
+      "slow_metrics": {
+        "app_ms": {
+          "n": 6937,
+          "p50": 43.654238,
+          "p95": 46.584314,
+          "p99": 84.86738,
+          "max": 88.316973
+        },
+        "apply_finish_ms": {
+          "n": 6937,
+          "p50": 0.019704,
+          "p95": 0.098454,
+          "p99": 0.587037,
+          "max": 40.183129
+        },
+        "boundary_ms": {
+          "n": 6937,
+          "p50": 2.5785340000000048,
+          "p95": 40.849084,
+          "p99": 43.223973,
+          "max": 69.845377
+        },
+        "confirm_finish_ms": {
+          "n": 6937,
+          "p50": 0.006528,
+          "p95": 0.044861,
+          "p99": 0.128953,
+          "max": 40.263767
+        },
+        "context_wait_ms": {
+          "n": 6937,
+          "p50": 0.615555,
+          "p95": 40.688362,
+          "p99": 41.428207,
+          "max": 82.473803
+        },
+        "dispatch_ms": {
+          "n": 6937,
+          "p50": 0.004504,
+          "p95": 0.012623,
+          "p99": 0.036346,
+          "max": 0.759267
+        },
+        "io_queue_ms": {
+          "n": 6937,
+          "p50": 0.096059,
+          "p95": 0.345236,
+          "p99": 0.866213,
+          "max": 40.181272
+        },
+        "peer_call_build_ms": {
+          "n": 6937,
+          "p50": 0.001352,
+          "p95": 0.002596,
+          "p99": 0.006941,
+          "max": 40.150585
+        },
+        "peer_main_queue_ms": {
+          "n": 6937,
+          "p50": 0.014158,
+          "p95": 0.18972,
+          "p99": 39.800093,
+          "max": 41.341856
+        },
+        "peer_response_wait_ms": {
+          "n": 6937,
+          "p50": 0.995464,
+          "p95": 40.661651,
+          "p99": 41.195381,
+          "max": 82.698623
+        },
+        "peer_send_queue_ms": {
+          "n": 6937,
+          "p50": 0.023329,
+          "p95": 0.405042,
+          "p99": 40.224179,
+          "max": 40.706591
+        },
+        "peer_thread_wake_ms": {
+          "n": 6937,
+          "p50": 0.01516,
+          "p95": 0.209136,
+          "p99": 39.877121,
+          "max": 81.480495
+        },
+        "peer_worker_queue_ms": {
+          "n": 6937,
+          "p50": 0.03392,
+          "p95": 1.241089,
+          "p99": 39.908477,
+          "max": 40.363014
+        },
+        "peer_write_ms": {
+          "n": 6937,
+          "p50": 0.005041,
+          "p95": 0.015553,
+          "p99": 0.053994,
+          "max": 40.567237
+        },
+        "pre_confirm_rpc_ms": {
+          "n": 6937,
+          "p50": 0.001115,
+          "p95": 0.068098,
+          "p99": 0.302008,
+          "max": 42.144002
+        },
+        "queue_ms": {
+          "n": 6937,
+          "p50": 0.010158,
+          "p95": 37.035374,
+          "p99": 39.973409,
+          "max": 41.991187
+        },
+        "quorum_wait_ms": {
+          "n": 6937,
+          "p50": 33.653814,
+          "p95": 41.102635,
+          "p99": 42.059389,
+          "max": 82.886569
+        },
+        "serialize_ms": {
+          "n": 6937,
+          "p50": 0.000344,
+          "p95": 0.002313,
+          "p99": 0.003964,
+          "max": 0.221862
+        },
+        "server_ms": {
+          "n": 6937,
+          "p50": 41.014252,
+          "p95": 42.534115,
+          "p99": 43.941242,
+          "max": 83.56747
+        }
+      },
+      "slow_over20ms_counts": {
+        "app_ms": 6937,
+        "apply_finish_ms": 59,
+        "boundary_ms": 543,
+        "confirm_finish_ms": 21,
+        "context_wait_ms": 1954,
+        "dispatch_ms": 0,
+        "io_queue_ms": 18,
+        "peer_call_build_ms": 7,
+        "peer_main_queue_ms": 170,
+        "peer_response_wait_ms": 2893,
+        "peer_send_queue_ms": 231,
+        "peer_thread_wake_ms": 156,
+        "peer_worker_queue_ms": 223,
+        "peer_write_ms": 19,
+        "pre_confirm_rpc_ms": 24,
+        "queue_ms": 413,
+        "quorum_wait_ms": 3758,
+        "serialize_ms": 0,
+        "server_ms": 6269
+      },
+      "confirmed_by_counts": {
+        "1": 42532,
+        "2": 0,
+        "3": 565
+      }
+    }
+  ],
+  "runs": [
+    {
+      "phase": "leader2",
+      "case": "c32-trace1-shared-r1",
+      "leader": 2,
+      "clients": 32,
+      "trace": 1,
+      "repeat": 1,
+      "operations": 119691,
+      "ops_s": 5972.2868650856735,
+      "p50_ms": 4.344,
+      "p95_ms": 7.214,
+      "p99_ms": 43.411,
+      "p999_ms": 45.7,
+      "max_ms": 52.804,
+      "samples": 119691
+    },
+    {
+      "phase": "leader2",
+      "case": "c32-trace1-cpu0-r1",
+      "leader": 2,
+      "clients": 32,
+      "trace": 1,
+      "repeat": 1,
+      "operations": 141853,
+      "ops_s": 7091.562138766477,
+      "p50_ms": 3.862,
+      "p95_ms": 6.078,
+      "p99_ms": 18.189,
+      "p999_ms": 45.354,
+      "max_ms": 87.449,
+      "samples": 141853
+    },
+    {
+      "phase": "leader2",
+      "case": "c32-trace1-cpu1-r1",
+      "leader": 2,
+      "clients": 32,
+      "trace": 1,
+      "repeat": 1,
+      "operations": 130386,
+      "ops_s": 6517.993760808566,
+      "p50_ms": 3.92,
+      "p95_ms": 6.257,
+      "p99_ms": 43.181,
+      "p999_ms": 45.341,
+      "max_ms": 50.075,
+      "samples": 130386
+    },
+    {
+      "phase": "leader2",
+      "case": "c32-trace1-cpu0-r2",
+      "leader": 2,
+      "clients": 32,
+      "trace": 1,
+      "repeat": 2,
+      "operations": 136911,
+      "ops_s": 6844.490028051806,
+      "p50_ms": 3.926,
+      "p95_ms": 6.419,
+      "p99_ms": 33.276,
+      "p999_ms": 45.427,
+      "max_ms": 87.072,
+      "samples": 136911
+    },
+    {
+      "phase": "leader2",
+      "case": "c32-trace1-cpu1-r2",
+      "leader": 2,
+      "clients": 32,
+      "trace": 1,
+      "repeat": 2,
+      "operations": 131479,
+      "ops_s": 6572.123057244298,
+      "p50_ms": 3.924,
+      "p95_ms": 6.239,
+      "p99_ms": 43.063,
+      "p999_ms": 46.34,
+      "max_ms": 88.317,
+      "samples": 131479
+    },
+    {
+      "phase": "leader2",
+      "case": "c32-trace1-shared-r2",
+      "leader": 2,
+      "clients": 32,
+      "trace": 1,
+      "repeat": 2,
+      "operations": 120836,
+      "ops_s": 6040.2112888282945,
+      "p50_ms": 4.361,
+      "p95_ms": 6.982,
+      "p99_ms": 43.199,
+      "p999_ms": 45.695,
+      "max_ms": 50.257,
+      "samples": 120836
+    },
+    {
+      "phase": "leader2",
+      "case": "c32-trace1-cpu1-r3",
+      "leader": 2,
+      "clients": 32,
+      "trace": 1,
+      "repeat": 3,
+      "operations": 129060,
+      "ops_s": 6452.020810029569,
+      "p50_ms": 3.966,
+      "p95_ms": 6.403,
+      "p99_ms": 43.277,
+      "p999_ms": 46.461,
+      "max_ms": 87.803,
+      "samples": 129060
+    },
+    {
+      "phase": "leader2",
+      "case": "c32-trace1-shared-r3",
+      "leader": 2,
+      "clients": 32,
+      "trace": 1,
+      "repeat": 3,
+      "operations": 118304,
+      "ops_s": 5913.939860947096,
+      "p50_ms": 4.363,
+      "p95_ms": 7.338,
+      "p99_ms": 43.596,
+      "p999_ms": 46.052,
+      "max_ms": 50.74,
+      "samples": 118304
+    },
+    {
+      "phase": "leader2",
+      "case": "c32-trace1-cpu0-r3",
+      "leader": 2,
+      "clients": 32,
+      "trace": 1,
+      "repeat": 3,
+      "operations": 132204,
+      "ops_s": 6608.888196494767,
+      "p50_ms": 4.104,
+      "p95_ms": 6.536,
+      "p99_ms": 41.401,
+      "p999_ms": 44.884,
+      "max_ms": 86.363,
+      "samples": 132204
+    }
+  ],
+  "operations": 1160724,
+  "note": "Full client samples define percentiles. Trace reads include systematic 1/32 samples and reads slow before preparing their responses; traced data is selected, not a representative latency distribution. Join by client port plus request ID, narrowed by server-local case boundaries where available. Every stage difference uses a single host clock. Boundary residual also includes networking, kernels and client work, so it is not called network delay."
+}

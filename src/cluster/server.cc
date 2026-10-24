@@ -17,6 +17,7 @@
 #include <deque>
 #include <fstream>
 #include <functional>
+#include <future>
 #include <iostream>
 #include <mutex>
 #include <optional>
@@ -175,7 +176,7 @@ std::optional<Message> DecodeMessage(const raft::PeerMessage& wire) {
 
 bool ValidCommand(const KvRequest& request) {
   if (request.request_id() == 0 || request.ByteSizeLong() > raft::Node::kMaxCommandBytes ||
-      request.state_machine_version() > 1)
+      request.state_machine_version() > 2)
     return false;
   switch (request.operation_case()) {
     case KvRequest::kPut:
@@ -183,6 +184,9 @@ bool ValidCommand(const KvRequest& request) {
              request.put().value().size() <= 8192;
     case KvRequest::kGet:
       return !request.get().key().empty() && request.get().key().size() <= 1024;
+    case KvRequest::kCas:
+      return !request.cas().key().empty() && request.cas().key().size() <= 1024 &&
+             request.cas().value().size() <= 8192;
     case KvRequest::kDel:
       return !request.del().key().empty() && request.del().key().size() <= 1024;
     case KvRequest::kPing:
@@ -311,6 +315,18 @@ struct Server::Impl {
   uint64_t read_append_with_entries = 0;
   uint64_t snapshot_pause_ns = 0;
   uint64_t snapshot_pause_max_ns = 0;
+  struct EncodedSnapshot {
+    uint64_t index;
+    std::string bytes;
+    uint64_t encode_ns;
+  };
+  std::future<EncodedSnapshot> snapshot_job;
+  std::atomic<bool> snapshot_ready{false};
+  uint64_t snapshot_jobs = 0;
+  uint64_t snapshot_discarded = 0;
+  uint64_t snapshot_encode_ns = 0;
+  uint64_t snapshot_freeze_max_ns = 0;
+  uint64_t snapshot_publish_max_ns = 0;
   uint64_t trace_read_ordinal = 0;
 
   explicit Impl(Options selected)
@@ -495,10 +511,17 @@ struct Server::Impl {
            << ",\"read_append_requests\":" << read_append_requests
            << ",\"read_append_with_entries\":" << read_append_with_entries
            << ",\"snapshot_pause_ns\":" << snapshot_pause_ns
-           << ",\"snapshot_pause_max_ns\":" << snapshot_pause_max_ns << ",\"snapshot_policy\":\""
-           << (options.adaptive_snapshots ? "adaptive" : "fixed") << '"' << ",\"storage_mode\":\""
-           << (options.journal ? "journal" : "image") << '"' << ",\"read_mode\":\""
-           << (options.read_index ? "read-index" : "log") << '"'
+           << ",\"snapshot_pause_max_ns\":" << snapshot_pause_max_ns
+           << ",\"snapshot_jobs\":" << snapshot_jobs
+           << ",\"snapshot_discarded\":" << snapshot_discarded
+           << ",\"snapshot_encode_ns\":" << snapshot_encode_ns
+           << ",\"snapshot_freeze_max_ns\":" << snapshot_freeze_max_ns
+           << ",\"snapshot_publish_max_ns\":" << snapshot_publish_max_ns
+           << ",\"snapshot_encoder\":\""
+           << (options.background_snapshot_encoding ? "background" : "sync") << '"'
+           << ",\"snapshot_policy\":\"" << (options.adaptive_snapshots ? "adaptive" : "fixed")
+           << '"' << ",\"storage_mode\":\"" << (options.journal ? "journal" : "image") << '"'
+           << ",\"read_mode\":\"" << (options.read_index ? "read-index" : "log") << '"'
            << ",\"disk_checkpoint_saves\":" << metrics.checkpoint_saves
            << ",\"disk_journal_saves\":" << metrics.journal_saves
            << ",\"journal_bytes\":" << metrics.journal_bytes
@@ -537,7 +560,7 @@ struct Server::Impl {
       return;
     } else {
       auto command = request;
-      command.set_state_machine_version(1);
+      command.set_state_machine_version(2);
       staged.emplace_back(
           Pending{weak, ordered, request.request_id(),
                   Clock::now() + std::chrono::milliseconds(options.request_timeout_ms)},
@@ -563,7 +586,7 @@ struct Server::Impl {
       if (!request.ParseFromString(entry.command) || !ValidCommand(request))
         throw std::runtime_error("invalid committed KV command");
       auto response = Response(request.request_id());
-      state_machine.Apply(request, &response);
+      state_machine.Apply(request, &response, entry.index);
       auto found = pending.find(entry.index);
       if (found != pending.end()) {
         response.set_request_id(found->second.request_id);
@@ -586,17 +609,60 @@ struct Server::Impl {
       pending.clear();
     }
     Apply();
-    if (state_machine.encoded_bytes() <= raft::FileStore::kMaxSnapshotBytes &&
+    if (snapshot_job.valid() && snapshot_job.wait_for(0ms) == std::future_status::ready) {
+      auto encoded = snapshot_job.get();
+      snapshot_ready = false;
+      snapshot_encode_ns += encoded.encode_ns;
+      if (encoded.index > node.snapshot().index) {
+        const auto started = Clock::now();
+        const auto status = node.Compact(encoded.index, std::move(encoded.bytes));
+        if (!status.ok()) throw std::runtime_error(status.ToString());
+        const auto elapsed = static_cast<uint64_t>(
+            std::chrono::duration_cast<std::chrono::nanoseconds>(Clock::now() - started).count());
+        snapshot_pause_ns += elapsed;
+        snapshot_pause_max_ns = std::max(snapshot_pause_max_ns, elapsed);
+        snapshot_publish_max_ns = std::max(snapshot_publish_max_ns, elapsed);
+      } else
+        ++snapshot_discarded;
+    }
+    if (!snapshot_job.valid() &&
+        state_machine.encoded_bytes() <= raft::FileStore::kMaxSnapshotBytes &&
         ShouldSnapshot(applied_index, node.snapshot().index, node.RetainedBytes(),
                        state_machine.encoded_bytes(), options.snapshot_entries,
                        options.snapshot_bytes, options.adaptive_snapshots)) {
       const auto started = Clock::now();
-      const auto status = node.Compact(applied_index, state_machine.Serialize());
-      if (!status.ok()) throw std::runtime_error(status.ToString());
+      if (options.background_snapshot_encoding) {
+        auto frozen = state_machine.Freeze();
+        const auto index = applied_index;
+        snapshot_ready = false;
+        snapshot_job = std::async(std::launch::async, [this, index, frozen = std::move(frozen)]() {
+          try {
+            const auto began = Clock::now();
+            auto bytes = frozen.Serialize();
+            const auto elapsed = static_cast<uint64_t>(
+                std::chrono::duration_cast<std::chrono::nanoseconds>(Clock::now() - began).count());
+            snapshot_ready = true;
+            ready.notify_one();
+            return EncodedSnapshot{index, std::move(bytes), elapsed};
+          } catch (...) {
+            snapshot_ready = true;
+            ready.notify_one();
+            throw;
+          }
+        });
+        ++snapshot_jobs;
+      } else {
+        const auto status = node.Compact(applied_index, state_machine.Serialize());
+        if (!status.ok()) throw std::runtime_error(status.ToString());
+      }
       const auto elapsed = static_cast<uint64_t>(
           std::chrono::duration_cast<std::chrono::nanoseconds>(Clock::now() - started).count());
       snapshot_pause_ns += elapsed;
       snapshot_pause_max_ns = std::max(snapshot_pause_max_ns, elapsed);
+      if (options.background_snapshot_encoding)
+        snapshot_freeze_max_ns = std::max(snapshot_freeze_max_ns, elapsed);
+      else
+        snapshot_publish_max_ns = std::max(snapshot_publish_max_ns, elapsed);
     }
     // Start fresh quorum confirmation before proposing this batch's writes.
     // Confirmation overlaps replication; completion still waits for BOTH the
@@ -745,7 +811,8 @@ struct Server::Impl {
         std::vector<std::function<void()>> batch;
         {
           std::unique_lock<std::mutex> lock(mutex);
-          ready.wait_until(lock, next_tick, [this] { return stopping || !tasks.empty(); });
+          ready.wait_until(lock, next_tick,
+                           [this] { return stopping || !tasks.empty() || snapshot_ready.load(); });
           if (stopping) break;
           while (!tasks.empty() && batch.size() < options.proposal_batch_size) {
             batch.push_back(std::move(tasks.front()));
@@ -850,6 +917,7 @@ struct Server::Impl {
       peer->ready.notify_all();
     }
     if (worker.joinable()) worker.join();
+    if (snapshot_job.valid()) snapshot_job.wait();
     for (auto& peer : peers) {
       if (peer->thread.joinable()) peer->thread.join();
     }

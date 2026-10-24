@@ -85,13 +85,13 @@ CPU 0 组 P99.9 的三轮中位数为 24.187 ms，第三轮仍达到 44.888 ms�
 
 ## 可复现材料与部署选项
 
-完整原始材料位于仓库外的本地私有目录 `/home/hermes/yeyu/cloud-read-trace-20261024`：`scheduler/` 保存调度捕获，`affinity/` 保存 9 轮诊断程序和 `original/` 的 6 轮原程序记录。源码、测试日志、下载清单、逐请求样本、线程掩码、PID、恢复核验及准备失败均保留。**仓库目前只包含摘要和图表，新增原始材料尚未公开归档**；不把业务备份、密钥、服务器运行文件放入公开证据。
+后续已整理 [48 轮公开数值证据](../benchmarks/published/cloud-diagnosis-20261024/README.md)：完整客户端样本、压缩数值追踪、解码调度事件、冻结源码、历史回归日志、绑核记录和恢复检查均可离线核验。导出诊断文本中的节点身份与私有路径已经映射。业务备份、密钥、运行程序、原始 perf.data 和包捕获保留在本地私有目录；抓包摘要的独立包级重算仍需私有捕获。
 
-无需 SSH 和第三方 Python 依赖，可在保留该私有目录的机器上核验全部 48 轮：
+无需 SSH 和第三方 Python 依赖，检出仓库即可核验全部 48 轮的公开数值证据：
 
 ```bash
-python3 /home/hermes/yeyu/cloud-read-trace-20261024/tools/verify_followup.py \
-  /home/hermes/yeyu/cloud-read-trace-20261024
+python3 scripts/verify-cloud-diagnosis.py benchmarks/published/cloud-diagnosis-20261024
+python3 tests/test_cloud_diagnosis_evidence.py
 ```
 
 该工具重算逐请求成功标志、最近秩分位数、吞吐及纯读窗口，校验源码／下载／文件哈希和恢复记录，并重新解析调度事件；不执行归档内的程序。首轮客户端地址缺失导致的读关联无效状态仍保留。它核验材料内部一致性，不独立认证远端机器或证明生产容量。追加 20 轮的逐轮汇总见本地 `affinity/analysis/followup-runs.csv`。
@@ -100,4 +100,4 @@ python3 /home/hermes/yeyu/cloud-read-trace-20261024/tools/verify_followup.py \
 
 示例使用 systemd 的 `CPUAffinity=` 清空先前赋值，再指定 CPU 0，其语义见 [systemd 255 官方文档](https://www.freedesktop.org/software/systemd/man/255/systemd.exec.html#CPUAffinity=)。选择采用时，在节点 2 将示例安装为 `/etc/systemd/system/yewukv-node@2.service.d/50-cpu-affinity.conf`，重新加载并重启对应服务；重启可能触发 Leader 转移，测量前须重新核对角色和所有线程掩码。回滚只删除这个命名文件，重新加载并重启，不删除其他覆盖项。运行中逐线程绑核与服务重启后的长期表现仍需分别验证。
 
-求职时可据实表述：在三台 ECS 上实现请求／ReadIndex／实际多数派 RPC 的关联追踪，结合调度事件与原程序交错对照定位尾延迟；在固定 32 连接纯读负载下，通过 Leader 线程 CPU 放置调优将吞吐中位数提升约 32%、P99 降低约 82%，保留 P99.9、最大延迟、失败记录和恢复验证。后续最有价值的是整理可公开复现的证据，再补独立发压机和带故障的混合负载，而非直接推广 CPU 0 为默认配置。
+求职时可据实表述：在三台 ECS 上实现请求／ReadIndex／实际多数派 RPC 的关联追踪，结合调度事件与原程序交错对照定位尾延迟；在固定 32 连接纯读负载下，通过 Leader 线程 CPU 放置调优将吞吐中位数提升约 32%、P99 降低约 82%，保留 P99.9、最大延迟、失败记录和恢复验证。公开数值证据现已补齐；独立发压机仍待补充，不直接推广 CPU 0 为默认配置。

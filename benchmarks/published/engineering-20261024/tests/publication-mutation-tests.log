@@ -1,0 +1,10 @@
+test_dropped_trace_footer_rejects_completeness (__main__.DiagnosisEvidenceTests.test_dropped_trace_footer_rejects_completeness) ... ok
+test_failed_sample_cannot_be_hidden_by_successful_result (__main__.DiagnosisEvidenceTests.test_failed_sample_cannot_be_hidden_by_successful_result) ... ok
+test_percentile_edit_rejected_from_full_samples (__main__.DiagnosisEvidenceTests.test_percentile_edit_rejected_from_full_samples) ... ok
+test_read_only_disk_mutation_rejected (__main__.DiagnosisEvidenceTests.test_read_only_disk_mutation_rejected) ... ok
+test_wrong_affinity_rejected (__main__.DiagnosisEvidenceTests.test_wrong_affinity_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.315s
+
+OK

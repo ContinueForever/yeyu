@@ -1,0 +1,12 @@
+{
+  "name": "capacity-w90-c8-r3",
+  "clients": 8,
+  "write_percent": 90,
+  "repeat": 3,
+  "encoder": "sync",
+  "cold_keys": 0,
+  "duration_seconds": 6,
+  "warmup_seconds": 2,
+  "offered_rps": 0,
+  "leader_id": 2
+}

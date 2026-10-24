@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include <thread>
 
 #include "cluster/state_machine.h"
 #include "cluster/snapshot_policy.h"
@@ -111,5 +112,114 @@ TEST(KvStateMachine, ReplaysLegacySuccessfulWritesWithoutApplyingNewCapacityRetr
   remove.mutable_del()->set_key("legacy");
   EXPECT_EQ(Apply(state, remove).code(), KvResponse::OK);
   EXPECT_EQ(Apply(state, Put("new", "value")).code(), KvResponse::OK);
+}
+
+KvRequest Cas(const std::string& key, uint64_t revision, const std::string& value) {
+  KvRequest request;
+  request.set_state_machine_version(2);
+  request.mutable_cas()->set_key(key);
+  request.mutable_cas()->set_expected_revision(revision);
+  request.mutable_cas()->set_value(value);
+  return request;
+}
+
+KvResponse At(StateMachine& state, KvRequest request, uint64_t index) {
+  KvResponse response;
+  state.Apply(request, &response, index);
+  return response;
+}
+
+TEST(KvRevision, CompareAndSwapAllowsOneWinnerAndConflictsDoNotOverwrite) {
+  StateMachine state;
+  EXPECT_EQ(At(state, Cas("key", 0, "first"), 10).revision(), 10);
+  EXPECT_EQ(At(state, Cas("key", 10, "winner"), 11).revision(), 11);
+  const auto conflict = At(state, Cas("key", 10, "loser"), 12);
+  EXPECT_EQ(conflict.code(), KvResponse::CONFLICT);
+  EXPECT_EQ(conflict.value(), "winner");
+  EXPECT_EQ(conflict.revision(), 11);
+  EXPECT_EQ(At(state, Cas("key", 0, "create-again"), 13).code(), KvResponse::CONFLICT);
+  EXPECT_EQ(At(state, Cas("absent", 11, "bad"), 14).code(), KvResponse::CONFLICT);
+}
+
+TEST(KvRevision, DeleteRecreateAndSnapshotPreserveProtectionAgainstABA) {
+  StateMachine state;
+  ASSERT_EQ(At(state, Cas("key", 0, "same"), 20).code(), KvResponse::OK);
+  KvRequest remove;
+  remove.set_state_machine_version(2);
+  remove.mutable_del()->set_key("key");
+  ASSERT_EQ(At(state, remove, 21).code(), KvResponse::OK);
+  ASSERT_EQ(At(state, Cas("key", 0, "same"), 22).revision(), 22);
+  StateMachine recovered;
+  ASSERT_TRUE(recovered.Restore(state.Serialize()));
+  EXPECT_EQ(At(recovered, Cas("key", 20, "stale"), 23).code(), KvResponse::CONFLICT);
+  EXPECT_EQ(At(recovered, Cas("key", 22, "updated"), 24).revision(), 24);
+  EXPECT_EQ(recovered.Serialize().size(), recovered.encoded_bytes());
+}
+
+TEST(KvRevision, LegacyMigrationConvergesAcrossDifferentSnapshotBoundaries) {
+  StateMachine replayed;
+  ASSERT_EQ(Apply(replayed, Put("legacy", "before")).code(), KvResponse::OK);
+  StateMachine snapshotted;
+  ASSERT_TRUE(snapshotted.Restore(replayed.Serialize()));
+  for (auto* state : {&replayed, &snapshotted}) {
+    const auto first = At(*state, Cas("legacy", 0, "unsafe"), 100);
+    EXPECT_EQ(first.code(), KvResponse::CONFLICT);
+    EXPECT_EQ(first.value(), "before");
+    EXPECT_EQ(first.revision(), 100);
+    EXPECT_EQ(At(*state, Cas("legacy", 100, "after"), 101).code(), KvResponse::OK);
+  }
+  EXPECT_EQ(replayed.Serialize(), snapshotted.Serialize());
+}
+
+TEST(KvRevision, CapacityAndMalformedRevisionSnapshotLeaveValuesIntact) {
+  StateMachine state(50);
+  ASSERT_EQ(At(state, Cas("safe", 0, "value"), 127).code(), KvResponse::OK);
+  const auto before = state.Serialize();
+  EXPECT_EQ(At(state, Cas("safe", 127, std::string(60, 'x')), 128).code(), KvResponse::BUSY);
+  EXPECT_EQ(state.Serialize(), before);
+  yewukv::rpc::KvSnapshot invalid;
+  ASSERT_TRUE(invalid.ParseFromString(before));
+  invalid.mutable_entries(0)->set_revision(invalid.revision() + 1);
+  EXPECT_FALSE(state.Restore(invalid.SerializeAsString()));
+  EXPECT_EQ(state.Serialize(), before);
+}
+
+TEST(KvRevision, FrozenSnapshotOwnsValuesAfterMutationDeletionAndDestruction) {
+  StateMachine::Frozen frozen;
+  std::string original;
+  {
+    StateMachine state;
+    ASSERT_EQ(At(state, Cas("key", 0, std::string(8192, 'a')), 1).code(), KvResponse::OK);
+    frozen = state.Freeze();
+    original = frozen.Serialize();
+    ASSERT_EQ(At(state, Cas("key", 1, "new"), 2).code(), KvResponse::OK);
+    KvRequest remove;
+    remove.set_state_machine_version(2);
+    remove.mutable_del()->set_key("key");
+    At(state, remove, 3);
+    EXPECT_EQ(frozen.Serialize(), original);
+  }
+  StateMachine restored;
+  ASSERT_TRUE(restored.Restore(frozen.Serialize()));
+  EXPECT_EQ(frozen.Serialize(), original);
+  EXPECT_EQ(At(restored, Cas("key", 1, "alive"), 4).code(), KvResponse::OK);
+}
+
+TEST(KvRevision, BackgroundSerializationDoesNotObserveConcurrentOwnerMutations) {
+  StateMachine state;
+  ASSERT_EQ(At(state, Cas("key", 0, "old"), 1).code(), KvResponse::OK);
+  auto frozen = state.Freeze();
+  const auto expected = frozen.Serialize();
+  std::string actual;
+  std::thread encoder([&] {
+    for (int i = 0; i != 100; ++i) actual = frozen.Serialize();
+  });
+  for (uint64_t i = 2; i != 102; ++i) {
+    auto put = Put("key", std::to_string(i));
+    put.set_state_machine_version(2);
+    At(state, put, i);
+  }
+  encoder.join();
+  EXPECT_EQ(actual, expected);
 }
 }  // namespace

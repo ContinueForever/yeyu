@@ -1,0 +1,22 @@
+{
+  "dispatched": true,
+  "agent_updates": [
+    {
+      "node": 1,
+      "updated": true
+    },
+    {
+      "node": 2,
+      "updated": true
+    },
+    {
+      "node": 3,
+      "updated": true
+    }
+  ],
+  "root": "/private-experiment",
+  "tools_sha256": {
+    "cloud_campaign.py": "da1d0e47eafe304af22ee4f7c777b03ba36252f5fb6842478993df183c7aad7a",
+    "cloud_probes.py": "2d21154b67fe7035f6a1ac344d33a56f62624b15e5dec0fcda58f1b9fd83aee8"
+  }
+}

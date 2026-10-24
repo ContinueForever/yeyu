@@ -96,6 +96,10 @@ def decode_response(payload):
             if wire_type != 0:
                 raise AssertionError("wrong response integer wire type")
             result["id" if number == 1 else "code"] = value
+        elif number == 9:
+            if wire_type != 0:
+                raise AssertionError("wrong revision wire type")
+            result["revision"] = value
         elif number in (3, 4):
             if wire_type != 2:
                 raise AssertionError("wrong response bytes wire type")

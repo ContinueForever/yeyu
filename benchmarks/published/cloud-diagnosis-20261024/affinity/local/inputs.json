@@ -1,0 +1,29 @@
+{
+  "tag": "readtrace-20261024T080020Z-affinity",
+  "source_sha256": "76938c75003f7dbbe894b725421c23127f3407500a96bd58a51b6e3903280a75",
+  "files": 131,
+  "tools_sha256": {
+    "analyze.py": "f7775d9649a6c5b7b8f8cf8ec7d11dd27839f49553b3da0235766fb306ffc8c8",
+    "analyze_packets_trace.py": "cf50ec1b58820e17ba969624a20a87e9946d147f07dc855c13036aa9f44aaf0e",
+    "build_cloud.py": "cb7d9b0aa8d763c408ade3de4d2ca45000b30a9e7debcfeb305d8ebde368a0a3",
+    "campaign.py": "1f0a5c67504a57f753b4427810b09e15ba0c8fd3b65df4ebc79f1c9f6a9e7809",
+    "campaign_leader2.py": "28a161cb8023ed4d4cdab9737b104538badd1a2cb641a7b6954d5b941ec21644",
+    "cloud-observe.py": "657d81ec4a44c8538992caade550263e81d3384bbc44dde6e51705ae0a752ef4",
+    "common.py": "88f8b1f5ac245d897139def38d04678f6f762f04f969aa4b298b84da36165e17",
+    "deploy.py": "450f3b8be127088deed47fc6248b29f089278f9e0627719c9d41d0b60c594c1b",
+    "fetch.py": "8fe19313fa0c62f25620c103538bf7ab5ccee0d87dd231f50915f64ec9da64de",
+    "finish.py": "e36bd03bf79d5df9995a8514734c616ade91b4dfd611892a06963c315408bc48",
+    "freeze.py": "35918407bcbdca4602d10ad0314e6f8da637063cdbe76530ce073dd07d4abeb7",
+    "one_case.py": "551fa2d19ffebdb8a93fe0e168b3edf6f77cd1e302c9f2cee5bc871e9f6482b1",
+    "packet_probe.py": "ebca308cbac35f941f6396c7297a0fb2f8df2d585d9e05cd40415584c0c6501d",
+    "plot.py": "3fba551c6552c30bf6c659990be37390fd2012792196d42af81a479651340d5c",
+    "remote_ops.py": "aa75a58231eb65fa748b0ea7cbc22271f5bbb882b5ba77c7425f6289f90175d0",
+    "remote_wire_matrix.py": "5864ef87d54f9533c2687bc85e2415bbcc315ba6c858e8f7063a818bdeab0727",
+    "restore_verify.py": "37fc788e3f611e7c691d68ea5f02671f0a61c71da2d7e818c2d8346d5c19df96",
+    "rpc_baseline.py": "bf5dddb6c99c124007fafdbba25f2a2b0b79410fc77f66416173eac78e154cb2",
+    "verify_artifacts.py": "d60fd289e52cfc1cbb2bcf4284da2e1cef27cee211669d46eb3ec30a003f37ca",
+    "write_report.py": "9477eb56ffc93d4fc3c0bb8a14c19d04b8f963c6571f358db87e8e5804007937"
+  },
+  "reused_compiled_source": "/private-workspace/cloud-read-trace-20261024/scheduler/local/source.snapshot.tar.gz",
+  "experiment": "reversible CPU-affinity comparison, no source changes"
+}

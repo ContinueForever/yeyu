@@ -30,6 +30,7 @@ struct Options {
   bool journal = true;
   bool read_index = true;
   bool adaptive_snapshots = true;
+  bool background_snapshot_encoding = false;
   size_t journal_checkpoint_bytes = 4 * 1024 * 1024;
   std::string trace_prefix;
   uint64_t trace_sample_every = 32;

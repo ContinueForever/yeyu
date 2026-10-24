@@ -148,6 +148,7 @@ KvResponse RpcKvServer::Apply(const KvRequest& request) {
       break;
     case KvRequest::kStatus:
     case KvRequest::kPeer:
+    case KvRequest::kCas:
       response.set_code(KvResponse::INVALID_ARGUMENT);
       response.set_error("operation requires a cluster node");
       break;
