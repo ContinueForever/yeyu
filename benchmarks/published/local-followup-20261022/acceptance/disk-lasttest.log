@@ -1,0 +1,1225 @@
+Start testing: Oct 22 16:48 CST
+----------------------------------------------------------
+121/125 Testing: cluster_snapshot_runtime
+121/125 Test: cluster_snapshot_runtime
+Command: "/usr/bin/python3" "/home/hermes/yeyu/source/tests/test_cluster_snapshot.py" "--node" "/home/hermes/yeyu/source/build/bin/yewukv-node" "--client" "/home/hermes/yeyu/source/build/bin/yewukv-client" "--suite" "snapshot"
+Directory: /home/hermes/yeyu/source/build/tests
+"cluster_snapshot_runtime" start time: Oct 22 16:48 CST
+Output:
+----------------------------------------------------------
+test_adaptive_cadence_keeps_byte_trigger_and_recovers_cold_and_hot_values (__main__.SnapshotTests.test_adaptive_cadence_keeps_byte_trigger_and_recovers_cold_and_hot_values) ... ok
+test_cumulative_payload_exceeds_old_limit_then_all_nodes_restart (__main__.SnapshotTests.test_cumulative_payload_exceeds_old_limit_then_all_nodes_restart) ... ok
+test_offline_follower_restarts_mid_transfer_then_recovers_deletes_and_updates (__main__.SnapshotTests.test_offline_follower_restarts_mid_transfer_then_recovers_deletes_and_updates) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 11.828s
+
+OK
+<end of output>
+Test time =  11.91 sec
+----------------------------------------------------------
+Test Passed.
+"cluster_snapshot_runtime" end time: Oct 22 16:49 CST
+"cluster_snapshot_runtime" time elapsed: 00:00:11
+----------------------------------------------------------
+
+122/125 Testing: cluster_resource_runtime
+122/125 Test: cluster_resource_runtime
+Command: "/usr/bin/python3" "/home/hermes/yeyu/source/tests/test_cluster_snapshot.py" "--node" "/home/hermes/yeyu/source/build/bin/yewukv-node" "--client" "/home/hermes/yeyu/source/build/bin/yewukv-client" "--suite" "resource" "--fault-library" "/home/hermes/yeyu/source/build/tests/libyewu_test_io_fault.so"
+Directory: /home/hermes/yeyu/source/build/tests
+"cluster_resource_runtime" start time: Oct 22 16:48 CST
+Output:
+----------------------------------------------------------
+test_enospc_and_sync_error_stop_leader_without_false_success (__main__.ResourceTests.test_enospc_and_sync_error_stop_leader_without_false_success) ... ok
+test_one_node_capacity_limit_preserves_majority_and_recovers_without_deleting_data (__main__.ResourceTests.test_one_node_capacity_limit_preserves_majority_and_recovers_without_deleting_data) ... ok
+test_pending_and_event_queue_backpressure_and_recovery (__main__.ResourceTests.test_pending_and_event_queue_backpressure_and_recovery) ... ok
+test_short_writes_and_slow_follower_sync_preserve_acknowledged_data (__main__.ResourceTests.test_short_writes_and_slow_follower_sync_preserve_acknowledged_data) ... ok
+test_slow_reader_is_disconnected_while_other_clients_keep_working (__main__.ResourceTests.test_slow_reader_is_disconnected_while_other_clients_keep_working) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 13.886s
+
+OK
+<end of output>
+Test time =  13.96 sec
+----------------------------------------------------------
+Test Passed.
+"cluster_resource_runtime" end time: Oct 22 16:49 CST
+"cluster_resource_runtime" time elapsed: 00:00:13
+----------------------------------------------------------
+
+125/125 Testing: config_application
+125/125 Test: config_application
+Command: "/usr/bin/python3" "/home/hermes/yeyu/source/tests/test_config_app.py" "--node" "/home/hermes/yeyu/source/build/bin/yewukv-node" "--client" "/home/hermes/yeyu/source/build/bin/yewukv-client"
+Directory: /home/hermes/yeyu/source/build/tests
+"config_application" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+test_publish_reload_failover_unavailability_and_full_restart (__main__.ConfigApplicationTests.test_publish_reload_failover_unavailability_and_full_restart) ... /usr/lib/python3.14/tempfile.py:484: ResourceWarning: Implicitly cleaning up <HTTPError 503: 'Service Unavailable'>
+  _warnings.warn(self.warn_message, ResourceWarning)
+ok
+
+----------------------------------------------------------------------
+Ran 1 test in 3.069s
+
+OK
+<end of output>
+Test time =   3.15 sec
+----------------------------------------------------------
+Test Passed.
+"config_application" end time: Oct 22 16:49 CST
+"config_application" time elapsed: 00:00:03
+----------------------------------------------------------
+
+123/125 Testing: cluster_fault_campaign_smoke
+123/125 Test: cluster_fault_campaign_smoke
+Command: "/usr/bin/python3" "/home/hermes/yeyu/source/scripts/cluster-soak.py" "--node" "/home/hermes/yeyu/source/build/bin/yewukv-node" "--client" "/home/hermes/yeyu/source/build/bin/yewukv-client" "--epochs" "6" "--evidence-root" "/home/hermes/yeyu/source/build/tests/soak-evidence"
+Directory: /home/hermes/yeyu/source/build/tests
+"cluster_fault_campaign_smoke" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+{"epoch": 0, "fault": "leader-kill", "checked_operations": 54, "elapsed_seconds": 0.9345157490024576}
+{
+  "command": [
+    "/home/hermes/yeyu/source/scripts/cluster-soak.py",
+    "--node",
+    "/home/hermes/yeyu/source/build/bin/yewukv-node",
+    "--client",
+    "/home/hermes/yeyu/source/build/bin/yewukv-client",
+    "--epochs",
+    "6",
+    "--evidence-root",
+    "/home/hermes/yeyu/source/build/tests/soak-evidence"
+  ],
+  "environment": {
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.43",
+    "cpu_model": "11th Gen Intel(R) Core(TM) i7-11800H @ 2.30GHz",
+    "logical_cpus": 4,
+    "cpu_affinity": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "memory": "MemTotal:        8141396 kB",
+    "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+    "load_average": [
+      1.365234375,
+      0.86767578125,
+      0.66845703125
+    ],
+    "server_sha256": "bbf50e6663ca124e78d7151417e9d6f302508d6acf6e0655daf3c447d5c60983",
+    "build": {
+      "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+      "CMAKE_CXX_COMPILER": "/usr/bin/c++",
+      "CMAKE_CXX_FLAGS": "",
+      "CMAKE_CXX_FLAGS_DEBUG": "-g",
+      "CMAKE_CXX_FLAGS_MINSIZEREL": "-Os -DNDEBUG",
+      "CMAKE_CXX_FLAGS_RELEASE": "-O3 -DNDEBUG",
+      "CMAKE_CXX_FLAGS_RELWITHDEBINFO": "-O2 -g -DNDEBUG",
+      "YEWUKV_ENABLE_SANITIZERS": "OFF",
+      "CMAKE_CXX_FLAGS-ADVANCED": "1",
+      "CMAKE_CXX_FLAGS_DEBUG-ADVANCED": "1",
+      "CMAKE_CXX_FLAGS_MINSIZEREL-ADVANCED": "1",
+      "CMAKE_CXX_FLAGS_RELEASE-ADVANCED": "1",
+      "CMAKE_CXX_FLAGS_RELWITHDEBINFO-ADVANCED": "1"
+    },
+    "compiler_version": "c++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+  },
+  "source_manifest_sha256": "5c4793194e4413cfdf088fa371ae0042c5b0f6a28ff8d87849cf6ae29b5ab17b",
+  "status": "complete",
+  "note": "Three loopback processes on one host. Fresh per-epoch keys; exhaustive per-key oracle <=9 operations/key.",
+  "final_recovery": {
+    "all_node_sigkill": true,
+    "anchor_checked": true,
+    "durable_ring_values": [
+      {
+        "key": "736f616b2d72696e672d30",
+        "value": "61636b6e6f776c65646765642d65706f63682d30"
+      },
+      {
+        "key": "736f616b2d72696e672d31",
+        "value": "61636b6e6f776c65646765642d65706f63682d31"
+      },
+      {
+        "key": "736f616b2d72696e672d32",
+        "value": "61636b6e6f776c65646765642d65706f63682d32"
+      },
+      {
+        "key": "736f616b2d72696e672d33",
+        "value": "61636b6e6f776c65646765642d65706f63682d33"
+      },
+      {
+        "key": "736f616b2d72696e672d34",
+        "value": "61636b6e6f776c65646765642d65706f63682d34"
+      },
+      {
+        "key": "736f616b2d72696e672d35",
+        "value": "61636b6e6f776c65646765642d65706f63682d35"
+      }
+    ]
+  },
+  "elapsed_seconds": 8.292592911995598,
+  "epochs": 6,
+  "attempted_operations": 324,
+  "checked_operations": 320,
+  "unknown_writes": 5
+}
+<end of output>
+Test time =   8.45 sec
+----------------------------------------------------------
+Test Passed.
+"cluster_fault_campaign_smoke" end time: Oct 22 16:49 CST
+"cluster_fault_campaign_smoke" time elapsed: 00:00:08
+----------------------------------------------------------
+
+124/125 Testing: cluster_read_index
+124/125 Test: cluster_read_index
+Command: "/usr/bin/python3" "/home/hermes/yeyu/source/tests/test_read_index.py" "--node" "/home/hermes/yeyu/source/build/bin/yewukv-node" "--client" "/home/hermes/yeyu/source/build/bin/yewukv-client"
+Directory: /home/hermes/yeyu/source/build/tests
+"cluster_read_index" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+test_pipelined_get_waits_for_preceding_put_to_apply (__main__.ReadIndexTests.test_pipelined_get_waits_for_preceding_put_to_apply) ... ok
+test_pure_reads_change_neither_log_nor_persistent_bytes (__main__.ReadIndexTests.test_pure_reads_change_neither_log_nor_persistent_bytes) ... ok
+test_read_queue_is_bounded_and_old_leader_never_returns_local_value (__main__.ReadIndexTests.test_read_queue_is_bounded_and_old_leader_never_returns_local_value) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 3.346s
+
+OK
+<end of output>
+Test time =   3.40 sec
+----------------------------------------------------------
+Test Passed.
+"cluster_read_index" end time: Oct 22 16:49 CST
+"cluster_read_index" time elapsed: 00:00:03
+----------------------------------------------------------
+
+54/125 Testing: RaftFileStore.RejectsInvalidConfigurationAndOversizedPublishedImage
+54/125 Test: RaftFileStore.RejectsInvalidConfigurationAndOversizedPublishedImage
+Command: "/home/hermes/yeyu/source/build/bin/yewu_tests" "--gtest_filter=RaftFileStore.RejectsInvalidConfigurationAndOversizedPublishedImage" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build/tests
+"RaftFileStore.RejectsInvalidConfigurationAndOversizedPublishedImage" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftFileStore.RejectsInvalidConfigurationAndOversizedPublishedImage
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftFileStore
+[ RUN      ] RaftFileStore.RejectsInvalidConfigurationAndOversizedPublishedImage
+[       OK ] RaftFileStore.RejectsInvalidConfigurationAndOversizedPublishedImage (188 ms)
+[----------] 1 test from RaftFileStore (188 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (188 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.19 sec
+----------------------------------------------------------
+Test Passed.
+"RaftFileStore.RejectsInvalidConfigurationAndOversizedPublishedImage" end time: Oct 22 16:49 CST
+"RaftFileStore.RejectsInvalidConfigurationAndOversizedPublishedImage" time elapsed: 00:00:00
+----------------------------------------------------------
+
+61/125 Testing: RaftJournal.AppendsOnlyDeltaAndLeavesLargeCheckpointUntouched
+61/125 Test: RaftJournal.AppendsOnlyDeltaAndLeavesLargeCheckpointUntouched
+Command: "/home/hermes/yeyu/source/build/bin/yewu_tests" "--gtest_filter=RaftJournal.AppendsOnlyDeltaAndLeavesLargeCheckpointUntouched" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build/tests
+"RaftJournal.AppendsOnlyDeltaAndLeavesLargeCheckpointUntouched" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftJournal.AppendsOnlyDeltaAndLeavesLargeCheckpointUntouched
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftJournal
+[ RUN      ] RaftJournal.AppendsOnlyDeltaAndLeavesLargeCheckpointUntouched
+[       OK ] RaftJournal.AppendsOnlyDeltaAndLeavesLargeCheckpointUntouched (54 ms)
+[----------] 1 test from RaftJournal (54 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (54 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.06 sec
+----------------------------------------------------------
+Test Passed.
+"RaftJournal.AppendsOnlyDeltaAndLeavesLargeCheckpointUntouched" end time: Oct 22 16:49 CST
+"RaftJournal.AppendsOnlyDeltaAndLeavesLargeCheckpointUntouched" time elapsed: 00:00:00
+----------------------------------------------------------
+
+63/125 Testing: RaftJournal.EveryIncompleteFinalRecordIsTruncatedButAcknowledgedPrefixRemains
+63/125 Test: RaftJournal.EveryIncompleteFinalRecordIsTruncatedButAcknowledgedPrefixRemains
+Command: "/home/hermes/yeyu/source/build/bin/yewu_tests" "--gtest_filter=RaftJournal.EveryIncompleteFinalRecordIsTruncatedButAcknowledgedPrefixRemains" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build/tests
+"RaftJournal.EveryIncompleteFinalRecordIsTruncatedButAcknowledgedPrefixRemains" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftJournal.EveryIncompleteFinalRecordIsTruncatedButAcknowledgedPrefixRemains
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftJournal
+[ RUN      ] RaftJournal.EveryIncompleteFinalRecordIsTruncatedButAcknowledgedPrefixRemains
+[       OK ] RaftJournal.EveryIncompleteFinalRecordIsTruncatedButAcknowledgedPrefixRemains (124 ms)
+[----------] 1 test from RaftJournal (124 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (124 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.13 sec
+----------------------------------------------------------
+Test Passed.
+"RaftJournal.EveryIncompleteFinalRecordIsTruncatedButAcknowledgedPrefixRemains" end time: Oct 22 16:49 CST
+"RaftJournal.EveryIncompleteFinalRecordIsTruncatedButAcknowledgedPrefixRemains" time elapsed: 00:00:00
+----------------------------------------------------------
+
+65/125 Testing: RaftJournal.RollsCheckpointGenerationAndReclaimsObsoleteJournal
+65/125 Test: RaftJournal.RollsCheckpointGenerationAndReclaimsObsoleteJournal
+Command: "/home/hermes/yeyu/source/build/bin/yewu_tests" "--gtest_filter=RaftJournal.RollsCheckpointGenerationAndReclaimsObsoleteJournal" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build/tests
+"RaftJournal.RollsCheckpointGenerationAndReclaimsObsoleteJournal" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftJournal.RollsCheckpointGenerationAndReclaimsObsoleteJournal
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftJournal
+[ RUN      ] RaftJournal.RollsCheckpointGenerationAndReclaimsObsoleteJournal
+[       OK ] RaftJournal.RollsCheckpointGenerationAndReclaimsObsoleteJournal (48 ms)
+[----------] 1 test from RaftJournal (48 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (48 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.05 sec
+----------------------------------------------------------
+Test Passed.
+"RaftJournal.RollsCheckpointGenerationAndReclaimsObsoleteJournal" end time: Oct 22 16:49 CST
+"RaftJournal.RollsCheckpointGenerationAndReclaimsObsoleteJournal" time elapsed: 00:00:00
+----------------------------------------------------------
+
+69/125 Testing: RaftJournal.SigkillAtCheckpointBoundariesKeepsCheckpointAndJournalPaired
+69/125 Test: RaftJournal.SigkillAtCheckpointBoundariesKeepsCheckpointAndJournalPaired
+Command: "/home/hermes/yeyu/source/build/bin/yewu_tests" "--gtest_filter=RaftJournal.SigkillAtCheckpointBoundariesKeepsCheckpointAndJournalPaired" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build/tests
+"RaftJournal.SigkillAtCheckpointBoundariesKeepsCheckpointAndJournalPaired" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftJournal.SigkillAtCheckpointBoundariesKeepsCheckpointAndJournalPaired
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftJournal
+[ RUN      ] RaftJournal.SigkillAtCheckpointBoundariesKeepsCheckpointAndJournalPaired
+[       OK ] RaftJournal.SigkillAtCheckpointBoundariesKeepsCheckpointAndJournalPaired (44 ms)
+[----------] 1 test from RaftJournal (44 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (44 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.05 sec
+----------------------------------------------------------
+Test Passed.
+"RaftJournal.SigkillAtCheckpointBoundariesKeepsCheckpointAndJournalPaired" end time: Oct 22 16:49 CST
+"RaftJournal.SigkillAtCheckpointBoundariesKeepsCheckpointAndJournalPaired" time elapsed: 00:00:00
+----------------------------------------------------------
+
+68/125 Testing: RaftJournal.SigkillAtAppendBoundariesRecoversWholeOldOrNewSuffix
+68/125 Test: RaftJournal.SigkillAtAppendBoundariesRecoversWholeOldOrNewSuffix
+Command: "/home/hermes/yeyu/source/build/bin/yewu_tests" "--gtest_filter=RaftJournal.SigkillAtAppendBoundariesRecoversWholeOldOrNewSuffix" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build/tests
+"RaftJournal.SigkillAtAppendBoundariesRecoversWholeOldOrNewSuffix" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftJournal.SigkillAtAppendBoundariesRecoversWholeOldOrNewSuffix
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftJournal
+[ RUN      ] RaftJournal.SigkillAtAppendBoundariesRecoversWholeOldOrNewSuffix
+[       OK ] RaftJournal.SigkillAtAppendBoundariesRecoversWholeOldOrNewSuffix (21 ms)
+[----------] 1 test from RaftJournal (21 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (21 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Passed.
+"RaftJournal.SigkillAtAppendBoundariesRecoversWholeOldOrNewSuffix" end time: Oct 22 16:49 CST
+"RaftJournal.SigkillAtAppendBoundariesRecoversWholeOldOrNewSuffix" time elapsed: 00:00:00
+----------------------------------------------------------
+
+58/125 Testing: RaftFileStore.SigkillDuringSuffixReplacementRecoversAWholeOldOrNewImage
+58/125 Test: RaftFileStore.SigkillDuringSuffixReplacementRecoversAWholeOldOrNewImage
+Command: "/home/hermes/yeyu/source/build/bin/yewu_tests" "--gtest_filter=RaftFileStore.SigkillDuringSuffixReplacementRecoversAWholeOldOrNewImage" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build/tests
+"RaftFileStore.SigkillDuringSuffixReplacementRecoversAWholeOldOrNewImage" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftFileStore.SigkillDuringSuffixReplacementRecoversAWholeOldOrNewImage
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftFileStore
+[ RUN      ] RaftFileStore.SigkillDuringSuffixReplacementRecoversAWholeOldOrNewImage
+[       OK ] RaftFileStore.SigkillDuringSuffixReplacementRecoversAWholeOldOrNewImage (32 ms)
+[----------] 1 test from RaftFileStore (32 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (32 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.04 sec
+----------------------------------------------------------
+Test Passed.
+"RaftFileStore.SigkillDuringSuffixReplacementRecoversAWholeOldOrNewImage" end time: Oct 22 16:49 CST
+"RaftFileStore.SigkillDuringSuffixReplacementRecoversAWholeOldOrNewImage" time elapsed: 00:00:00
+----------------------------------------------------------
+
+67/125 Testing: RaftJournal.JournalFailurePoisonsInstanceUntilReopenAtAllAppendBoundaries
+67/125 Test: RaftJournal.JournalFailurePoisonsInstanceUntilReopenAtAllAppendBoundaries
+Command: "/home/hermes/yeyu/source/build/bin/yewu_tests" "--gtest_filter=RaftJournal.JournalFailurePoisonsInstanceUntilReopenAtAllAppendBoundaries" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build/tests
+"RaftJournal.JournalFailurePoisonsInstanceUntilReopenAtAllAppendBoundaries" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftJournal.JournalFailurePoisonsInstanceUntilReopenAtAllAppendBoundaries
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftJournal
+[ RUN      ] RaftJournal.JournalFailurePoisonsInstanceUntilReopenAtAllAppendBoundaries
+[       OK ] RaftJournal.JournalFailurePoisonsInstanceUntilReopenAtAllAppendBoundaries (15 ms)
+[----------] 1 test from RaftJournal (15 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (15 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"RaftJournal.JournalFailurePoisonsInstanceUntilReopenAtAllAppendBoundaries" end time: Oct 22 16:49 CST
+"RaftJournal.JournalFailurePoisonsInstanceUntilReopenAtAllAppendBoundaries" time elapsed: 00:00:00
+----------------------------------------------------------
+
+59/125 Testing: RaftFileStore.AcknowledgedVotesAndAppendsSurviveSigkill
+59/125 Test: RaftFileStore.AcknowledgedVotesAndAppendsSurviveSigkill
+Command: "/home/hermes/yeyu/source/build/bin/yewu_tests" "--gtest_filter=RaftFileStore.AcknowledgedVotesAndAppendsSurviveSigkill" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build/tests
+"RaftFileStore.AcknowledgedVotesAndAppendsSurviveSigkill" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftFileStore.AcknowledgedVotesAndAppendsSurviveSigkill
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftFileStore
+[ RUN      ] RaftFileStore.AcknowledgedVotesAndAppendsSurviveSigkill
+[       OK ] RaftFileStore.AcknowledgedVotesAndAppendsSurviveSigkill (6 ms)
+[----------] 1 test from RaftFileStore (6 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (6 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"RaftFileStore.AcknowledgedVotesAndAppendsSurviveSigkill" end time: Oct 22 16:49 CST
+"RaftFileStore.AcknowledgedVotesAndAppendsSurviveSigkill" time elapsed: 00:00:00
+----------------------------------------------------------
+
+90/125 Testing: RaftSnapshot.SigkillAtEveryPublishBoundaryRecoversWholeSnapshotAndSuffix
+90/125 Test: RaftSnapshot.SigkillAtEveryPublishBoundaryRecoversWholeSnapshotAndSuffix
+Command: "/home/hermes/yeyu/source/build/bin/yewu_tests" "--gtest_filter=RaftSnapshot.SigkillAtEveryPublishBoundaryRecoversWholeSnapshotAndSuffix" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build/tests
+"RaftSnapshot.SigkillAtEveryPublishBoundaryRecoversWholeSnapshotAndSuffix" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftSnapshot.SigkillAtEveryPublishBoundaryRecoversWholeSnapshotAndSuffix
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftSnapshot
+[ RUN      ] RaftSnapshot.SigkillAtEveryPublishBoundaryRecoversWholeSnapshotAndSuffix
+[       OK ] RaftSnapshot.SigkillAtEveryPublishBoundaryRecoversWholeSnapshotAndSuffix (7 ms)
+[----------] 1 test from RaftSnapshot (7 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (7 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"RaftSnapshot.SigkillAtEveryPublishBoundaryRecoversWholeSnapshotAndSuffix" end time: Oct 22 16:49 CST
+"RaftSnapshot.SigkillAtEveryPublishBoundaryRecoversWholeSnapshotAndSuffix" time elapsed: 00:00:00
+----------------------------------------------------------
+
+51/125 Testing: RaftFileStore.RejectsChecksumDamageAndEveryTruncatedImageWithoutRepair
+51/125 Test: RaftFileStore.RejectsChecksumDamageAndEveryTruncatedImageWithoutRepair
+Command: "/home/hermes/yeyu/source/build/bin/yewu_tests" "--gtest_filter=RaftFileStore.RejectsChecksumDamageAndEveryTruncatedImageWithoutRepair" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build/tests
+"RaftFileStore.RejectsChecksumDamageAndEveryTruncatedImageWithoutRepair" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftFileStore.RejectsChecksumDamageAndEveryTruncatedImageWithoutRepair
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftFileStore
+[ RUN      ] RaftFileStore.RejectsChecksumDamageAndEveryTruncatedImageWithoutRepair
+[       OK ] RaftFileStore.RejectsChecksumDamageAndEveryTruncatedImageWithoutRepair (73 ms)
+[----------] 1 test from RaftFileStore (73 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (73 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.08 sec
+----------------------------------------------------------
+Test Passed.
+"RaftFileStore.RejectsChecksumDamageAndEveryTruncatedImageWithoutRepair" end time: Oct 22 16:49 CST
+"RaftFileStore.RejectsChecksumDamageAndEveryTruncatedImageWithoutRepair" time elapsed: 00:00:00
+----------------------------------------------------------
+
+64/125 Testing: RaftJournal.RejectsCompleteCorruptRecordIncludingFinalRecordAndHeaderLength
+64/125 Test: RaftJournal.RejectsCompleteCorruptRecordIncludingFinalRecordAndHeaderLength
+Command: "/home/hermes/yeyu/source/build/bin/yewu_tests" "--gtest_filter=RaftJournal.RejectsCompleteCorruptRecordIncludingFinalRecordAndHeaderLength" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build/tests
+"RaftJournal.RejectsCompleteCorruptRecordIncludingFinalRecordAndHeaderLength" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftJournal.RejectsCompleteCorruptRecordIncludingFinalRecordAndHeaderLength
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftJournal
+[ RUN      ] RaftJournal.RejectsCompleteCorruptRecordIncludingFinalRecordAndHeaderLength
+[       OK ] RaftJournal.RejectsCompleteCorruptRecordIncludingFinalRecordAndHeaderLength (8 ms)
+[----------] 1 test from RaftJournal (8 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (8 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"RaftJournal.RejectsCompleteCorruptRecordIncludingFinalRecordAndHeaderLength" end time: Oct 22 16:49 CST
+"RaftJournal.RejectsCompleteCorruptRecordIncludingFinalRecordAndHeaderLength" time elapsed: 00:00:00
+----------------------------------------------------------
+
+47/125 Testing: RaftFileStore.RejectsInvalidSuffixWithoutChangingPersistedState
+47/125 Test: RaftFileStore.RejectsInvalidSuffixWithoutChangingPersistedState
+Command: "/home/hermes/yeyu/source/build/bin/yewu_tests" "--gtest_filter=RaftFileStore.RejectsInvalidSuffixWithoutChangingPersistedState" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build/tests
+"RaftFileStore.RejectsInvalidSuffixWithoutChangingPersistedState" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftFileStore.RejectsInvalidSuffixWithoutChangingPersistedState
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftFileStore
+[ RUN      ] RaftFileStore.RejectsInvalidSuffixWithoutChangingPersistedState
+[       OK ] RaftFileStore.RejectsInvalidSuffixWithoutChangingPersistedState (7 ms)
+[----------] 1 test from RaftFileStore (7 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (7 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"RaftFileStore.RejectsInvalidSuffixWithoutChangingPersistedState" end time: Oct 22 16:49 CST
+"RaftFileStore.RejectsInvalidSuffixWithoutChangingPersistedState" time elapsed: 00:00:00
+----------------------------------------------------------
+
+60/125 Testing: RaftJournal.MigratesLegacyImageAndRecoversBinarySuffixAndVote
+60/125 Test: RaftJournal.MigratesLegacyImageAndRecoversBinarySuffixAndVote
+Command: "/home/hermes/yeyu/source/build/bin/yewu_tests" "--gtest_filter=RaftJournal.MigratesLegacyImageAndRecoversBinarySuffixAndVote" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build/tests
+"RaftJournal.MigratesLegacyImageAndRecoversBinarySuffixAndVote" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftJournal.MigratesLegacyImageAndRecoversBinarySuffixAndVote
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftJournal
+[ RUN      ] RaftJournal.MigratesLegacyImageAndRecoversBinarySuffixAndVote
+[       OK ] RaftJournal.MigratesLegacyImageAndRecoversBinarySuffixAndVote (8 ms)
+[----------] 1 test from RaftJournal (8 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (8 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"RaftJournal.MigratesLegacyImageAndRecoversBinarySuffixAndVote" end time: Oct 22 16:49 CST
+"RaftJournal.MigratesLegacyImageAndRecoversBinarySuffixAndVote" time elapsed: 00:00:00
+----------------------------------------------------------
+
+42/125 Testing: RaftFileStore.FastChecksumMatchesIndependentBitwiseEncoderForBinaryImages
+42/125 Test: RaftFileStore.FastChecksumMatchesIndependentBitwiseEncoderForBinaryImages
+Command: "/home/hermes/yeyu/source/build/bin/yewu_tests" "--gtest_filter=RaftFileStore.FastChecksumMatchesIndependentBitwiseEncoderForBinaryImages" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build/tests
+"RaftFileStore.FastChecksumMatchesIndependentBitwiseEncoderForBinaryImages" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftFileStore.FastChecksumMatchesIndependentBitwiseEncoderForBinaryImages
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftFileStore
+[ RUN      ] RaftFileStore.FastChecksumMatchesIndependentBitwiseEncoderForBinaryImages
+[       OK ] RaftFileStore.FastChecksumMatchesIndependentBitwiseEncoderForBinaryImages (28 ms)
+[----------] 1 test from RaftFileStore (28 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (28 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Passed.
+"RaftFileStore.FastChecksumMatchesIndependentBitwiseEncoderForBinaryImages" end time: Oct 22 16:49 CST
+"RaftFileStore.FastChecksumMatchesIndependentBitwiseEncoderForBinaryImages" time elapsed: 00:00:00
+----------------------------------------------------------
+
+57/125 Testing: RaftFileStore.InjectedPersistenceFailuresRequireReopenAtEveryBoundary
+57/125 Test: RaftFileStore.InjectedPersistenceFailuresRequireReopenAtEveryBoundary
+Command: "/home/hermes/yeyu/source/build/bin/yewu_tests" "--gtest_filter=RaftFileStore.InjectedPersistenceFailuresRequireReopenAtEveryBoundary" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build/tests
+"RaftFileStore.InjectedPersistenceFailuresRequireReopenAtEveryBoundary" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftFileStore.InjectedPersistenceFailuresRequireReopenAtEveryBoundary
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftFileStore
+[ RUN      ] RaftFileStore.InjectedPersistenceFailuresRequireReopenAtEveryBoundary
+[       OK ] RaftFileStore.InjectedPersistenceFailuresRequireReopenAtEveryBoundary (21 ms)
+[----------] 1 test from RaftFileStore (21 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (21 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.03 sec
+----------------------------------------------------------
+Test Passed.
+"RaftFileStore.InjectedPersistenceFailuresRequireReopenAtEveryBoundary" end time: Oct 22 16:49 CST
+"RaftFileStore.InjectedPersistenceFailuresRequireReopenAtEveryBoundary" time elapsed: 00:00:00
+----------------------------------------------------------
+
+66/125 Testing: RaftJournal.MissingCheckpointOrActiveJournalFailsClosed
+66/125 Test: RaftJournal.MissingCheckpointOrActiveJournalFailsClosed
+Command: "/home/hermes/yeyu/source/build/bin/yewu_tests" "--gtest_filter=RaftJournal.MissingCheckpointOrActiveJournalFailsClosed" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build/tests
+"RaftJournal.MissingCheckpointOrActiveJournalFailsClosed" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftJournal.MissingCheckpointOrActiveJournalFailsClosed
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftJournal
+[ RUN      ] RaftJournal.MissingCheckpointOrActiveJournalFailsClosed
+[       OK ] RaftJournal.MissingCheckpointOrActiveJournalFailsClosed (3 ms)
+[----------] 1 test from RaftJournal (3 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (3 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"RaftJournal.MissingCheckpointOrActiveJournalFailsClosed" end time: Oct 22 16:49 CST
+"RaftJournal.MissingCheckpointOrActiveJournalFailsClosed" time elapsed: 00:00:00
+----------------------------------------------------------
+
+91/125 Testing: RaftSnapshot.ChunkRetriesAndReceiverRestartNeverPublishPartialState
+91/125 Test: RaftSnapshot.ChunkRetriesAndReceiverRestartNeverPublishPartialState
+Command: "/home/hermes/yeyu/source/build/bin/yewu_tests" "--gtest_filter=RaftSnapshot.ChunkRetriesAndReceiverRestartNeverPublishPartialState" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build/tests
+"RaftSnapshot.ChunkRetriesAndReceiverRestartNeverPublishPartialState" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftSnapshot.ChunkRetriesAndReceiverRestartNeverPublishPartialState
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftSnapshot
+[ RUN      ] RaftSnapshot.ChunkRetriesAndReceiverRestartNeverPublishPartialState
+[       OK ] RaftSnapshot.ChunkRetriesAndReceiverRestartNeverPublishPartialState (0 ms)
+[----------] 1 test from RaftSnapshot (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"RaftSnapshot.ChunkRetriesAndReceiverRestartNeverPublishPartialState" end time: Oct 22 16:49 CST
+"RaftSnapshot.ChunkRetriesAndReceiverRestartNeverPublishPartialState" time elapsed: 00:00:00
+----------------------------------------------------------
+
+62/125 Testing: RaftJournal.ReplacementAndTruncationReplayWithoutResurrectingOldSuffix
+62/125 Test: RaftJournal.ReplacementAndTruncationReplayWithoutResurrectingOldSuffix
+Command: "/home/hermes/yeyu/source/build/bin/yewu_tests" "--gtest_filter=RaftJournal.ReplacementAndTruncationReplayWithoutResurrectingOldSuffix" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build/tests
+"RaftJournal.ReplacementAndTruncationReplayWithoutResurrectingOldSuffix" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftJournal.ReplacementAndTruncationReplayWithoutResurrectingOldSuffix
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftJournal
+[ RUN      ] RaftJournal.ReplacementAndTruncationReplayWithoutResurrectingOldSuffix
+[       OK ] RaftJournal.ReplacementAndTruncationReplayWithoutResurrectingOldSuffix (5 ms)
+[----------] 1 test from RaftJournal (5 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (5 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"RaftJournal.ReplacementAndTruncationReplayWithoutResurrectingOldSuffix" end time: Oct 22 16:49 CST
+"RaftJournal.ReplacementAndTruncationReplayWithoutResurrectingOldSuffix" time elapsed: 00:00:00
+----------------------------------------------------------
+
+52/125 Testing: RaftFileStore.RejectsStructurallyInvalidImagesEvenWithValidChecksums
+52/125 Test: RaftFileStore.RejectsStructurallyInvalidImagesEvenWithValidChecksums
+Command: "/home/hermes/yeyu/source/build/bin/yewu_tests" "--gtest_filter=RaftFileStore.RejectsStructurallyInvalidImagesEvenWithValidChecksums" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build/tests
+"RaftFileStore.RejectsStructurallyInvalidImagesEvenWithValidChecksums" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftFileStore.RejectsStructurallyInvalidImagesEvenWithValidChecksums
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftFileStore
+[ RUN      ] RaftFileStore.RejectsStructurallyInvalidImagesEvenWithValidChecksums
+[       OK ] RaftFileStore.RejectsStructurallyInvalidImagesEvenWithValidChecksums (12 ms)
+[----------] 1 test from RaftFileStore (12 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (12 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"RaftFileStore.RejectsStructurallyInvalidImagesEvenWithValidChecksums" end time: Oct 22 16:49 CST
+"RaftFileStore.RejectsStructurallyInvalidImagesEvenWithValidChecksums" time elapsed: 00:00:00
+----------------------------------------------------------
+
+93/125 Testing: RaftSnapshot.DiskFailurePreventsSnapshotInstallationAcknowledgement
+93/125 Test: RaftSnapshot.DiskFailurePreventsSnapshotInstallationAcknowledgement
+Command: "/home/hermes/yeyu/source/build/bin/yewu_tests" "--gtest_filter=RaftSnapshot.DiskFailurePreventsSnapshotInstallationAcknowledgement" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build/tests
+"RaftSnapshot.DiskFailurePreventsSnapshotInstallationAcknowledgement" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftSnapshot.DiskFailurePreventsSnapshotInstallationAcknowledgement
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftSnapshot
+[ RUN      ] RaftSnapshot.DiskFailurePreventsSnapshotInstallationAcknowledgement
+[       OK ] RaftSnapshot.DiskFailurePreventsSnapshotInstallationAcknowledgement (0 ms)
+[----------] 1 test from RaftSnapshot (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"RaftSnapshot.DiskFailurePreventsSnapshotInstallationAcknowledgement" end time: Oct 22 16:49 CST
+"RaftSnapshot.DiskFailurePreventsSnapshotInstallationAcknowledgement" time elapsed: 00:00:00
+----------------------------------------------------------
+
+49/125 Testing: RaftFileStore.LocksDirectoryAndReleasesLockAfterCloseOrConstructorFailure
+49/125 Test: RaftFileStore.LocksDirectoryAndReleasesLockAfterCloseOrConstructorFailure
+Command: "/home/hermes/yeyu/source/build/bin/yewu_tests" "--gtest_filter=RaftFileStore.LocksDirectoryAndReleasesLockAfterCloseOrConstructorFailure" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build/tests
+"RaftFileStore.LocksDirectoryAndReleasesLockAfterCloseOrConstructorFailure" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftFileStore.LocksDirectoryAndReleasesLockAfterCloseOrConstructorFailure
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftFileStore
+[ RUN      ] RaftFileStore.LocksDirectoryAndReleasesLockAfterCloseOrConstructorFailure
+[       OK ] RaftFileStore.LocksDirectoryAndReleasesLockAfterCloseOrConstructorFailure (3 ms)
+[----------] 1 test from RaftFileStore (3 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (3 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"RaftFileStore.LocksDirectoryAndReleasesLockAfterCloseOrConstructorFailure" end time: Oct 22 16:49 CST
+"RaftFileStore.LocksDirectoryAndReleasesLockAfterCloseOrConstructorFailure" time elapsed: 00:00:00
+----------------------------------------------------------
+
+53/125 Testing: RaftFileStore.RejectsSymlinkAndNonRegularPublishedState
+53/125 Test: RaftFileStore.RejectsSymlinkAndNonRegularPublishedState
+Command: "/home/hermes/yeyu/source/build/bin/yewu_tests" "--gtest_filter=RaftFileStore.RejectsSymlinkAndNonRegularPublishedState" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build/tests
+"RaftFileStore.RejectsSymlinkAndNonRegularPublishedState" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftFileStore.RejectsSymlinkAndNonRegularPublishedState
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftFileStore
+[ RUN      ] RaftFileStore.RejectsSymlinkAndNonRegularPublishedState
+[       OK ] RaftFileStore.RejectsSymlinkAndNonRegularPublishedState (2 ms)
+[----------] 1 test from RaftFileStore (2 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (2 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"RaftFileStore.RejectsSymlinkAndNonRegularPublishedState" end time: Oct 22 16:49 CST
+"RaftFileStore.RejectsSymlinkAndNonRegularPublishedState" time elapsed: 00:00:00
+----------------------------------------------------------
+
+41/125 Testing: RaftFileStore.InitializesAndRecoversHardStateAndBinaryCommands
+41/125 Test: RaftFileStore.InitializesAndRecoversHardStateAndBinaryCommands
+Command: "/home/hermes/yeyu/source/build/bin/yewu_tests" "--gtest_filter=RaftFileStore.InitializesAndRecoversHardStateAndBinaryCommands" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build/tests
+"RaftFileStore.InitializesAndRecoversHardStateAndBinaryCommands" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftFileStore.InitializesAndRecoversHardStateAndBinaryCommands
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftFileStore
+[ RUN      ] RaftFileStore.InitializesAndRecoversHardStateAndBinaryCommands
+[       OK ] RaftFileStore.InitializesAndRecoversHardStateAndBinaryCommands (3 ms)
+[----------] 1 test from RaftFileStore (3 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (3 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"RaftFileStore.InitializesAndRecoversHardStateAndBinaryCommands" end time: Oct 22 16:49 CST
+"RaftFileStore.InitializesAndRecoversHardStateAndBinaryCommands" time elapsed: 00:00:00
+----------------------------------------------------------
+
+46/125 Testing: RaftFileStore.RejectsTermRegressionAndVoteChangesWithoutTouchingImage
+46/125 Test: RaftFileStore.RejectsTermRegressionAndVoteChangesWithoutTouchingImage
+Command: "/home/hermes/yeyu/source/build/bin/yewu_tests" "--gtest_filter=RaftFileStore.RejectsTermRegressionAndVoteChangesWithoutTouchingImage" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build/tests
+"RaftFileStore.RejectsTermRegressionAndVoteChangesWithoutTouchingImage" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftFileStore.RejectsTermRegressionAndVoteChangesWithoutTouchingImage
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftFileStore
+[ RUN      ] RaftFileStore.RejectsTermRegressionAndVoteChangesWithoutTouchingImage
+[       OK ] RaftFileStore.RejectsTermRegressionAndVoteChangesWithoutTouchingImage (3 ms)
+[----------] 1 test from RaftFileStore (3 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (3 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"RaftFileStore.RejectsTermRegressionAndVoteChangesWithoutTouchingImage" end time: Oct 22 16:49 CST
+"RaftFileStore.RejectsTermRegressionAndVoteChangesWithoutTouchingImage" time elapsed: 00:00:00
+----------------------------------------------------------
+
+43/125 Testing: RaftFileStore.ElectionCannotVoteTwiceAfterRealReopen
+43/125 Test: RaftFileStore.ElectionCannotVoteTwiceAfterRealReopen
+Command: "/home/hermes/yeyu/source/build/bin/yewu_tests" "--gtest_filter=RaftFileStore.ElectionCannotVoteTwiceAfterRealReopen" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build/tests
+"RaftFileStore.ElectionCannotVoteTwiceAfterRealReopen" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftFileStore.ElectionCannotVoteTwiceAfterRealReopen
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftFileStore
+[ RUN      ] RaftFileStore.ElectionCannotVoteTwiceAfterRealReopen
+[       OK ] RaftFileStore.ElectionCannotVoteTwiceAfterRealReopen (4 ms)
+[----------] 1 test from RaftFileStore (4 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (4 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"RaftFileStore.ElectionCannotVoteTwiceAfterRealReopen" end time: Oct 22 16:49 CST
+"RaftFileStore.ElectionCannotVoteTwiceAfterRealReopen" time elapsed: 00:00:00
+----------------------------------------------------------
+
+44/125 Testing: RaftFileStore.LogCoreReplacesConflictingSuffixAcrossRestart
+44/125 Test: RaftFileStore.LogCoreReplacesConflictingSuffixAcrossRestart
+Command: "/home/hermes/yeyu/source/build/bin/yewu_tests" "--gtest_filter=RaftFileStore.LogCoreReplacesConflictingSuffixAcrossRestart" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build/tests
+"RaftFileStore.LogCoreReplacesConflictingSuffixAcrossRestart" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftFileStore.LogCoreReplacesConflictingSuffixAcrossRestart
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftFileStore
+[ RUN      ] RaftFileStore.LogCoreReplacesConflictingSuffixAcrossRestart
+[       OK ] RaftFileStore.LogCoreReplacesConflictingSuffixAcrossRestart (7 ms)
+[----------] 1 test from RaftFileStore (7 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (8 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"RaftFileStore.LogCoreReplacesConflictingSuffixAcrossRestart" end time: Oct 22 16:49 CST
+"RaftFileStore.LogCoreReplacesConflictingSuffixAcrossRestart" time elapsed: 00:00:00
+----------------------------------------------------------
+
+50/125 Testing: RaftFileStore.IgnoresStaleTemporaryImageAndReplacesItOnNextWrite
+50/125 Test: RaftFileStore.IgnoresStaleTemporaryImageAndReplacesItOnNextWrite
+Command: "/home/hermes/yeyu/source/build/bin/yewu_tests" "--gtest_filter=RaftFileStore.IgnoresStaleTemporaryImageAndReplacesItOnNextWrite" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build/tests
+"RaftFileStore.IgnoresStaleTemporaryImageAndReplacesItOnNextWrite" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftFileStore.IgnoresStaleTemporaryImageAndReplacesItOnNextWrite
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftFileStore
+[ RUN      ] RaftFileStore.IgnoresStaleTemporaryImageAndReplacesItOnNextWrite
+[       OK ] RaftFileStore.IgnoresStaleTemporaryImageAndReplacesItOnNextWrite (6 ms)
+[----------] 1 test from RaftFileStore (6 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (6 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"RaftFileStore.IgnoresStaleTemporaryImageAndReplacesItOnNextWrite" end time: Oct 22 16:49 CST
+"RaftFileStore.IgnoresStaleTemporaryImageAndReplacesItOnNextWrite" time elapsed: 00:00:00
+----------------------------------------------------------
+
+55/125 Testing: RaftFileStore.FilesystemFailurePoisonsElectionWithoutPublishingVotes
+55/125 Test: RaftFileStore.FilesystemFailurePoisonsElectionWithoutPublishingVotes
+Command: "/home/hermes/yeyu/source/build/bin/yewu_tests" "--gtest_filter=RaftFileStore.FilesystemFailurePoisonsElectionWithoutPublishingVotes" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build/tests
+"RaftFileStore.FilesystemFailurePoisonsElectionWithoutPublishingVotes" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftFileStore.FilesystemFailurePoisonsElectionWithoutPublishingVotes
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftFileStore
+[ RUN      ] RaftFileStore.FilesystemFailurePoisonsElectionWithoutPublishingVotes
+[       OK ] RaftFileStore.FilesystemFailurePoisonsElectionWithoutPublishingVotes (1 ms)
+[----------] 1 test from RaftFileStore (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"RaftFileStore.FilesystemFailurePoisonsElectionWithoutPublishingVotes" end time: Oct 22 16:49 CST
+"RaftFileStore.FilesystemFailurePoisonsElectionWithoutPublishingVotes" time elapsed: 00:00:00
+----------------------------------------------------------
+
+88/125 Testing: RaftSnapshot.InstallationRetainsOnlySuffixWithMatchingBoundaryTerm
+88/125 Test: RaftSnapshot.InstallationRetainsOnlySuffixWithMatchingBoundaryTerm
+Command: "/home/hermes/yeyu/source/build/bin/yewu_tests" "--gtest_filter=RaftSnapshot.InstallationRetainsOnlySuffixWithMatchingBoundaryTerm" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build/tests
+"RaftSnapshot.InstallationRetainsOnlySuffixWithMatchingBoundaryTerm" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftSnapshot.InstallationRetainsOnlySuffixWithMatchingBoundaryTerm
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftSnapshot
+[ RUN      ] RaftSnapshot.InstallationRetainsOnlySuffixWithMatchingBoundaryTerm
+[       OK ] RaftSnapshot.InstallationRetainsOnlySuffixWithMatchingBoundaryTerm (1 ms)
+[----------] 1 test from RaftSnapshot (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"RaftSnapshot.InstallationRetainsOnlySuffixWithMatchingBoundaryTerm" end time: Oct 22 16:49 CST
+"RaftSnapshot.InstallationRetainsOnlySuffixWithMatchingBoundaryTerm" time elapsed: 00:00:00
+----------------------------------------------------------
+
+45/125 Testing: RaftFileStore.SupportsDurableSuffixTruncationAndAppend
+45/125 Test: RaftFileStore.SupportsDurableSuffixTruncationAndAppend
+Command: "/home/hermes/yeyu/source/build/bin/yewu_tests" "--gtest_filter=RaftFileStore.SupportsDurableSuffixTruncationAndAppend" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build/tests
+"RaftFileStore.SupportsDurableSuffixTruncationAndAppend" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftFileStore.SupportsDurableSuffixTruncationAndAppend
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftFileStore
+[ RUN      ] RaftFileStore.SupportsDurableSuffixTruncationAndAppend
+[       OK ] RaftFileStore.SupportsDurableSuffixTruncationAndAppend (7 ms)
+[----------] 1 test from RaftFileStore (7 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (7 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"RaftFileStore.SupportsDurableSuffixTruncationAndAppend" end time: Oct 22 16:49 CST
+"RaftFileStore.SupportsDurableSuffixTruncationAndAppend" time elapsed: 00:00:00
+----------------------------------------------------------
+
+56/125 Testing: RaftFileStore.AppendFailurePoisonsLogBeforeAnySuccessOrCommit
+56/125 Test: RaftFileStore.AppendFailurePoisonsLogBeforeAnySuccessOrCommit
+Command: "/home/hermes/yeyu/source/build/bin/yewu_tests" "--gtest_filter=RaftFileStore.AppendFailurePoisonsLogBeforeAnySuccessOrCommit" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build/tests
+"RaftFileStore.AppendFailurePoisonsLogBeforeAnySuccessOrCommit" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftFileStore.AppendFailurePoisonsLogBeforeAnySuccessOrCommit
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftFileStore
+[ RUN      ] RaftFileStore.AppendFailurePoisonsLogBeforeAnySuccessOrCommit
+[       OK ] RaftFileStore.AppendFailurePoisonsLogBeforeAnySuccessOrCommit (5 ms)
+[----------] 1 test from RaftFileStore (5 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (5 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"RaftFileStore.AppendFailurePoisonsLogBeforeAnySuccessOrCommit" end time: Oct 22 16:49 CST
+"RaftFileStore.AppendFailurePoisonsLogBeforeAnySuccessOrCommit" time elapsed: 00:00:00
+----------------------------------------------------------
+
+87/125 Testing: RaftSnapshot.CompactsCommittedPrefixAndRecoversSnapshotWithUncommittedSuffix
+87/125 Test: RaftSnapshot.CompactsCommittedPrefixAndRecoversSnapshotWithUncommittedSuffix
+Command: "/home/hermes/yeyu/source/build/bin/yewu_tests" "--gtest_filter=RaftSnapshot.CompactsCommittedPrefixAndRecoversSnapshotWithUncommittedSuffix" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build/tests
+"RaftSnapshot.CompactsCommittedPrefixAndRecoversSnapshotWithUncommittedSuffix" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftSnapshot.CompactsCommittedPrefixAndRecoversSnapshotWithUncommittedSuffix
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftSnapshot
+[ RUN      ] RaftSnapshot.CompactsCommittedPrefixAndRecoversSnapshotWithUncommittedSuffix
+[       OK ] RaftSnapshot.CompactsCommittedPrefixAndRecoversSnapshotWithUncommittedSuffix (0 ms)
+[----------] 1 test from RaftSnapshot (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"RaftSnapshot.CompactsCommittedPrefixAndRecoversSnapshotWithUncommittedSuffix" end time: Oct 22 16:49 CST
+"RaftSnapshot.CompactsCommittedPrefixAndRecoversSnapshotWithUncommittedSuffix" time elapsed: 00:00:00
+----------------------------------------------------------
+
+89/125 Testing: RaftSnapshot.SnapshotCapacityRejectionDoesNotReplaceDurableImage
+89/125 Test: RaftSnapshot.SnapshotCapacityRejectionDoesNotReplaceDurableImage
+Command: "/home/hermes/yeyu/source/build/bin/yewu_tests" "--gtest_filter=RaftSnapshot.SnapshotCapacityRejectionDoesNotReplaceDurableImage" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build/tests
+"RaftSnapshot.SnapshotCapacityRejectionDoesNotReplaceDurableImage" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftSnapshot.SnapshotCapacityRejectionDoesNotReplaceDurableImage
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftSnapshot
+[ RUN      ] RaftSnapshot.SnapshotCapacityRejectionDoesNotReplaceDurableImage
+[       OK ] RaftSnapshot.SnapshotCapacityRejectionDoesNotReplaceDurableImage (0 ms)
+[----------] 1 test from RaftSnapshot (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"RaftSnapshot.SnapshotCapacityRejectionDoesNotReplaceDurableImage" end time: Oct 22 16:49 CST
+"RaftSnapshot.SnapshotCapacityRejectionDoesNotReplaceDurableImage" time elapsed: 00:00:00
+----------------------------------------------------------
+
+48/125 Testing: RaftFileStore.EnforcesCapacityBeforeIOAndCanTruncateToMakeRoom
+48/125 Test: RaftFileStore.EnforcesCapacityBeforeIOAndCanTruncateToMakeRoom
+Command: "/home/hermes/yeyu/source/build/bin/yewu_tests" "--gtest_filter=RaftFileStore.EnforcesCapacityBeforeIOAndCanTruncateToMakeRoom" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build/tests
+"RaftFileStore.EnforcesCapacityBeforeIOAndCanTruncateToMakeRoom" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftFileStore.EnforcesCapacityBeforeIOAndCanTruncateToMakeRoom
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftFileStore
+[ RUN      ] RaftFileStore.EnforcesCapacityBeforeIOAndCanTruncateToMakeRoom
+[       OK ] RaftFileStore.EnforcesCapacityBeforeIOAndCanTruncateToMakeRoom (4 ms)
+[----------] 1 test from RaftFileStore (4 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (4 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"RaftFileStore.EnforcesCapacityBeforeIOAndCanTruncateToMakeRoom" end time: Oct 22 16:49 CST
+"RaftFileStore.EnforcesCapacityBeforeIOAndCanTruncateToMakeRoom" time elapsed: 00:00:00
+----------------------------------------------------------
+
+92/125 Testing: RaftSnapshot.RejectsMalformedOrInvalidApplicationSnapshotsBeforePublication
+92/125 Test: RaftSnapshot.RejectsMalformedOrInvalidApplicationSnapshotsBeforePublication
+Command: "/home/hermes/yeyu/source/build/bin/yewu_tests" "--gtest_filter=RaftSnapshot.RejectsMalformedOrInvalidApplicationSnapshotsBeforePublication" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build/tests
+"RaftSnapshot.RejectsMalformedOrInvalidApplicationSnapshotsBeforePublication" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RaftSnapshot.RejectsMalformedOrInvalidApplicationSnapshotsBeforePublication
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from RaftSnapshot
+[ RUN      ] RaftSnapshot.RejectsMalformedOrInvalidApplicationSnapshotsBeforePublication
+[       OK ] RaftSnapshot.RejectsMalformedOrInvalidApplicationSnapshotsBeforePublication (0 ms)
+[----------] 1 test from RaftSnapshot (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"RaftSnapshot.RejectsMalformedOrInvalidApplicationSnapshotsBeforePublication" end time: Oct 22 16:49 CST
+"RaftSnapshot.RejectsMalformedOrInvalidApplicationSnapshotsBeforePublication" time elapsed: 00:00:00
+----------------------------------------------------------
+
+95/125 Testing: SnapshotPolicy.ByteTriggerAndApplicationBoundaryRemainHardConditions
+95/125 Test: SnapshotPolicy.ByteTriggerAndApplicationBoundaryRemainHardConditions
+Command: "/home/hermes/yeyu/source/build/bin/yewu_tests" "--gtest_filter=SnapshotPolicy.ByteTriggerAndApplicationBoundaryRemainHardConditions" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build/tests
+"SnapshotPolicy.ByteTriggerAndApplicationBoundaryRemainHardConditions" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = SnapshotPolicy.ByteTriggerAndApplicationBoundaryRemainHardConditions
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from SnapshotPolicy
+[ RUN      ] SnapshotPolicy.ByteTriggerAndApplicationBoundaryRemainHardConditions
+[       OK ] SnapshotPolicy.ByteTriggerAndApplicationBoundaryRemainHardConditions (0 ms)
+[----------] 1 test from SnapshotPolicy (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"SnapshotPolicy.ByteTriggerAndApplicationBoundaryRemainHardConditions" end time: Oct 22 16:49 CST
+"SnapshotPolicy.ByteTriggerAndApplicationBoundaryRemainHardConditions" time elapsed: 00:00:00
+----------------------------------------------------------
+
+94/125 Testing: SnapshotPolicy.LargeLiveStateAmortizesEntryTriggeredImages
+94/125 Test: SnapshotPolicy.LargeLiveStateAmortizesEntryTriggeredImages
+Command: "/home/hermes/yeyu/source/build/bin/yewu_tests" "--gtest_filter=SnapshotPolicy.LargeLiveStateAmortizesEntryTriggeredImages" "--gtest_also_run_disabled_tests"
+Directory: /home/hermes/yeyu/source/build/tests
+"SnapshotPolicy.LargeLiveStateAmortizesEntryTriggeredImages" start time: Oct 22 16:49 CST
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = SnapshotPolicy.LargeLiveStateAmortizesEntryTriggeredImages
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from SnapshotPolicy
+[ RUN      ] SnapshotPolicy.LargeLiveStateAmortizesEntryTriggeredImages
+[       OK ] SnapshotPolicy.LargeLiveStateAmortizesEntryTriggeredImages (0 ms)
+[----------] 1 test from SnapshotPolicy (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"SnapshotPolicy.LargeLiveStateAmortizesEntryTriggeredImages" end time: Oct 22 16:49 CST
+"SnapshotPolicy.LargeLiveStateAmortizesEntryTriggeredImages" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Oct 22 16:49 CST

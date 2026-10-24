@@ -1,0 +1,32 @@
+{
+  "covered_index": 56,
+  "lagging_node": 1,
+  "state": {
+    "id": 1,
+    "role": "follower",
+    "term": 2,
+    "leader_id": 2,
+    "last_index": 64,
+    "commit_index": 63,
+    "applied_index": 63,
+    "pending": 0,
+    "keys": 40,
+    "disk_saves": 6,
+    "disk_bytes": 937783,
+    "disk_persist_ns": 11578458,
+    "snapshot_index": 56,
+    "snapshot_bytes": 156091,
+    "live_snapshot_bytes": 156091,
+    "retained_entries": 8,
+    "retained_log_bytes": 265,
+    "state_bytes": 156416,
+    "snapshots_saved": 1,
+    "snapshots_installed": 1,
+    "busy_rejections": 0,
+    "completed_commands": 6,
+    "quorum_timeouts": 0
+  },
+  "checked": true,
+  "temporary_directory_root": "/tmp",
+  "binary_sha256": "afda2098f33fb7013446aef349fe977b7f576cd1f47b24f7a64fc6122a52cfc0"
+}

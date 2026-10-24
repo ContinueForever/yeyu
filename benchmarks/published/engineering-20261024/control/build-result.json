@@ -1,0 +1,27 @@
+{
+  "status": "complete",
+  "started_ns": 1792835752382448177,
+  "commands": [
+    [
+      "cmake",
+      "-S",
+      "/private-experiment/source",
+      "-B",
+      "/private-experiment/build",
+      "-G",
+      "Ninja",
+      "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+      "-DYEWUKV_BUILD_TESTS=OFF"
+    ],
+    [
+      "cmake",
+      "--build",
+      "/private-experiment/build",
+      "-j2"
+    ]
+  ],
+  "node_sha256": "f656e8b6944928ceb971e9be63894a79616edc1bae7c93b1dd5caa61fb9619c1",
+  "client_sha256": "8808a538860d9befb9afcd898ff18e3099070ce354f44120ae5a938577fd623e",
+  "compiler": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+  "finished_ns": 1792835831853991049
+}

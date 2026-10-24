@@ -1,0 +1,336 @@
+{
+  "status": "complete",
+  "config": {
+    "prefix": "cloudbench-1e89d182932c4b9b",
+    "value_size": 128,
+    "keys_per_client": 8,
+    "seed": 1701,
+    "duration_seconds": 30,
+    "warmup_seconds": 5,
+    "timeout_seconds": 5,
+    "profile": "read-only",
+    "clients": 16,
+    "repeat": 1,
+    "write_percent": 0
+  },
+  "clients": [
+    {
+      "client": 0,
+      "status": "complete",
+      "phase": "final-value-check",
+      "failures": 0,
+      "finished_ns": 9038612276992,
+      "final_versions": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "samples_file": "client-0.json.gz"
+    },
+    {
+      "client": 1,
+      "status": "complete",
+      "phase": "final-value-check",
+      "failures": 0,
+      "finished_ns": 9038612342009,
+      "final_versions": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "samples_file": "client-1.json.gz"
+    },
+    {
+      "client": 2,
+      "status": "complete",
+      "phase": "final-value-check",
+      "failures": 0,
+      "finished_ns": 9038612475941,
+      "final_versions": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "samples_file": "client-2.json.gz"
+    },
+    {
+      "client": 3,
+      "status": "complete",
+      "phase": "final-value-check",
+      "failures": 0,
+      "finished_ns": 9038610227573,
+      "final_versions": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "samples_file": "client-3.json.gz"
+    },
+    {
+      "client": 4,
+      "status": "complete",
+      "phase": "final-value-check",
+      "failures": 0,
+      "finished_ns": 9038610322482,
+      "final_versions": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "samples_file": "client-4.json.gz"
+    },
+    {
+      "client": 5,
+      "status": "complete",
+      "phase": "final-value-check",
+      "failures": 0,
+      "finished_ns": 9038611811432,
+      "final_versions": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "samples_file": "client-5.json.gz"
+    },
+    {
+      "client": 6,
+      "status": "complete",
+      "phase": "final-value-check",
+      "failures": 0,
+      "finished_ns": 9038610140029,
+      "final_versions": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "samples_file": "client-6.json.gz"
+    },
+    {
+      "client": 7,
+      "status": "complete",
+      "phase": "final-value-check",
+      "failures": 0,
+      "finished_ns": 9038612272233,
+      "final_versions": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "samples_file": "client-7.json.gz"
+    },
+    {
+      "client": 8,
+      "status": "complete",
+      "phase": "final-value-check",
+      "failures": 0,
+      "finished_ns": 9038612508269,
+      "final_versions": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "samples_file": "client-8.json.gz"
+    },
+    {
+      "client": 9,
+      "status": "complete",
+      "phase": "final-value-check",
+      "failures": 0,
+      "finished_ns": 9038612175825,
+      "final_versions": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "samples_file": "client-9.json.gz"
+    },
+    {
+      "client": 10,
+      "status": "complete",
+      "phase": "final-value-check",
+      "failures": 0,
+      "finished_ns": 9038612435899,
+      "final_versions": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "samples_file": "client-10.json.gz"
+    },
+    {
+      "client": 11,
+      "status": "complete",
+      "phase": "final-value-check",
+      "failures": 0,
+      "finished_ns": 9038612102698,
+      "final_versions": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "samples_file": "client-11.json.gz"
+    },
+    {
+      "client": 12,
+      "status": "complete",
+      "phase": "final-value-check",
+      "failures": 0,
+      "finished_ns": 9038610388691,
+      "final_versions": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "samples_file": "client-12.json.gz"
+    },
+    {
+      "client": 13,
+      "status": "complete",
+      "phase": "final-value-check",
+      "failures": 0,
+      "finished_ns": 9038610049136,
+      "final_versions": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "samples_file": "client-13.json.gz"
+    },
+    {
+      "client": 14,
+      "status": "complete",
+      "phase": "final-value-check",
+      "failures": 0,
+      "finished_ns": 9038612395578,
+      "final_versions": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "samples_file": "client-14.json.gz"
+    },
+    {
+      "client": 15,
+      "status": "complete",
+      "phase": "final-value-check",
+      "failures": 0,
+      "finished_ns": 9038611921094,
+      "final_versions": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "samples_file": "client-15.json.gz"
+    }
+  ],
+  "start_ns": 9008609792985,
+  "operations": 97022,
+  "completed_puts": 0,
+  "completed_gets": 97022,
+  "failures": 0,
+  "elapsed_seconds": 30.002715284,
+  "ops_per_second": 3233.773979508461,
+  "latency": {
+    "all": {
+      "p50_ms": 4.066,
+      "p95_ms": 6.514,
+      "p99_ms": 42.763,
+      "p999_ms": 44.65,
+      "max_ms": 47.281,
+      "samples": 97022
+    },
+    "get": {
+      "p50_ms": 4.066,
+      "p95_ms": 6.514,
+      "p99_ms": 42.763,
+      "p999_ms": 44.65,
+      "max_ms": 47.281,
+      "samples": 97022
+    },
+    "put": null
+  },
+  "leader_id": 2,
+  "term": 96,
+  "client_processes": 2,
+  "client_process_cpu_seconds_including_setup": 13.294939020000001
+}

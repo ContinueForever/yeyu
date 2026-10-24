@@ -1,0 +1,21 @@
+# Single-node durable development deployment. A three-node Raft cluster is
+# deliberately deferred until nodes actually replicate and agree on writes.
+services:
+  node:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    command: ["--protocol", "rpc", "--io-threads", "2", "--data-dir", "/var/lib/yewukv"]
+    ports:
+      - "9000:9000"
+    volumes:
+      - node-data:/var/lib/yewukv
+    healthcheck:
+      test: ["CMD", "/usr/local/bin/yewukv-client", "--host", "127.0.0.1", "--port", "9000", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+
+volumes:
+  node-data:

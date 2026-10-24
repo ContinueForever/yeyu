@@ -1,0 +1,17 @@
+16:45:55.245 INFO  [acceptor] listening on 127.0.0.1:43123
+node=3 event=role role=candidate term=1 last=0 commit=0
+node=3 event=role role=leader term=1 last=1 commit=0
+16:45:56.317 INFO  [acceptor] listening on 127.0.0.1:43123
+node=3 event=role role=follower term=1 last=9 commit=0
+node=3 event=role role=follower term=2 last=9 commit=0
+node=3 event=role role=candidate term=3 last=54 commit=54
+node=3 event=role role=follower term=4 last=54 commit=54
+16:45:59.365 INFO  [acceptor] listening on 127.0.0.1:43123
+node=3 event=role role=follower term=4 last=184 commit=177
+node=3 event=role role=candidate term=5 last=184 commit=177
+node=3 event=role role=leader term=5 last=185 commit=177
+node=3 event=role role=follower term=6 last=233 commit=233
+16:46:01.890 INFO  [acceptor] listening on 127.0.0.1:43123
+node=3 event=role role=follower term=6 last=262 commit=258
+node=3 event=role role=candidate term=7 last=262 commit=258
+node=3 event=role role=leader term=7 last=263 commit=258

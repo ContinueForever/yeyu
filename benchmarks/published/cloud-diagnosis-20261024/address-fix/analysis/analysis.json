@@ -1,0 +1,438 @@
+{
+  "verified": true,
+  "client_accounting_verified": true,
+  "trace_correlation_verified": true,
+  "final": true,
+  "phases": [
+    {
+      "phase": "leader2",
+      "leader": 2,
+      "client": 3,
+      "identity": [
+        103,
+        2
+      ],
+      "runs": 7,
+      "operations": 698470,
+      "trace_on_operations": 364910,
+      "trace_on_slow_operations": 6762,
+      "trace_correlation_verified": true,
+      "matched": 14357,
+      "matched_slow": 3112,
+      "ambiguous_matches": 0,
+      "missing_confirming_peer": 0,
+      "metrics": {
+        "app_ms": {
+          "n": 14357,
+          "p50": 5.145826,
+          "p95": 44.754872,
+          "p99": 46.347097,
+          "max": 88.655349
+        },
+        "apply_finish_ms": {
+          "n": 14357,
+          "p50": 0.018663,
+          "p95": 0.064911,
+          "p99": 0.31719,
+          "max": 40.181182
+        },
+        "boundary_ms": {
+          "n": 14357,
+          "p50": 2.4761070000000003,
+          "p95": 3.843664000000004,
+          "p99": 40.085091000000006,
+          "max": 49.223978
+        },
+        "confirm_finish_ms": {
+          "n": 14357,
+          "p50": 0.005448,
+          "p95": 0.013674,
+          "p99": 0.053095,
+          "max": 40.135358
+        },
+        "context_wait_ms": {
+          "n": 14357,
+          "p50": 0.672843,
+          "p95": 39.631689,
+          "p99": 40.899246,
+          "max": 42.955442
+        },
+        "dispatch_ms": {
+          "n": 14357,
+          "p50": 0.004268,
+          "p95": 0.011776,
+          "p99": 0.035361,
+          "max": 2.185601
+        },
+        "io_queue_ms": {
+          "n": 14357,
+          "p50": 0.05047,
+          "p95": 0.382456,
+          "p99": 0.785377,
+          "max": 39.91986
+        },
+        "peer_call_build_ms": {
+          "n": 14357,
+          "p50": 0.001404,
+          "p95": 0.002483,
+          "p99": 0.010472,
+          "max": 0.551684
+        },
+        "peer_main_queue_ms": {
+          "n": 14357,
+          "p50": 0.01279,
+          "p95": 0.371789,
+          "p99": 35.828965,
+          "max": 40.269563
+        },
+        "peer_response_wait_ms": {
+          "n": 14357,
+          "p50": 1.043627,
+          "p95": 39.678407,
+          "p99": 40.854169,
+          "max": 42.332279
+        },
+        "peer_send_queue_ms": {
+          "n": 14357,
+          "p50": 0.022777,
+          "p95": 0.407188,
+          "p99": 2.41868,
+          "max": 40.641603
+        },
+        "peer_thread_wake_ms": {
+          "n": 14357,
+          "p50": 0.018491,
+          "p95": 0.453172,
+          "p99": 21.277551,
+          "max": 40.453734
+        },
+        "peer_worker_queue_ms": {
+          "n": 14357,
+          "p50": 0.037544,
+          "p95": 0.463446,
+          "p99": 0.957142,
+          "max": 40.349429
+        },
+        "peer_write_ms": {
+          "n": 14357,
+          "p50": 0.005511,
+          "p95": 0.012673,
+          "p99": 0.037473,
+          "max": 39.622051
+        },
+        "pre_confirm_rpc_ms": {
+          "n": 14357,
+          "p50": 0.001035,
+          "p95": 0.002984,
+          "p99": 0.25302,
+          "max": 43.037089
+        },
+        "queue_ms": {
+          "n": 14357,
+          "p50": 0.014394,
+          "p95": 0.569557,
+          "p99": 39.282953,
+          "max": 40.557072
+        },
+        "quorum_wait_ms": {
+          "n": 14357,
+          "p50": 1.40201,
+          "p95": 40.589369,
+          "p99": 41.482167,
+          "max": 82.193875
+        },
+        "serialize_ms": {
+          "n": 14357,
+          "p50": 0.000443,
+          "p95": 0.001849,
+          "p99": 0.003454,
+          "max": 0.29511
+        },
+        "server_ms": {
+          "n": 14357,
+          "p50": 2.489383,
+          "p95": 41.936565,
+          "p99": 42.782866,
+          "max": 83.32056
+        }
+      },
+      "slow_metrics": {
+        "app_ms": {
+          "n": 3112,
+          "p50": 43.96225,
+          "p95": 46.193561,
+          "p99": 84.547555,
+          "max": 88.655349
+        },
+        "apply_finish_ms": {
+          "n": 3112,
+          "p50": 0.024819,
+          "p95": 0.083719,
+          "p99": 28.540485,
+          "max": 40.181182
+        },
+        "boundary_ms": {
+          "n": 3112,
+          "p50": 2.5764539999999982,
+          "p95": 30.785489,
+          "p99": 45.428281,
+          "max": 49.223978
+        },
+        "confirm_finish_ms": {
+          "n": 3112,
+          "p50": 0.006938,
+          "p95": 0.019869,
+          "p99": 0.051337,
+          "max": 40.135358
+        },
+        "context_wait_ms": {
+          "n": 3112,
+          "p50": 0.845655,
+          "p95": 40.879704,
+          "p99": 41.522389,
+          "max": 42.955442
+        },
+        "dispatch_ms": {
+          "n": 3112,
+          "p50": 0.004612,
+          "p95": 0.015008,
+          "p99": 0.046429,
+          "max": 2.185601
+        },
+        "io_queue_ms": {
+          "n": 3112,
+          "p50": 0.078077,
+          "p95": 0.292055,
+          "p99": 0.828934,
+          "max": 39.91986
+        },
+        "peer_call_build_ms": {
+          "n": 3112,
+          "p50": 0.001524,
+          "p95": 0.003205,
+          "p99": 0.035446,
+          "max": 0.103205
+        },
+        "peer_main_queue_ms": {
+          "n": 3112,
+          "p50": 0.016476,
+          "p95": 33.844494,
+          "p99": 39.988169,
+          "max": 40.269563
+        },
+        "peer_response_wait_ms": {
+          "n": 3112,
+          "p50": 1.125278,
+          "p95": 40.822704,
+          "p99": 41.215756,
+          "max": 42.332279
+        },
+        "peer_send_queue_ms": {
+          "n": 3112,
+          "p50": 0.026549,
+          "p95": 0.891916,
+          "p99": 40.007384,
+          "max": 40.641603
+        },
+        "peer_thread_wake_ms": {
+          "n": 3112,
+          "p50": 0.027145,
+          "p95": 19.468785,
+          "p99": 39.988446,
+          "max": 40.453734
+        },
+        "peer_worker_queue_ms": {
+          "n": 3112,
+          "p50": 0.038324,
+          "p95": 0.430431,
+          "p99": 39.902935,
+          "max": 40.349429
+        },
+        "peer_write_ms": {
+          "n": 3112,
+          "p50": 0.005936,
+          "p95": 0.014848,
+          "p99": 0.044911,
+          "max": 39.622051
+        },
+        "pre_confirm_rpc_ms": {
+          "n": 3112,
+          "p50": 0.001432,
+          "p95": 0.00992,
+          "p99": 9.040185,
+          "max": 43.037089
+        },
+        "queue_ms": {
+          "n": 3112,
+          "p50": 0.017688,
+          "p95": 39.197065,
+          "p99": 40.085843,
+          "max": 40.557072
+        },
+        "quorum_wait_ms": {
+          "n": 3112,
+          "p50": 1.889524,
+          "p95": 41.430281,
+          "p99": 41.810361,
+          "max": 82.193875
+        },
+        "serialize_ms": {
+          "n": 3112,
+          "p50": 0.000409,
+          "p95": 0.002514,
+          "p99": 0.003939,
+          "max": 0.067285
+        },
+        "server_ms": {
+          "n": 3112,
+          "p50": 41.292916,
+          "p95": 42.744325,
+          "p99": 43.577347,
+          "max": 83.32056
+        }
+      },
+      "slow_over20ms_counts": {
+        "app_ms": 3112,
+        "apply_finish_ms": 34,
+        "boundary_ms": 167,
+        "confirm_finish_ms": 3,
+        "context_wait_ms": 984,
+        "dispatch_ms": 0,
+        "io_queue_ms": 19,
+        "peer_call_build_ms": 0,
+        "peer_main_queue_ms": 183,
+        "peer_response_wait_ms": 917,
+        "peer_send_queue_ms": 110,
+        "peer_thread_wake_ms": 144,
+        "peer_worker_queue_ms": 45,
+        "peer_write_ms": 6,
+        "pre_confirm_rpc_ms": 6,
+        "queue_ms": 501,
+        "quorum_wait_ms": 1440,
+        "serialize_ms": 0,
+        "server_ms": 2987
+      },
+      "confirmed_by_counts": {
+        "1": 14127,
+        "2": 0,
+        "3": 230
+      }
+    }
+  ],
+  "runs": [
+    {
+      "phase": "leader2",
+      "case": "c32-trace0-r1",
+      "leader": 2,
+      "clients": 32,
+      "trace": 0,
+      "repeat": 1,
+      "operations": 113352,
+      "ops_s": 5665.963635989443,
+      "p50_ms": 4.803,
+      "p95_ms": 7.203,
+      "p99_ms": 43.59,
+      "p999_ms": 46.447,
+      "max_ms": 49.187,
+      "samples": 113352
+    },
+    {
+      "phase": "leader2",
+      "case": "c32-trace1-r1",
+      "leader": 2,
+      "clients": 32,
+      "trace": 1,
+      "repeat": 1,
+      "operations": 110171,
+      "ops_s": 5506.835062526195,
+      "p50_ms": 4.859,
+      "p95_ms": 7.371,
+      "p99_ms": 43.85,
+      "p999_ms": 46.063,
+      "max_ms": 57.737,
+      "samples": 110171
+    },
+    {
+      "phase": "leader2",
+      "case": "c32-trace1-r2",
+      "leader": 2,
+      "clients": 32,
+      "trace": 1,
+      "repeat": 2,
+      "operations": 112866,
+      "ops_s": 5642.526005397672,
+      "p50_ms": 4.846,
+      "p95_ms": 7.287,
+      "p99_ms": 43.298,
+      "p999_ms": 46.011,
+      "max_ms": 85.819,
+      "samples": 112866
+    },
+    {
+      "phase": "leader2",
+      "case": "c32-trace0-r2",
+      "leader": 2,
+      "clients": 32,
+      "trace": 0,
+      "repeat": 2,
+      "operations": 112120,
+      "ops_s": 5604.6171859725555,
+      "p50_ms": 4.804,
+      "p95_ms": 7.165,
+      "p99_ms": 43.817,
+      "p999_ms": 47.449,
+      "max_ms": 86.84,
+      "samples": 112120
+    },
+    {
+      "phase": "leader2",
+      "case": "c32-trace0-r3",
+      "leader": 2,
+      "clients": 32,
+      "trace": 0,
+      "repeat": 3,
+      "operations": 108088,
+      "ops_s": 5402.983531415023,
+      "p50_ms": 4.839,
+      "p95_ms": 7.515,
+      "p99_ms": 44.032,
+      "p999_ms": 46.998,
+      "max_ms": 54.586,
+      "samples": 108088
+    },
+    {
+      "phase": "leader2",
+      "case": "c32-trace1-r3",
+      "leader": 2,
+      "clients": 32,
+      "trace": 1,
+      "repeat": 3,
+      "operations": 110555,
+      "ops_s": 5526.5526057829975,
+      "p50_ms": 4.824,
+      "p95_ms": 7.341,
+      "p99_ms": 43.784,
+      "p999_ms": 45.805,
+      "max_ms": 88.655,
+      "samples": 110555
+    },
+    {
+      "phase": "leader2",
+      "case": "c8-trace1-r1",
+      "leader": 2,
+      "clients": 8,
+      "trace": 1,
+      "repeat": 1,
+      "operations": 31318,
+      "ops_s": 1565.5924723145354,
+      "p50_ms": 4.395,
+      "p95_ms": 6.526,
+      "p99_ms": 42.508,
+      "p999_ms": 45.326,
+      "max_ms": 85.542,
+      "samples": 31318
+    }
+  ],
+  "operations": 698470,
+  "note": "Full client samples define percentiles. Trace reads include systematic 1/32 samples and reads slow before preparing their responses; traced data is selected, not a representative latency distribution. Join by client port plus request ID, narrowed by server-local case boundaries where available. Every stage difference uses a single host clock. Boundary residual also includes networking, kernels and client work, so it is not called network delay."
+}

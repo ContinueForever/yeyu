@@ -1,0 +1,13 @@
+Test project /home/hermes/yeyu/source/build
+    Start 102: cluster_resource_runtime
+    Start 101: cluster_snapshot_runtime
+1/4 Test #102: cluster_resource_runtime .........   Passed    9.18 sec
+    Start 103: cluster_fault_campaign_smoke
+2/4 Test #103: cluster_fault_campaign_smoke .....   Passed    6.55 sec
+    Start  98: cluster_failover_recovery
+3/4 Test  #98: cluster_failover_recovery ........   Passed    8.03 sec
+4/4 Test #101: cluster_snapshot_runtime .........   Passed   26.76 sec
+
+100% tests passed, 0 tests failed out of 4
+
+Total Test time (real) =  26.77 sec

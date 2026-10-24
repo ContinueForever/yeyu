@@ -1,0 +1,11 @@
+{
+  "name": "snapshot-background-r3",
+  "clients": 32,
+  "write_percent": 50,
+  "repeat": 3,
+  "encoder": "background",
+  "cold_keys": 1024,
+  "duration_seconds": 10,
+  "warmup_seconds": 2,
+  "offered_rps": 0
+}

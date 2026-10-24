@@ -1,0 +1,28 @@
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = RpcClient.*
+[==========] Running 9 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 9 tests from RpcClient
+[ RUN      ] RpcClient.ConcurrentCallsMatchResponsesReturnedInReverseOrder
+[       OK ] RpcClient.ConcurrentCallsMatchResponsesReturnedInReverseOrder (2 ms)
+[ RUN      ] RpcClient.MissingResponseTimesOutAndLateResponseDoesNotCompleteAnotherCall
+[       OK ] RpcClient.MissingResponseTimesOutAndLateResponseDoesNotCompleteAnotherCall (302 ms)
+[ RUN      ] RpcClient.OptionalTimingCorrelatesTheActualWireRequestAndCompleteResponse
+[       OK ] RpcClient.OptionalTimingCorrelatesTheActualWireRequestAndCompleteResponse (21 ms)
+[ RUN      ] RpcClient.TimeoutRetainsTraceOwnershipWithoutInventingAReceivedResponse
+[       OK ] RpcClient.TimeoutRetainsTraceOwnershipWithoutInventingAReceivedResponse (101 ms)
+[ RUN      ] RpcClient.PeerDisconnectFailsOutstandingCallsAndDoesNotReconnect
+[       OK ] RpcClient.PeerDisconnectFailsOutstandingCallsAndDoesNotReconnect (0 ms)
+[ RUN      ] RpcClient.DestructorCompletesPendingCallWithShutdown
+[       OK ] RpcClient.DestructorCompletesPendingCallWithShutdown (0 ms)
+[ RUN      ] RpcClient.ConnectionFailureReturnsIOError
+[       OK ] RpcClient.ConnectionFailureReturnsIOError (0 ms)
+[ RUN      ] RpcClient.PendingLimitRejectsExcessCallsWithoutSendingThem
+[       OK ] RpcClient.PendingLimitRejectsExcessCallsWithoutSendingThem (1 ms)
+[ RUN      ] RpcClient.InvalidAddressIsReportedWithoutBlockingDNS
+[       OK ] RpcClient.InvalidAddressIsReportedWithoutBlockingDNS (0 ms)
+[----------] 9 tests from RpcClient (430 ms total)
+
+[----------] Global test environment tear-down
+[==========] 9 tests from 1 test suite ran. (430 ms total)
+[  PASSED  ] 9 tests.

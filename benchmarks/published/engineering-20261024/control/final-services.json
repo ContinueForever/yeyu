@@ -1,0 +1,97 @@
+[
+  {
+    "node": 1,
+    "properties": {
+      "MainPID": "60598",
+      "NRestarts": "0",
+      "ActiveState": "active",
+      "DropInPaths": ""
+    },
+    "binary_sha256": "6bb46da21f4a3284cace8536eec9d2c8867e67cc9a3f187ea532ef0308575b02",
+    "threads": {
+      "60598": [
+        0,
+        1
+      ],
+      "60600": [
+        0,
+        1
+      ],
+      "60601": [
+        0,
+        1
+      ],
+      "60602": [
+        0,
+        1
+      ]
+    },
+    "temporary_units": ""
+  },
+  {
+    "node": 2,
+    "properties": {
+      "MainPID": "51247",
+      "NRestarts": "0",
+      "ActiveState": "active",
+      "DropInPaths": ""
+    },
+    "binary_sha256": "6bb46da21f4a3284cace8536eec9d2c8867e67cc9a3f187ea532ef0308575b02",
+    "threads": {
+      "51247": [
+        0,
+        1
+      ],
+      "51249": [
+        0,
+        1
+      ],
+      "51250": [
+        0,
+        1
+      ],
+      "51251": [
+        0,
+        1
+      ],
+      "51423": [
+        0,
+        1
+      ],
+      "51436": [
+        0,
+        1
+      ]
+    },
+    "temporary_units": ""
+  },
+  {
+    "node": 3,
+    "properties": {
+      "MainPID": "48404",
+      "NRestarts": "0",
+      "ActiveState": "active",
+      "DropInPaths": ""
+    },
+    "binary_sha256": "6bb46da21f4a3284cace8536eec9d2c8867e67cc9a3f187ea532ef0308575b02",
+    "threads": {
+      "48404": [
+        0,
+        1
+      ],
+      "48414": [
+        0,
+        1
+      ],
+      "48415": [
+        0,
+        1
+      ],
+      "48416": [
+        0,
+        1
+      ]
+    },
+    "temporary_units": ""
+  }
+]

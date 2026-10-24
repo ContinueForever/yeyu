@@ -1,0 +1,5 @@
+10:35:26.754 INFO  [acceptor] listening on 127.0.0.1:36143
+node=1 event=role role=follower term=1 last=0 commit=0
+cluster node 1 stopped: Raft node persistence/protocol failure
+10:35:27.497 INFO  [acceptor] listening on 127.0.0.1:36143
+node=1 event=role role=follower term=1 last=18 commit=0

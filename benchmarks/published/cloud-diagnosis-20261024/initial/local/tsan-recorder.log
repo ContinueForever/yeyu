@@ -1,0 +1,17 @@
+Running main() from ./googletest/src/gtest_main.cc
+[==========] Running 4 tests from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 4 tests from ReadTrace
+[ RUN      ] ReadTrace.EventLimitIsBoundedAndShutdownDrainsAcceptedRecords
+[       OK ] ReadTrace.EventLimitIsBoundedAndShutdownDrainsAcceptedRecords (1 ms)
+[ RUN      ] ReadTrace.RuntimeControlPausesAndResumesWithoutChangingTheService
+[       OK ] ReadTrace.RuntimeControlPausesAndResumesWithoutChangingTheService (507 ms)
+[ RUN      ] ReadTrace.ConcurrentProducersKeepNumericRecordsAndAccountForQueueDrops
+[       OK ] ReadTrace.ConcurrentProducersKeepNumericRecordsAndAccountForQueueDrops (17 ms)
+[ RUN      ] ReadTrace.ByteLimitBoundsTheFileAndMarksIncompleteDiagnostics
+[       OK ] ReadTrace.ByteLimitBoundsTheFileAndMarksIncompleteDiagnostics (1 ms)
+[----------] 4 tests from ReadTrace (528 ms total)
+
+[----------] Global test environment tear-down
+[==========] 4 tests from 1 test suite ran. (528 ms total)
+[  PASSED  ] 4 tests.

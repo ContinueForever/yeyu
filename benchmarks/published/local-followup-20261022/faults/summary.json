@@ -1,0 +1,201 @@
+{
+  "command": [
+    "scripts/cluster-soak.py",
+    "--node",
+    "build/bin/yewukv-node",
+    "--client",
+    "build/bin/yewukv-client",
+    "--output",
+    "benchmarks/results/local-next-20261022/faults",
+    "--duration-seconds",
+    "3600"
+  ],
+  "environment": {
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.43",
+    "cpu_model": "11th Gen Intel(R) Core(TM) i7-11800H @ 2.30GHz",
+    "logical_cpus": 4,
+    "cpu_affinity": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "memory": "MemTotal:        8141396 kB",
+    "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+    "load_average": [
+      0.302734375,
+      1.845703125,
+      2.56787109375
+    ],
+    "server_sha256": "bbf50e6663ca124e78d7151417e9d6f302508d6acf6e0655daf3c447d5c60983",
+    "build": {
+      "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+      "CMAKE_CXX_COMPILER": "/usr/bin/c++",
+      "CMAKE_CXX_FLAGS": "",
+      "CMAKE_CXX_FLAGS_DEBUG": "-g",
+      "CMAKE_CXX_FLAGS_MINSIZEREL": "-Os -DNDEBUG",
+      "CMAKE_CXX_FLAGS_RELEASE": "-O3 -DNDEBUG",
+      "CMAKE_CXX_FLAGS_RELWITHDEBINFO": "-O2 -g -DNDEBUG",
+      "YEWUKV_ENABLE_SANITIZERS": "OFF",
+      "CMAKE_CXX_FLAGS-ADVANCED": "1",
+      "CMAKE_CXX_FLAGS_DEBUG-ADVANCED": "1",
+      "CMAKE_CXX_FLAGS_MINSIZEREL-ADVANCED": "1",
+      "CMAKE_CXX_FLAGS_RELEASE-ADVANCED": "1",
+      "CMAKE_CXX_FLAGS_RELWITHDEBINFO-ADVANCED": "1"
+    },
+    "compiler_version": "c++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+  },
+  "source_manifest_sha256": "ca58c207c05d1a6f903b0a11ef71621ba16d32ebd168a54b967a7ed7c45b01d7",
+  "status": "complete",
+  "requested_duration_seconds": 3600.0,
+  "requested_epochs": 10,
+  "durable_ring_capacity": 32,
+  "note": "Three loopback processes on one host. Fresh per-epoch keys; exhaustive per-key oracle <=9 operations/key.",
+  "final_recovery": {
+    "all_node_sigkill": true,
+    "anchor_checked": true,
+    "durable_ring_values": [
+      {
+        "key": "736f616b2d72696e672d30",
+        "value": "61636b6e6f776c65646765642d65706f63682d33323936"
+      },
+      {
+        "key": "736f616b2d72696e672d31",
+        "value": "61636b6e6f776c65646765642d65706f63682d33323937"
+      },
+      {
+        "key": "736f616b2d72696e672d3130",
+        "value": "61636b6e6f776c65646765642d65706f63682d33323734"
+      },
+      {
+        "key": "736f616b2d72696e672d3131",
+        "value": "61636b6e6f776c65646765642d65706f63682d33323735"
+      },
+      {
+        "key": "736f616b2d72696e672d3132",
+        "value": "61636b6e6f776c65646765642d65706f63682d33323736"
+      },
+      {
+        "key": "736f616b2d72696e672d3133",
+        "value": "61636b6e6f776c65646765642d65706f63682d33323737"
+      },
+      {
+        "key": "736f616b2d72696e672d3134",
+        "value": "61636b6e6f776c65646765642d65706f63682d33323738"
+      },
+      {
+        "key": "736f616b2d72696e672d3135",
+        "value": "61636b6e6f776c65646765642d65706f63682d33323739"
+      },
+      {
+        "key": "736f616b2d72696e672d3136",
+        "value": "61636b6e6f776c65646765642d65706f63682d33323830"
+      },
+      {
+        "key": "736f616b2d72696e672d3137",
+        "value": "61636b6e6f776c65646765642d65706f63682d33323831"
+      },
+      {
+        "key": "736f616b2d72696e672d3138",
+        "value": "61636b6e6f776c65646765642d65706f63682d33323832"
+      },
+      {
+        "key": "736f616b2d72696e672d3139",
+        "value": "61636b6e6f776c65646765642d65706f63682d33323833"
+      },
+      {
+        "key": "736f616b2d72696e672d32",
+        "value": "61636b6e6f776c65646765642d65706f63682d33323938"
+      },
+      {
+        "key": "736f616b2d72696e672d3230",
+        "value": "61636b6e6f776c65646765642d65706f63682d33323834"
+      },
+      {
+        "key": "736f616b2d72696e672d3231",
+        "value": "61636b6e6f776c65646765642d65706f63682d33323835"
+      },
+      {
+        "key": "736f616b2d72696e672d3232",
+        "value": "61636b6e6f776c65646765642d65706f63682d33323836"
+      },
+      {
+        "key": "736f616b2d72696e672d3233",
+        "value": "61636b6e6f776c65646765642d65706f63682d33323837"
+      },
+      {
+        "key": "736f616b2d72696e672d3234",
+        "value": "61636b6e6f776c65646765642d65706f63682d33323838"
+      },
+      {
+        "key": "736f616b2d72696e672d3235",
+        "value": "61636b6e6f776c65646765642d65706f63682d33323839"
+      },
+      {
+        "key": "736f616b2d72696e672d3236",
+        "value": "61636b6e6f776c65646765642d65706f63682d33323930"
+      },
+      {
+        "key": "736f616b2d72696e672d3237",
+        "value": "61636b6e6f776c65646765642d65706f63682d33323931"
+      },
+      {
+        "key": "736f616b2d72696e672d3238",
+        "value": "61636b6e6f776c65646765642d65706f63682d33323932"
+      },
+      {
+        "key": "736f616b2d72696e672d3239",
+        "value": "61636b6e6f776c65646765642d65706f63682d33323933"
+      },
+      {
+        "key": "736f616b2d72696e672d33",
+        "value": "61636b6e6f776c65646765642d65706f63682d33323939"
+      },
+      {
+        "key": "736f616b2d72696e672d3330",
+        "value": "61636b6e6f776c65646765642d65706f63682d33323934"
+      },
+      {
+        "key": "736f616b2d72696e672d3331",
+        "value": "61636b6e6f776c65646765642d65706f63682d33323935"
+      },
+      {
+        "key": "736f616b2d72696e672d34",
+        "value": "61636b6e6f776c65646765642d65706f63682d33333030"
+      },
+      {
+        "key": "736f616b2d72696e672d35",
+        "value": "61636b6e6f776c65646765642d65706f63682d33333031"
+      },
+      {
+        "key": "736f616b2d72696e672d36",
+        "value": "61636b6e6f776c65646765642d65706f63682d33323730"
+      },
+      {
+        "key": "736f616b2d72696e672d37",
+        "value": "61636b6e6f776c65646765642d65706f63682d33323731"
+      },
+      {
+        "key": "736f616b2d72696e672d38",
+        "value": "61636b6e6f776c65646765642d65706f63682d33323732"
+      },
+      {
+        "key": "736f616b2d72696e672d39",
+        "value": "61636b6e6f776c65646765642d65706f63682d33323733"
+      }
+    ]
+  },
+  "elapsed_seconds": 3601.401821089996,
+  "epochs": 3302,
+  "attempted_operations": 178308,
+  "checked_operations": 176543,
+  "unknown_writes": 2472,
+  "fault_counts": {
+    "all-restart": 550,
+    "directed-partition": 550,
+    "follower-partition": 551,
+    "leader-kill": 551,
+    "leader-pause": 550,
+    "link-delay": 550
+  }
+}

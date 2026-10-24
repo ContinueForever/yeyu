@@ -1,0 +1,39 @@
+# build
+build/
+build-asan/
+build-*/
+cmake-build-*/
+*.o
+*.a
+compile_commands.json
+
+# caches
+.cache/
+.ccache/
+__pycache__/
+*.pyc
+*.log
+core
+core.*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# data/runtime
+data/
+cluster-runtime/
+raft.state*
+raft.wal.*
+cluster.identity
+LOCK
+*.wal
+*.sst
+.env
+.env.*
+benchmarks/results/*
+!benchmarks/results/README.md
+
+# Curated public acceptance logs (runtime data remain ignored).
+!benchmarks/published/**/*.log

@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "runtime_binary_sha256": "f656e8b6944928ceb971e9be63894a79616edc1bae7c93b1dd5caa61fb9619c1",
+  "runtime_source_sha256": "efdd9708e60dd8708ae9ec6afe4cd071fc6672fe76d5100f1d9c678216f85514",
+  "groups": {
+    "snapshot": {
+      "runs": 6,
+      "leader": 3,
+      "exploratory": true
+    },
+    "snapshot-fixed": {
+      "runs": 6,
+      "leader": 2,
+      "exploratory": false
+    },
+    "capacity-fixed": {
+      "runs": 36,
+      "leader": 2,
+      "exploratory": false
+    }
+  },
+  "fault_epochs": 18,
+  "client_node": 3,
+  "ordinary_ctest": 143,
+  "asan_ctest": 143,
+  "tsan_component_tests": 13,
+  "note": "Only temporary experiment data/services were modified. Co-located client and fixed-three-voter scope. snapshot uses leader/client co-location and is exploratory; primary matrices fix leader2/load3. Redacted diagnostic text; exact frozen source/test logs remain unchanged. No capability configs, private keys, node data, business backups or executables."
+}

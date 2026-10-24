@@ -1,0 +1,42 @@
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = KvRevision.*:KvStateMachine.*:SnapshotPolicy.*
+[==========] Running 13 tests from 3 test suites.
+[----------] Global test environment set-up.
+[----------] 2 tests from SnapshotPolicy
+[ RUN      ] SnapshotPolicy.LargeLiveStateAmortizesEntryTriggeredImages
+[       OK ] SnapshotPolicy.LargeLiveStateAmortizesEntryTriggeredImages (0 ms)
+[ RUN      ] SnapshotPolicy.ByteTriggerAndApplicationBoundaryRemainHardConditions
+[       OK ] SnapshotPolicy.ByteTriggerAndApplicationBoundaryRemainHardConditions (0 ms)
+[----------] 2 tests from SnapshotPolicy (0 ms total)
+
+[----------] 5 tests from KvStateMachine
+[ RUN      ] KvStateMachine.CapacityRejectsNewOrGrowingValuesAndDeletionReclaimsSpace
+[       OK ] KvStateMachine.CapacityRejectsNewOrGrowingValuesAndDeletionReclaimsSpace (0 ms)
+[ RUN      ] KvStateMachine.SnapshotRestoresDeterministicCapacityDecisionsIncludingEmptyBinaryValues
+[       OK ] KvStateMachine.SnapshotRestoresDeterministicCapacityDecisionsIncludingEmptyBinaryValues (0 ms)
+[ RUN      ] KvStateMachine.InvalidSnapshotLeavesLiveStateUntouched
+[       OK ] KvStateMachine.InvalidSnapshotLeavesLiveStateUntouched (0 ms)
+[ RUN      ] KvStateMachine.SnapshotBytesMatchProtobufLengthBoundariesAndRepeatedUpdates
+[       OK ] KvStateMachine.SnapshotBytesMatchProtobufLengthBoundariesAndRepeatedUpdates (0 ms)
+[ RUN      ] KvStateMachine.ReplaysLegacySuccessfulWritesWithoutApplyingNewCapacityRetroactively
+[       OK ] KvStateMachine.ReplaysLegacySuccessfulWritesWithoutApplyingNewCapacityRetroactively (0 ms)
+[----------] 5 tests from KvStateMachine (1 ms total)
+
+[----------] 6 tests from KvRevision
+[ RUN      ] KvRevision.CompareAndSwapAllowsOneWinnerAndConflictsDoNotOverwrite
+[       OK ] KvRevision.CompareAndSwapAllowsOneWinnerAndConflictsDoNotOverwrite (0 ms)
+[ RUN      ] KvRevision.DeleteRecreateAndSnapshotPreserveProtectionAgainstABA
+[       OK ] KvRevision.DeleteRecreateAndSnapshotPreserveProtectionAgainstABA (0 ms)
+[ RUN      ] KvRevision.LegacyMigrationConvergesAcrossDifferentSnapshotBoundaries
+[       OK ] KvRevision.LegacyMigrationConvergesAcrossDifferentSnapshotBoundaries (0 ms)
+[ RUN      ] KvRevision.CapacityAndMalformedRevisionSnapshotLeaveValuesIntact
+[       OK ] KvRevision.CapacityAndMalformedRevisionSnapshotLeaveValuesIntact (0 ms)
+[ RUN      ] KvRevision.FrozenSnapshotOwnsValuesAfterMutationDeletionAndDestruction
+[       OK ] KvRevision.FrozenSnapshotOwnsValuesAfterMutationDeletionAndDestruction (0 ms)
+[ RUN      ] KvRevision.BackgroundSerializationDoesNotObserveConcurrentOwnerMutations
+[       OK ] KvRevision.BackgroundSerializationDoesNotObserveConcurrentOwnerMutations (0 ms)
+[----------] 6 tests from KvRevision (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 13 tests from 3 test suites ran. (3 ms total)
+[  PASSED  ] 13 tests.

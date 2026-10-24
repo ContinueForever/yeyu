@@ -1,0 +1,372 @@
+{
+  "status": "complete",
+  "config": {
+    "name": "snapshot-background-r1",
+    "clients": 32,
+    "write_percent": 50,
+    "repeat": 1,
+    "encoder": "background",
+    "cold_keys": 1024,
+    "duration_seconds": 10,
+    "warmup_seconds": 2,
+    "offered_rps": 0,
+    "leader_id": 2
+  },
+  "identity": [
+    2,
+    2
+  ],
+  "clients": [
+    {
+      "client": 4,
+      "status": "complete",
+      "finished_ns": 75299314463428,
+      "offered_slots": 327,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-4.json.gz"
+    },
+    {
+      "client": 20,
+      "status": "complete",
+      "finished_ns": 75299303801724,
+      "offered_slots": 326,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-20.json.gz"
+    },
+    {
+      "client": 18,
+      "status": "complete",
+      "finished_ns": 75299305285439,
+      "offered_slots": 325,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-18.json.gz"
+    },
+    {
+      "client": 6,
+      "status": "complete",
+      "finished_ns": 75299312427292,
+      "offered_slots": 324,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-6.json.gz"
+    },
+    {
+      "client": 22,
+      "status": "complete",
+      "finished_ns": 75299305088375,
+      "offered_slots": 329,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-22.json.gz"
+    },
+    {
+      "client": 30,
+      "status": "complete",
+      "finished_ns": 75299313835789,
+      "offered_slots": 325,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-30.json.gz"
+    },
+    {
+      "client": 16,
+      "status": "complete",
+      "finished_ns": 75299306120772,
+      "offered_slots": 328,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-16.json.gz"
+    },
+    {
+      "client": 8,
+      "status": "complete",
+      "finished_ns": 75299313527022,
+      "offered_slots": 326,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-8.json.gz"
+    },
+    {
+      "client": 2,
+      "status": "complete",
+      "finished_ns": 75299315108929,
+      "offered_slots": 326,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-2.json.gz"
+    },
+    {
+      "client": 12,
+      "status": "complete",
+      "finished_ns": 75299307086656,
+      "offered_slots": 326,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-12.json.gz"
+    },
+    {
+      "client": 14,
+      "status": "complete",
+      "finished_ns": 75299314277742,
+      "offered_slots": 326,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-14.json.gz"
+    },
+    {
+      "client": 10,
+      "status": "complete",
+      "finished_ns": 75299312373664,
+      "offered_slots": 327,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-10.json.gz"
+    },
+    {
+      "client": 26,
+      "status": "complete",
+      "finished_ns": 75299314065951,
+      "offered_slots": 325,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-26.json.gz"
+    },
+    {
+      "client": 24,
+      "status": "complete",
+      "finished_ns": 75299314785592,
+      "offered_slots": 324,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-24.json.gz"
+    },
+    {
+      "client": 0,
+      "status": "complete",
+      "finished_ns": 75299313260242,
+      "offered_slots": 327,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-0.json.gz"
+    },
+    {
+      "client": 31,
+      "status": "complete",
+      "finished_ns": 75299305995525,
+      "offered_slots": 326,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-31.json.gz"
+    },
+    {
+      "client": 28,
+      "status": "complete",
+      "finished_ns": 75299313693309,
+      "offered_slots": 325,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-28.json.gz"
+    },
+    {
+      "client": 1,
+      "status": "complete",
+      "finished_ns": 75299309821182,
+      "offered_slots": 327,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-1.json.gz"
+    },
+    {
+      "client": 3,
+      "status": "complete",
+      "finished_ns": 75299312217393,
+      "offered_slots": 328,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-3.json.gz"
+    },
+    {
+      "client": 19,
+      "status": "complete",
+      "finished_ns": 75299311776367,
+      "offered_slots": 326,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-19.json.gz"
+    },
+    {
+      "client": 17,
+      "status": "complete",
+      "finished_ns": 75299304587325,
+      "offered_slots": 327,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-17.json.gz"
+    },
+    {
+      "client": 13,
+      "status": "complete",
+      "finished_ns": 75299315998498,
+      "offered_slots": 327,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-13.json.gz"
+    },
+    {
+      "client": 9,
+      "status": "complete",
+      "finished_ns": 75299304892393,
+      "offered_slots": 327,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-9.json.gz"
+    },
+    {
+      "client": 15,
+      "status": "complete",
+      "finished_ns": 75299305324059,
+      "offered_slots": 329,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-15.json.gz"
+    },
+    {
+      "client": 23,
+      "status": "complete",
+      "finished_ns": 75299304319009,
+      "offered_slots": 328,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-23.json.gz"
+    },
+    {
+      "client": 27,
+      "status": "complete",
+      "finished_ns": 75299309343955,
+      "offered_slots": 330,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-27.json.gz"
+    },
+    {
+      "client": 25,
+      "status": "complete",
+      "finished_ns": 75299305596422,
+      "offered_slots": 326,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-25.json.gz"
+    },
+    {
+      "client": 5,
+      "status": "complete",
+      "finished_ns": 75299305121585,
+      "offered_slots": 328,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-5.json.gz"
+    },
+    {
+      "client": 21,
+      "status": "complete",
+      "finished_ns": 75299310134710,
+      "offered_slots": 327,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-21.json.gz"
+    },
+    {
+      "client": 11,
+      "status": "complete",
+      "finished_ns": 75299314347290,
+      "offered_slots": 326,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-11.json.gz"
+    },
+    {
+      "client": 29,
+      "status": "complete",
+      "finished_ns": 75299311333099,
+      "offered_slots": 327,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-29.json.gz"
+    },
+    {
+      "client": 7,
+      "status": "complete",
+      "finished_ns": 75299310261286,
+      "offered_slots": 326,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-7.json.gz"
+    }
+  ],
+  "start_ns": 75289303751175,
+  "attempts": 10451,
+  "successes": 10451,
+  "failures": 0,
+  "completed_puts": 5177,
+  "completed_gets": 5274,
+  "codes": {
+    "0": 10451
+  },
+  "elapsed_seconds": 10.012247323,
+  "successful_ops_s": 1043.8215979735241,
+  "attempts_s": 1043.8215979735241,
+  "offered_slots": 10451,
+  "missed_slots": 0,
+  "latency_success_ms": {
+    "p50_ms": 13.132,
+    "p95_ms": 139.219,
+    "p99_ms": 175.921,
+    "p999_ms": 204.859,
+    "max_ms": 205.908,
+    "samples": 10451
+  },
+  "scheduled_latency_success_ms": {
+    "p50_ms": 13.132,
+    "p95_ms": 139.219,
+    "p99_ms": 175.921,
+    "p999_ms": 204.859,
+    "max_ms": 205.908,
+    "samples": 10451
+  },
+  "latency_failed_ms": null
+}

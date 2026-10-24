@@ -1,0 +1,7 @@
+17:11:40.594 INFO  [acceptor] listening on 127.0.0.1:40201
+node=1 event=role role=follower term=1 last=0 commit=0
+node=1 event=role role=follower term=2 last=3 commit=3
+17:11:42.455 ERROR [conn] connection error fd=12 err=32
+17:11:42.945 INFO  [acceptor] listening on 127.0.0.1:40201
+node=1 event=role role=follower term=2 last=4 commit=0
+node=1 event=role role=follower term=3 last=4 commit=0

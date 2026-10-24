@@ -1,0 +1,15 @@
+{
+  "prefix": "tracebench-6743fde68bdb496b",
+  "value_size": 128,
+  "keys_per_client": 8,
+  "shared_read_keys": 256,
+  "seed": 1701,
+  "duration_seconds": 20,
+  "warmup_seconds": 3,
+  "timeout_seconds": 5,
+  "profile": "read-only",
+  "clients": 8,
+  "repeat": 1,
+  "write_percent": 0,
+  "trace_enabled": 1
+}

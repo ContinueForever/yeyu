@@ -1,0 +1,132 @@
+{
+  "status": "complete",
+  "config": {
+    "name": "capacity-w50-c8-r2",
+    "clients": 8,
+    "write_percent": 50,
+    "repeat": 2,
+    "encoder": "sync",
+    "cold_keys": 0,
+    "duration_seconds": 6,
+    "warmup_seconds": 2,
+    "offered_rps": 0,
+    "leader_id": 2
+  },
+  "identity": [
+    2,
+    2
+  ],
+  "clients": [
+    {
+      "client": 3,
+      "status": "complete",
+      "finished_ns": 75634008769331,
+      "offered_slots": 569,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-3.json.gz"
+    },
+    {
+      "client": 1,
+      "status": "complete",
+      "finished_ns": 75634014838100,
+      "offered_slots": 554,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-1.json.gz"
+    },
+    {
+      "client": 7,
+      "status": "complete",
+      "finished_ns": 75634014777628,
+      "offered_slots": 543,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-7.json.gz"
+    },
+    {
+      "client": 5,
+      "status": "complete",
+      "finished_ns": 75634015509315,
+      "offered_slots": 542,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-5.json.gz"
+    },
+    {
+      "client": 0,
+      "status": "complete",
+      "finished_ns": 75634015054522,
+      "offered_slots": 566,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-0.json.gz"
+    },
+    {
+      "client": 2,
+      "status": "complete",
+      "finished_ns": 75634010180326,
+      "offered_slots": 534,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-2.json.gz"
+    },
+    {
+      "client": 6,
+      "status": "complete",
+      "finished_ns": 75634010583354,
+      "offered_slots": 572,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-6.json.gz"
+    },
+    {
+      "client": 4,
+      "status": "complete",
+      "finished_ns": 75634015639575,
+      "offered_slots": 546,
+      "missed_slots": 0,
+      "unknown_writes": 0,
+      "final_checked_keys": 8,
+      "samples_file": "client-4.json.gz"
+    }
+  ],
+  "start_ns": 75628008637464,
+  "attempts": 4426,
+  "successes": 4426,
+  "failures": 0,
+  "completed_puts": 2250,
+  "completed_gets": 2176,
+  "codes": {
+    "0": 4426
+  },
+  "elapsed_seconds": 6.007002111,
+  "successful_ops_s": 736.8067995007235,
+  "attempts_s": 736.8067995007235,
+  "offered_slots": 4426,
+  "missed_slots": 0,
+  "latency_success_ms": {
+    "p50_ms": 10.581,
+    "p95_ms": 15.714,
+    "p99_ms": 20.055,
+    "p999_ms": 30.475,
+    "max_ms": 34.841,
+    "samples": 4426
+  },
+  "scheduled_latency_success_ms": {
+    "p50_ms": 10.581,
+    "p95_ms": 15.714,
+    "p99_ms": 20.055,
+    "p999_ms": 30.475,
+    "max_ms": 34.841,
+    "samples": 4426
+  },
+  "latency_failed_ms": null
+}

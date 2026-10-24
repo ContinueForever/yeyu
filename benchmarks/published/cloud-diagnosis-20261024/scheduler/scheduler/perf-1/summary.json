@@ -1,0 +1,52 @@
+{
+  "status": "complete",
+  "pid": 44620,
+  "command": [
+    "perf",
+    "record",
+    "--clockid",
+    "mono",
+    "-a",
+    "-e",
+    "sched:sched_switch",
+    "-e",
+    "sched:sched_wakeup",
+    "-e",
+    "sched:sched_wakeup_new",
+    "-m",
+    "512",
+    "-o",
+    "/private-experiment/yewukv-readtrace-20261024T073210Z/perf-1/perf.data",
+    "--",
+    "sleep",
+    "35"
+  ],
+  "started_ns": 84463087140728,
+  "started_realtime_ns": 1792827625166395944,
+  "max_file_bytes": 134217728,
+  "duration_seconds": 35,
+  "capture_finished_ns": 84500168474990,
+  "finished_ns": 84515356334732,
+  "files": {
+    "READY": {
+      "bytes": 15,
+      "sha256": "7d458a77b4341ff0149b19db5c0b445b31804ded58406cf04419c26f41771203"
+    },
+    "events.txt.gz": {
+      "bytes": 6691090,
+      "sha256": "db22894d5a094abf6f5aac0cab738b347a0510854008dada6c289b31c1921847"
+    },
+    "perf.data": {
+      "bytes": 101094034,
+      "sha256": "29fcf67d10e1c30014678c2a35316ef18bb8a1d61df8e483a78fe668a81cef5b"
+    },
+    "record.log": {
+      "bytes": 169,
+      "sha256": "e0cca9dc8bcda7b4ca9ed3a8821a1a30c471e201a29a662dad4856170c7d40cb"
+    },
+    "script.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+}

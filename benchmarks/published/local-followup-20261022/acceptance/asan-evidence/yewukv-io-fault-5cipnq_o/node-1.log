@@ -1,0 +1,4 @@
+17:11:13.075 INFO  [acceptor] listening on 127.0.0.1:58785
+node=1 event=role role=follower term=1 last=0 commit=0
+node=1 event=role role=candidate term=2 last=2 commit=2
+node=1 event=role role=leader term=2 last=3 commit=2

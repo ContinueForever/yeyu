@@ -1,0 +1,392 @@
+{
+  "cases": [
+    {
+      "case": "c32-trace1-perf-r1",
+      "thread_switch_out_states": {
+        "44620": {
+          "S": 80646,
+          "R": 3846
+        },
+        "44622": {
+          "R": 4669,
+          "S": 78520
+        },
+        "44623": {
+          "S": 33641,
+          "R": 969
+        },
+        "44624": {
+          "S": 17408,
+          "R": 553
+        },
+        "44753": {
+          "S": 32814,
+          "R": 1131
+        },
+        "44807": {
+          "S": 16389,
+          "R": 860
+        }
+      },
+      "examples": [
+        {
+          "case": "c32-trace1-perf-r1",
+          "client_port": 38726,
+          "request_id": 1899,
+          "tid": 44622,
+          "start_ns": 84476089253256,
+          "end_ns": 84476129097120,
+          "duration_ms": 39.843864,
+          "reason": "wakeup",
+          "cpus": {
+            "0": {
+              "idle_ms": 39.78068,
+              "running": [
+                {
+                  "tid": 16,
+                  "comm": "ksoftirqd/0",
+                  "ms": 0.0525
+                },
+                {
+                  "tid": 1045,
+                  "comm": "AliYunDun",
+                  "ms": 0.010684
+                }
+              ],
+              "running_total_ms": 0.063184
+            },
+            "1": {
+              "idle_ms": 38.728138,
+              "running": [
+                {
+                  "tid": 895,
+                  "comm": "aliyun-service.",
+                  "ms": 0.8505009999999998
+                },
+                {
+                  "tid": 1298,
+                  "comm": "AliYunDunMonito",
+                  "ms": 0.056558
+                },
+                {
+                  "tid": 1091,
+                  "comm": "AliYunDun",
+                  "ms": 0.055958999999999995
+                },
+                {
+                  "tid": 44620,
+                  "comm": "yewukv-node",
+                  "ms": 0.043109999999999996
+                },
+                {
+                  "tid": 1063,
+                  "comm": "AliYunDun",
+                  "ms": 0.02858
+                },
+                {
+                  "tid": 1281,
+                  "comm": "AliYunDunMonito",
+                  "ms": 0.027468
+                }
+              ],
+              "running_total_ms": 1.1157259999999998
+            }
+          }
+        },
+        {
+          "case": "c32-trace1-perf-r1",
+          "client_port": 38736,
+          "request_id": 2096,
+          "tid": 44622,
+          "start_ns": 84477139126326,
+          "end_ns": 84477179486087,
+          "duration_ms": 40.359761,
+          "reason": "wakeup",
+          "cpus": {
+            "0": {
+              "idle_ms": 40.359761,
+              "running": [],
+              "running_total_ms": 0
+            },
+            "1": {
+              "idle_ms": 40.074471,
+              "running": [
+                {
+                  "tid": 1091,
+                  "comm": "AliYunDun",
+                  "ms": 0.062428000000000004
+                },
+                {
+                  "tid": 1289,
+                  "comm": "AliYunDunMonito",
+                  "ms": 0.054643
+                },
+                {
+                  "tid": 45347,
+                  "comm": "python3",
+                  "ms": 0.044924
+                },
+                {
+                  "tid": 44620,
+                  "comm": "yewukv-node",
+                  "ms": 0.040292
+                },
+                {
+                  "tid": 1063,
+                  "comm": "AliYunDun",
+                  "ms": 0.029456000000000003
+                },
+                {
+                  "tid": 907,
+                  "comm": "AliYunDunUpdate",
+                  "ms": 0.012242
+                }
+              ],
+              "running_total_ms": 0.28529
+            }
+          }
+        },
+        {
+          "case": "c32-trace1-perf-r1",
+          "client_port": 38588,
+          "request_id": 1704,
+          "tid": 44622,
+          "start_ns": 84474994605533,
+          "end_ns": 84475034138246,
+          "duration_ms": 39.532713,
+          "reason": "wakeup",
+          "cpus": {
+            "0": {
+              "idle_ms": 39.532713,
+              "running": [],
+              "running_total_ms": 0
+            },
+            "1": {
+              "idle_ms": 39.23864,
+              "running": [
+                {
+                  "tid": 1289,
+                  "comm": "AliYunDunMonito",
+                  "ms": 0.063882
+                },
+                {
+                  "tid": 39089,
+                  "comm": "gmain",
+                  "ms": 0.044537
+                },
+                {
+                  "tid": 1063,
+                  "comm": "AliYunDun",
+                  "ms": 0.033188
+                },
+                {
+                  "tid": 1275,
+                  "comm": "AliYunDunMonito",
+                  "ms": 0.030711000000000002
+                },
+                {
+                  "tid": 44620,
+                  "comm": "yewukv-node",
+                  "ms": 0.021883
+                },
+                {
+                  "tid": 1281,
+                  "comm": "AliYunDunMonito",
+                  "ms": 0.021238
+                }
+              ],
+              "running_total_ms": 0.29407300000000003
+            }
+          }
+        }
+      ]
+    },
+    {
+      "case": "c32-trace1-perf-r2",
+      "thread_switch_out_states": {
+        "44620": {
+          "S": 82743,
+          "R": 4271
+        },
+        "44622": {
+          "S": 79125,
+          "R": 5320
+        },
+        "44623": {
+          "S": 33966,
+          "R": 1042
+        },
+        "44624": {
+          "S": 17457,
+          "R": 568
+        },
+        "44753": {
+          "S": 32984,
+          "R": 1253
+        },
+        "44807": {
+          "S": 16349,
+          "R": 899
+        }
+      },
+      "examples": [
+        {
+          "case": "c32-trace1-perf-r2",
+          "client_port": 47174,
+          "request_id": 1185,
+          "tid": 44622,
+          "start_ns": 84556146977899,
+          "end_ns": 84556187527560,
+          "duration_ms": 40.549661,
+          "reason": "wakeup",
+          "cpus": {
+            "0": {
+              "idle_ms": 40.535301,
+              "running": [
+                {
+                  "tid": 1063,
+                  "comm": "AliYunDun",
+                  "ms": 0.01436
+                }
+              ],
+              "running_total_ms": 0.01436
+            },
+            "1": {
+              "idle_ms": 40.394566,
+              "running": [
+                {
+                  "tid": 46384,
+                  "comm": "python3",
+                  "ms": 0.050219
+                },
+                {
+                  "tid": 1298,
+                  "comm": "AliYunDunMonito",
+                  "ms": 0.032724
+                },
+                {
+                  "tid": 44620,
+                  "comm": "yewukv-node",
+                  "ms": 0.0193
+                },
+                {
+                  "tid": 1296,
+                  "comm": "AliYunDunMonito",
+                  "ms": 0.01494
+                },
+                {
+                  "tid": 1285,
+                  "comm": "AliYunDunMonito",
+                  "ms": 0.014038
+                },
+                {
+                  "tid": 966,
+                  "comm": "AliYunDunUpdate",
+                  "ms": 0.012339
+                }
+              ],
+              "running_total_ms": 0.155095
+            }
+          }
+        },
+        {
+          "case": "c32-trace1-perf-r2",
+          "client_port": 47226,
+          "request_id": 3690,
+          "tid": 44622,
+          "start_ns": 84570043998626,
+          "end_ns": 84570084308465,
+          "duration_ms": 40.309839,
+          "reason": "wakeup",
+          "cpus": {
+            "0": {
+              "idle_ms": 0.0,
+              "running": [
+                {
+                  "tid": 44621,
+                  "comm": "yewukv-node",
+                  "ms": 40.309839
+                }
+              ],
+              "running_total_ms": 40.309839
+            },
+            "1": {
+              "idle_ms": 0.0,
+              "running": [
+                {
+                  "tid": 44620,
+                  "comm": "yewukv-node",
+                  "ms": 40.286905
+                },
+                {
+                  "tid": 1289,
+                  "comm": "AliYunDunMonito",
+                  "ms": 0.013482
+                },
+                {
+                  "tid": 1047,
+                  "comm": "AliYunDun",
+                  "ms": 0.009452
+                }
+              ],
+              "running_total_ms": 40.309839
+            }
+          }
+        },
+        {
+          "case": "c32-trace1-perf-r2",
+          "client_port": 47242,
+          "request_id": 959,
+          "tid": 44622,
+          "start_ns": 84555151980872,
+          "end_ns": 84555192192207,
+          "duration_ms": 40.211335,
+          "reason": "wakeup",
+          "cpus": {
+            "0": {
+              "idle_ms": 40.211335,
+              "running": [],
+              "running_total_ms": 0
+            },
+            "1": {
+              "idle_ms": 39.884877,
+              "running": [
+                {
+                  "tid": 44620,
+                  "comm": "yewukv-node",
+                  "ms": 0.085359
+                },
+                {
+                  "tid": 1289,
+                  "comm": "AliYunDunMonito",
+                  "ms": 0.072807
+                },
+                {
+                  "tid": 1063,
+                  "comm": "AliYunDun",
+                  "ms": 0.067876
+                },
+                {
+                  "tid": 1275,
+                  "comm": "AliYunDunMonito",
+                  "ms": 0.043213
+                },
+                {
+                  "tid": 1091,
+                  "comm": "AliYunDun",
+                  "ms": 0.03745999999999999
+                },
+                {
+                  "tid": 1299,
+                  "comm": "AliYunDunMonito",
+                  "ms": 0.01038
+                }
+              ],
+              "running_total_ms": 0.326458
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
