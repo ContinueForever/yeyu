@@ -4,6 +4,8 @@
 
 三台 ECS 上的实际开关对照、逐请求关联、抓包和恢复结果见[2026-10-24 诊断报告](cloud-read-trace-20261024.md)。
 
+新日志 metadata schema 2 另记录[单次持久化区间](persistence-tracing.md)，与 read／peer 共用原有限额及写线程；既有历史 schema 1 归档保持不变。
+
 ```bash
 build/bin/yewukv-node --id 1 --port 9101 \
   --members 1@127.0.0.1:9101,2@127.0.0.1:9102,3@127.0.0.1:9103 \

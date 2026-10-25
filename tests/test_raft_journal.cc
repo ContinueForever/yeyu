@@ -7,6 +7,7 @@
 #include <fstream>
 #include <iterator>
 #include <numeric>
+#include <set>
 #include <string>
 #include <system_error>
 
@@ -80,6 +81,121 @@ TEST(RaftJournal, MigratesLegacyImageAndRecoversBinarySuffixAndVote) {
     EXPECT_EQ(store.ReadState().entries[1].command, std::string("a\0b", 3));
   }
   EXPECT_THROW(FileStore downgrade(directory.path), std::runtime_error);
+}
+
+TEST(RaftJournal, PersistenceSpansPreserveDiskBytesAcrossImageJournalAndRollover) {
+  using Kind = yewukv::raft::PersistenceKind;
+  for (bool journal : {false, true}) {
+    JournalDirectory traced_directory, baseline_directory;
+    std::vector<yewukv::raft::PersistenceTrace> events;
+    auto options = JournalOptions();
+    options.journal = journal;
+    options.journal_checkpoint_bytes = 128;
+    auto operations = [](FileStore& store) {
+      ASSERT_TRUE(store.Save({3, 1}).ok());
+      for (uint64_t index = 1; index <= 8; ++index)
+        ASSERT_TRUE(store.ReplaceFrom(index, {{index, 3, std::string(128, 'x')}}).ok());
+      ASSERT_TRUE(store.SaveSnapshot({8, 3, "private-snapshot"}, {}).ok());
+    };
+    {
+      FileStore baseline(baseline_directory.path, options);
+      operations(baseline);
+    }
+    options.trace_observer = [&events](const auto& trace) { events.push_back(trace); };
+    {
+      FileStore store(traced_directory.path, options);
+      operations(store);
+      EXPECT_FALSE(store.failed());
+    }
+    EXPECT_EQ(Read(traced_directory.file()), Read(baseline_directory.file()));
+    if (journal) {
+      EXPECT_EQ(Read(traced_directory.journal()), Read(baseline_directory.journal()));
+    }
+    ASSERT_FALSE(events.empty());
+    uint64_t sequence = 0, previous_end = 0;
+    std::set<uint64_t> kinds;
+    for (const auto& event : events) {
+      EXPECT_GT(event.sequence, sequence);
+      EXPECT_GE(event.started_ns, previous_end);
+      EXPECT_GE(event.finished_ns, event.started_ns);
+      EXPECT_EQ(event.success, 1);
+      EXPECT_EQ(event.spans_limited, 0);
+      EXPECT_GT(event.span_count, 0);
+      uint64_t end = event.started_ns, encoding = 0;
+      for (size_t i = 0; i < event.span_count; ++i) {
+        const auto& span = event.spans[i];
+        EXPECT_GE(span.started_ns, end);
+        EXPECT_GE(span.finished_ns, span.started_ns);
+        EXPECT_LE(span.finished_ns, event.finished_ns);
+        end = span.finished_ns;
+        if (span.stage == static_cast<uint64_t>(yewukv::raft::PersistenceStage::kEncode))
+          encoding += span.finished_ns - span.started_ns;
+      }
+      EXPECT_LE(event.crc_ns, encoding);
+      sequence = event.sequence;
+      previous_end = event.finished_ns;
+      kinds.insert(event.kind);
+    }
+    if (journal) {
+      EXPECT_EQ(kinds, (std::set<uint64_t>{static_cast<uint64_t>(Kind::kCheckpoint),
+                                           static_cast<uint64_t>(Kind::kHardStateDelta),
+                                           static_cast<uint64_t>(Kind::kSuffixDelta)}));
+    } else {
+      EXPECT_EQ(kinds, std::set<uint64_t>{static_cast<uint64_t>(Kind::kImage)});
+    }
+    FileStore recovered(traced_directory.path, options);
+    EXPECT_EQ(recovered.ReadState().snapshot.data, "private-snapshot");
+  }
+}
+
+TEST(RaftJournal, DiagnosticExceptionsAndRuntimeGatingNeverPoisonDurableStorage) {
+  JournalDirectory directory;
+  auto options = JournalOptions();
+  bool enabled = false, broken_control = false;
+  size_t observed = 0;
+  options.trace_enabled = [&] {
+    if (broken_control) throw std::runtime_error("diagnostic control failure");
+    return enabled;
+  };
+  options.trace_observer = [&](const auto&) {
+    ++observed;
+    throw std::runtime_error("diagnostic sink failure");
+  };
+  {
+    FileStore store(directory.path, options);
+    ASSERT_TRUE(store.Save({1, 1}).ok());
+    EXPECT_EQ(observed, 0);
+    enabled = true;
+    ASSERT_TRUE(store.Save({2, 1}).ok());
+    EXPECT_EQ(observed, 1);
+    broken_control = true;
+    ASSERT_TRUE(store.Save({3, 1}).ok());
+    EXPECT_EQ(observed, 1);
+    EXPECT_FALSE(store.failed());
+  }
+  FileStore recovered(directory.path, JournalOptions());
+  EXPECT_EQ(recovered.ReadState().hard_state.term, 3);
+}
+
+TEST(RaftJournal, FailedPersistenceEmitsAnUnsuccessfulDiagnosticWithoutAnAck) {
+  JournalDirectory directory;
+  auto options = JournalOptions();
+  std::vector<yewukv::raft::PersistenceTrace> events;
+  bool armed = false;
+  options.trace_observer = [&](const auto& event) { events.push_back(event); };
+  options.persist_observer = [&](Point point) {
+    if (armed && point == Point::kBeforeJournalSync)
+      throw std::runtime_error("injected journal sync failure");
+  };
+  FileStore store(directory.path, options);
+  ASSERT_TRUE(store.Save({1, 1}).ok());
+  armed = true;
+  EXPECT_FALSE(store.ReplaceFrom(1, {{1, 1, "unacknowledged"}}).ok());
+  EXPECT_TRUE(store.failed());
+  ASSERT_FALSE(events.empty());
+  EXPECT_EQ(events.back().success, 0);
+  EXPECT_GT(events.back().span_count, 0);
+  EXPECT_GE(events.back().finished_ns, events.back().started_ns);
 }
 
 TEST(RaftJournal, PhaseMetricsAccountForRolloverAndImagePublication) {

@@ -12,6 +12,7 @@
 | 三台云服务器私网部署与系统级服务 | [云服务器部署](cloud-deployment.md) |
 | 对现有三机测吞吐量、P95/P99 和不同并发 | [跨机压测操作](cloud-benchmark.md) |
 | 关联读请求、ReadIndex 与副本 RPC 的分阶段耗时 | [读路径追踪](read-tracing.md) |
+| 关联同线程读等待、持久化编码、文件和目录同步 | [持久化时间关联](persistence-tracing.md) |
 | 版本条件更新、多发布者冲突与旧快照迁移 | [CAS 契约](cas.md) |
 | 冻结值的所有权、后台编码与暂停边界 | [后台快照编码](background-snapshot.md) |
 | 持久化分桶、CAS 历史、C++ 发压与长窗口 | [长窗口验证工具](long-window.md) |

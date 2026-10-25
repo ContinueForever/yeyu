@@ -76,6 +76,23 @@ def main():
                 policy = payload.get("snapshot_policy", "fixed")
                 checkpoint = payload.get("journal_checkpoint_bytes", 67108864)
                 request_timeout = payload.get("request_timeout_ms", 900)
+                tracing = payload.get("trace", False)
+                trace_initial = payload.get("trace_initially_enabled", True)
+                trace_sample = payload.get("trace_sample_every", 32)
+                trace_slow = payload.get("trace_slow_ms", 10)
+                trace_limit = payload.get("trace_max_events", 500000)
+                if (
+                    type(tracing) is not bool
+                    or type(trace_initial) is not bool
+                    or type(trace_sample) is not int
+                    or not 1 <= trace_sample <= 1000000
+                    or type(trace_slow) is not int
+                    or not 0 <= trace_slow <= 60000
+                    or type(trace_limit) is not int
+                    or not 1 <= trace_limit <= 1000000
+                    or (tracing and program != "new")
+                ):
+                    raise ValueError("invalid bounded trace options")
                 if (
                     policy not in ["fixed", "adaptive"]
                     or type(checkpoint) is not int
@@ -167,6 +184,22 @@ def main():
                 ]
                 if program == "new":
                     argv += ["--snapshot-encoder", mode]
+                if tracing:
+                    prefix = directory / "trace"
+                    control_path = directory / "trace.enabled"
+                    control_path.write_text("1\n" if trace_initial else "0\n")
+                    os.chown(control_path, user.pw_uid, user.pw_gid)
+                    os.chmod(control_path, 0o600)
+                    argv += [
+                        "--trace-prefix",
+                        str(prefix),
+                        "--trace-sample-every",
+                        str(trace_sample),
+                        "--trace-slow-ms",
+                        str(trace_slow),
+                        "--trace-max-events",
+                        str(trace_limit),
+                    ]
                 # Service credentials match the existing node; original units/data are never used.
                 launch(
                     unit,
@@ -179,7 +212,7 @@ def main():
                     ],
                     case + "-node",
                 )
-                active.update(case=case, encoder=mode, proxies=proxies)
+                active.update(case=case, encoder=mode, proxies=proxies, trace=tracing)
                 return dict(started=True, argv=argv)
             if selected == "stop":
                 stop(unit)
@@ -189,6 +222,19 @@ def main():
             if selected == "finish":
                 threading.Thread(target=server.shutdown, daemon=True).start()
                 return dict(shutdown_requested=True)
+            if selected == "trace":
+                enabled = payload.get("enabled")
+                if type(enabled) is not bool or not active.get("trace"):
+                    raise ValueError(
+                        "active traced experiment and boolean enabled required"
+                    )
+                path = (
+                    data_root
+                    / (active["case"] + "-node-" + str(node))
+                    / "trace.enabled"
+                )
+                path.write_text("1\n" if enabled else "0\n")
+                return dict(trace_control_written=enabled)
             if selected == "signal":
                 sig = payload["signal"]
                 assert sig in ["KILL", "STOP", "CONT"]

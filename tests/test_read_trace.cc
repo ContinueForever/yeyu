@@ -151,4 +151,48 @@ TEST(ReadTrace, ByteLimitBoundsTheFileAndMarksIncompleteDiagnostics) {
   EXPECT_NE(output.find("\"limited\":1"), std::string::npos);
   EXPECT_NE(output.find("\"event\":\"summary\""), std::string::npos);
 }
+
+TEST(ReadTrace, PersistenceSelectionSharesLimitsAndKeepsCheckpointsSlowAndFailedOperations) {
+  TraceDirectory directory;
+  ReadTraceRecorder::Options options;
+  options.max_events = 4;
+  options.sample_every = 32;
+  options.slow_ns = 100;
+  std::string path;
+  {
+    ReadTraceRecorder recorder(directory.prefix(), 1, options);
+    path = recorder.path();
+    yewukv::raft::PersistenceTrace event;
+    event.kind = static_cast<uint64_t>(yewukv::raft::PersistenceKind::kCheckpoint);
+    event.sequence = 1;
+    event.success = 1;
+    event.started_ns = 100;
+    event.finished_ns = 110;
+    event.span_count = 1;
+    event.spans[0] = {1, 101, 109};
+    recorder.Record(event);
+    event.kind = static_cast<uint64_t>(yewukv::raft::PersistenceKind::kSuffixDelta);
+    event.sequence = 2;
+    recorder.Record(event);
+    EXPECT_EQ(recorder.accepted(), 1);
+    event.sequence = 32;
+    recorder.Record(event);
+    event.sequence = 3;
+    event.finished_ns = 300;
+    recorder.Record(event);
+    event.sequence = 4;
+    event.finished_ns = 110;
+    event.success = 0;
+    recorder.Record(event);
+    EXPECT_EQ(recorder.accepted(), 4);
+    recorder.Record(PeerTrace{});
+    EXPECT_TRUE(recorder.limited());
+  }
+  const auto output = Contents(path);
+  EXPECT_NE(output.find("\"schema\":2"), std::string::npos);
+  EXPECT_NE(output.find("\"spans\":[[1,101,109]]"), std::string::npos);
+  EXPECT_NE(output.find("\"sequence\":32"), std::string::npos);
+  EXPECT_EQ(output.find("\"event\":\"persist\",\"node\":1,\"sequence\":2,"), std::string::npos);
+  EXPECT_NE(output.find("\"written\":4"), std::string::npos);
+}
 }  // namespace

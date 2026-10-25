@@ -3,6 +3,7 @@
 #include <poll.h>
 #include <netinet/tcp.h>
 #include <sys/socket.h>
+#include <sys/random.h>
 #include <unistd.h>
 
 #include <algorithm>
@@ -39,6 +40,7 @@ struct Options {
   std::string host = "127.0.0.1", prefix, output;
   int port = 19101, clients = 8, duration_ms = 1000, warmup_ms = 1000;
   int write_percent = 50, value_size = 128, offered_rps = 0, max_samples = 1000000;
+  bool trace_identity = false;
 };
 int Number(const std::string& text, int low, int high) {
   int result = 0;
@@ -74,6 +76,8 @@ Options Parse(int argc, char** argv) {
       o.offered_rps = Number(v, 0, 1000000);
     else if (arg == "--max-samples")
       o.max_samples = Number(v, 128, 10000000);
+    else if (arg == "--trace-identity")
+      o.trace_identity = Number(v, 0, 1) != 0;
     else
       throw std::invalid_argument("unknown option: " + arg);
   }
@@ -95,6 +99,19 @@ class Connection {
     target.sin_port = htons(static_cast<uint16_t>(o.port));
     ::inet_pton(AF_INET, o.host.c_str(), &target.sin_addr);
     try {
+      if (o.trace_identity) {
+        uint64_t seed = 0;
+        auto* bytes = reinterpret_cast<char*>(&seed);
+        size_t remaining = sizeof(seed);
+        while (remaining) {
+          const auto n = ::getrandom(bytes, remaining, 0);
+          if (n < 0 && errno == EINTR) continue;
+          if (n <= 0) throw std::runtime_error("trace identity entropy");
+          bytes += n;
+          remaining -= static_cast<size_t>(n);
+        }
+        id_ = (seed & ((uint64_t{1} << 62) - 1)) | (uint64_t{1} << 62);
+      }
       const auto deadline = Clock::now() + 2s;
       if (::connect(fd_, reinterpret_cast<sockaddr*>(&target), sizeof(target)) != 0) {
         if (errno != EINPROGRESS) throw std::runtime_error("connect");
@@ -107,6 +124,11 @@ class Connection {
       int one = 1;
       if (::setsockopt(fd_, IPPROTO_TCP, TCP_NODELAY, &one, sizeof(one)) != 0)
         throw std::runtime_error("TCP_NODELAY");
+      sockaddr_in local{};
+      socklen_t local_size = sizeof(local);
+      if (::getsockname(fd_, reinterpret_cast<sockaddr*>(&local), &local_size) != 0)
+        throw std::runtime_error("local socket identity");
+      local_port_ = ntohs(local.sin_port);
     } catch (...) {
       ::close(fd_);
       throw;
@@ -115,7 +137,10 @@ class Connection {
   ~Connection() { ::close(fd_); }
   Connection(const Connection&) = delete;
   Connection& operator=(const Connection&) = delete;
+  uint64_t local_port() const { return local_port_; }
+  uint64_t next_request_id() const { return id_ + 1; }
   KvResponse Call(const std::string& key, const std::string& value, bool put) {
+    if (id_ == UINT64_MAX) throw std::runtime_error("request identity exhausted");
     KvRequest request;
     request.set_request_id(++id_);
     if (put) {
@@ -167,6 +192,7 @@ class Connection {
   }
   int fd_ = -1;
   uint64_t id_ = 0;
+  uint64_t local_port_ = 0;
 };
 struct Sample {
   uint64_t latency, scheduled, started, completed;
@@ -176,6 +202,7 @@ struct Sample {
 struct Worker {
   std::vector<Sample> samples;
   uint64_t offered = 0;
+  uint64_t local_port = 0, first_request_id = 0, connection_first_request_id = 0;
   bool setup_failed = false, limited = false;
 };
 struct Shared {
@@ -197,6 +224,7 @@ void Run(int id, const Options& o, Shared& shared, Worker& output) {
   bool arrived = false;
   try {
     Connection connection(o);
+    output.connection_first_request_id = connection.next_request_id();
     std::array<std::string, 8> keys, values;
     for (int i = 0; i < 8; ++i) {
       if (cancelled || shared.abort) throw std::runtime_error("cancelled setup");
@@ -212,6 +240,8 @@ void Run(int id, const Options& o, Shared& shared, Worker& output) {
       if (response.code() != KvResponse::OK || response.value() != values[0])
         throw std::runtime_error("warmup validation");
     }
+    output.local_port = connection.local_port();
+    output.first_request_id = connection.next_request_id();
     {
       std::unique_lock<std::mutex> lock(shared.mutex);
       ++shared.count;
@@ -335,7 +365,10 @@ int main(int argc, char** argv) {
       offered += planned;
       std::ofstream file(std::filesystem::path(o.output) /
                          ("client-" + std::to_string(id) + ".json"));
-      file << "{\"client\":" << id << ",\"offered_slots\":" << planned << ",\"samples\":[";
+      file << "{\"client\":" << id << ",\"local_port\":" << worker.local_port
+           << ",\"first_request_id\":" << worker.first_request_id
+           << ",\"connection_first_request_id\":" << worker.connection_first_request_id
+           << ",\"offered_slots\":" << planned << ",\"samples\":[";
       for (size_t i = 0; i < worker.samples.size(); ++i) {
         const auto& s = worker.samples[i];
         if (i) file << ',';
@@ -358,7 +391,8 @@ int main(int argc, char** argv) {
          << ",\"duration_ms\":" << o.duration_ms << ",\"warmup_ms\":" << o.warmup_ms
          << ",\"write_percent\":" << o.write_percent << ",\"value_size\":" << o.value_size
          << ",\"offered_rps\":" << o.offered_rps << ",\"prefix\":\"" << o.prefix
-         << "\",\"attempts\":" << attempts << ",\"successes\":" << attempts - failed
+         << "\",\"trace_identity\":" << (o.trace_identity ? "true" : "false")
+         << ",\"attempts\":" << attempts << ",\"successes\":" << attempts - failed
          << ",\"failures\":" << failed << ",\"offered_slots\":" << offered
          << ",\"missed_slots\":" << offered - attempts << ",\"elapsed_ns\":"
          << std::max(completed, static_cast<uint64_t>(o.duration_ms) * 1000000)

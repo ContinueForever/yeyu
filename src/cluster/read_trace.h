@@ -9,6 +9,8 @@
 #include <thread>
 #include <variant>
 
+#include "raft/persistence_trace.h"
+
 namespace yewukv::cluster {
 
 uint64_t TraceNow();
@@ -80,6 +82,7 @@ class ReadTraceRecorder {
   bool KeepRead(uint64_t ordinal, const ReadTrace& trace) const;
   void Record(ReadTrace trace) noexcept;
   void Record(PeerTrace trace) noexcept;
+  void Record(raft::PersistenceTrace trace) noexcept;
   const std::string& path() const { return path_; }
   uint64_t accepted() const { return accepted_.load(); }
   uint64_t written() const { return written_.load(); }
@@ -88,7 +91,7 @@ class ReadTraceRecorder {
   bool limited() const { return limited_.load(); }
 
  private:
-  using Event = std::variant<ReadTrace, PeerTrace>;
+  using Event = std::variant<ReadTrace, PeerTrace, raft::PersistenceTrace>;
   void Enqueue(Event event) noexcept;
   void Run();
   void CheckControl();

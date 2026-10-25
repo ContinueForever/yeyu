@@ -11,6 +11,8 @@
 #include <stdexcept>
 #include <utility>
 
+#include "common/thread_id.h"
+
 namespace yewukv::cluster {
 namespace {
 using Clock = std::chrono::steady_clock;
@@ -46,7 +48,7 @@ ReadTraceRecorder::ReadTraceRecorder(std::string prefix, uint64_t node, Options 
                                   std::chrono::system_clock::now().time_since_epoch())
                                   .count());
     if (!Write(Fields("metadata", node_,
-                      {{"schema", 1},
+                      {{"schema", 2},
                        {"pid", static_cast<uint64_t>(::getpid())},
                        {"steady_ns", TraceNow()},
                        {"realtime_ns", realtime},
@@ -85,6 +87,22 @@ void ReadTraceRecorder::Record(ReadTrace trace) noexcept {
   Enqueue(std::move(trace));
 }
 void ReadTraceRecorder::Record(PeerTrace trace) noexcept {
+  Enqueue(std::move(trace));
+}
+
+void ReadTraceRecorder::Record(raft::PersistenceTrace trace) noexcept {
+  if (!Enabled()) return;
+  const bool checkpoint = trace.kind == static_cast<uint64_t>(raft::PersistenceKind::kImage) ||
+                          trace.kind == static_cast<uint64_t>(raft::PersistenceKind::kCheckpoint);
+  if (!checkpoint && trace.success && trace.sequence % options_.sample_every != 0 &&
+      (trace.finished_ns < trace.started_ns ||
+       trace.finished_ns - trace.started_ns < options_.slow_ns))
+    return;
+  trace.tid = CurrentThreadId();
+  if (trace.span_count > trace.spans.size()) {
+    trace.span_count = trace.spans.size();
+    trace.spans_limited = 1;
+  }
   Enqueue(std::move(trace));
 }
 
@@ -144,6 +162,28 @@ bool ReadTraceRecorder::Write(const std::string& bytes) {
 }
 
 std::string ReadTraceRecorder::Encode(const Event& event) const {
+  if (const auto* r = std::get_if<raft::PersistenceTrace>(&event)) {
+    auto line = Fields("persist", node_,
+                       {{"sequence", r->sequence},
+                        {"kind", r->kind},
+                        {"tid", r->tid},
+                        {"started_ns", r->started_ns},
+                        {"finished_ns", r->finished_ns},
+                        {"success", r->success},
+                        {"bytes", r->bytes},
+                        {"crc_ns", r->crc_ns},
+                        {"spans_limited", r->spans_limited}});
+    line.resize(line.size() - 2);
+    std::ostringstream out;
+    out << line << ",\"spans\":[";
+    for (size_t i = 0; i < r->span_count; ++i) {
+      const auto& span = r->spans[i];
+      if (i) out << ',';
+      out << '[' << span.stage << ',' << span.started_ns << ',' << span.finished_ns << ']';
+    }
+    out << "]}\n";
+    return out.str();
+  }
   if (const auto* r = std::get_if<ReadTrace>(&event))
     return Fields("read", node_,
                   {{"request_id", r->request_id},

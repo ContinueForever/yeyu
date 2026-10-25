@@ -9,6 +9,7 @@
 
 #include "raft/election.h"
 #include "raft/log.h"
+#include "raft/persistence_trace.h"
 
 namespace yewukv::raft {
 
@@ -48,6 +49,11 @@ class FileStore final : public HardStateStore, public LogStore {
     // including initial creation. Do not reenter the store from this callback.
     // Throwing poisons this instance, even if rename has already succeeded.
     std::function<void(PersistPoint)> persist_observer;
+    // Optional, bounded diagnostic sink. Called under the store lock; do not
+    // reenter this store or perform file I/O. Exceptions from these diagnostic
+    // callbacks are ignored and never change durability or poison the store.
+    std::function<bool()> trace_enabled;
+    std::function<void(const PersistenceTrace&)> trace_observer;
   };
   struct Metrics {
     uint64_t saves = 0;
@@ -89,6 +95,8 @@ class FileStore final : public HardStateStore, public LogStore {
   Status SaveSnapshot(const Snapshot& snapshot, const std::vector<LogEntry>& suffix) override;
 
  private:
+  class TraceOperation;
+  class TraceSpan;
   void Recover();
   Status Persist(DurableState next);
   Status Checkpoint(DurableState next);
@@ -109,6 +117,8 @@ class FileStore final : public HardStateStore, public LogStore {
   DurableState state_;
   bool failed_ = false;
   Metrics metrics_;
+  PersistenceTrace* active_trace_ = nullptr;
+  uint64_t trace_sequence_ = 0;
   mutable std::mutex mutex_;
 };
 

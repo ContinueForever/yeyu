@@ -22,6 +22,11 @@
 namespace yewukv::raft {
 namespace {
 
+uint64_t TraceStamp(std::chrono::steady_clock::time_point point) noexcept {
+  return static_cast<uint64_t>(
+      std::chrono::duration_cast<std::chrono::nanoseconds>(point.time_since_epoch()).count());
+}
+
 constexpr size_t kHeaderBytes = 32;
 constexpr size_t kSnapshotHeaderBytes = 56;
 constexpr size_t kCheckpointHeaderBytes = 64;
@@ -310,6 +315,77 @@ void ReplayDelta(DurableState* state, uint32_t kind, std::string_view bytes) {
 
 }  // namespace
 
+class FileStore::TraceOperation {
+ public:
+  TraceOperation(FileStore& store, PersistenceKind kind) noexcept
+      : store_(store), previous_(store.active_trace_) {
+    try {
+      if (!store.options_.trace_observer ||
+          (store.options_.trace_enabled && !store.options_.trace_enabled()) ||
+          store.trace_sequence_ == UINT64_MAX)
+        return;
+      enabled_ = true;
+      record_.sequence = ++store.trace_sequence_;
+      record_.kind = static_cast<uint64_t>(kind);
+      record_.started_ns = TraceStamp(std::chrono::steady_clock::now());
+      crc_before_ = store.metrics_.crc_nanoseconds;
+      store.active_trace_ = &record_;
+    } catch (...) {
+      // Diagnostics must never affect a serving or recovering store.
+    }
+  }
+  ~TraceOperation() noexcept {
+    store_.active_trace_ = previous_;
+    if (!enabled_) return;
+    record_.finished_ns = TraceStamp(std::chrono::steady_clock::now());
+    record_.crc_ns = store_.metrics_.crc_nanoseconds - crc_before_;
+    try {
+      store_.options_.trace_observer(record_);
+    } catch (...) {
+    }
+  }
+  void Bytes(uint64_t bytes) { record_.bytes = bytes; }
+  void Success() { record_.success = 1; }
+  TraceOperation(const TraceOperation&) = delete;
+  TraceOperation& operator=(const TraceOperation&) = delete;
+
+ private:
+  FileStore& store_;
+  PersistenceTrace* previous_;
+  PersistenceTrace record_;
+  uint64_t crc_before_ = 0;
+  bool enabled_ = false;
+};
+
+class FileStore::TraceSpan {
+ public:
+  TraceSpan(FileStore& store, PersistenceStage stage) noexcept
+      : TraceSpan(store, stage,
+                  store.active_trace_ ? std::chrono::steady_clock::now()
+                                      : std::chrono::steady_clock::time_point{}) {}
+  TraceSpan(FileStore& store, PersistenceStage stage,
+            std::chrono::steady_clock::time_point began) noexcept
+      : record_(store.active_trace_),
+        stage_(static_cast<uint64_t>(stage)),
+        began_(record_ ? TraceStamp(began) : 0) {}
+  ~TraceSpan() noexcept {
+    if (!record_) return;
+    if (record_->span_count == record_->spans.size()) {
+      record_->spans_limited = 1;
+      return;
+    }
+    record_->spans[record_->span_count++] = {stage_, began_,
+                                             TraceStamp(std::chrono::steady_clock::now())};
+  }
+  TraceSpan(const TraceSpan&) = delete;
+  TraceSpan& operator=(const TraceSpan&) = delete;
+
+ private:
+  PersistenceTrace* record_;
+  uint64_t stage_;
+  uint64_t began_;
+};
+
 FileStore::FileStore(std::string directory) : FileStore(std::move(directory), Options{}) {}
 
 FileStore::FileStore(std::string directory, Options options) : options_(std::move(options)) {
@@ -457,6 +533,7 @@ void FileStore::RecoverJournal() {
 
 uint64_t FileStore::SyncFile(int fd, const char* operation) {
   const auto began = std::chrono::steady_clock::now();
+  TraceSpan span(*this, PersistenceStage::kFileSync, began);
   CheckIO(::fdatasync(fd) == 0, operation);
   const auto elapsed = Nanoseconds(began);
   metrics_.file_sync_nanoseconds += elapsed;
@@ -466,6 +543,7 @@ uint64_t FileStore::SyncFile(int fd, const char* operation) {
 
 void FileStore::SyncDirectory(const char* operation) {
   const auto began = std::chrono::steady_clock::now();
+  TraceSpan span(*this, PersistenceStage::kDirectorySync, began);
   CheckIO(::fsync(directory_fd_) == 0, operation);
   metrics_.directory_sync_nanoseconds += Nanoseconds(began);
   ++metrics_.directory_syncs;
@@ -475,12 +553,18 @@ Status FileStore::Checkpoint(DurableState next) {
   if (EncodedSize(next) > options_.max_state_bytes)
     return Status::Busy("Raft state size limit reached");
   if (generation_ == UINT64_MAX) return Status::IOError("Raft checkpoint generation exhausted");
+  TraceOperation tracing(*this, PersistenceKind::kCheckpoint);
   const auto begin = std::chrono::steady_clock::now();
   int next_fd = -1;
   try {
-    const auto encode_begin = std::chrono::steady_clock::now();
-    const auto bytes = Encode(next, generation_ + 1, &metrics_.crc_nanoseconds);
-    metrics_.encode_nanoseconds += Nanoseconds(encode_begin);
+    std::string bytes;
+    {
+      const auto encode_begin = std::chrono::steady_clock::now();
+      TraceSpan span(*this, PersistenceStage::kEncode, encode_begin);
+      bytes = Encode(next, generation_ + 1, &metrics_.crc_nanoseconds);
+      metrics_.encode_nanoseconds += Nanoseconds(encode_begin);
+    }
+    tracing.Bytes(bytes.size());
     const auto name = JournalName(generation_ + 1);
     CheckIO(::unlinkat(directory_fd_, name.c_str(), 0) == 0 || errno == ENOENT,
             "remove orphan next journal");
@@ -498,9 +582,12 @@ Status FileStore::Checkpoint(DurableState next) {
     FileDescriptor fd(::openat(directory_fd_, kTemporaryFile,
                                O_CREAT | O_EXCL | O_WRONLY | O_CLOEXEC | O_NOFOLLOW, 0600));
     CheckIO(fd.get() >= 0, "create Raft checkpoint");
-    const auto write_begin = std::chrono::steady_clock::now();
-    WriteAll(fd.get(), bytes);
-    metrics_.write_nanoseconds += Nanoseconds(write_begin);
+    {
+      const auto write_begin = std::chrono::steady_clock::now();
+      TraceSpan span(*this, PersistenceStage::kWrite, write_begin);
+      WriteAll(fd.get(), bytes);
+      metrics_.write_nanoseconds += Nanoseconds(write_begin);
+    }
     auto observe = [this](PersistPoint point) {
       if (options_.persist_observer) options_.persist_observer(point);
     };
@@ -508,8 +595,11 @@ Status FileStore::Checkpoint(DurableState next) {
     const auto sync_begin = std::chrono::steady_clock::now();
     SyncFile(fd.get(), "sync Raft checkpoint");
     observe(PersistPoint::kBeforeRename);
-    CheckIO(::renameat(directory_fd_, kTemporaryFile, directory_fd_, kStateFile) == 0,
-            "publish Raft checkpoint");
+    {
+      TraceSpan span(*this, PersistenceStage::kRename);
+      CheckIO(::renameat(directory_fd_, kTemporaryFile, directory_fd_, kStateFile) == 0,
+              "publish Raft checkpoint");
+    }
     observe(PersistPoint::kBeforeDirectorySync);
     SyncDirectory("sync Raft checkpoint directory");
     observe(PersistPoint::kAfterDirectorySync);
@@ -532,6 +622,7 @@ Status FileStore::Checkpoint(DurableState next) {
     metrics_.persist_nanoseconds += elapsed;
     RecordLatency(elapsed, &metrics_.checkpoint_max_nanoseconds,
                   &metrics_.checkpoint_duration_buckets);
+    tracing.Success();
     return Status::OK();
   } catch (const std::exception& error) {
     if (next_fd >= 0) ::close(next_fd);
@@ -549,26 +640,37 @@ Status FileStore::AppendDelta(uint32_t kind, const std::string& payload) {
     const auto status = Checkpoint(state_);
     if (!status.ok()) return status;
   }
+  TraceOperation tracing(*this, kind == kHardStateDelta ? PersistenceKind::kHardStateDelta
+                                                        : PersistenceKind::kSuffixDelta);
   const auto begin = std::chrono::steady_clock::now();
   try {
     if (journal_sequence_ == UINT64_MAX)
       throw std::runtime_error("Raft journal sequence exhausted");
-    const auto encode_begin = std::chrono::steady_clock::now();
-    std::string bytes(kJournalHeaderBytes + payload.size() + kChecksumBytes, '\0');
-    std::memcpy(bytes.data(), "YRJL", 4);
-    Put32(bytes.data() + 4, 1);
-    Put32(bytes.data() + 8, kind);
-    Put32(bytes.data() + 12, static_cast<uint32_t>(payload.size()));
-    Put64(bytes.data() + 16, journal_sequence_ + 1);
-    Put32(bytes.data() + 28, Crc32(std::string_view(bytes.data(), 28), &metrics_.crc_nanoseconds));
-    std::memcpy(bytes.data() + kJournalHeaderBytes, payload.data(), payload.size());
-    Put32(bytes.data() + bytes.size() - 4,
-          Crc32(std::string_view(bytes.data(), bytes.size() - 4), &metrics_.crc_nanoseconds));
-    metrics_.encode_nanoseconds += Nanoseconds(encode_begin);
+    std::string bytes;
+    {
+      const auto encode_begin = std::chrono::steady_clock::now();
+      TraceSpan span(*this, PersistenceStage::kEncode, encode_begin);
+      bytes.assign(kJournalHeaderBytes + payload.size() + kChecksumBytes, '\0');
+      std::memcpy(bytes.data(), "YRJL", 4);
+      Put32(bytes.data() + 4, 1);
+      Put32(bytes.data() + 8, kind);
+      Put32(bytes.data() + 12, static_cast<uint32_t>(payload.size()));
+      Put64(bytes.data() + 16, journal_sequence_ + 1);
+      Put32(bytes.data() + 28,
+            Crc32(std::string_view(bytes.data(), 28), &metrics_.crc_nanoseconds));
+      std::memcpy(bytes.data() + kJournalHeaderBytes, payload.data(), payload.size());
+      Put32(bytes.data() + bytes.size() - 4,
+            Crc32(std::string_view(bytes.data(), bytes.size() - 4), &metrics_.crc_nanoseconds));
+      metrics_.encode_nanoseconds += Nanoseconds(encode_begin);
+    }
+    tracing.Bytes(bytes.size());
     if (options_.persist_observer) options_.persist_observer(PersistPoint::kBeforeJournalWrite);
-    const auto write_begin = std::chrono::steady_clock::now();
-    WriteAll(journal_fd_, bytes);
-    metrics_.write_nanoseconds += Nanoseconds(write_begin);
+    {
+      const auto write_begin = std::chrono::steady_clock::now();
+      TraceSpan span(*this, PersistenceStage::kWrite, write_begin);
+      WriteAll(journal_fd_, bytes);
+      metrics_.write_nanoseconds += Nanoseconds(write_begin);
+    }
     if (options_.persist_observer) options_.persist_observer(PersistPoint::kBeforeJournalSync);
     const auto sync_begin = std::chrono::steady_clock::now();
     const auto journal_sync = SyncFile(journal_fd_, "sync Raft journal delta");
@@ -582,6 +684,7 @@ Status FileStore::AppendDelta(uint32_t kind, const std::string& payload) {
     metrics_.journal_bytes += bytes.size();
     metrics_.bytes_written += bytes.size();
     metrics_.persist_nanoseconds += Nanoseconds(begin);
+    tracing.Success();
     return Status::OK();
   } catch (const std::exception& error) {
     failed_ = true;
@@ -616,26 +719,35 @@ Status FileStore::Persist(DurableState next) {
   if (options_.journal) return Checkpoint(std::move(next));
   if (EncodedSize(next) > options_.max_state_bytes)
     return Status::Busy("Raft state size limit reached");
+  TraceOperation tracing(*this, PersistenceKind::kImage);
   const auto started = std::chrono::steady_clock::now();
   try {
-    const auto encode_begin = std::chrono::steady_clock::now();
-    const std::string bytes = Encode(next, 0, &metrics_.crc_nanoseconds);
-    metrics_.encode_nanoseconds += Nanoseconds(encode_begin);
+    std::string bytes;
+    {
+      const auto encode_begin = std::chrono::steady_clock::now();
+      TraceSpan span(*this, PersistenceStage::kEncode, encode_begin);
+      bytes = Encode(next, 0, &metrics_.crc_nanoseconds);
+      metrics_.encode_nanoseconds += Nanoseconds(encode_begin);
+    }
+    tracing.Bytes(bytes.size());
     CheckIO(::unlinkat(directory_fd_, kTemporaryFile, 0) == 0 || errno == ENOENT,
             "remove stale Raft temporary file");
     FileDescriptor fd(::openat(directory_fd_, kTemporaryFile,
                                O_CREAT | O_EXCL | O_WRONLY | O_CLOEXEC | O_NOFOLLOW, 0600));
     CheckIO(fd.get() >= 0, "create Raft temporary file");
-    size_t offset = 0;
-    const auto write_begin = std::chrono::steady_clock::now();
-    while (offset < bytes.size()) {
-      const auto n = ::write(fd.get(), bytes.data() + offset, bytes.size() - offset);
-      if (n < 0 && errno == EINTR) continue;
-      if (n == 0) errno = EIO;
-      CheckIO(n > 0, "write Raft state");
-      offset += static_cast<size_t>(n);
+    {
+      size_t offset = 0;
+      const auto write_begin = std::chrono::steady_clock::now();
+      TraceSpan span(*this, PersistenceStage::kWrite, write_begin);
+      while (offset < bytes.size()) {
+        const auto n = ::write(fd.get(), bytes.data() + offset, bytes.size() - offset);
+        if (n < 0 && errno == EINTR) continue;
+        if (n == 0) errno = EIO;
+        CheckIO(n > 0, "write Raft state");
+        offset += static_cast<size_t>(n);
+      }
+      metrics_.write_nanoseconds += Nanoseconds(write_begin);
     }
-    metrics_.write_nanoseconds += Nanoseconds(write_begin);
     auto observe = [this](PersistPoint point) {
       if (options_.persist_observer) options_.persist_observer(point);
     };
@@ -643,8 +755,11 @@ Status FileStore::Persist(DurableState next) {
     const auto sync_begin = std::chrono::steady_clock::now();
     SyncFile(fd.get(), "sync Raft state");
     observe(PersistPoint::kBeforeRename);
-    CheckIO(::renameat(directory_fd_, kTemporaryFile, directory_fd_, kStateFile) == 0,
-            "replace Raft state");
+    {
+      TraceSpan span(*this, PersistenceStage::kRename);
+      CheckIO(::renameat(directory_fd_, kTemporaryFile, directory_fd_, kStateFile) == 0,
+              "replace Raft state");
+    }
     observe(PersistPoint::kBeforeDirectorySync);
     SyncDirectory("sync Raft directory");
     observe(PersistPoint::kAfterDirectorySync);
@@ -660,6 +775,7 @@ Status FileStore::Persist(DurableState next) {
     metrics_.persist_nanoseconds += elapsed;
     RecordLatency(elapsed, &metrics_.checkpoint_max_nanoseconds,
                   &metrics_.checkpoint_duration_buckets);
+    tracing.Success();
     return Status::OK();
   } catch (const std::exception& error) {
     failed_ = true;

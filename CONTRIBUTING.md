@@ -62,6 +62,8 @@ python3 tests/test_cloud_soak_evidence.py
 
 六小时公开证据另检查全部逐请求日历、真实读写比例、资源身份、持久化分桶与派生 CSV；`test_cloud_soak_evidence.py` 使用副本检查服务中断、PID 复用、计数回退、错误日历、越界归档与虚假尾延迟。它们是离线证据检查，不叠加为核心 CTest 回归数，实际运行范围见[长窗口报告](docs/cloud-soak-20261024.md)。
 
+持久化时间关联新增磁盘字节等价、诊断异常隔离、失败记录及真实三进程关联／重启检查，完整普通／ASan 回归为 154 项。`persistence_timeline_accounting` 另在同一个 CTest 中覆盖 8 项区间、身份和不完整记录案例，不能再次叠加进 154 项。接口与解释范围见[持久化追踪](docs/persistence-tracing.md)。
+
 ## GitHub 检查
 
 `ci` 在推送与 PR 更新时运行普通构建、ASan／UBSan、格式检查、公开证据核验和单节点 Docker Compose 持久化恢复。`extended-local-reliability` 可手动运行 60–3600 秒故障活动，并保留报告与重现记录。单次检查通过不代表跨机器、真实断电或多日稳定性已完成。

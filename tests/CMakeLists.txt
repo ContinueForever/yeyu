@@ -132,6 +132,15 @@ add_test(NAME cloud_soak_plan_guard
   COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test_soak_plan.py)
 set_tests_properties(cloud_soak_plan_guard PROPERTIES TIMEOUT 10)
 
+add_test(NAME persistence_timeline_accounting
+  COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test_persistence_timeline.py)
+set_tests_properties(persistence_timeline_accounting PROPERTIES TIMEOUT 10)
+
+add_test(NAME cluster_persistence_trace
+  COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test_persistence_trace.py
+          ${snapshot_test_args} --bench $<TARGET_FILE:yewukv-bench>)
+set_tests_properties(cluster_persistence_trace PROPERTIES TIMEOUT 60)
+
 add_test(NAME config_application
   COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test_config_app.py ${snapshot_test_args})
 set_tests_properties(config_application PROPERTIES TIMEOUT 90)

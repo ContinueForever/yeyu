@@ -205,11 +205,25 @@ raft::Node::Config NodeConfig(const Options& options) {
   return config;
 }
 
-raft::FileStore::Options StoreConfig(const Options& options) {
+std::shared_ptr<ReadTraceRecorder> MakeTrace(const Options& options) {
+  if (options.trace_prefix.empty()) return {};
+  ReadTraceRecorder::Options selected;
+  selected.sample_every = options.trace_sample_every;
+  selected.slow_ns = options.trace_slow_ms * 1000000;
+  selected.max_events = options.trace_max_events;
+  return std::make_shared<ReadTraceRecorder>(options.trace_prefix, options.id, selected);
+}
+
+raft::FileStore::Options StoreConfig(const Options& options,
+                                     const std::shared_ptr<ReadTraceRecorder>& trace) {
   raft::FileStore::Options config;
   config.max_state_bytes = options.max_state_bytes;
   config.journal = options.journal;
   config.journal_checkpoint_bytes = options.journal_checkpoint_bytes;
+  if (trace) {
+    config.trace_enabled = [trace] { return trace->Enabled(); };
+    config.trace_observer = [trace](const raft::PersistenceTrace& event) { trace->Record(event); };
+  }
   return config;
 }
 
@@ -331,7 +345,8 @@ struct Server::Impl {
 
   explicit Impl(Options selected)
       : options(std::move(selected)),
-        store(options.directory, StoreConfig(options)),
+        trace(MakeTrace(options)),
+        store(options.directory, StoreConfig(options, trace)),
         node(NodeConfig(options), store.ReadState(), store, store),
         server(net::InetAddress(options.listen_host, options.port)) {
     if (options.request_timeout_ms < 100 || options.request_timeout_ms > 60000 ||
@@ -342,13 +357,6 @@ struct Server::Impl {
         options.event_queue_capacity == 0 || options.pending_capacity == 0)
       throw std::invalid_argument("invalid cluster port or request timeout");
     BindIdentity(options, store.ReadState());
-    if (!options.trace_prefix.empty()) {
-      ReadTraceRecorder::Options selected_trace;
-      selected_trace.sample_every = options.trace_sample_every;
-      selected_trace.slow_ns = options.trace_slow_ms * 1000000;
-      selected_trace.max_events = options.trace_max_events;
-      trace = std::make_shared<ReadTraceRecorder>(options.trace_prefix, options.id, selected_trace);
-    }
     if (node.snapshot().index != 0) {
       if (!state_machine.Restore(node.snapshot().data))
         throw std::runtime_error("invalid recovered KV snapshot");
