@@ -64,6 +64,8 @@ python3 tests/test_cloud_soak_evidence.py
 
 持久化时间关联新增磁盘字节等价、诊断异常隔离、失败记录及真实三进程关联／重启检查，完整普通／ASan 回归为 154 项。`persistence_timeline_accounting` 另在同一个 CTest 中覆盖 8 项区间、身份和不完整记录案例，不能再次叠加进 154 项。接口与解释范围见[持久化追踪](docs/persistence-tracing.md)。
 
+有序持久化接口阶段新增 15 项组件测试，最新完整普通／ASan 回归为 169 项。实际 Node／RaftLog 通过阻塞兼容桥接到可控完成队列，检查确认与恢复边界；默认 Server 尚未接入后台磁盘线程。真实三进程追踪测试现要求传入测试 I/O 注入库（CTest 自动配置），以短时 5 ms 同步延迟验证区间交集；这不是性能测量。契约及修正前后记录见[有序持久化接口](docs/persistence-queue.md)。
+
 ## GitHub 检查
 
 `ci` 在推送与 PR 更新时运行普通构建、ASan／UBSan、格式检查、公开证据核验和单节点 Docker Compose 持久化恢复。`extended-local-reliability` 可手动运行 60–3600 秒故障活动，并保留报告与重现记录。单次检查通过不代表跨机器、真实断电或多日稳定性已完成。

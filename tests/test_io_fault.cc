@@ -62,7 +62,13 @@ extern "C" int fdatasync(int fd) {
   }
   if (Armed(fd) && mode && std::strcmp(mode, "slow-sync") == 0) {
     // Delay only test Raft descriptors; unrelated process I/O stays untouched.
-    timespec delay{0, 250 * 1000 * 1000};
+    long milliseconds = 250;
+    if (const char* configured = std::getenv("YEWUKV_TEST_IO_DELAY_MS")) {
+      char* end = nullptr;
+      const long parsed = std::strtol(configured, &end, 10);
+      if (end != configured && *end == '\0' && parsed >= 1 && parsed <= 1000) milliseconds = parsed;
+    }
+    timespec delay{milliseconds / 1000, milliseconds % 1000 * 1000 * 1000};
     while (::nanosleep(&delay, &delay) != 0 && errno == EINTR) {
     }
   }

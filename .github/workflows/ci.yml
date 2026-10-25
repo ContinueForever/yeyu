@@ -55,6 +55,7 @@ jobs:
           python3 tests/test_cloud_soak_evidence.py
           python3 scripts/verify-persistence-trace.py benchmarks/published/persistence-trace-20261025
           python3 tests/test_persistence_evidence.py
+          sha256sum --check benchmarks/published/persistence-queue-20261026/SHA256SUMS
       - name: clang-format check
         run: |
           files=$(git ls-files '*.cc' '*.h')

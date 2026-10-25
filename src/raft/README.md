@@ -31,6 +31,12 @@ a fresh correlated quorum and an application fence; log reads remain selectable.
 See [the read contract](../../docs/read-index.md). Local `status` is diagnostic only. See [`docs/cluster.md`](../../docs/cluster.md) for the protocol,
 fault tests, deployment, and current single-host/capacity limitations.
 
+`PersistenceQueue` adds an owned, bounded submission/completion contract for a
+single storage stream. Tests drive actual stores and Raft nodes through a
+blocking compatibility bridge to check durability gates. The default server
+still uses synchronous `FileStore`; a nonblocking Raft owner and disk-worker
+integration remain subsequent work. See [the queue contract](../../docs/persistence-queue.md).
+
 `RaftLog` indexes its retained suffix relative to the durable snapshot boundary.
 `Node::Compact` covers only applied committed entries; `InstallSnapshot` transfers
 16 KiB chunks, retries interrupted transfers and acknowledges installation only

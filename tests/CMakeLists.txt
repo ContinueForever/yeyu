@@ -10,6 +10,7 @@ add_executable(yewu_tests
   test_raft_log.cc
   test_raft_file_store.cc
   test_raft_journal.cc
+  test_persistence_queue.cc
   test_raft_node.cc
   test_raft_snapshot.cc
   test_cluster_state_machine.cc
@@ -138,7 +139,7 @@ set_tests_properties(persistence_timeline_accounting PROPERTIES TIMEOUT 10)
 
 add_test(NAME cluster_persistence_trace
   COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test_persistence_trace.py
-          ${snapshot_test_args} --bench $<TARGET_FILE:yewukv-bench>)
+          ${snapshot_test_args} --bench $<TARGET_FILE:yewukv-bench> ${resource_test_args})
 set_tests_properties(cluster_persistence_trace PROPERTIES TIMEOUT 60)
 
 add_test(NAME config_application

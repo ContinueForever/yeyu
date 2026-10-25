@@ -1,0 +1,34 @@
+{
+  "base_commit": "3b2d520412b17914be8852e5ecb7d151730dc31f",
+  "phase": "owned bounded persistence submission/completion contract and blocking compatibility tests",
+  "default_server": "unchanged synchronous FileStore",
+  "nonblocking_raft_owner": false,
+  "background_disk_worker": false,
+  "new_cloud_experiment": false,
+  "performance_claim": false,
+  "local_compiler": "GCC 15.2.0",
+  "complete_ctest": 169,
+  "new_component_cases": 15,
+  "normal": {
+    "build_type": "RelWithDebInfo",
+    "seconds": 66.83
+  },
+  "asan": {
+    "build_type": "Debug",
+    "seconds": 82.29,
+    "ASAN_OPTIONS": "detect_leaks=1:halt_on_error=1",
+    "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+  },
+  "initial_normal": {
+    "passed": 168,
+    "total": 169,
+    "failure": "cluster_persistence_trace: natural workload had zero measured overlap; controlled test-only 5ms sync delay added, assertion retained"
+  },
+  "binaries": {
+    "build/bin/yewu_tests": "1c398f355887c79e3d43d4878dfe030374999a6fdd7cf0e00ceffa7c1fcfbeef",
+    "build/bin/yewukv-node": "fe7eb825fcca4dfbc96b7069de9f799e7113630e33464bef9095bdda3838a908",
+    "build-asan/bin/yewu_tests": "be6bf29f7279d7731059c41f11cc302bee0e7c67ca5724eaf6cc12dc1ed14e24",
+    "build-asan/bin/yewukv-node": "6eb3e14757cb112a3493cc5f93d0a8fb8b6d8d7a34853c93ee934ecb81198eea"
+  },
+  "source_files": 15
+}

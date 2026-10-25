@@ -1,5 +1,12 @@
 # Benchmarks and experiment evidence
 
+The [ordered persistence interface](../docs/persistence-queue.md) adds 15 component
+tests, bringing the full ordinary and ASan/UBSan suite to 169. Its
+[source delta and regression logs](published/persistence-queue-20261026/README.md)
+retain the initial timing-dependent trace-test failure and the controlled-I/O
+correction. The default server is still synchronous; this milestone reports no
+new cloud or performance result.
+
 The [persistence/read timeline observation](../docs/cloud-persistence-trace-20261025.md)
 adds 12 alternating trace-off/on windows: 212,268 successful requests, 3,732
 unissued arrival slots and 53,065 measured traced GETs joined without gaps.
