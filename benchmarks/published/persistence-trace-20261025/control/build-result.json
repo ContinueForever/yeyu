@@ -1,0 +1,29 @@
+{
+  "status": "complete",
+  "started_ns": 1792939294709514397,
+  "commands": [
+    [
+      "cmake",
+      "-S",
+      "/private/experiment/source",
+      "-B",
+      "/private/experiment/build",
+      "-G",
+      "Ninja",
+      "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+      "-DYEWUKV_BUILD_TESTS=OFF"
+    ],
+    [
+      "cmake",
+      "--build",
+      "/private/experiment/build",
+      "-j1"
+    ]
+  ],
+  "binaries": {
+    "yewukv-node": "eee89c3092f9c092c139371b4ff5fe977b0edf7eb524282aebc3cd16cf4a1b03",
+    "yewukv-bench": "e3af78b4bf2d5f9be5794d17e7ddf9eb3822cffb1e9e79354c7adfd839ab4093"
+  },
+  "compiler": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+  "finished_ns": 1792939380873905464
+}

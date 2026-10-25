@@ -1,0 +1,791 @@
+{
+  "name": "trace-smoke",
+  "measured_seconds": 8,
+  "wall_seconds": 31.541209857,
+  "started_unix_ns": 1792939667821485218,
+  "finished_unix_ns": 1792939699362695075,
+  "windows": 4,
+  "identity_ranges": 128,
+  "total": {
+    "attempts": 4723,
+    "successes": 4723,
+    "failures": 0,
+    "offered_slots": 4800,
+    "missed_slots": 77,
+    "puts": 2378,
+    "gets": 2345
+  },
+  "groups": [
+    {
+      "encoder": "sync",
+      "enabled": false,
+      "windows": 1,
+      "attempts": 1200,
+      "missed_slots": 0,
+      "median_ops_s": 597.738415461152,
+      "median_p99_ms": 20.421722,
+      "median_p999_ms": 38.934866,
+      "maximum_ms": 39.350607,
+      "resources": {
+        "node_1": {
+          "average_cores": 0.058933648934810116,
+          "peak_rss_bytes": 12587008
+        },
+        "node_2": {
+          "average_cores": 0.21304506065355025,
+          "peak_rss_bytes": 12320768
+        },
+        "node_3": {
+          "average_cores": 0.04085061182848702,
+          "peak_rss_bytes": 12550144
+        },
+        "client": {
+          "average_cores": 0.08826476024211839,
+          "peak_rss_bytes": 6553600
+        }
+      },
+      "timeline": {
+        "measured_gets": 595,
+        "joined_gets": 0,
+        "client_slow_gets": 9,
+        "joined_slow_gets": 0,
+        "joined_gets_overlapping_persist": 0,
+        "joined_slow_gets_overlapping_persist": 0,
+        "slow_server_receive_to_ready_ns": 0,
+        "slow_overlap_ns": {
+          "persist_overlap_ns": 0,
+          "queue_persist_overlap_ns": 0,
+          "handled_persist_overlap_ns": 0,
+          "encode_overlap_ns": 0,
+          "write_overlap_ns": 0,
+          "file_sync_overlap_ns": 0,
+          "directory_sync_overlap_ns": 0,
+          "rename_overlap_ns": 0
+        },
+        "slow_time_weighted_overlap_fractions": {
+          "persist_overlap_ns": null,
+          "queue_persist_overlap_ns": null,
+          "handled_persist_overlap_ns": null,
+          "encode_overlap_ns": null,
+          "write_overlap_ns": null,
+          "file_sync_overlap_ns": null,
+          "directory_sync_overlap_ns": null,
+          "rename_overlap_ns": null
+        }
+      }
+    },
+    {
+      "encoder": "sync",
+      "enabled": true,
+      "windows": 1,
+      "attempts": 1182,
+      "missed_slots": 18,
+      "median_ops_s": 588.5408040263856,
+      "median_p99_ms": 53.907626,
+      "median_p999_ms": 72.655818,
+      "maximum_ms": 74.181161,
+      "resources": {
+        "node_1": {
+          "average_cores": 0.08270920541890808,
+          "peak_rss_bytes": 12718080
+        },
+        "node_2": {
+          "average_cores": 0.22411927536693188,
+          "peak_rss_bytes": 13905920
+        },
+        "node_3": {
+          "average_cores": 0.0639527140502661,
+          "peak_rss_bytes": 13955072
+        },
+        "client": {
+          "average_cores": 0.09209024783692636,
+          "peak_rss_bytes": 6684672
+        }
+      },
+      "timeline": {
+        "measured_gets": 588,
+        "joined_gets": 588,
+        "client_slow_gets": 75,
+        "joined_slow_gets": 75,
+        "joined_gets_overlapping_persist": 520,
+        "joined_slow_gets_overlapping_persist": 75,
+        "slow_server_receive_to_ready_ns": 1642727046,
+        "slow_overlap_ns": {
+          "persist_overlap_ns": 1434031664,
+          "queue_persist_overlap_ns": 252730561,
+          "handled_persist_overlap_ns": 1181301103,
+          "encode_overlap_ns": 13424821,
+          "write_overlap_ns": 8567684,
+          "file_sync_overlap_ns": 1377726338,
+          "directory_sync_overlap_ns": 29131540,
+          "rename_overlap_ns": 2596542
+        },
+        "slow_time_weighted_overlap_fractions": {
+          "persist_overlap_ns": 0.8729579679666393,
+          "queue_persist_overlap_ns": 0.15384817679564763,
+          "handled_persist_overlap_ns": 0.7191097911709916,
+          "encode_overlap_ns": 0.008172277331580501,
+          "write_overlap_ns": 0.005215525014251211,
+          "file_sync_overlap_ns": 0.8386824465785292,
+          "directory_sync_overlap_ns": 0.0177336460557672,
+          "rename_overlap_ns": 0.0015806289951349592
+        }
+      }
+    },
+    {
+      "encoder": "background",
+      "enabled": false,
+      "windows": 1,
+      "attempts": 1200,
+      "missed_slots": 0,
+      "median_ops_s": 596.5170571017699,
+      "median_p99_ms": 23.629752,
+      "median_p999_ms": 29.552785,
+      "maximum_ms": 31.172661,
+      "resources": {
+        "node_1": {
+          "average_cores": 0.032162100426575774,
+          "peak_rss_bytes": 13643776
+        },
+        "node_2": {
+          "average_cores": 0.21088224170244796,
+          "peak_rss_bytes": 13520896
+        },
+        "node_3": {
+          "average_cores": 0.032942926615885826,
+          "peak_rss_bytes": 13737984
+        },
+        "client": {
+          "average_cores": 0.09376463446183088,
+          "peak_rss_bytes": 6553600
+        }
+      },
+      "timeline": {
+        "measured_gets": 595,
+        "joined_gets": 0,
+        "client_slow_gets": 19,
+        "joined_slow_gets": 0,
+        "joined_gets_overlapping_persist": 0,
+        "joined_slow_gets_overlapping_persist": 0,
+        "slow_server_receive_to_ready_ns": 0,
+        "slow_overlap_ns": {
+          "persist_overlap_ns": 0,
+          "queue_persist_overlap_ns": 0,
+          "handled_persist_overlap_ns": 0,
+          "encode_overlap_ns": 0,
+          "write_overlap_ns": 0,
+          "file_sync_overlap_ns": 0,
+          "directory_sync_overlap_ns": 0,
+          "rename_overlap_ns": 0
+        },
+        "slow_time_weighted_overlap_fractions": {
+          "persist_overlap_ns": null,
+          "queue_persist_overlap_ns": null,
+          "handled_persist_overlap_ns": null,
+          "encode_overlap_ns": null,
+          "write_overlap_ns": null,
+          "file_sync_overlap_ns": null,
+          "directory_sync_overlap_ns": null,
+          "rename_overlap_ns": null
+        }
+      }
+    },
+    {
+      "encoder": "background",
+      "enabled": true,
+      "windows": 1,
+      "attempts": 1141,
+      "missed_slots": 59,
+      "median_ops_s": 568.5835419793248,
+      "median_p99_ms": 108.211076,
+      "median_p999_ms": 115.856086,
+      "maximum_ms": 117.545237,
+      "resources": {
+        "node_1": {
+          "average_cores": 0.05057248624519405,
+          "peak_rss_bytes": 13774848
+        },
+        "node_2": {
+          "average_cores": 0.27202268017799064,
+          "peak_rss_bytes": 13783040
+        },
+        "node_3": {
+          "average_cores": 0.05164631978203766,
+          "peak_rss_bytes": 14000128
+        },
+        "client": {
+          "average_cores": 0.10341632909915918,
+          "peak_rss_bytes": 6553600
+        }
+      },
+      "timeline": {
+        "measured_gets": 567,
+        "joined_gets": 567,
+        "client_slow_gets": 81,
+        "joined_slow_gets": 81,
+        "joined_gets_overlapping_persist": 497,
+        "joined_slow_gets_overlapping_persist": 80,
+        "slow_server_receive_to_ready_ns": 2635683041,
+        "slow_overlap_ns": {
+          "persist_overlap_ns": 2228763492,
+          "queue_persist_overlap_ns": 1183433638,
+          "handled_persist_overlap_ns": 1045329854,
+          "encode_overlap_ns": 178929014,
+          "write_overlap_ns": 17693226,
+          "file_sync_overlap_ns": 1236684737,
+          "directory_sync_overlap_ns": 61192188,
+          "rename_overlap_ns": 3136878
+        },
+        "slow_time_weighted_overlap_fractions": {
+          "persist_overlap_ns": 0.8456113490620589,
+          "queue_persist_overlap_ns": 0.4490045349121325,
+          "handled_persist_overlap_ns": 0.39660681414992643,
+          "encode_overlap_ns": 0.06788715153401483,
+          "write_overlap_ns": 0.00671295665099664,
+          "file_sync_overlap_ns": 0.46920844341389073,
+          "directory_sync_overlap_ns": 0.023216823513339896,
+          "rename_overlap_ns": 0.0011901575231936243
+        }
+      }
+    }
+  ],
+  "rows": [
+    {
+      "encoder": "sync",
+      "window": 0,
+      "enabled": false,
+      "attempts": 1200,
+      "successes": 1200,
+      "failures": 0,
+      "offered_slots": 1200,
+      "missed_slots": 0,
+      "valid": true,
+      "codes": {
+        "0": 1200
+      },
+      "successful_ops_s": 597.738415461152,
+      "p99_ms": 20.421722,
+      "p999_ms": 38.934866,
+      "max_ms": 39.350607,
+      "scheduled_p99_ms": 33.854582,
+      "puts": 605,
+      "gets": 595,
+      "resources": {
+        "node_1": {
+          "pid": 83964,
+          "start_ticks": 21515323,
+          "sample_seconds": 2.20587054,
+          "cpu_seconds": 0.13,
+          "average_cores": 0.058933648934810116,
+          "peak_rss_bytes": 12587008,
+          "first_rss_bytes": 12455936,
+          "last_rss_bytes": 12587008,
+          "minimum_free_disk_bytes": 35859853312
+        },
+        "node_2": {
+          "pid": 71701,
+          "start_ticks": 19650586,
+          "sample_seconds": 2.206106063,
+          "cpu_seconds": 0.47,
+          "average_cores": 0.21304506065355025,
+          "peak_rss_bytes": 12320768,
+          "first_rss_bytes": 12320768,
+          "last_rss_bytes": 12320768,
+          "minimum_free_disk_bytes": 35830996992
+        },
+        "node_3": {
+          "pid": 179531,
+          "start_ticks": 17828628,
+          "sample_seconds": 2.203149377,
+          "cpu_seconds": 0.09,
+          "average_cores": 0.04085061182848702,
+          "peak_rss_bytes": 12550144,
+          "first_rss_bytes": 12419072,
+          "last_rss_bytes": 12550144,
+          "minimum_free_disk_bytes": 35575427072
+        },
+        "client": {
+          "pid": 179615,
+          "start_ticks": 17828974,
+          "sample_seconds": 2.152614469,
+          "cpu_seconds": 0.19,
+          "average_cores": 0.08826476024211839,
+          "peak_rss_bytes": 6553600,
+          "first_rss_bytes": 6422528,
+          "last_rss_bytes": 6553600
+        }
+      },
+      "timeline": {
+        "node": 2,
+        "pid": 71701,
+        "capture_clean": true,
+        "measured_gets": 595,
+        "joined_gets": 0,
+        "missing_gets": 595,
+        "ambiguous_gets": 0,
+        "joined_fraction": 0.0,
+        "client_slow_threshold_ns": 20000000,
+        "client_slow_gets": 9,
+        "joined_slow_gets": 0,
+        "joined_gets_overlapping_persist": 0,
+        "recorded_persistence_operations": 535,
+        "failed_persistence_operations": 0,
+        "persistence_sample_every": 1,
+        "note": "Same-node steady-clock interval unions on the read's worker TID. Observed overlaps are lower bounds when sampled, toggled, truncated or dropped. Client identity joins use port and sequential request ID; ambiguous port reuse is excluded. No cross-host clock subtraction or attribution of follower I/O, scheduling or network delay.",
+        "slow_server_time_weighted_persist_overlap_fraction": null,
+        "slow_server_time_weighted_file_sync_overlap_fraction": null
+      },
+      "leader_counter_delta": {
+        "disk_bytes": 186060,
+        "disk_checkpoint_saves": 0,
+        "disk_journal_saves": 570,
+        "disk_encode_ns": 1466922,
+        "disk_crc_ns": 1078108,
+        "disk_write_ns": 8318330,
+        "disk_file_sync_ns": 1372798306,
+        "disk_directory_sync_ns": 0,
+        "snapshot_pause_ns": 0,
+        "snapshots_saved": 0,
+        "disk_checkpoint_duration_buckets": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "disk_journal_sync_duration_buckets": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          136,
+          434,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "encoder": "sync",
+      "window": 1,
+      "enabled": true,
+      "attempts": 1182,
+      "successes": 1182,
+      "failures": 0,
+      "offered_slots": 1200,
+      "missed_slots": 18,
+      "valid": true,
+      "codes": {
+        "0": 1182
+      },
+      "successful_ops_s": 588.5408040263856,
+      "p99_ms": 53.907626,
+      "p999_ms": 72.655818,
+      "max_ms": 74.181161,
+      "scheduled_p99_ms": 59.296704,
+      "puts": 594,
+      "gets": 588,
+      "resources": {
+        "node_1": {
+          "pid": 83964,
+          "start_ticks": 21515323,
+          "sample_seconds": 2.176299471,
+          "cpu_seconds": 0.18,
+          "average_cores": 0.08270920541890808,
+          "peak_rss_bytes": 12718080,
+          "first_rss_bytes": 12718080,
+          "last_rss_bytes": 12718080,
+          "minimum_free_disk_bytes": 35859648512
+        },
+        "node_2": {
+          "pid": 71701,
+          "start_ticks": 19650586,
+          "sample_seconds": 2.141716723,
+          "cpu_seconds": 0.48,
+          "average_cores": 0.22411927536693188,
+          "peak_rss_bytes": 13905920,
+          "first_rss_bytes": 12582912,
+          "last_rss_bytes": 13905920,
+          "minimum_free_disk_bytes": 35828035584
+        },
+        "node_3": {
+          "pid": 179531,
+          "start_ticks": 17828628,
+          "sample_seconds": 2.189117414,
+          "cpu_seconds": 0.14,
+          "average_cores": 0.0639527140502661,
+          "peak_rss_bytes": 13955072,
+          "first_rss_bytes": 12681216,
+          "last_rss_bytes": 13955072,
+          "minimum_free_disk_bytes": 35575156736
+        },
+        "client": {
+          "pid": 179676,
+          "start_ticks": 17829347,
+          "sample_seconds": 2.171782623,
+          "cpu_seconds": 0.2,
+          "average_cores": 0.09209024783692636,
+          "peak_rss_bytes": 6684672,
+          "first_rss_bytes": 6291456,
+          "last_rss_bytes": 6684672
+        }
+      },
+      "timeline": {
+        "node": 2,
+        "pid": 71701,
+        "capture_clean": true,
+        "measured_gets": 588,
+        "joined_gets": 588,
+        "missing_gets": 0,
+        "ambiguous_gets": 0,
+        "joined_fraction": 1.0,
+        "client_slow_threshold_ns": 20000000,
+        "client_slow_gets": 75,
+        "joined_slow_gets": 75,
+        "joined_gets_overlapping_persist": 520,
+        "recorded_persistence_operations": 535,
+        "failed_persistence_operations": 0,
+        "persistence_sample_every": 1,
+        "note": "Same-node steady-clock interval unions on the read's worker TID. Observed overlaps are lower bounds when sampled, toggled, truncated or dropped. Client identity joins use port and sequential request ID; ambiguous port reuse is excluded. No cross-host clock subtraction or attribution of follower I/O, scheduling or network delay.",
+        "slow_server_time_weighted_persist_overlap_fraction": 0.8729579679666393,
+        "slow_server_time_weighted_file_sync_overlap_fraction": 0.8386824465785292
+      },
+      "leader_counter_delta": {
+        "disk_bytes": 1273053,
+        "disk_checkpoint_saves": 1,
+        "disk_journal_saves": 534,
+        "disk_encode_ns": 8137013,
+        "disk_crc_ns": 5649811,
+        "disk_write_ns": 9602804,
+        "disk_file_sync_ns": 1451195775,
+        "disk_directory_sync_ns": 4857146,
+        "snapshot_pause_ns": 32187351,
+        "snapshots_saved": 1,
+        "disk_checkpoint_duration_buckets": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "disk_journal_sync_duration_buckets": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          122,
+          406,
+          2,
+          0,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "encoder": "background",
+      "window": 0,
+      "enabled": false,
+      "attempts": 1200,
+      "successes": 1200,
+      "failures": 0,
+      "offered_slots": 1200,
+      "missed_slots": 0,
+      "valid": true,
+      "codes": {
+        "0": 1200
+      },
+      "successful_ops_s": 596.5170571017699,
+      "p99_ms": 23.629752,
+      "p999_ms": 29.552785,
+      "max_ms": 31.172661,
+      "scheduled_p99_ms": 23.697229,
+      "puts": 605,
+      "gets": 595,
+      "resources": {
+        "node_1": {
+          "pid": 84016,
+          "start_ticks": 21516873,
+          "sample_seconds": 2.176474766,
+          "cpu_seconds": 0.07,
+          "average_cores": 0.032162100426575774,
+          "peak_rss_bytes": 13643776,
+          "first_rss_bytes": 13512704,
+          "last_rss_bytes": 13643776,
+          "minimum_free_disk_bytes": 35858587648
+        },
+        "node_2": {
+          "pid": 71752,
+          "start_ticks": 19652138,
+          "sample_seconds": 2.133892339,
+          "cpu_seconds": 0.45,
+          "average_cores": 0.21088224170244796,
+          "peak_rss_bytes": 13520896,
+          "first_rss_bytes": 13520896,
+          "last_rss_bytes": 13520896,
+          "minimum_free_disk_bytes": 35826393088
+        },
+        "node_3": {
+          "pid": 180958,
+          "start_ticks": 17830178,
+          "sample_seconds": 2.124887106,
+          "cpu_seconds": 0.07,
+          "average_cores": 0.032942926615885826,
+          "peak_rss_bytes": 13737984,
+          "first_rss_bytes": 13606912,
+          "last_rss_bytes": 13737984,
+          "minimum_free_disk_bytes": 35573768192
+        },
+        "client": {
+          "pid": 181046,
+          "start_ticks": 17830534,
+          "sample_seconds": 2.13300037,
+          "cpu_seconds": 0.2,
+          "average_cores": 0.09376463446183088,
+          "peak_rss_bytes": 6553600,
+          "first_rss_bytes": 6291456,
+          "last_rss_bytes": 6553600
+        }
+      },
+      "timeline": {
+        "node": 2,
+        "pid": 71752,
+        "capture_clean": true,
+        "measured_gets": 595,
+        "joined_gets": 0,
+        "missing_gets": 595,
+        "ambiguous_gets": 0,
+        "joined_fraction": 0.0,
+        "client_slow_threshold_ns": 20000000,
+        "client_slow_gets": 19,
+        "joined_slow_gets": 0,
+        "joined_gets_overlapping_persist": 0,
+        "recorded_persistence_operations": 517,
+        "failed_persistence_operations": 0,
+        "persistence_sample_every": 1,
+        "note": "Same-node steady-clock interval unions on the read's worker TID. Observed overlaps are lower bounds when sampled, toggled, truncated or dropped. Client identity joins use port and sequential request ID; ambiguous port reuse is excluded. No cross-host clock subtraction or attribution of follower I/O, scheduling or network delay.",
+        "slow_server_time_weighted_persist_overlap_fraction": null,
+        "slow_server_time_weighted_file_sync_overlap_fraction": null
+      },
+      "leader_counter_delta": {
+        "disk_bytes": 185748,
+        "disk_checkpoint_saves": 0,
+        "disk_journal_saves": 564,
+        "disk_encode_ns": 1976051,
+        "disk_crc_ns": 1186430,
+        "disk_write_ns": 8945136,
+        "disk_file_sync_ns": 1465456524,
+        "disk_directory_sync_ns": 0,
+        "snapshot_pause_ns": 0,
+        "snapshots_saved": 0,
+        "disk_checkpoint_duration_buckets": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "disk_journal_sync_duration_buckets": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          84,
+          476,
+          4,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "encoder": "background",
+      "window": 1,
+      "enabled": true,
+      "attempts": 1141,
+      "successes": 1141,
+      "failures": 0,
+      "offered_slots": 1200,
+      "missed_slots": 59,
+      "valid": true,
+      "codes": {
+        "0": 1141
+      },
+      "successful_ops_s": 568.5835419793248,
+      "p99_ms": 108.211076,
+      "p999_ms": 115.856086,
+      "max_ms": 117.545237,
+      "scheduled_p99_ms": 108.42398,
+      "puts": 574,
+      "gets": 567,
+      "resources": {
+        "node_1": {
+          "pid": 84016,
+          "start_ticks": 21516873,
+          "sample_seconds": 2.175095752,
+          "cpu_seconds": 0.11,
+          "average_cores": 0.05057248624519405,
+          "peak_rss_bytes": 13774848,
+          "first_rss_bytes": 13774848,
+          "last_rss_bytes": 13774848,
+          "minimum_free_disk_bytes": 35858378752
+        },
+        "node_2": {
+          "pid": 71752,
+          "start_ticks": 19652138,
+          "sample_seconds": 2.132175154,
+          "cpu_seconds": 0.58,
+          "average_cores": 0.27202268017799064,
+          "peak_rss_bytes": 13783040,
+          "first_rss_bytes": 13783040,
+          "last_rss_bytes": 13783040,
+          "minimum_free_disk_bytes": 35822579712
+        },
+        "node_3": {
+          "pid": 180958,
+          "start_ticks": 17830178,
+          "sample_seconds": 2.129871024,
+          "cpu_seconds": 0.11,
+          "average_cores": 0.05164631978203766,
+          "peak_rss_bytes": 14000128,
+          "first_rss_bytes": 13737984,
+          "last_rss_bytes": 14000128,
+          "minimum_free_disk_bytes": 35573374976
+        },
+        "client": {
+          "pid": 181111,
+          "start_ticks": 17830918,
+          "sample_seconds": 2.127323624,
+          "cpu_seconds": 0.22,
+          "average_cores": 0.10341632909915918,
+          "peak_rss_bytes": 6553600,
+          "first_rss_bytes": 6291456,
+          "last_rss_bytes": 6553600
+        }
+      },
+      "timeline": {
+        "node": 2,
+        "pid": 71752,
+        "capture_clean": true,
+        "measured_gets": 567,
+        "joined_gets": 567,
+        "missing_gets": 0,
+        "ambiguous_gets": 0,
+        "joined_fraction": 1.0,
+        "client_slow_threshold_ns": 20000000,
+        "client_slow_gets": 81,
+        "joined_slow_gets": 81,
+        "joined_gets_overlapping_persist": 497,
+        "recorded_persistence_operations": 517,
+        "failed_persistence_operations": 0,
+        "persistence_sample_every": 1,
+        "note": "Same-node steady-clock interval unions on the read's worker TID. Observed overlaps are lower bounds when sampled, toggled, truncated or dropped. Client identity joins use port and sequential request ID; ambiguous port reuse is excluded. No cross-host clock subtraction or attribution of follower I/O, scheduling or network delay.",
+        "slow_server_time_weighted_persist_overlap_fraction": 0.8456113490620589,
+        "slow_server_time_weighted_file_sync_overlap_fraction": 0.46920844341389073
+      },
+      "leader_counter_delta": {
+        "disk_bytes": 1268493,
+        "disk_checkpoint_saves": 1,
+        "disk_journal_saves": 516,
+        "disk_encode_ns": 46579339,
+        "disk_crc_ns": 44404326,
+        "disk_write_ns": 6906163,
+        "disk_file_sync_ns": 1412040729,
+        "disk_directory_sync_ns": 3399117,
+        "snapshot_pause_ns": 101936659,
+        "snapshots_saved": 1,
+        "disk_checkpoint_duration_buckets": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "disk_journal_sync_duration_buckets": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          92,
+          412,
+          9,
+          2,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    }
+  ],
+  "note": "One smoke window per group. Same-process default-adaptive observation; load shares Follower 3. Percentiles are medians of window percentiles, not pooled percentiles. Leader-thread overlap is request-weighted wall time, not device latency or system utilization; excludes follower I/O and uninstrumented phases."
+}

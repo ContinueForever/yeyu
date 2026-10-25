@@ -1,0 +1,7 @@
+{
+  "initial_gate": "Cross-host collection path error: attempted to read node2 leader trace on node3 load host",
+  "formal_dispatched_before_correction": false,
+  "correction": "Read client samples from node3 and trace files from node2 separately; analyze locally with current verifier",
+  "smoke_replayed": false,
+  "workload_data_changed": false
+}

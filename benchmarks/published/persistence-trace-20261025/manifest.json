@@ -1,0 +1,13 @@
+{
+  "runtime_commit": "27baea4d528ee3d372b6b523996f36508c6ca16b",
+  "windows": 12,
+  "measured_seconds": 360,
+  "trace_lifetimes": 24,
+  "transforms": [
+    "Diagnostic IPs, hostnames, private paths and experiment tags are consistently remapped.",
+    "Numeric JSON, client gzip files and trace JSONL are byte-for-byte unchanged, including compression. Their original export hashes are retained and checked.",
+    "Frozen runtime, tested core and executed tool source content is unchanged; archived code is never executed by the verifier.",
+    "Frozen committed source retains an existing static private-network address fixture in tests/test_cluster_address.py; run-specific endpoint diagnostics are remapped."
+  ],
+  "scope": "Three correlated off/on windows per group. Same-process default-adaptive observation; load shares Follower 3. Percentiles are medians of window percentiles, not pooled percentiles. Leader-thread overlap is request-weighted wall time, not device latency or system utilization; excludes follower I/O and uninstrumented phases."
+}

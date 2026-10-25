@@ -1,5 +1,14 @@
 # Benchmarks and experiment evidence
 
+The [persistence/read timeline observation](../docs/cloud-persistence-trace-20261025.md)
+adds 12 alternating trace-off/on windows: 212,268 successful requests, 3,732
+unissued arrival slots and 53,065 measured traced GETs joined without gaps.
+The [raw samples and numeric traces](published/persistence-trace-20261025/README.md)
+retain overhead and all tail outliers. This is a same-process, correlated
+observation with load on Follower 3; interval intersections include scheduling
+and do not estimate removable latency. Verify with
+`python3 scripts/verify-persistence-trace.py benchmarks/published/persistence-trace-20261025`.
+
 The [persistence/CAS/C++ load tools](../docs/long-window.md) add disjoint
 duration buckets, a bounded revision-aware history oracle, and a Linux C++
 load generator with retained samples, skipped arrivals and graceful cancellation.

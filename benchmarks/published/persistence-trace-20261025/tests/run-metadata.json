@@ -1,0 +1,19 @@
+{
+  "core_commit": "27baea4d528ee3d372b6b523996f36508c6ca16b",
+  "local_compiler": "GCC 15.2.0",
+  "normal": {
+    "build_type": "RelWithDebInfo",
+    "sanitizers": false,
+    "passed": 154,
+    "seconds": 66.34
+  },
+  "asan": {
+    "build_type": "Debug",
+    "sanitizers": true,
+    "passed": 154,
+    "seconds": 81.6,
+    "ASAN_OPTIONS": "detect_leaks=1:halt_on_error=1",
+    "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+  },
+  "scope": "Final complete local CTest runs; cloud binaries used GCC 13.3.0 RelWithDebInfo and did not run cloud CTest. Offline publication semantic tests are separate."
+}

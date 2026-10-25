@@ -74,4 +74,4 @@ python3 benchmarks/cloud_persistence_trace.py --config /private/agent.json \
 
 每约 10 秒检查原服务、实验节点、可用磁盘和 RSS；请求或诊断记录失败时停止并保留结果，不重放写入。每组结束后整组重启并检查全部冷键、256 个热键和锚值 revision。控制服务仅能切换当前实验目录内固定的 `trace.enabled` 文件，不接受任意路径或命令。
 
-相邻窗口相关，trace writer 与持久化共享节点资源。该活动用于检查关联和观测开销，不是独立容量验收、无偏多轮性能比较或后台磁盘发布的完成证明。实际结果需另行报告。
+相邻窗口相关，trace writer 与持久化共享节点资源。该活动用于检查关联和观测开销，不是独立容量验收、无偏多轮性能比较或后台磁盘发布的完成证明。已完成的[三机结果](cloud-persistence-trace-20261025.md)保留 12 个正式窗口、212,268 次成功请求、3,732 个未发时刻和追踪开销；[原始数值与离线核验](../benchmarks/published/persistence-trace-20261025/README.md)可复算。

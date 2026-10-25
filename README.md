@@ -21,7 +21,7 @@
 
 ## 验证结果
 
-新增[持久化与读请求的同线程时间关联](docs/persistence-tracing.md)，普通／ASan＋UBSan 各 **154 项**通过。记录单次编码、写入、文件同步、目录同步与发布区间，并保留失败、采样和覆盖缺口；诊断异常不改变持久化确认。后台磁盘发布仍待实现，云端短时开关对照结果另行记录。
+新增[持久化与读请求的同线程时间关联](docs/persistence-tracing.md)，普通／ASan＋UBSan 各 **154 项**通过。[三机开关对照](docs/cloud-persistence-trace-20261025.md)完成 12 个窗口、212,268 次成功请求，另有 3,732 个未发计划时刻；开启组 53,065 个 GET 全部关联。慢 GET 与持久化的累计区间交集约 60%／66%，包含调度等待且不能当作可实现收益；追踪增加 CPU 开销，默认关闭。[完整证据与复算](benchmarks/published/persistence-trace-20261025/README.md)已公开，后台磁盘发布仍待实现。
 
 新增[持久化分阶段指标、CAS 故障历史与 C++ 发压器](docs/long-window.md)，短任务普通／ASan 各 148 项通过，相关[源码与历史](benchmarks/published/tooling-20261024/README.md)可离线核验；发压到达日历修正另有普通／ASan 专项回归。
 
