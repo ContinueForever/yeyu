@@ -4,8 +4,13 @@ The [persistence/CAS/C++ load tools](../docs/long-window.md) add disjoint
 duration buckets, a bounded revision-aware history oracle, and a Linux C++
 load generator with retained samples, skipped arrivals and graceful cancellation.
 The [short-tooling evidence](published/tooling-20261024/README.md) records
-148/148 ordinary and sanitizer checks. `cloud_soak.py` provides a guarded,
-six-hour measured-window plan; its long-run results require a separate acceptance.
+148/148 ordinary and sanitizer checks, with separate C++ calendar checks after
+the pacing fix. The [six-hour acceptance](../docs/cloud-soak-20261024.md) is complete:
+360 windows, 12,872,548 successful sent requests, zero failures and 87,452 skipped
+arrival slots. [Full samples and provenance](published/cloud-soak-20261024/README.md)
+can be checked with `python3 scripts/verify-cloud-soak-publication.py benchmarks/published/cloud-soak-20261024`.
+Each configuration has one one-hour phase; the client shares Follower 3, and
+520.703 ms request latency and 391.430 ms background publication pauses remain.
 
 The [latest three-VM engineering report](../docs/engineering-next-20261024.md)
 adds 18 mixed-workload fault epochs, bounded histories, background snapshot

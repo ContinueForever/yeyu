@@ -1,0 +1,18 @@
+{
+  "verified": true,
+  "nodes": [
+    {
+      "node": 1,
+      "verified": true
+    },
+    {
+      "node": 2,
+      "verified": true
+    },
+    {
+      "node": 3,
+      "verified": true
+    }
+  ],
+  "note": "Initial refresh copied runtime and tooling but SSH255 interrupted metadata upload to node2; metadata was completed without rerunning or replacing smoke results."
+}

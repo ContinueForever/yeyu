@@ -1,0 +1,28 @@
+{
+  "mode": "smoke",
+  "unit": "yewukv-soak-experiment-smoke",
+  "command": [
+    "systemd-run",
+    "--unit",
+    "yewukv-soak-experiment-smoke",
+    "--collect",
+    "--property=RuntimeMaxSec=900",
+    "--property=UMask=0077",
+    "--property=MemoryMax=512M",
+    "--property=CPUQuota=100%",
+    "--property=TasksMax=192",
+    "--property=StandardOutput=append:/private/experiment/smoke.log",
+    "--property=StandardError=append:/private/experiment/smoke.log",
+    "/usr/bin/python3",
+    "/private/experiment/source/benchmarks/cloud_soak.py",
+    "--config",
+    "/private/experiment/private-config.json",
+    "--bench",
+    "/private/bin/yewukv-bench",
+    "--output",
+    "/private/experiment/soak-smoke",
+    "--smoke"
+  ],
+  "commit": "c4c02f1ab7901a302dd2b7ee13faa47e55767c48",
+  "dispatched_unix_ns": 1792850197480096428
+}
