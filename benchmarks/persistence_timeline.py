@@ -101,6 +101,10 @@ def analyze(events, directory, slow_ns=20_000_000):
         if event["event"] == "read":
             reads[event["client_port"], event["request_id"]].append(event)
         elif event["event"] == "persist":
+            require(
+                not event.get("task_sequence", 0),
+                "async disk tasks require dependency analysis; same-thread overlap is invalid",
+            )
             validate_persist(event)
             require(
                 event["sequence"] not in sequences, "duplicate persistence sequence"

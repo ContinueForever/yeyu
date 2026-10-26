@@ -1,6 +1,6 @@
 # 文档导航
 
-当前实现为固定三个 voter、单 Raft Group 的 C++17 KV 服务，默认使用增量 journal、ReadIndex、自适应快照与同步编码，支持可选后台编码和 revision／CAS。最新普通／ASan 各 169 项已通过，新增有序持久化接口与确认边界测试；默认服务仍同步落盘。三机六小时窗口、恢复与持久化／读等待关联的历史范围分列如下。
+当前实现为固定三个 voter、单 Raft Group 的 C++17 KV 服务，默认使用增量 journal、ReadIndex、自适应快照与同步编码，支持可选后台编码和 revision／CAS。最新普通／ASan 各 186 项、队列与后台执行组件 TSan 31 项已通过；可选后台磁盘执行已接入，默认服务仍同步落盘。三机六小时窗口、恢复与持久化／读等待关联的历史范围分列如下。
 
 ## 使用与开发
 
@@ -13,6 +13,7 @@
 | 对现有三机测吞吐量、P95/P99 和不同并发 | [跨机压测操作](cloud-benchmark.md) |
 | 关联读请求、ReadIndex 与副本 RPC 的分阶段耗时 | [读路径追踪](read-tracing.md) |
 | 关联同线程读等待、持久化编码、文件和目录同步 | [持久化时间关联](persistence-tracing.md) |
+| 后台磁盘线程、非阻塞 Raft 与故障确认顺序 | [后台磁盘执行](background-persistence.md) |
 | 持久化任务接收、顺序、完成通知与确认边界 | [有序持久化接口](persistence-queue.md) |
 | 版本条件更新、多发布者冲突与旧快照迁移 | [CAS 契约](cas.md) |
 | 冻结值的所有权、后台编码与暂停边界 | [后台快照编码](background-snapshot.md) |
@@ -37,6 +38,7 @@
 
 | 版本与变化 | 回归 | 性能与故障活动 | 原始证据 |
 | --- | --- | --- | --- |
+| [2026-10-26：后台磁盘与非阻塞 Raft](background-persistence.md) | 普通／ASan 各 186 项；队列与后台执行组件 TSan 31 项 | 真实后台路径的慢盘心跳、读写屏障、SIGKILL、磁盘失败、CAS 与快照追赶；无云端性能结论 | [源码增量、首次失败与完整回归](../benchmarks/published/async-persistence-20261026/README.md)，默认同步执行 |
 | [2026-10-26：有序持久化接口第一阶段](persistence-queue.md) | 普通／ASan 各 169 项，新增组件 15 项 | 实际 Raft／磁盘的可控完成通知、同步后失败、原始字节等价与恢复；修正追踪测试的偶发零交集假设 | [源码增量与回归日志](../benchmarks/published/persistence-queue-20261026/README.md)，未接入生产后台线程，未做性能测量 |
 | [2026-10-25：持久化与慢读时间关联](cloud-persistence-trace-20261025.md) | 普通／ASan 各 154 项；公开证据语义负例单列 | 12 个 30 秒窗口、212,268 次成功、3,732 个未发时刻；开启组 53,065 个 GET 全部关联，保留观测开销与最坏 376.734 ms 请求 | [原始数值、源码、日志与复算](../benchmarks/published/persistence-trace-20261025/README.md)，后台磁盘发布未实现 |
 | [2026-10-24 / 25：六小时三机稳定性与恢复](cloud-soak-20261024.md) | 复用短任务 148 项及日历修正专项；新离线语义负例单列 | 360 个一分钟窗口、12,872,548 次已发请求成功；87,452 个计划时刻未发；六次整组重启验证；保留 520.703 ms 最长请求 | [全部逐请求样本、资源、源码与核验](../benchmarks/published/cloud-soak-20261024/README.md)，每配置一个约一小时相位，客户端共置 |

@@ -24,108 +24,141 @@ Status Election::CheckUsable() const {
                  : Status::OK();
 }
 
-Status Election::Persist(HardState next) {
+Election::Update Election::Current() const {
+  return {hard_state_, role_, votes_, false, false};
+}
+
+Status Election::Advance(Update update, Status persisted) {
+  if (!persisted.ok()) {
+    failed_ = true;
+    return persisted;
+  }
+  hard_state_ = update.hard_state;
+  role_ = update.role;
+  votes_ = std::move(update.votes);
+  return Status::OK();
+}
+
+void Election::StepDown() {
+  role_ = Role::kFollower;
+  votes_.clear();
+}
+
+Status Election::PersistUpdate(Update update) {
   Status status;
   try {
-    status = store_.Save(next);
+    if (update.persist) status = store_.Save(update.hard_state);
   } catch (const std::exception& error) {
-    failed_ = true;
-    return Status::IOError(std::string("Raft hard-state save threw: ") + error.what());
+    status = Status::IOError(std::string("Raft hard-state save threw: ") + error.what());
   } catch (...) {
-    failed_ = true;
-    return Status::IOError("Raft hard-state save threw");
+    status = Status::IOError("Raft hard-state save threw");
   }
-  if (!status.ok()) {
-    failed_ = true;
-    return status;
-  }
-  hard_state_ = next;
-  return Status::OK();
+  return Advance(std::move(update), std::move(status));
 }
 
 bool Election::IsVoter(uint64_t id) const {
   return std::find(voters_.begin(), voters_.end(), id) != voters_.end();
 }
 
-Status Election::Campaign(uint64_t last_log_index, uint64_t last_log_term,
-                          std::vector<OutboundVote>* outbound) {
-  Status usable = CheckUsable();
+Result<Election::Update> Election::PrepareCampaign() const {
+  auto usable = CheckUsable();
   if (!usable.ok()) return usable;
-  if (outbound == nullptr) return Status::InvalidArgument("outbound votes pointer is null");
-  outbound->clear();
   if (role_ == Role::kLeader) return Status::Busy("leader cannot campaign");
   if (hard_state_.term == std::numeric_limits<uint64_t>::max())
     return Status::Busy("Raft term exhausted");
+  return Update{{hard_state_.term + 1, node_id_}, Role::kCandidate, {node_id_}, true, false};
+}
 
-  const HardState next{hard_state_.term + 1, node_id_};
-  Status status = Persist(next);
-  if (!status.ok()) return status;
-  role_ = Role::kCandidate;
-  votes_ = {node_id_};
-  for (uint64_t peer : voters_) {
-    if (peer != node_id_)
-      outbound->push_back({peer, {next.term, node_id_, last_log_index, last_log_term}});
+Result<Election::Update> Election::PrepareVoteRequest(const VoteRequest& request,
+                                                      uint64_t last_log_index,
+                                                      uint64_t last_log_term) const {
+  auto usable = CheckUsable();
+  if (!usable.ok()) return usable;
+  auto next = Current();
+  if (!IsVoter(request.candidate_id) || request.term == 0 || request.term < hard_state_.term)
+    return next;
+  const bool higher_term = request.term > hard_state_.term;
+  const bool fresh =
+      request.last_log_term > last_log_term ||
+      (request.last_log_term == last_log_term && request.last_log_index >= last_log_index);
+  const auto previous_vote = higher_term ? 0 : hard_state_.voted_for;
+  next.granted = fresh && (previous_vote == 0 || previous_vote == request.candidate_id);
+  next.hard_state = {request.term, next.granted ? request.candidate_id : previous_vote};
+  next.persist = next.hard_state.term != hard_state_.term ||
+                 next.hard_state.voted_for != hard_state_.voted_for;
+  if (higher_term) {
+    next.role = Role::kFollower;
+    next.votes.clear();
   }
+  return next;
+}
+
+Result<Election::Update> Election::PrepareVoteResponse(uint64_t peer_id,
+                                                       const VoteResponse& response) const {
+  auto usable = CheckUsable();
+  if (!usable.ok()) return usable;
+  if (!IsVoter(peer_id) || peer_id == node_id_) return Status::InvalidArgument("unknown voter");
+  auto next = Current();
+  if (response.term > hard_state_.term) {
+    next.hard_state = {response.term, 0};
+    next.persist = true;
+    next.role = Role::kFollower;
+    next.votes.clear();
+  } else if (role_ == Role::kCandidate && response.term == hard_state_.term && response.granted) {
+    next.votes.insert(peer_id);
+    if (next.votes.size() > voters_.size() / 2) next.role = Role::kLeader;
+  }
+  return next;
+}
+
+Result<Election::Update> Election::PrepareObserveLeader(uint64_t leader_id, uint64_t term) const {
+  auto usable = CheckUsable();
+  if (!usable.ok()) return usable;
+  if (!IsVoter(leader_id) || leader_id == node_id_)
+    return Status::InvalidArgument("unknown leader");
+  if (term < hard_state_.term) return Status::Busy("stale leader term");
+  auto next = Current();
+  if (term > hard_state_.term) {
+    next.hard_state = {term, 0};
+    next.persist = true;
+  }
+  next.role = Role::kFollower;
+  next.votes.clear();
+  return next;
+}
+
+Status Election::Campaign(uint64_t last_log_index, uint64_t last_log_term,
+                          std::vector<OutboundVote>* outbound) {
+  if (outbound == nullptr) return Status::InvalidArgument("outbound votes pointer is null");
+  outbound->clear();
+  auto prepared = PrepareCampaign();
+  if (!prepared.ok()) return prepared.status();
+  const auto status = PersistUpdate(prepared.TakeValue());
+  if (!status.ok()) return status;
+  for (auto peer : voters_)
+    if (peer != node_id_)
+      outbound->push_back({peer, {hard_state_.term, node_id_, last_log_index, last_log_term}});
   return Status::OK();
 }
 
 Result<VoteResponse> Election::HandleVoteRequest(const VoteRequest& request,
                                                  uint64_t last_log_index, uint64_t last_log_term) {
-  Status usable = CheckUsable();
-  if (!usable.ok()) return usable;
-  if (!IsVoter(request.candidate_id) || request.term == 0)
-    return VoteResponse{hard_state_.term, false};
-  if (request.term < hard_state_.term) return VoteResponse{hard_state_.term, false};
-
-  const bool higher_term = request.term > hard_state_.term;
-  const bool log_is_fresh =
-      request.last_log_term > last_log_term ||
-      (request.last_log_term == last_log_term && request.last_log_index >= last_log_index);
-  const uint64_t previous_vote = higher_term ? 0 : hard_state_.voted_for;
-  const bool grant = log_is_fresh && (previous_vote == 0 || previous_vote == request.candidate_id);
-  const HardState next{request.term, grant ? request.candidate_id : previous_vote};
-  if (next.term != hard_state_.term || next.voted_for != hard_state_.voted_for) {
-    Status status = Persist(next);
-    if (!status.ok()) return status;
-  }
-  if (higher_term) {
-    role_ = Role::kFollower;
-    votes_.clear();
-  }
-  return VoteResponse{hard_state_.term, grant};
+  auto prepared = PrepareVoteRequest(request, last_log_index, last_log_term);
+  if (!prepared.ok()) return prepared.status();
+  const bool granted = prepared.value().granted;
+  const auto status = PersistUpdate(prepared.TakeValue());
+  if (!status.ok()) return status;
+  return VoteResponse{hard_state_.term, granted};
 }
 
 Status Election::HandleVoteResponse(uint64_t peer_id, const VoteResponse& response) {
-  Status usable = CheckUsable();
-  if (!usable.ok()) return usable;
-  if (!IsVoter(peer_id) || peer_id == node_id_) return Status::InvalidArgument("unknown voter");
-  if (response.term > hard_state_.term) {
-    Status status = Persist({response.term, 0});
-    if (!status.ok()) return status;
-    role_ = Role::kFollower;
-    votes_.clear();
-    return Status::OK();
-  }
-  if (role_ != Role::kCandidate || response.term != hard_state_.term || !response.granted)
-    return Status::OK();
-  votes_.insert(peer_id);
-  if (votes_.size() > voters_.size() / 2) role_ = Role::kLeader;
-  return Status::OK();
+  auto prepared = PrepareVoteResponse(peer_id, response);
+  return prepared.ok() ? PersistUpdate(prepared.TakeValue()) : prepared.status();
 }
 
 Status Election::ObserveLeader(uint64_t leader_id, uint64_t term) {
-  Status usable = CheckUsable();
-  if (!usable.ok()) return usable;
-  if (!IsVoter(leader_id) || leader_id == node_id_)
-    return Status::InvalidArgument("unknown leader");
-  if (term < hard_state_.term) return Status::Busy("stale leader term");
-  if (term > hard_state_.term) {
-    Status status = Persist({term, 0});
-    if (!status.ok()) return status;
-  }
-  role_ = Role::kFollower;
-  votes_.clear();
-  return Status::OK();
+  auto prepared = PrepareObserveLeader(leader_id, term);
+  return prepared.ok() ? PersistUpdate(prepared.TakeValue()) : prepared.status();
 }
 
 }  // namespace yewukv::raft

@@ -10,6 +10,7 @@ add_executable(yewu_tests
   test_raft_log.cc
   test_raft_file_store.cc
   test_raft_journal.cc
+  test_async_persistence.cc
   test_persistence_queue.cc
   test_raft_node.cc
   test_raft_snapshot.cc
@@ -149,3 +150,8 @@ set_tests_properties(config_application PROPERTIES TIMEOUT 90)
 add_test(NAME cluster_ipv4_deployment
   COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test_cluster_address.py ${snapshot_test_args})
 set_tests_properties(cluster_ipv4_deployment PROPERTIES TIMEOUT 90)
+
+add_test(NAME cluster_async_persistence
+  COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test_async_persistence.py
+          ${snapshot_test_args} ${resource_test_args})
+set_tests_properties(cluster_async_persistence PROPERTIES TIMEOUT 180)

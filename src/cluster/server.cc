@@ -1,4 +1,5 @@
 #include "cluster/server.h"
+#include "raft/persistence_worker.h"
 
 #include "cluster/state_machine.h"
 #include "cluster/snapshot_policy.h"
@@ -301,16 +302,20 @@ struct Server::Impl {
   Options options;
   std::shared_ptr<ReadTraceRecorder> trace;
   raft::FileStore store;
+  raft::PersistenceQueue persistence_queue{{1, 2 * raft::FileStore::kMaxStateBytes}};
   raft::Node node;
+  std::unique_ptr<raft::PersistenceWorker> disk_worker;
   net::TcpServer server;
   StateMachine state_machine;
   std::map<uint64_t, Pending> pending;
+  uint64_t pending_term = 0;
   std::vector<std::pair<Pending, std::string>> staged;
   std::deque<Read> reads;
   uint64_t applied_index = 0;
   std::vector<std::unique_ptr<Peer>> peers;
   std::mutex mutex;
   std::condition_variable ready;
+  bool persistence_ready = false;  // Protected by mutex, including notification.
   std::deque<std::function<void()>> tasks;
   std::atomic<bool> stopping{false};
   std::atomic<bool> fatal{false};
@@ -347,7 +352,8 @@ struct Server::Impl {
       : options(std::move(selected)),
         trace(MakeTrace(options)),
         store(options.directory, StoreConfig(options, trace)),
-        node(NodeConfig(options), store.ReadState(), store, store),
+        node(NodeConfig(options), store.ReadState(), store, store,
+             options.background_persistence ? &persistence_queue : nullptr),
         server(net::InetAddress(options.listen_host, options.port)) {
     if (options.request_timeout_ms < 100 || options.request_timeout_ms > 60000 ||
         options.proposal_batch_size == 0 ||
@@ -357,6 +363,12 @@ struct Server::Impl {
         options.event_queue_capacity == 0 || options.pending_capacity == 0)
       throw std::invalid_argument("invalid cluster port or request timeout");
     BindIdentity(options, store.ReadState());
+    if (options.background_persistence)
+      disk_worker = std::make_unique<raft::PersistenceWorker>(persistence_queue, store, [this] {
+        std::lock_guard<std::mutex> lock(mutex);
+        persistence_ready = true;
+        ready.notify_one();
+      });
     if (node.snapshot().index != 0) {
       if (!state_machine.Restore(node.snapshot().data))
         throw std::runtime_error("invalid recovered KV snapshot");
@@ -482,19 +494,27 @@ struct Server::Impl {
             }
           }
         }
-        const auto reply = node.Receive(*message);
-        if (!reply) {
-          response.set_code(KvResponse::UNAVAILABLE);
-        } else {
-          *response.mutable_peer() = EncodeMessage(*reply);
-        }
+        const auto request_id = request.request_id();
+        auto accepted = node.ReceiveAsync(
+            std::move(*message), [this, weak, ordered, request_id](std::optional<Message> reply) {
+              auto result = Response(request_id);
+              if (reply)
+                *result.mutable_peer() = EncodeMessage(*reply);
+              else
+                result.set_code(KvResponse::UNAVAILABLE);
+              Respond(weak, ordered, std::move(result));
+            });
+        if (accepted.ok()) return;
+        response.set_code(accepted.code() == StatusCode::kBusy ? KvResponse::BUSY
+                                                               : KvResponse::UNAVAILABLE);
+        response.set_error(accepted.ToString());
       }
     } else if (request.has_status()) {
       const char* role = node.IsLeader()                         ? "leader"
                          : node.role() == raft::Role::kCandidate ? "candidate"
                                                                  : "follower";
       std::ostringstream json;
-      const auto metrics = store.ReadMetrics();
+      const auto metrics = disk_worker ? disk_worker->ReadMetrics() : store.ReadMetrics();
       json << "{\"id\":" << options.id << ",\"role\":\"" << role << "\",\"term\":" << node.term()
            << ",\"leader_id\":" << node.leader_id() << ",\"last_index\":" << node.LastIndex()
            << ",\"commit_index\":" << node.CommitIndex() << ",\"applied_index\":" << applied_index
@@ -544,6 +564,12 @@ struct Server::Impl {
            << ",\"disk_directory_sync_ns\":" << metrics.directory_sync_nanoseconds
            << ",\"disk_checkpoint_max_ns\":" << metrics.checkpoint_max_nanoseconds
            << ",\"disk_journal_sync_max_ns\":" << metrics.journal_sync_max_nanoseconds;
+      json << ",\"disk_executor\":\"" << (disk_worker ? "background" : "sync") << '"'
+           << ",\"persistence_pending\":" << (node.PersistencePending() ? 1 : 0)
+           << ",\"admitted_last_index\":" << node.LastAdmittedIndex()
+           << ",\"staged\":" << staged.size()
+           << ",\"persistence_queue_operations\":" << persistence_queue.outstanding()
+           << ",\"persistence_queue_bytes\":" << persistence_queue.payload_bytes();
       auto array = [&json](const auto& values) {
         json << '[';
         for (size_t i = 0; i < values.size(); ++i) {
@@ -577,13 +603,19 @@ struct Server::Impl {
     } else if (options.read_index && request.has_get()) {
       if (timing) {
         timing->term = node.term();
-        timing->minimum_index = node.LastIndex() + staged.size();
+        timing->minimum_index = node.LastAdmittedIndex() + staged.size();
+        if (timing->minimum_index > node.LastIndex() && staged.empty()) {
+          if (auto ticket = node.PendingTicket()) {
+            timing->persistence_stream = ticket->stream;
+            timing->persistence_sequence = ticket->sequence;
+          }
+        }
       }
       reads.push_back(
           Read{Pending{weak, ordered, request.request_id(),
                        Clock::now() + std::chrono::milliseconds(options.request_timeout_ms)},
-               request, node.LastIndex() + staged.size(), node.term(), 0, std::nullopt, timing,
-               timing ? ++trace_read_ordinal : 0});
+               request, node.LastAdmittedIndex() + staged.size(), node.term(), 0, std::nullopt,
+               timing, timing ? ++trace_read_ordinal : 0});
       return;
     } else {
       auto command = request;
@@ -626,7 +658,7 @@ struct Server::Impl {
   void Finish() {
     // A new leader may replace an old pending index with a different command.
     // Cancel old-leader waiters BEFORE applying the new leader's committed log.
-    if (!node.IsLeader()) {
+    if (!node.IsLeader() || (!pending.empty() && pending_term != node.term())) {
       for (const auto& [index, operation] : pending) {
         auto response = Response(operation.request_id);
         response.set_code(KvResponse::UNAVAILABLE);
@@ -637,6 +669,10 @@ struct Server::Impl {
     }
     Apply();
     if (snapshot_job.valid() && snapshot_job.wait_for(0ms) == std::future_status::ready) {
+      snapshot_ready = false;
+    }
+    if (!node.PersistencePending() && snapshot_job.valid() &&
+        snapshot_job.wait_for(0ms) == std::future_status::ready) {
       auto encoded = snapshot_job.get();
       snapshot_ready = false;
       snapshot_encode_ns += encoded.encode_ns;
@@ -652,7 +688,7 @@ struct Server::Impl {
       } else
         ++snapshot_discarded;
     }
-    if (!snapshot_job.valid() &&
+    if (!node.PersistencePending() && !snapshot_job.valid() &&
         state_machine.encoded_bytes() <= raft::FileStore::kMaxSnapshotBytes &&
         ShouldSnapshot(applied_index, node.snapshot().index, node.RetainedBytes(),
                        state_machine.encoded_bytes(), options.snapshot_entries,
@@ -695,6 +731,17 @@ struct Server::Impl {
     // Confirmation overlaps replication; completion still waits for BOTH the
     // ReadIndex and the request's earlier-write application fence.
     FinishReads();
+    const auto now = Clock::now();
+    for (auto it = staged.begin(); it != staged.end();) {
+      if (now >= it->first.deadline || it->first.connection.expired()) {
+        auto response = Response(it->first.request_id);
+        response.set_code(KvResponse::BUSY);
+        response.set_error("proposal deadline expired before admission");
+        Respond(it->first.connection, it->first.ordered, std::move(response));
+        it = staged.erase(it);
+      } else
+        ++it;
+    }
     if (!staged.empty()) {
       if (!node.IsLeader()) {
         for (const auto& operation : staged) {
@@ -703,25 +750,37 @@ struct Server::Impl {
           response.set_error("leadership changed before proposal");
           Respond(operation.first.connection, operation.first.ordered, std::move(response));
         }
-      } else {
+        staged.clear();
+      } else if (!node.PersistencePending()) {
+        // Earlier requests may have accumulated while the disk was busy. Only
+        // submit one bounded batch; later requests retain their original fence.
+        const auto count = std::min(staged.size(), options.proposal_batch_size);
         std::vector<std::string> commands;
-        for (auto& operation : staged) commands.push_back(std::move(operation.second));
+        for (size_t i = 0; i < count; ++i) commands.push_back(staged[i].second);
         auto proposed = node.ProposeBatch(std::move(commands));
         if (proposed.ok()) {
-          for (size_t i = 0; i < staged.size(); ++i)
+          pending_term = node.term();
+          for (size_t i = 0; i < count; ++i)
             pending.emplace(proposed.value()[i], std::move(staged[i].first));
+          if (auto ticket = node.PendingTicket())
+            for (auto& read : reads)
+              if (read.trace && read.minimum_index >= proposed.value().front() &&
+                  read.minimum_index <= proposed.value().back()) {
+                read.trace->persistence_stream = ticket->stream;
+                read.trace->persistence_sequence = ticket->sequence;
+              }
         } else {
-          for (const auto& operation : staged) {
+          for (size_t i = 0; i < count; ++i) {
+            const auto& operation = staged[i];
             auto response = Response(operation.first.request_id);
             response.set_code(KvResponse::UNAVAILABLE);
             response.set_error("proposal persistence failed; operation outcome is unknown");
             Respond(operation.first.connection, operation.first.ordered, std::move(response));
           }
         }
+        staged.erase(staged.begin(), staged.begin() + count);
       }
-      staged.clear();
     }
-    const auto now = Clock::now();
     for (auto it = pending.begin(); it != pending.end();) {
       if (!node.IsLeader() || now >= it->second.deadline) {
         ++quorum_timeouts;
@@ -838,14 +897,17 @@ struct Server::Impl {
         std::vector<std::function<void()>> batch;
         {
           std::unique_lock<std::mutex> lock(mutex);
-          ready.wait_until(lock, next_tick,
-                           [this] { return stopping || !tasks.empty() || snapshot_ready.load(); });
+          ready.wait_until(lock, next_tick, [this] {
+            return stopping || !tasks.empty() || snapshot_ready.load() || persistence_ready;
+          });
           if (stopping) break;
+          persistence_ready = false;
           while (!tasks.empty() && batch.size() < options.proposal_batch_size) {
             batch.push_back(std::move(tasks.front()));
             tasks.pop_front();
           }
         }
+        node.AdvancePersistence();
         for (auto& task : batch) task();
         if (Clock::now() >= next_tick) {
           node.Tick();
@@ -921,7 +983,7 @@ struct Server::Impl {
                 timing->node_received_ns = TraceNow();
                 timing->node_tid = CurrentThreadId();
               }
-              node.Receive(reply);
+              node.ReceiveAsync(std::move(reply), [](std::optional<Message>) {});
               if (timing) trace->Record(*timing);
             }) &&
             timing)
@@ -944,6 +1006,7 @@ struct Server::Impl {
       peer->ready.notify_all();
     }
     if (worker.joinable()) worker.join();
+    if (disk_worker) disk_worker->Stop();
     if (snapshot_job.valid()) snapshot_job.wait();
     for (auto& peer : peers) {
       if (peer->thread.joinable()) peer->thread.join();
@@ -958,6 +1021,7 @@ Server::~Server() {
 
 bool Server::Run(int stop_fd) {
   try {
+    if (impl_->disk_worker) impl_->disk_worker->Start();
     impl_->worker = std::thread([this] { impl_->Work(); });
     for (auto& peer : impl_->peers) {
       peer->thread = std::thread([this, selected = peer.get()] { impl_->PeerWork(*selected); });

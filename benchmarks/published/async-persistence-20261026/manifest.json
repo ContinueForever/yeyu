@@ -1,0 +1,63 @@
+{
+  "base_commit": "939399ef61ba3e7c6d3810b850fd14b9f81fb456",
+  "phase": "opt-in ordered disk worker with nonblocking single-owner Raft prepare/advance continuations",
+  "default_server": "synchronous FileStore",
+  "runtime_option": "--disk-executor background",
+  "nonblocking_raft_owner": true,
+  "background_disk_worker": true,
+  "max_pending_disk_operations": 1,
+  "queue_input_budget_bytes": 134217728,
+  "new_cloud_experiment": false,
+  "performance_claim": false,
+  "local_compiler": "GCC 15.2.0",
+  "complete_ctest": 186,
+  "new_component_cases": 16,
+  "new_runtime_ctest_entries": 1,
+  "runtime_unittest_cases": 13,
+  "results": {
+    "normal": {
+      "ctest": 186,
+      "seconds": 83.26,
+      "binaries": {
+        "yewu_tests": "6b324f8526c5e0188e3a6dcf98d59ffd2e0c42da156907a662bdd0646620e765",
+        "yewukv-node": "5b38c38d70828341750e4caaa6d2e2a03c76be48343b402407ab08c8aca06af7"
+      }
+    },
+    "asan": {
+      "ctest": 186,
+      "seconds": 102.67,
+      "binaries": {
+        "yewu_tests": "3716123fabe43a254146974e27582dddfdb18a7739c0e37fdb1556e0fff41c1a",
+        "yewukv-node": "c89bdaf05b71731a046a8e80394bc3d7ac3df7cdfd466f9ca3028121a9c326ee"
+      }
+    },
+    "tsan": {
+      "cases": 31,
+      "scope": "PersistenceQueue 15 + AsyncPersistence 16 only; not the full server",
+      "binary_sha256": "87233bcc76a9a8fc0977bdcd14b782d29ee648c8071f3a1265730fd19439eef9"
+    }
+  },
+  "normal_build_type": "RelWithDebInfo",
+  "asan_build_type": "Debug",
+  "ASAN_OPTIONS": "detect_leaks=1:halt_on_error=1",
+  "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1",
+  "TSAN_OPTIONS": "halt_on_error=1",
+  "tsan_build_flags": "-std=c++17 -O1 -g -fsanitize=thread -fno-omit-frame-pointer -no-pie -pthread",
+  "tsan_scope": "31 component cases only (AsyncPersistence 16 + PersistenceQueue 15); not the full network server; production component sources instrumented, GTest prebuilt",
+  "initial_complete_runs": {
+    "normal": {
+      "passed": 185,
+      "total": 186,
+      "seconds": 85.05
+    },
+    "asan": {
+      "passed": 185,
+      "total": 186,
+      "seconds": 122.56
+    },
+    "failure": "new SIGKILL test expected 100ms socket timeout, but receive_response helper resets it to 4s; application returns UNAVAILABLE at its own deadline while disk remains gated. Corrected to direct MSG_PEEK, retaining no-response condition. Production code unchanged by this test correction."
+  },
+  "startup_environment_failure": "ctest initially could not load librhash because its library path was missing; no tests ran; preserved separately",
+  "async_trace_analysis": "task/request dependency IDs recorded; old same-thread timeline deliberately rejects async inputs; complete dependency attribution pending",
+  "source_files": 31
+}

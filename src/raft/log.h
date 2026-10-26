@@ -54,8 +54,28 @@ struct AppendReply {
 // supply the current term and match indexes only from valid follower replies.
 class RaftLog {
  public:
+  struct AppendUpdate {
+    AppendReply reply;
+    uint64_t first_index = 0;  // Zero means no disk mutation is necessary.
+    std::vector<LogEntry> suffix;
+    uint64_t commit_through = 0;
+  };
+  struct SnapshotUpdate {
+    Snapshot snapshot;
+    std::vector<LogEntry> suffix;
+    bool persist = true;
+  };
   RaftLog(std::vector<LogEntry> recovered, uint64_t commit_index, LogStore& store,
           Snapshot snapshot = {});
+
+  // Preparation may allocate but never publishes an unstable log position.
+  // Only one mutation may be pending; commit of the existing durable prefix
+  // may advance meanwhile. Advance requires the actual persistence result.
+  Result<AppendUpdate> PrepareAppend(const AppendRequest& request);
+  Result<AppendReply> AdvanceAppend(AppendUpdate update, Status persisted);
+  Result<SnapshotUpdate> PrepareCompact(uint64_t applied_index, std::string data) const;
+  Result<SnapshotUpdate> PrepareInstallSnapshot(const Snapshot& snapshot) const;
+  Status AdvanceSnapshot(SnapshotUpdate update, Status persisted);
 
   Result<AppendReply> HandleAppend(const AppendRequest& request);
   // match_indexes[0] is the leader's own durable last index.

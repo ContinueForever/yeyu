@@ -24,6 +24,8 @@ struct ReadTrace {
   uint64_t confirmed_sequence = 0;
   uint64_t index = 0;
   uint64_t minimum_index = 0;
+  uint64_t persistence_stream = 0;
+  uint64_t persistence_sequence = 0;
   uint64_t code = 0;
   uint64_t received_tid = 0;
   uint64_t handled_tid = 0;

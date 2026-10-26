@@ -1,5 +1,6 @@
 #pragma once
 
+#include <algorithm>
 #include <array>
 #include <cstdint>
 #include <map>
@@ -10,6 +11,7 @@
 #include <vector>
 
 #include "raft/file_store.h"
+#include "raft/persistence_queue.h"
 
 namespace yewukv::raft {
 
@@ -73,7 +75,23 @@ class Node {
     std::function<bool(const std::string&)> validate_snapshot;
   };
 
-  Node(Config config, DurableState recovered, HardStateStore& hard_store, LogStore& log_store);
+  Node(Config config, DurableState recovered, HardStateStore& hard_store, LogStore& log_store,
+       PersistenceQueue* queue = nullptr);
+  // With a queue, Campaign/ProposeBatch/Compact return admission, not durable
+  // success. LastIndex and all protocol effects still expose durable state only.
+  // ReceiveAsync calls its callback on this owner after every required barrier;
+  // a non-OK return means NOT admitted and the callback is not called.
+  using ReplyCallback = std::function<void(std::optional<Message>)>;
+  Status ReceiveAsync(Message message, ReplyCallback callback);
+  void AdvancePersistence();
+  bool PersistencePending() const { return pending_write_.has_value(); }
+  std::optional<PersistenceQueue::Ticket> PendingTicket() const {
+    return pending_write_ ? std::optional<PersistenceQueue::Ticket>{pending_write_->ticket}
+                          : std::nullopt;
+  }
+  uint64_t LastAdmittedIndex() const {
+    return std::max(LastIndex(), pending_write_ ? pending_write_->last_index : uint64_t{0});
+  }
   void Tick();
   Status Campaign();
   std::optional<Message> Receive(const Message& message);
@@ -124,6 +142,15 @@ class Node {
   std::optional<Message> ReceiveSnapshot(const Message& message);
   uint64_t NextSequence();
   bool IsPeer(uint64_t peer) const;
+  bool ValidAsyncMessage(const Message& message) const;
+  void Fence(uint64_t observed_term);
+  Status CampaignAsync();
+  Status StartWrite(const PersistenceMutation& mutation, std::function<void(Status)> done);
+  Status StartElection(Election::Update update, std::function<void(Status)> done);
+  Status AppendAsync(RaftLog::AppendUpdate update, std::function<void(Result<AppendReply>)> done);
+  Status SnapshotAsync(RaftLog::SnapshotUpdate update, std::function<void(Status)> done);
+  Status ReceiveAppendAsync(Message message, ReplyCallback callback);
+  Status ReceiveSnapshotAsync(Message message, ReplyCallback callback);
 
   Config config_;
   Election election_;
@@ -147,6 +174,15 @@ class Node {
   bool failed_ = false;
   std::optional<ReadState> read_;
   std::vector<ReadState> read_states_;
+  struct PendingWrite {
+    PersistenceQueue::Ticket ticket;
+    std::function<void(Status)> done;
+    uint64_t last_index = 0;
+  };
+  PersistenceQueue* queue_ = nullptr;  // Exclusive stream; outlives this node.
+  std::optional<PendingWrite> pending_write_;
+  uint64_t observed_term_ = 0;
+  uint64_t leadership_epoch_ = 0;
 };
 
 }  // namespace yewukv::raft

@@ -21,7 +21,7 @@
 
 ## 验证结果
 
-完成[有序持久化提交／完成接口](docs/persistence-queue.md)第一阶段，普通／ASan＋UBSan 各 **169 项**通过。新增 15 项测试覆盖有界积压、乱序与旧完成通知、实际 Raft 投票／日志／快照确认，以及同步后失败的恢复；[源码增量与回归记录](benchmarks/published/persistence-queue-20261026/README.md)可核对。默认服务仍同步落盘，磁盘线程与非阻塞 Raft owner 接入尚待完成。
+完成[有序持久化提交／完成接口](docs/persistence-queue.md)第一阶段，普通／ASan＋UBSan 各 **169 项**通过。新增 15 项测试覆盖有界积压、乱序与旧完成通知、实际 Raft 投票／日志／快照确认，以及同步后失败的恢复；[源码增量与回归记录](benchmarks/published/persistence-queue-20261026/README.md)可核对。后续[后台磁盘执行与非阻塞 Raft 主循环](docs/background-persistence.md)已接入可选 `--disk-executor background`，默认服务仍同步落盘；最新普通／ASan＋UBSan 各 **186 项**、队列与后台持久化组件 TSan **31 项**通过。新增真实三进程验收覆盖慢盘心跳、强杀、磁盘错误、CAS 与快照追赶，尚无云端提速结论。
 
 新增[持久化与读请求的同线程时间关联](docs/persistence-tracing.md)，普通／ASan＋UBSan 各 **154 项**通过。[三机开关对照](docs/cloud-persistence-trace-20261025.md)完成 12 个窗口、212,268 次成功请求，另有 3,732 个未发计划时刻；开启组 53,065 个 GET 全部关联。慢 GET 与持久化的累计区间交集约 60%／66%，包含调度等待且不能当作可实现收益；追踪增加 CPU 开销，默认关闭。[完整证据与复算](benchmarks/published/persistence-trace-20261025/README.md)已公开，后台磁盘发布仍待实现。
 

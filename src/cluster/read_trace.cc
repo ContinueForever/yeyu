@@ -165,6 +165,8 @@ std::string ReadTraceRecorder::Encode(const Event& event) const {
   if (const auto* r = std::get_if<raft::PersistenceTrace>(&event)) {
     auto line = Fields("persist", node_,
                        {{"sequence", r->sequence},
+                        {"task_stream", r->task_stream},
+                        {"task_sequence", r->task_sequence},
                         {"kind", r->kind},
                         {"tid", r->tid},
                         {"started_ns", r->started_ns},
@@ -194,6 +196,8 @@ std::string ReadTraceRecorder::Encode(const Event& event) const {
                    {"confirmed_sequence", r->confirmed_sequence},
                    {"index", r->index},
                    {"minimum_index", r->minimum_index},
+                   {"persistence_stream", r->persistence_stream},
+                   {"persistence_sequence", r->persistence_sequence},
                    {"code", r->code},
                    {"received_tid", r->received_tid},
                    {"handled_tid", r->handled_tid},

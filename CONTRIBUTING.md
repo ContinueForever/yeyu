@@ -64,7 +64,9 @@ python3 tests/test_cloud_soak_evidence.py
 
 持久化时间关联新增磁盘字节等价、诊断异常隔离、失败记录及真实三进程关联／重启检查，完整普通／ASan 回归为 154 项。`persistence_timeline_accounting` 另在同一个 CTest 中覆盖 8 项区间、身份和不完整记录案例，不能再次叠加进 154 项。接口与解释范围见[持久化追踪](docs/persistence-tracing.md)。
 
-有序持久化接口阶段新增 15 项组件测试，最新完整普通／ASan 回归为 169 项。实际 Node／RaftLog 通过阻塞兼容桥接到可控完成队列，检查确认与恢复边界；默认 Server 尚未接入后台磁盘线程。真实三进程追踪测试现要求传入测试 I/O 注入库（CTest 自动配置），以短时 5 ms 同步延迟验证区间交集；这不是性能测量。契约及修正前后记录见[有序持久化接口](docs/persistence-queue.md)。
+有序持久化接口阶段新增 15 项组件测试，该阶段完整普通／ASan 回归为 169 项。实际 Node／RaftLog 通过阻塞兼容桥接到可控完成队列，检查确认与恢复边界；该阶段默认 Server 尚未接入后台磁盘线程。真实三进程追踪测试现要求传入测试 I/O 注入库（CTest 自动配置），以短时 5 ms 同步延迟验证区间交集；这不是性能测量。契约及修正前后记录见[有序持久化接口](docs/persistence-queue.md)。
+
+后续[后台磁盘执行](docs/background-persistence.md)新增 16 项 C++ 组件用例与一个含 13 项真实进程用例的 CTest 入口，完整普通／ASan 各 186 项通过；TSan 仅覆盖队列与后台执行组件 31 项。`cluster_async_persistence` 使用测试专用磁盘闸门，验证同步等待时的心跳、GET 应用条件、SIGKILL、失败退出与停机排空，并复用已有历史／CAS／快照断言。首次强杀用例的读取助手重设超时问题及修正后记录一并归档，不能删掉失败日志。
 
 ## GitHub 检查
 

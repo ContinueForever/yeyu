@@ -60,7 +60,7 @@ std::vector<LogEntry> RaftLog::CommitThrough(uint64_t index) {
   return newly_committed;
 }
 
-Result<AppendReply> RaftLog::HandleAppend(const AppendRequest& request) {
+Result<RaftLog::AppendUpdate> RaftLog::PrepareAppend(const AppendRequest& request) {
   Status usable = CheckUsable();
   if (!usable.ok()) return usable;
   if ((request.prev_index == 0 && request.prev_term != 0) ||
@@ -82,15 +82,15 @@ Result<AppendReply> RaftLog::HandleAppend(const AppendRequest& request) {
   }
 
   if (request.prev_index < snapshot_.index)
-    return AppendReply{false, snapshot_.index + 1, snapshot_.term, commit_index_, {}};
+    return AppendUpdate{{false, snapshot_.index + 1, snapshot_.term, commit_index_, {}}, 0, {}, 0};
   if (request.prev_index > LastIndex()) {
-    return AppendReply{false, LastIndex() + 1, 0, commit_index_, {}};
+    return AppendUpdate{{false, LastIndex() + 1, 0, commit_index_, {}}, 0, {}, 0};
   }
   if (TermAt(request.prev_index) != request.prev_term) {
     const uint64_t conflict_term = TermAt(request.prev_index);
     uint64_t first = request.prev_index;
     while (first > snapshot_.index + 1 && TermAt(first - 1) == conflict_term) --first;
-    return AppendReply{false, first, conflict_term, commit_index_, {}};
+    return AppendUpdate{{false, first, conflict_term, commit_index_, {}}, 0, {}, 0};
   }
 
   size_t first_new = request.entries.size();
@@ -108,6 +108,7 @@ Result<AppendReply> RaftLog::HandleAppend(const AppendRequest& request) {
     if (incoming.command != existing.command)
       return Status::Corruption("same Raft index and term contain different commands");
   }
+  AppendUpdate update;
   if (first_new < request.entries.size()) {
     const uint64_t first_index = request.entries[first_new].index;
     if (first_index <= commit_index_)
@@ -117,21 +118,40 @@ Result<AppendReply> RaftLog::HandleAppend(const AppendRequest& request) {
     // Keep the already persisted prefix in place. Prepare allocations before
     // saving; publishing a small append must not copy the entire retained log.
     entries_.reserve(prefix + suffix.size());
-    Status status = PersistSuffix(first_index, suffix);
-    if (!status.ok()) return status;
-    entries_.resize(prefix);
-    entries_.insert(entries_.end(), std::make_move_iterator(suffix.begin()),
-                    std::make_move_iterator(suffix.end()));
+    update.first_index = first_index;
+    update.suffix = std::move(suffix);
   }
+  const auto last = request.entries.empty() ? request.prev_index : request.entries.back().index;
+  update.reply.success = true;
+  update.commit_through = std::min(request.leader_commit, last);
+  return update;
+}
 
-  const uint64_t last_in_request =
-      request.entries.empty() ? request.prev_index : request.entries.back().index;
-  const uint64_t next_commit = std::min(request.leader_commit, last_in_request);
-  AppendReply reply;
-  reply.success = true;
-  reply.newly_committed = CommitThrough(next_commit);
-  reply.commit_index = commit_index_;
-  return reply;
+Result<AppendReply> RaftLog::AdvanceAppend(AppendUpdate update, Status persisted) {
+  if (!persisted.ok()) {
+    failed_ = true;
+    return persisted;
+  }
+  const auto usable = CheckUsable();
+  if (!usable.ok()) return usable;
+  if (update.first_index) {
+    const auto prefix = static_cast<size_t>(update.first_index - snapshot_.index - 1);
+    entries_.resize(prefix);
+    entries_.insert(entries_.end(), std::make_move_iterator(update.suffix.begin()),
+                    std::make_move_iterator(update.suffix.end()));
+  }
+  if (update.reply.success) update.reply.newly_committed = CommitThrough(update.commit_through);
+  update.reply.commit_index = commit_index_;
+  return std::move(update.reply);
+}
+
+Result<AppendReply> RaftLog::HandleAppend(const AppendRequest& request) {
+  auto prepared = PrepareAppend(request);
+  if (!prepared.ok()) return prepared.status();
+  auto update = prepared.TakeValue();
+  Status status;
+  if (update.first_index) status = PersistSuffix(update.first_index, update.suffix);
+  return AdvanceAppend(std::move(update), std::move(status));
 }
 
 Result<std::vector<LogEntry>> RaftLog::AdvanceLeaderCommit(
@@ -153,6 +173,21 @@ Result<std::vector<LogEntry>> RaftLog::AdvanceLeaderCommit(
   return std::vector<LogEntry>{};
 }
 
+Status RaftLog::AdvanceSnapshot(SnapshotUpdate update, Status persisted) {
+  if (!persisted.ok()) {
+    failed_ = true;
+    return persisted;
+  }
+  const auto usable = CheckUsable();
+  if (!usable.ok()) return usable;
+  if (update.persist) {
+    snapshot_ = std::move(update.snapshot);
+    entries_ = std::move(update.suffix);
+    commit_index_ = std::max(commit_index_, snapshot_.index);
+  }
+  return Status::OK();
+}
+
 Status RaftLog::PublishSnapshot(const Snapshot& snapshot, std::vector<LogEntry> suffix) {
   Status status;
   try {
@@ -162,35 +197,43 @@ Status RaftLog::PublishSnapshot(const Snapshot& snapshot, std::vector<LogEntry> 
   } catch (...) {
     status = Status::IOError("save snapshot threw");
   }
-  if (!status.ok()) {
-    failed_ = true;
-    return status;
-  }
-  snapshot_ = snapshot;
-  entries_ = std::move(suffix);
-  commit_index_ = std::max(commit_index_, snapshot.index);
-  return Status::OK();
+  return AdvanceSnapshot({snapshot, std::move(suffix)}, std::move(status));
 }
 
-Status RaftLog::Compact(uint64_t applied_index, std::string data) {
+Result<RaftLog::SnapshotUpdate> RaftLog::PrepareCompact(uint64_t applied_index,
+                                                        std::string data) const {
   const auto usable = CheckUsable();
   if (!usable.ok()) return usable;
   if (applied_index <= snapshot_.index || applied_index > commit_index_)
     return Status::InvalidArgument("snapshot must cover an applied committed prefix");
-  return PublishSnapshot({applied_index, TermAt(applied_index), std::move(data)},
-                         {entries_.begin() + (applied_index - snapshot_.index), entries_.end()});
+  return SnapshotUpdate{{applied_index, TermAt(applied_index), std::move(data)},
+                        {entries_.begin() + (applied_index - snapshot_.index), entries_.end()}};
 }
 
-Status RaftLog::InstallSnapshot(const Snapshot& snapshot) {
+Result<RaftLog::SnapshotUpdate> RaftLog::PrepareInstallSnapshot(const Snapshot& snapshot) const {
   const auto usable = CheckUsable();
   if (!usable.ok()) return usable;
-  if (snapshot.index <= commit_index_) return Status::OK();
+  if (snapshot.index <= commit_index_) return SnapshotUpdate{{}, {}, false};
   if (snapshot.index == UINT64_MAX || snapshot.term == 0 || snapshot.term < TermAt(commit_index_))
     return Status::InvalidArgument("invalid installed snapshot");
   std::vector<LogEntry> suffix;
   if (snapshot.index <= LastIndex() && TermAt(snapshot.index) == snapshot.term)
     suffix.assign(entries_.begin() + (snapshot.index - snapshot_.index), entries_.end());
-  return PublishSnapshot(snapshot, std::move(suffix));
+  return SnapshotUpdate{snapshot, std::move(suffix)};
+}
+
+Status RaftLog::Compact(uint64_t applied_index, std::string data) {
+  auto prepared = PrepareCompact(applied_index, std::move(data));
+  if (!prepared.ok()) return prepared.status();
+  auto update = prepared.TakeValue();
+  return PublishSnapshot(update.snapshot, std::move(update.suffix));
+}
+
+Status RaftLog::InstallSnapshot(const Snapshot& snapshot) {
+  auto prepared = PrepareInstallSnapshot(snapshot);
+  if (!prepared.ok()) return prepared.status();
+  auto update = prepared.TakeValue();
+  return update.persist ? PublishSnapshot(update.snapshot, std::move(update.suffix)) : Status::OK();
 }
 
 }  // namespace yewukv::raft

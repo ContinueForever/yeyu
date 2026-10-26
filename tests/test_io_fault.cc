@@ -44,7 +44,8 @@ extern "C" ssize_t write(int fd, const void* data, size_t size) {
       errno = EIO;
       return -1;
     }
-    if (!mode || (std::strcmp(mode, "sync") != 0 && std::strcmp(mode, "slow-sync") != 0)) {
+    if (!mode || (std::strcmp(mode, "sync") != 0 && std::strcmp(mode, "slow-sync") != 0 &&
+                  std::strcmp(mode, "gate-sync") != 0)) {
       errno = ENOSPC;
       return -1;
     }
@@ -59,6 +60,18 @@ extern "C" int fdatasync(int fd) {
   if (Armed(fd) && mode && std::strcmp(mode, "sync") == 0) {
     errno = EIO;
     return -1;
+  }
+  if (Armed(fd) && mode && std::strcmp(mode, "gate-sync") == 0) {
+    const char* entered = std::getenv("YEWUKV_TEST_IO_ENTERED");
+    const char* release = std::getenv("YEWUKV_TEST_IO_RELEASE");
+    if (entered && release) {
+      const int marker = ::open(entered, O_WRONLY | O_CREAT | O_CLOEXEC, 0600);
+      if (marker >= 0) ::close(marker);
+      while (Armed(fd) && ::access(release, F_OK) != 0) {
+        timespec delay{0, 1000000};
+        ::nanosleep(&delay, nullptr);
+      }
+    }
   }
   if (Armed(fd) && mode && std::strcmp(mode, "slow-sync") == 0) {
     // Delay only test Raft descriptors; unrelated process I/O stays untouched.

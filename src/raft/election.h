@@ -44,8 +44,26 @@ struct OutboundVote {
 // provide the last DURABLE log position. There are no timers or sockets here.
 class Election {
  public:
+  // Prepared transitions do not publish a vote, term or role. The single owner
+  // must execute the requested save and call Advance with its actual result.
+  struct Update {
+    HardState hard_state;
+    Role role = Role::kFollower;
+    std::set<uint64_t> votes;
+    bool persist = false;
+    bool granted = false;
+  };
   Election(uint64_t node_id, std::vector<uint64_t> voters, HardState recovered,
            HardStateStore& store);
+
+  Result<Update> PrepareCampaign() const;
+  Result<Update> PrepareVoteRequest(const VoteRequest& request, uint64_t last_log_index,
+                                    uint64_t last_log_term) const;
+  Result<Update> PrepareVoteResponse(uint64_t peer_id, const VoteResponse& response) const;
+  Result<Update> PrepareObserveLeader(uint64_t leader_id, uint64_t term) const;
+  Status Advance(Update update, Status persisted);
+  // A volatile safety fence; never grants a vote or claims a new durable term.
+  void StepDown();
 
   Status Campaign(uint64_t last_log_index, uint64_t last_log_term,
                   std::vector<OutboundVote>* outbound);
@@ -61,7 +79,8 @@ class Election {
 
  private:
   Status CheckUsable() const;
-  Status Persist(HardState next);
+  Status PersistUpdate(Update update);
+  Update Current() const;
   bool IsVoter(uint64_t id) const;
 
   const uint64_t node_id_;

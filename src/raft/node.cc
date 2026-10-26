@@ -8,12 +8,15 @@
 
 namespace yewukv::raft {
 
-Node::Node(Config config, DurableState recovered, HardStateStore& hard_store, LogStore& log_store)
+Node::Node(Config config, DurableState recovered, HardStateStore& hard_store, LogStore& log_store,
+           PersistenceQueue* queue)
     : config_(std::move(config)),
       election_(config_.id, config_.voters, recovered.hard_state, hard_store),
       log_(std::move(recovered.entries), recovered.snapshot.index, log_store,
            std::move(recovered.snapshot)),
-      random_(config_.seed + static_cast<uint32_t>(config_.id * 17)) {
+      random_(config_.seed + static_cast<uint32_t>(config_.id * 17)),
+      queue_(queue),
+      observed_term_(recovered.hard_state.term) {
   if (config_.heartbeat_ticks == 0 || config_.rpc_timeout_ticks == 0 ||
       config_.election_min_ticks <= config_.heartbeat_ticks || config_.election_jitter_ticks == 0 ||
       config_.election_jitter_ticks > UINT32_MAX - config_.election_min_ticks)
@@ -56,6 +59,7 @@ void Node::Collect(std::vector<LogEntry> entries) {
 
 Status Node::Campaign() {
   if (failed()) return Status::IOError("Raft node failed; restart required");
+  if (queue_) return CampaignAsync();
   std::vector<OutboundVote> votes;
   const auto status = election_.Campaign(log_.LastIndex(), log_.LastTerm(), &votes);
   if (!status.ok()) return status;
@@ -80,6 +84,7 @@ Status Node::Campaign() {
 void Node::Tick() {
   if (failed()) return;
   if (!IsLeader()) {
+    if (PersistencePending()) return;
     if (++election_elapsed_ >= election_timeout_) Campaign();
     return;
   }
@@ -101,6 +106,20 @@ void Node::BecomeLeader() {
   }
   // A current-term entry establishes commitment of the inherited prefix before
   // any client read can complete, including after an all-node restart.
+  if (queue_) {
+    auto prepared = log_.PrepareAppend({log_.LastIndex(),
+                                        log_.LastTerm(),
+                                        log_.CommitIndex(),
+                                        {{log_.LastIndex() + 1, term(), ""}}});
+    if (!prepared.ok() || !AppendAsync(prepared.TakeValue(), [this](Result<AppendReply> result) {
+                             if (!result.ok() || !result.value().success)
+                               failed_ = true;
+                             else
+                               Broadcast();
+                           }).ok())
+      failed_ = true;
+    return;
+  }
   auto reply = log_.HandleAppend({log_.LastIndex(),
                                   log_.LastTerm(),
                                   log_.CommitIndex(),
@@ -193,6 +212,9 @@ void Node::AdvanceCommit() {
 }
 
 std::optional<Message> Node::Receive(const Message& message) {
+  if (queue_ && (message.kind == MessageKind::kVote || message.kind == MessageKind::kAppend ||
+                 message.kind == MessageKind::kSnapshot || message.term > term()))
+    throw std::logic_error("queued nodes require ReceiveAsync for persistence-capable messages");
   if (failed() || message.to != id() || !IsPeer(message.from) || message.term == 0 ||
       message.sequence == 0)
     return std::nullopt;
@@ -375,6 +397,20 @@ Result<std::vector<uint64_t>> Node::ProposeBatch(std::vector<std::string> comman
     indexes.push_back(index);
     append.entries.push_back({index, term(), std::move(command)});
   }
+  if (queue_) {
+    if (PersistencePending()) return Status::Busy("a persistence barrier is pending");
+    auto prepared = log_.PrepareAppend(append);
+    if (!prepared.ok()) return prepared.status();
+    auto admitted = AppendAsync(prepared.TakeValue(), [this](Result<AppendReply> result) {
+      if (!result.ok() || !result.value().success)
+        failed_ = true;
+      else
+        Broadcast();
+    });
+    if (!admitted.ok()) return admitted;
+    if (pending_write_) pending_write_->last_index = indexes.back();
+    return indexes;
+  }
   const auto result = log_.HandleAppend(append);
   if (!result.ok()) return result.status();
   if (!result.value().success) {
@@ -402,10 +438,16 @@ std::optional<Snapshot> Node::TakeInstalledSnapshot() {
 
 Status Node::Compact(uint64_t applied_index, std::string data) {
   if (failed()) return Status::IOError("Raft node failed; restart required");
+  if (queue_ && PersistencePending()) return Status::Busy("a persistence barrier is pending");
   if (data.size() > FileStore::kMaxSnapshotBytes ||
       (config_.validate_snapshot && !config_.validate_snapshot(data)))
     return Status::InvalidArgument("invalid state-machine snapshot");
-  return log_.Compact(applied_index, std::move(data));
+  if (!queue_) return log_.Compact(applied_index, std::move(data));
+  auto prepared = log_.PrepareCompact(applied_index, std::move(data));
+  if (!prepared.ok()) return prepared.status();
+  return SnapshotAsync(prepared.TakeValue(), [this](Status status) {
+    if (!status.ok()) failed_ = true;
+  });
 }
 
 size_t Node::RetainedBytes() const {

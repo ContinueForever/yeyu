@@ -101,6 +101,14 @@ class TimelineTests(unittest.TestCase):
     def tearDown(self):
         self.temporary.cleanup()
 
+    def test_async_worker_cannot_be_reported_as_zero_same_thread_wait(self):
+        events = copy.deepcopy(self.events)
+        events[1].update(task_stream=7, task_sequence=3, tid=99)
+        with self.assertRaisesRegex(
+            ValueError, "async disk tasks require dependency analysis"
+        ):
+            analyze(events, self.folder)
+
     def test_union_never_double_counts_overlapping_intervals(self):
         self.assertEqual(union_overlap([(0, 100), (10, 70), (90, 120)], 20, 110), 90)
 

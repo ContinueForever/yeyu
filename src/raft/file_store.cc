@@ -326,6 +326,8 @@ class FileStore::TraceOperation {
         return;
       enabled_ = true;
       record_.sequence = ++store.trace_sequence_;
+      record_.task_stream = persistence_task_stream;
+      record_.task_sequence = persistence_task_sequence;
       record_.kind = static_cast<uint64_t>(kind);
       record_.started_ns = TraceStamp(std::chrono::steady_clock::now());
       crc_before_ = store.metrics_.crc_nanoseconds;
