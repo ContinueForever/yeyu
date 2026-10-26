@@ -60,6 +60,9 @@ jobs:
           python3 scripts/verify-cloud-async-disk.py benchmarks/published/cloud-async-disk-20261026
           python3 tests/test_async_disk_evidence.py
           sha256sum --check benchmarks/published/cloud-async-disk-20261026/SHA256SUMS
+          python3 scripts/verify-peer-disk.py benchmarks/published/peer-disk-20261026
+          python3 tests/test_peer_disk_evidence.py
+          sha256sum --check benchmarks/published/peer-disk-20261026/SHA256SUMS
       - name: clang-format check
         run: |
           files=$(git ls-files '*.cc' '*.h')

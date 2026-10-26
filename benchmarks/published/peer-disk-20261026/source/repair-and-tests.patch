@@ -1,0 +1,716 @@
+diff --git a/src/cluster/server.cc b/src/cluster/server.cc
+index 9502352..c255392 100644
+--- a/src/cluster/server.cc
++++ b/src/cluster/server.cc
+@@ -298,6 +298,15 @@ struct Server::Impl {
+     std::optional<ReadTrace> trace;
+     uint64_t trace_ordinal = 0;
+   };
++  struct DeferredPeer {
++    Pending pending;
++    Message message;
++    Clock::time_point received;
++  };
++  // Fixed-three membership: one waiting RPC per remote voter. The sender's
++  // transport timeout is 400 ms; leave time to deliver a bounded rejection.
++  static constexpr size_t kDeferredPeerCapacity = 2;
++  static constexpr auto kPeerDeferTimeout = 300ms;
+ 
+   Options options;
+   std::shared_ptr<ReadTraceRecorder> trace;
+@@ -311,6 +320,7 @@ struct Server::Impl {
+   uint64_t pending_term = 0;
+   std::vector<std::pair<Pending, std::string>> staged;
+   std::deque<Read> reads;
++  std::deque<DeferredPeer> deferred_peers;
+   uint64_t applied_index = 0;
+   std::vector<std::unique_ptr<Peer>> peers;
+   std::mutex mutex;
+@@ -332,6 +342,15 @@ struct Server::Impl {
+   uint64_t append_requests = 0;
+   uint64_t read_append_requests = 0;
+   uint64_t read_append_with_entries = 0;
++  uint64_t peer_deferred = 0;
++  uint64_t peer_deferred_admitted = 0;
++  uint64_t peer_deferred_expired = 0;
++  uint64_t peer_deferred_abandoned = 0;
++  uint64_t peer_deferred_rejected = 0;
++  uint64_t peer_deferred_wait_ns = 0;
++  uint64_t peer_deferred_wait_max_ns = 0;
++  std::atomic<uint64_t> peer_busy_received{0};
++  std::atomic<uint64_t> peer_rpc_failed{0};
+   uint64_t snapshot_pause_ns = 0;
+   uint64_t snapshot_pause_max_ns = 0;
+   struct EncodedSnapshot {
+@@ -465,6 +484,76 @@ struct Server::Impl {
+     return response;
+   }
+ 
++  Status ReceivePeer(const DeferredPeer& request) {
++    // ReceiveAsync must inspect every message before admission, including when
++    // the waiting slots are full: a valid higher term fences leadership now.
++    // Keep our owned copy only when the disk barrier rejects admission.
++    return node.ReceiveAsync(
++        request.message, [this, operation = request.pending](std::optional<Message> reply) {
++          auto response = Response(operation.request_id);
++          if (reply)
++            *response.mutable_peer() = EncodeMessage(*reply);
++          else
++            response.set_code(KvResponse::UNAVAILABLE);
++          Respond(operation.connection, operation.ordered, std::move(response));
++        });
++  }
++
++  void RejectPeer(const DeferredPeer& request, const Status& status) {
++    auto response = Response(request.pending.request_id);
++    response.set_code(status.code() == StatusCode::kBusy ? KvResponse::BUSY
++                                                         : KvResponse::UNAVAILABLE);
++    response.set_error(status.ToString());
++    Respond(request.pending.connection, request.pending.ordered, std::move(response));
++  }
++
++  void HandlePeer(DeferredPeer request) {
++    const auto status = ReceivePeer(request);
++    if (status.ok()) return;
++    if (status.code() == StatusCode::kBusy && disk_worker &&
++        deferred_peers.size() < kDeferredPeerCapacity &&
++        std::none_of(deferred_peers.begin(), deferred_peers.end(), [&](const auto& previous) {
++          return previous.message.from == request.message.from;
++        })) {
++      deferred_peers.push_back(std::move(request));
++      ++peer_deferred;
++      return;
++    }
++    if (status.code() == StatusCode::kBusy) ++peer_deferred_rejected;
++    RejectPeer(request, status);
++  }
++
++  void DrainPeers() {
++    const auto now = Clock::now();
++    for (auto it = deferred_peers.begin(); it != deferred_peers.end();) {
++      auto connection = it->pending.connection.lock();
++      if (!connection || !connection->Connected()) {
++        ++peer_deferred_abandoned;
++        it = deferred_peers.erase(it);
++      } else if (now >= it->pending.deadline) {
++        ++peer_deferred_expired;
++        RejectPeer(*it, Status::IOError("peer request expired before disk admission"));
++        it = deferred_peers.erase(it);
++      } else
++        ++it;
++    }
++    while (!deferred_peers.empty() && !node.PersistencePending()) {
++      const auto status = ReceivePeer(deferred_peers.front());
++      if (status.code() == StatusCode::kBusy) break;
++      auto request = std::move(deferred_peers.front());
++      deferred_peers.pop_front();
++      if (!status.ok()) {
++        RejectPeer(request, status);
++        continue;
++      }
++      ++peer_deferred_admitted;  // Admitted; its reply still waits for disk.
++      const auto waited = static_cast<uint64_t>(
++          std::chrono::duration_cast<std::chrono::nanoseconds>(now - request.received).count());
++      peer_deferred_wait_ns += waited;
++      peer_deferred_wait_max_ns = std::max(peer_deferred_wait_max_ns, waited);
++    }
++  }
++
+   void Handle(std::weak_ptr<net::TcpConnection> weak, uint64_t ordered, const KvRequest& request,
+               std::optional<ReadTrace> timing = {}) {
+     if (timing) {
+@@ -494,20 +583,10 @@ struct Server::Impl {
+             }
+           }
+         }
+-        const auto request_id = request.request_id();
+-        auto accepted = node.ReceiveAsync(
+-            std::move(*message), [this, weak, ordered, request_id](std::optional<Message> reply) {
+-              auto result = Response(request_id);
+-              if (reply)
+-                *result.mutable_peer() = EncodeMessage(*reply);
+-              else
+-                result.set_code(KvResponse::UNAVAILABLE);
+-              Respond(weak, ordered, std::move(result));
+-            });
+-        if (accepted.ok()) return;
+-        response.set_code(accepted.code() == StatusCode::kBusy ? KvResponse::BUSY
+-                                                               : KvResponse::UNAVAILABLE);
+-        response.set_error(accepted.ToString());
++        const auto received = Clock::now();
++        HandlePeer({Pending{weak, ordered, request.request_id(), received + kPeerDeferTimeout},
++                    std::move(*message), received});
++        return;
+       }
+     } else if (request.has_status()) {
+       const char* role = node.IsLeader()                         ? "leader"
+@@ -538,6 +617,17 @@ struct Server::Impl {
+            << ",\"append_requests\":" << append_requests
+            << ",\"read_append_requests\":" << read_append_requests
+            << ",\"read_append_with_entries\":" << read_append_with_entries
++           << ",\"peer_deferred\":" << peer_deferred
++           << ",\"peer_deferred_pending\":" << deferred_peers.size()
++           << ",\"peer_deferred_capacity\":" << kDeferredPeerCapacity
++           << ",\"peer_deferred_admitted\":" << peer_deferred_admitted
++           << ",\"peer_deferred_expired\":" << peer_deferred_expired
++           << ",\"peer_deferred_abandoned\":" << peer_deferred_abandoned
++           << ",\"peer_deferred_rejected\":" << peer_deferred_rejected
++           << ",\"peer_deferred_wait_ns\":" << peer_deferred_wait_ns
++           << ",\"peer_deferred_wait_max_ns\":" << peer_deferred_wait_max_ns
++           << ",\"peer_busy_received\":" << peer_busy_received.load()
++           << ",\"peer_rpc_failed\":" << peer_rpc_failed.load()
+            << ",\"snapshot_pause_ns\":" << snapshot_pause_ns
+            << ",\"snapshot_pause_max_ns\":" << snapshot_pause_max_ns
+            << ",\"snapshot_jobs\":" << snapshot_jobs
+@@ -908,7 +998,11 @@ struct Server::Impl {
+           }
+         }
+         node.AdvancePersistence();
++        // Resume bounded peer requests before starting another local snapshot
++        // or client disk write. Completion wakes this owner without a tick.
++        DrainPeers();
+         for (auto& task : batch) task();
++        DrainPeers();
+         if (Clock::now() >= next_tick) {
+           node.Tick();
+           next_tick = Clock::now() + 50ms;
+@@ -962,6 +1056,8 @@ struct Server::Impl {
+           timing->returned_ns = TraceNow();
+         }
+         if (!result.ok() || result.value().code() != KvResponse::OK || !result.value().has_peer()) {
++          if (result.ok() && result.value().code() == KvResponse::BUSY) ++peer_busy_received;
++          ++peer_rpc_failed;
+           if (timing) trace->Record(*timing);
+           client.reset();
+           continue;
+@@ -973,6 +1069,7 @@ struct Server::Impl {
+             (message.kind == MessageKind::kAppend && reply->kind != MessageKind::kAppendReply) ||
+             (message.kind == MessageKind::kSnapshot &&
+              reply->kind != MessageKind::kSnapshotReply)) {
++          ++peer_rpc_failed;
+           if (timing) trace->Record(*timing);
+           client.reset();
+           continue;
+@@ -989,6 +1086,7 @@ struct Server::Impl {
+             timing)
+           trace->Record(*timing);
+       } catch (...) {
++        ++peer_rpc_failed;
+         if (timing) trace->Record(*timing);
+         client.reset();
+       }
+diff --git a/tests/CMakeLists.txt b/tests/CMakeLists.txt
+index 0acffac..f5d26f7 100644
+--- a/tests/CMakeLists.txt
++++ b/tests/CMakeLists.txt
+@@ -155,3 +155,16 @@ add_test(NAME cluster_async_persistence
+   COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test_async_persistence.py
+           ${snapshot_test_args} ${resource_test_args})
+ set_tests_properties(cluster_async_persistence PROPERTIES TIMEOUT 180)
++
++add_test(NAME cloud_async_disk_plan
++  COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test_async_disk_plan.py)
++set_tests_properties(cloud_async_disk_plan PROPERTIES TIMEOUT 10)
++
++add_test(NAME cluster_peer_disk_barrier
++  COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test_peer_deferred.py
++          ${snapshot_test_args} ${resource_test_args})
++set_tests_properties(cluster_peer_disk_barrier PROPERTIES TIMEOUT 90)
++
++add_test(NAME cloud_peer_disk_plan
++  COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test_peer_disk_plan.py)
++set_tests_properties(cloud_peer_disk_plan PROPERTIES TIMEOUT 10)
+diff --git a/tests/test_io_fault.cc b/tests/test_io_fault.cc
+index cbc38f5..1ecf656 100644
+--- a/tests/test_io_fault.cc
++++ b/tests/test_io_fault.cc
+@@ -25,9 +25,11 @@ bool Armed(int fd) {
+   const char* suffix = "/raft.state.tmp";
+   const size_t length = std::strlen(suffix);
+   const char* basename = std::strrchr(target, '/');
++  const char* checkpoint_only = std::getenv("YEWUKV_TEST_IO_CHECKPOINT_ONLY");
+   return (static_cast<size_t>(size) >= length &&
+           std::strcmp(target + size - length, suffix) == 0) ||
+-         (basename && std::strncmp(basename + 1, "raft.wal.", 9) == 0);
++         (!(checkpoint_only && std::strcmp(checkpoint_only, "1") == 0) && basename &&
++          std::strncmp(basename + 1, "raft.wal.", 9) == 0);
+ }
+ }  // namespace
+ 
+diff --git a/tests/test_peer_deferred.py b/tests/test_peer_deferred.py
+new file mode 100644
+index 0000000..5a39592
+--- /dev/null
++++ b/tests/test_peer_deferred.py
+@@ -0,0 +1,356 @@
++#!/usr/bin/env python3
++"""Bounded peer admission behind real disk barriers, using actual RPC sockets."""
++import argparse
++import concurrent.futures
++from pathlib import Path
++import socket
++import struct
++import tempfile
++import time
++import unittest
++
++import test_async_persistence as asynchronous
++import test_cluster as harness
++from test_cluster_snapshot import wait_for
++import test_rpc_network as wire
++
++
++def vote(connection, request_id, sender, receiver, term, last_index, last_term):
++    def integer(field, value):
++        return wire.varint(field << 3) + wire.varint(value)
++
++    body = b"".join(
++        integer(field, value)
++        for field, value in enumerate((term, sender, last_index, last_term), 1)
++    )
++    peer = (
++        integer(1, sender)
++        + integer(2, receiver)
++        + integer(3, request_id)
++        + wire.bytes_field(4, body)
++    )
++    connection.sendall(wire.frame(integer(1, request_id) + wire.bytes_field(7, peer)))
++
++
++class PeerDeferredTests(unittest.TestCase):
++    def test_checkpoint_wait_resumes_without_busy_reply_and_never_acks_early(self):
++        with tempfile.TemporaryDirectory(prefix="yewukv-peer-checkpoint-") as directory:
++            root = Path(directory)
++            environment = asynchronous.fault_environment(directory, "gate-sync")
++            for row in environment.values():
++                row["YEWUKV_TEST_IO_CHECKPOINT_ONLY"] = "1"
++            cluster = asynchronous.AsyncCluster(
++                directory,
++                request_timeout=3000,
++                extra_args=[
++                    "--snapshot-encoder",
++                    "background",
++                    "--snapshot-policy",
++                    "fixed",
++                    "--snapshot-entries",
++                    "4",
++                    "--snapshot-bytes",
++                    "67108864",
++                ],
++                node_env=environment,
++            )
++            try:
++                leader = cluster.leader()
++                follower, other = (leader + 1) % 3, (leader + 2) % 3
++                self.assertEqual(
++                    cluster.call(leader, "put", b"anchor", b"kept")["code"], 0
++                )
++                wait_for(
++                    cluster,
++                    lambda: all(
++                        cluster.status(i)["applied_index"]
++                        == cluster.status(leader)["last_index"]
++                        for i in range(3)
++                    ),
++                )
++                before = cluster.status(leader)
++                (root / f"arm-{follower}").touch()
++                for i in range(2):
++                    self.assertEqual(
++                        cluster.call(leader, "put", f"trigger-{i}".encode(), b"v")[
++                            "code"
++                        ],
++                        0,
++                    )
++                wait_for(cluster, lambda: (root / f"entered-{follower}").exists())
++                cluster.blocked.add(other)
++                time.sleep(0.06)
++                with concurrent.futures.ThreadPoolExecutor(max_workers=1) as pool:
++                    write = pool.submit(
++                        cluster.call, leader, "put", b"probe", b"after", timeout=5
++                    )
++                    try:
++                        wait_for(
++                            cluster,
++                            lambda: cluster.status(follower)["peer_deferred_pending"]
++                            == 1,
++                        )
++                        self.assertEqual(
++                            cluster.status(follower)["persistence_pending"], 1
++                        )
++                        self.assertFalse(write.done())
++                        self.assertEqual(
++                            cluster.status(leader)["peer_busy_received"],
++                            before["peer_busy_received"],
++                        )
++                    finally:
++                        (root / f"release-{follower}").touch()
++                    self.assertEqual(write.result(timeout=5)["code"], 0)
++                cluster.blocked.clear()
++                wait_for(
++                    cluster,
++                    lambda: cluster.status(follower)["peer_deferred_pending"] == 0,
++                )
++                self.assertGreater(
++                    cluster.status(follower)["peer_deferred_admitted"], 0
++                )
++                self.assertEqual(
++                    cluster.status(leader)["peer_busy_received"],
++                    before["peer_busy_received"],
++                )
++                for i in range(3):
++                    cluster.kill(i)
++                    (root / f"arm-{i}").unlink(missing_ok=True)
++                for i in range(3):
++                    cluster.start(i)
++                cluster.eventually_value(b"probe", b"after")
++            finally:
++                cluster.blocked.clear()
++                for i in range(3):
++                    (root / f"release-{i}").touch()
++                cluster.close()
++
++    def test_full_slots_still_fence_and_persist_the_highest_received_term(self):
++        with tempfile.TemporaryDirectory(prefix="yewukv-peer-term-") as directory:
++            root = Path(directory)
++            cluster = asynchronous.AsyncCluster(
++                directory,
++                request_timeout=3000,
++                node_env=asynchronous.fault_environment(directory, "gate-sync"),
++            )
++            sockets = []
++            try:
++                leader = cluster.leader()
++                self.assertEqual(
++                    cluster.call(leader, "put", b"anchor", b"kept")["code"], 0
++                )
++                before = cluster.status(leader)
++                (root / f"arm-{leader}").touch()
++                with concurrent.futures.ThreadPoolExecutor(max_workers=1) as pool:
++                    write = pool.submit(
++                        cluster.call, leader, "put", b"uncertain", b"value", timeout=5
++                    )
++                    try:
++                        wait_for(cluster, lambda: (root / f"entered-{leader}").exists())
++                        voters = [i + 1 for i in range(3) if i != leader]
++                        for ordinal, sender in enumerate(voters):
++                            connection = socket.create_connection(
++                                ("127.0.0.1", cluster.ports[leader]), 3
++                            )
++                            sockets.append(connection)
++                            vote(
++                                connection,
++                                701 + ordinal,
++                                sender,
++                                leader + 1,
++                                before["term"] + 2 + ordinal,
++                                before["last_index"],
++                                before["term"],
++                            )
++                            if ordinal == 0:
++                                wait_for(
++                                    cluster,
++                                    lambda: cluster.status(leader)[
++                                        "peer_deferred_pending"
++                                    ]
++                                    == 1,
++                                )
++                                with socket.create_connection(
++                                    ("127.0.0.1", cluster.ports[leader]), 3
++                                ) as duplicate:
++                                    vote(
++                                        duplicate,
++                                        700,
++                                        sender,
++                                        leader + 1,
++                                        before["term"] + 1,
++                                        before["last_index"],
++                                        before["term"],
++                                    )
++                                    self.assertEqual(
++                                        wire.receive_response(duplicate)["code"], 4
++                                    )
++                                self.assertEqual(
++                                    cluster.status(leader)["peer_deferred_pending"], 1
++                                )
++                        wait_for(
++                            cluster,
++                            lambda: cluster.status(leader)["peer_deferred_pending"]
++                            == 2,
++                        )
++                        overflow = socket.create_connection(
++                            ("127.0.0.1", cluster.ports[leader]), 3
++                        )
++                        sockets.append(overflow)
++                        highest = before["term"] + 7
++                        vote(
++                            overflow,
++                            703,
++                            voters[0],
++                            leader + 1,
++                            highest,
++                            before["last_index"],
++                            before["term"],
++                        )
++                        self.assertEqual(wire.receive_response(overflow)["code"], 4)
++                        state = cluster.status(leader)
++                        self.assertEqual(state["peer_deferred_capacity"], 2)
++                        self.assertEqual(state["peer_deferred_pending"], 2)
++                        self.assertGreater(state["peer_deferred_rejected"], 0)
++                        self.assertEqual(
++                            (
++                                state["role"],
++                                state["term"],
++                                state["persistence_pending"],
++                            ),
++                            ("follower", before["term"], 1),
++                        )
++                        for connection in sockets[:2]:
++                            connection.settimeout(0.02)
++                            with self.assertRaises(socket.timeout):
++                                connection.recv(1, socket.MSG_PEEK)
++                    finally:
++                        (root / f"release-{leader}").touch()
++                    self.assertNotEqual(write.result(timeout=5)["code"], 0)
++                wait_for(
++                    cluster,
++                    lambda: cluster.status(leader)["term"] >= highest
++                    and cluster.status(leader)["persistence_pending"] == 0,
++                )
++                for connection in sockets[:2]:
++                    self.assertEqual(wire.receive_response(connection)["code"], 0)
++                cluster.kill(leader)
++                cluster.start(leader)
++                wait_for(cluster, lambda: cluster.status(leader)["term"] >= highest)
++                cluster.eventually_value(b"anchor", b"kept")
++            finally:
++                for connection in sockets:
++                    connection.close()
++                for i in range(3):
++                    (root / f"release-{i}").touch()
++                cluster.close()
++
++    def test_expired_and_disconnected_waiters_leave_the_bounded_slots(self):
++        with tempfile.TemporaryDirectory(prefix="yewukv-peer-expiry-") as directory:
++            root = Path(directory)
++            cluster = asynchronous.AsyncCluster(
++                directory,
++                request_timeout=3000,
++                node_env=asynchronous.fault_environment(directory, "gate-sync"),
++            )
++            sockets = []
++            try:
++                leader = cluster.leader()
++                self.assertEqual(
++                    cluster.call(leader, "put", b"anchor", b"kept")["code"], 0
++                )
++                before = cluster.status(leader)
++                sender = (leader + 1) % 3 + 1
++                (root / f"arm-{leader}").touch()
++                with concurrent.futures.ThreadPoolExecutor(max_workers=1) as pool:
++                    write = pool.submit(
++                        cluster.call, leader, "put", b"probe", b"after", timeout=5
++                    )
++                    try:
++                        wait_for(cluster, lambda: (root / f"entered-{leader}").exists())
++                        connection = socket.create_connection(
++                            ("127.0.0.1", cluster.ports[leader]), 3
++                        )
++                        sockets.append(connection)
++                        vote(
++                            connection,
++                            801,
++                            sender,
++                            leader + 1,
++                            before["term"],
++                            before["last_index"],
++                            before["term"],
++                        )
++                        wait_for(
++                            cluster,
++                            lambda: cluster.status(leader)["peer_deferred_pending"]
++                            == 1,
++                        )
++                        self.assertEqual(wire.receive_response(connection)["code"], 6)
++                        state = cluster.status(leader)
++                        self.assertEqual(state["peer_deferred_pending"], 0)
++                        self.assertEqual(state["peer_deferred_expired"], 1)
++                        self.assertEqual(state["peer_deferred_admitted"], 0)
++                        disconnected = socket.create_connection(
++                            ("127.0.0.1", cluster.ports[leader]), 3
++                        )
++                        sockets.append(disconnected)
++                        vote(
++                            disconnected,
++                            802,
++                            sender,
++                            leader + 1,
++                            before["term"],
++                            before["last_index"],
++                            before["term"],
++                        )
++                        wait_for(
++                            cluster,
++                            lambda: cluster.status(leader)["peer_deferred_pending"]
++                            == 1,
++                        )
++                        disconnected.setsockopt(
++                            socket.SOL_SOCKET, socket.SO_LINGER, struct.pack("ii", 1, 0)
++                        )
++                        disconnected.close()
++                        wait_for(
++                            cluster,
++                            lambda: cluster.status(leader)["peer_deferred_abandoned"]
++                            == 1,
++                        )
++                        self.assertEqual(
++                            cluster.status(leader)["peer_deferred_pending"], 0
++                        )
++                        self.assertFalse(write.done())
++                    finally:
++                        (root / f"release-{leader}").touch()
++                    self.assertEqual(write.result(timeout=5)["code"], 0)
++                self.assertEqual(
++                    cluster.call(leader, "get", b"probe")["value"], b"after"
++                )
++            finally:
++                for connection in sockets:
++                    connection.close()
++                for i in range(3):
++                    (root / f"release-{i}").touch()
++                cluster.close()
++
++
++def main():
++    parser = argparse.ArgumentParser()
++    parser.add_argument("--node", type=Path, required=True)
++    parser.add_argument("--client", type=Path, required=True)
++    parser.add_argument("--fault-library", type=Path, required=True)
++    parser.add_argument("--asan-runtime")
++    args = parser.parse_args()
++    harness.NODE, harness.CLIENT = args.node.resolve(), args.client.resolve()
++    asynchronous.FAULT_LIBRARY = args.fault_library.resolve()
++    asynchronous.ASAN_RUNTIME = args.asan_runtime
++    result = unittest.TextTestRunner(verbosity=2).run(
++        unittest.defaultTestLoader.loadTestsFromTestCase(PeerDeferredTests)
++    )
++    return 0 if result.wasSuccessful() else 1
++
++
++if __name__ == "__main__":
++    raise SystemExit(main())
+diff --git a/tests/test_peer_disk_plan.py b/tests/test_peer_disk_plan.py
+new file mode 100644
+index 0000000..4bd28f7
+--- /dev/null
++++ b/tests/test_peer_disk_plan.py
+@@ -0,0 +1,109 @@
++"""Guard the before/after comparison and opt-in long-run disk selection."""
++
++from pathlib import Path
++import sys
++import unittest
++import copy
++
++sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "benchmarks"))
++import cloud_peer_disk
++import cloud_soak
++from test_async_disk_plan import agent
++
++
++class PeerDiskPlanTests(unittest.TestCase):
++    def test_long_mode_guard_rejects_unmatched_or_traced_nodes(self):
++        states = [
++            dict(
++                disk_executor="background",
++                trace_enabled=0,
++                trace_written=0,
++                trace_dropped=0,
++                trace_failed=0,
++            )
++            for _ in range(3)
++        ]
++        cloud_soak.check_disk_executor(states, "background")
++        cloud_soak.check_disk_executor([], None)
++        for change in [
++            dict(disk_executor="sync"),
++            dict(trace_enabled=1),
++            dict(trace_written=1),
++            dict(trace_dropped=1),
++            dict(trace_failed=1),
++        ]:
++            different = copy.deepcopy(states)
++            different[0].update(change)
++            with self.assertRaises(RuntimeError):
++                cloud_soak.check_disk_executor(different, "background")
++
++    def test_three_variants_repeat_at_each_order_position_in_both_sizes(self):
++        rows = cloud_peer_disk.plan()
++        self.assertEqual(len(rows), 18)
++        self.assertEqual(len({r["label"] for r in rows}), 18)
++        for size in (1, 15):
++            orders = [
++                [
++                    r["variant"]
++                    for r in rows
++                    if r["cold_mib"] == size and r["repeat"] == repeat
++                ]
++                for repeat in range(3)
++            ]
++            for position in range(3):
++                self.assertEqual(
++                    {order[position] for order in orders}, {"before", "after", "sync"}
++                )
++        self.assertEqual(len(rows) * 30 * 600, 324000)
++        self.assertEqual(len(cloud_peer_disk.plan(True)), 3)
++
++    def test_only_binary_and_disk_variant_change_and_baseline_data_is_isolated(self):
++        for row in cloud_peer_disk.plan():
++            options = cloud_peer_disk.phase_options(row, "peer-main-" + row["label"])
++            self.assertEqual(
++                options["program"], "baseline" if row["variant"] == "before" else "new"
++            )
++            self.assertEqual(
++                options["case"].startswith("baseline-"), row["variant"] == "before"
++            )
++            self.assertEqual(options["encoder"], "background")
++            self.assertEqual(
++                options["disk_executor"],
++                "sync" if row["variant"] == "sync" else "background",
++            )
++            self.assertFalse(options["trace"])
++            self.assertEqual(
++                agent.disk_executor_args(options, options["program"]),
++                ["--disk-executor", options["disk_executor"]],
++            )
++
++    def test_invalid_variants_are_rejected(self):
++        row = cloud_peer_disk.plan()[0]
++        for change in [
++            dict(variant="unknown"),
++            dict(executor="sync"),
++            dict(cold_mib=64),
++            dict(repeat=3),
++        ]:
++            with self.assertRaises(ValueError):
++                cloud_peer_disk.phase_options(dict(row, **change), "test")
++
++    def test_long_run_omission_preserves_earlier_binary_compatibility(self):
++        phase = cloud_soak.plan([1], 1)[0]
++        original = cloud_soak.phase_options(phase, "case")
++        self.assertNotIn("disk_executor", original)
++        for mode in ("sync", "background"):
++            selected = cloud_soak.phase_options(phase, "case", mode)
++            self.assertEqual(selected.pop("disk_executor"), mode)
++            self.assertFalse(selected.pop("trace"))
++            self.assertEqual(selected, original)
++        for mode in ("unknown", True, 0, []):
++            with self.assertRaises(ValueError):
++                cloud_soak.phase_options(phase, "case", mode)
++        self.assertEqual(
++            sum(p["windows"] * 60 for p in cloud_soak.plan([1, 8, 15], 60)), 21600
++        )
++
++
++if __name__ == "__main__":
++    unittest.main(verbosity=2)

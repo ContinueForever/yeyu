@@ -1,0 +1,9 @@
+11:48:25.565 INFO  [acceptor] listening on 10.77.0.3:19101
+node=3 event=role role=candidate term=1 last=0 commit=0
+node=3 event=role role=leader term=1 last=0 commit=0
+node=3 event=role role=follower term=1 last=1 commit=1
+node=3 event=role role=follower term=2 last=1 commit=1
+11:49:17.360 INFO  [acceptor] listening on 10.77.0.3:19101
+node=3 event=role role=follower term=2 last=11101 commit=7202
+node=3 event=role role=candidate term=3 last=11101 commit=7202
+node=3 event=role role=leader term=3 last=11101 commit=7202

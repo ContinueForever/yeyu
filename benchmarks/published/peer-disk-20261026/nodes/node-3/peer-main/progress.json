@@ -1,0 +1,580 @@
+{
+  "status": "complete",
+  "started_unix_ns": 1792986104164530928,
+  "plan": [
+    {
+      "cold_mib": 1,
+      "repeat": 0,
+      "variant": "before",
+      "executor": "background",
+      "label": "m1-r0-before"
+    },
+    {
+      "cold_mib": 1,
+      "repeat": 0,
+      "variant": "after",
+      "executor": "background",
+      "label": "m1-r0-after"
+    },
+    {
+      "cold_mib": 1,
+      "repeat": 0,
+      "variant": "sync",
+      "executor": "sync",
+      "label": "m1-r0-sync"
+    },
+    {
+      "cold_mib": 1,
+      "repeat": 1,
+      "variant": "after",
+      "executor": "background",
+      "label": "m1-r1-after"
+    },
+    {
+      "cold_mib": 1,
+      "repeat": 1,
+      "variant": "sync",
+      "executor": "sync",
+      "label": "m1-r1-sync"
+    },
+    {
+      "cold_mib": 1,
+      "repeat": 1,
+      "variant": "before",
+      "executor": "background",
+      "label": "m1-r1-before"
+    },
+    {
+      "cold_mib": 1,
+      "repeat": 2,
+      "variant": "sync",
+      "executor": "sync",
+      "label": "m1-r2-sync"
+    },
+    {
+      "cold_mib": 1,
+      "repeat": 2,
+      "variant": "before",
+      "executor": "background",
+      "label": "m1-r2-before"
+    },
+    {
+      "cold_mib": 1,
+      "repeat": 2,
+      "variant": "after",
+      "executor": "background",
+      "label": "m1-r2-after"
+    },
+    {
+      "cold_mib": 15,
+      "repeat": 0,
+      "variant": "sync",
+      "executor": "sync",
+      "label": "m15-r0-sync"
+    },
+    {
+      "cold_mib": 15,
+      "repeat": 0,
+      "variant": "after",
+      "executor": "background",
+      "label": "m15-r0-after"
+    },
+    {
+      "cold_mib": 15,
+      "repeat": 0,
+      "variant": "before",
+      "executor": "background",
+      "label": "m15-r0-before"
+    },
+    {
+      "cold_mib": 15,
+      "repeat": 1,
+      "variant": "before",
+      "executor": "background",
+      "label": "m15-r1-before"
+    },
+    {
+      "cold_mib": 15,
+      "repeat": 1,
+      "variant": "sync",
+      "executor": "sync",
+      "label": "m15-r1-sync"
+    },
+    {
+      "cold_mib": 15,
+      "repeat": 1,
+      "variant": "after",
+      "executor": "background",
+      "label": "m15-r1-after"
+    },
+    {
+      "cold_mib": 15,
+      "repeat": 2,
+      "variant": "after",
+      "executor": "background",
+      "label": "m15-r2-after"
+    },
+    {
+      "cold_mib": 15,
+      "repeat": 2,
+      "variant": "before",
+      "executor": "background",
+      "label": "m15-r2-before"
+    },
+    {
+      "cold_mib": 15,
+      "repeat": 2,
+      "variant": "sync",
+      "executor": "sync",
+      "label": "m15-r2-sync"
+    }
+  ],
+  "seconds": 30,
+  "completed": [
+    {
+      "position": 0,
+      "cold_mib": 1,
+      "repeat": 0,
+      "variant": "before",
+      "executor": "background",
+      "label": "m1-r0-before",
+      "summary": {
+        "attempts": 16679,
+        "successes": 16679,
+        "failures": 0,
+        "offered_slots": 18000,
+        "missed_slots": 1321,
+        "valid": true,
+        "codes": {
+          "0": 16679
+        },
+        "successful_ops_s": 555.8512350973235,
+        "p99_ms": 47.075481,
+        "p999_ms": 491.046259,
+        "max_ms": 505.099004,
+        "scheduled_p99_ms": 51.561135
+      }
+    },
+    {
+      "position": 1,
+      "cold_mib": 1,
+      "repeat": 0,
+      "variant": "after",
+      "executor": "background",
+      "label": "m1-r0-after",
+      "summary": {
+        "attempts": 17963,
+        "successes": 17963,
+        "failures": 0,
+        "offered_slots": 18000,
+        "missed_slots": 37,
+        "valid": true,
+        "codes": {
+          "0": 17963
+        },
+        "successful_ops_s": 598.658349595544,
+        "p99_ms": 18.434444,
+        "p999_ms": 56.132831,
+        "max_ms": 81.400875,
+        "scheduled_p99_ms": 30.474394
+      }
+    },
+    {
+      "position": 2,
+      "cold_mib": 1,
+      "repeat": 0,
+      "variant": "sync",
+      "executor": "sync",
+      "label": "m1-r0-sync",
+      "summary": {
+        "attempts": 17991,
+        "successes": 17991,
+        "failures": 0,
+        "offered_slots": 18000,
+        "missed_slots": 9,
+        "valid": true,
+        "codes": {
+          "0": 17991
+        },
+        "successful_ops_s": 599.6729633446656,
+        "p99_ms": 15.959287,
+        "p999_ms": 45.809369,
+        "max_ms": 55.898137,
+        "scheduled_p99_ms": 22.983693
+      }
+    },
+    {
+      "position": 3,
+      "cold_mib": 1,
+      "repeat": 1,
+      "variant": "after",
+      "executor": "background",
+      "label": "m1-r1-after",
+      "summary": {
+        "attempts": 17992,
+        "successes": 17992,
+        "failures": 0,
+        "offered_slots": 18000,
+        "missed_slots": 8,
+        "valid": true,
+        "codes": {
+          "0": 17992
+        },
+        "successful_ops_s": 599.5444804991822,
+        "p99_ms": 14.983673,
+        "p999_ms": 46.343872,
+        "max_ms": 66.500843,
+        "scheduled_p99_ms": 19.791056
+      }
+    },
+    {
+      "position": 4,
+      "cold_mib": 1,
+      "repeat": 1,
+      "variant": "sync",
+      "executor": "sync",
+      "label": "m1-r1-sync",
+      "summary": {
+        "attempts": 17990,
+        "successes": 17990,
+        "failures": 0,
+        "offered_slots": 18000,
+        "missed_slots": 10,
+        "valid": true,
+        "codes": {
+          "0": 17990
+        },
+        "successful_ops_s": 599.5240331445441,
+        "p99_ms": 17.568873,
+        "p999_ms": 44.590044,
+        "max_ms": 61.578058,
+        "scheduled_p99_ms": 24.139503
+      }
+    },
+    {
+      "position": 5,
+      "cold_mib": 1,
+      "repeat": 1,
+      "variant": "before",
+      "executor": "background",
+      "label": "m1-r1-before",
+      "summary": {
+        "attempts": 16672,
+        "successes": 16672,
+        "failures": 0,
+        "offered_slots": 18000,
+        "missed_slots": 1328,
+        "valid": true,
+        "codes": {
+          "0": 16672
+        },
+        "successful_ops_s": 555.6420405866875,
+        "p99_ms": 49.146567,
+        "p999_ms": 495.066304,
+        "max_ms": 508.409074,
+        "scheduled_p99_ms": 51.21643
+      }
+    },
+    {
+      "position": 6,
+      "cold_mib": 1,
+      "repeat": 2,
+      "variant": "sync",
+      "executor": "sync",
+      "label": "m1-r2-sync",
+      "summary": {
+        "attempts": 17993,
+        "successes": 17993,
+        "failures": 0,
+        "offered_slots": 18000,
+        "missed_slots": 7,
+        "valid": true,
+        "codes": {
+          "0": 17993
+        },
+        "successful_ops_s": 599.6611795289937,
+        "p99_ms": 15.636795,
+        "p999_ms": 46.173469,
+        "max_ms": 60.560832,
+        "scheduled_p99_ms": 22.089773
+      }
+    },
+    {
+      "position": 7,
+      "cold_mib": 1,
+      "repeat": 2,
+      "variant": "before",
+      "executor": "background",
+      "label": "m1-r2-before",
+      "summary": {
+        "attempts": 16680,
+        "successes": 16680,
+        "failures": 0,
+        "offered_slots": 18000,
+        "missed_slots": 1320,
+        "valid": true,
+        "codes": {
+          "0": 16680
+        },
+        "successful_ops_s": 555.8939486278182,
+        "p99_ms": 47.632051,
+        "p999_ms": 489.706376,
+        "max_ms": 509.600432,
+        "scheduled_p99_ms": 51.417111
+      }
+    },
+    {
+      "position": 8,
+      "cold_mib": 1,
+      "repeat": 2,
+      "variant": "after",
+      "executor": "background",
+      "label": "m1-r2-after",
+      "summary": {
+        "attempts": 17999,
+        "successes": 17999,
+        "failures": 0,
+        "offered_slots": 18000,
+        "missed_slots": 1,
+        "valid": true,
+        "codes": {
+          "0": 17999
+        },
+        "successful_ops_s": 599.8623043225705,
+        "p99_ms": 16.031094,
+        "p999_ms": 43.649657,
+        "max_ms": 52.077075,
+        "scheduled_p99_ms": 25.370118
+      }
+    },
+    {
+      "position": 9,
+      "cold_mib": 15,
+      "repeat": 0,
+      "variant": "sync",
+      "executor": "sync",
+      "label": "m15-r0-sync",
+      "summary": {
+        "attempts": 17868,
+        "successes": 17868,
+        "failures": 0,
+        "offered_slots": 18000,
+        "missed_slots": 132,
+        "valid": true,
+        "codes": {
+          "0": 17868
+        },
+        "successful_ops_s": 595.536242068585,
+        "p99_ms": 15.307199,
+        "p999_ms": 234.392498,
+        "max_ms": 263.015707,
+        "scheduled_p99_ms": 19.38927
+      }
+    },
+    {
+      "position": 10,
+      "cold_mib": 15,
+      "repeat": 0,
+      "variant": "after",
+      "executor": "background",
+      "label": "m15-r0-after",
+      "summary": {
+        "attempts": 17859,
+        "successes": 17859,
+        "failures": 0,
+        "offered_slots": 18000,
+        "missed_slots": 141,
+        "valid": true,
+        "codes": {
+          "0": 17859
+        },
+        "successful_ops_s": 595.2296789109809,
+        "p99_ms": 12.746727,
+        "p999_ms": 257.181052,
+        "max_ms": 282.219007,
+        "scheduled_p99_ms": 16.088637
+      }
+    },
+    {
+      "position": 11,
+      "cold_mib": 15,
+      "repeat": 0,
+      "variant": "before",
+      "executor": "background",
+      "label": "m15-r0-before",
+      "summary": {
+        "attempts": 17729,
+        "successes": 17729,
+        "failures": 0,
+        "offered_slots": 18000,
+        "missed_slots": 271,
+        "valid": true,
+        "codes": {
+          "0": 17729
+        },
+        "successful_ops_s": 590.8221669063237,
+        "p99_ms": 15.445564,
+        "p999_ms": 472.231625,
+        "max_ms": 500.482262,
+        "scheduled_p99_ms": 25.51851
+      }
+    },
+    {
+      "position": 12,
+      "cold_mib": 15,
+      "repeat": 1,
+      "variant": "before",
+      "executor": "background",
+      "label": "m15-r1-before",
+      "summary": {
+        "attempts": 17711,
+        "successes": 17711,
+        "failures": 0,
+        "offered_slots": 18000,
+        "missed_slots": 289,
+        "valid": true,
+        "codes": {
+          "0": 17711
+        },
+        "successful_ops_s": 590.2233786682284,
+        "p99_ms": 12.86685,
+        "p999_ms": 503.305319,
+        "max_ms": 531.19654,
+        "scheduled_p99_ms": 17.644002
+      }
+    },
+    {
+      "position": 13,
+      "cold_mib": 15,
+      "repeat": 1,
+      "variant": "sync",
+      "executor": "sync",
+      "label": "m15-r1-sync",
+      "summary": {
+        "attempts": 17871,
+        "successes": 17871,
+        "failures": 0,
+        "offered_slots": 18000,
+        "missed_slots": 129,
+        "valid": true,
+        "codes": {
+          "0": 17871
+        },
+        "successful_ops_s": 595.6348940087834,
+        "p99_ms": 14.644943,
+        "p999_ms": 229.707858,
+        "max_ms": 253.863538,
+        "scheduled_p99_ms": 17.927589
+      }
+    },
+    {
+      "position": 14,
+      "cold_mib": 15,
+      "repeat": 1,
+      "variant": "after",
+      "executor": "background",
+      "label": "m15-r1-after",
+      "summary": {
+        "attempts": 17869,
+        "successes": 17869,
+        "failures": 0,
+        "offered_slots": 18000,
+        "missed_slots": 131,
+        "valid": true,
+        "codes": {
+          "0": 17869
+        },
+        "successful_ops_s": 595.5503696927913,
+        "p99_ms": 12.664359,
+        "p999_ms": 237.687828,
+        "max_ms": 265.84536,
+        "scheduled_p99_ms": 17.656666
+      }
+    },
+    {
+      "position": 15,
+      "cold_mib": 15,
+      "repeat": 2,
+      "variant": "after",
+      "executor": "background",
+      "label": "m15-r2-after",
+      "summary": {
+        "attempts": 17868,
+        "successes": 17868,
+        "failures": 0,
+        "offered_slots": 18000,
+        "missed_slots": 132,
+        "valid": true,
+        "codes": {
+          "0": 17868
+        },
+        "successful_ops_s": 595.5012269706381,
+        "p99_ms": 12.123667,
+        "p999_ms": 244.726371,
+        "max_ms": 272.52292,
+        "scheduled_p99_ms": 14.880968
+      }
+    },
+    {
+      "position": 16,
+      "cold_mib": 15,
+      "repeat": 2,
+      "variant": "before",
+      "executor": "background",
+      "label": "m15-r2-before",
+      "summary": {
+        "attempts": 17711,
+        "successes": 17711,
+        "failures": 0,
+        "offered_slots": 18000,
+        "missed_slots": 289,
+        "valid": true,
+        "codes": {
+          "0": 17711
+        },
+        "successful_ops_s": 590.1918329202709,
+        "p99_ms": 15.352365,
+        "p999_ms": 470.268175,
+        "max_ms": 497.130521,
+        "scheduled_p99_ms": 24.685732
+      }
+    },
+    {
+      "position": 17,
+      "cold_mib": 15,
+      "repeat": 2,
+      "variant": "sync",
+      "executor": "sync",
+      "label": "m15-r2-sync",
+      "summary": {
+        "attempts": 17818,
+        "successes": 17818,
+        "failures": 0,
+        "offered_slots": 18000,
+        "missed_slots": 182,
+        "valid": true,
+        "codes": {
+          "0": 17818
+        },
+        "successful_ops_s": 593.831186787961,
+        "p99_ms": 15.611365,
+        "p999_ms": 203.4809,
+        "max_ms": 228.353859,
+        "scheduled_p99_ms": 17.988276
+      }
+    }
+  ],
+  "measured_seconds": 540,
+  "note": "before=frozen old background binary; after=new background binary; sync=new default binary; KV encoder background; counterbalanced 3 variants, 3 repeats per size; trace recorder absent; 32 clients/600 offered rps/50% writes/128B; load shares Follower3, not isolated capacity",
+  "position": 17,
+  "phase": {
+    "cold_mib": 15,
+    "repeat": 2,
+    "variant": "sync",
+    "executor": "sync",
+    "label": "m15-r2-sync"
+  },
+  "last_update_unix_ns": 1792987010664480609,
+  "finished_unix_ns": 1792987010843711194,
+  "cleanup_errors": []
+}

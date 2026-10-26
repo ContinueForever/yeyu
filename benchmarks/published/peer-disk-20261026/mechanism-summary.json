@@ -1,0 +1,19 @@
+{
+  "before": {
+    "binary_sha256": "f992830abb5e9471d8c3e66efd6fa8d512eb62110ab891aabac1da9cb38ed569",
+    "release_to_ack_ms": 411.490411,
+    "submitted_to_ack_ms": 442.328582,
+    "busy_responses": 1,
+    "restart_check": true,
+    "rejected_sequence": 19,
+    "retry_sequence": 22,
+    "busy_to_retry_ms": 501.507982
+  },
+  "after": {
+    "binary_sha256": "e58f9fe73dfef9e6d21b8f56c607bde0a9ad82c45c40e419cba5cc0f43ff85b7",
+    "release_to_ack_ms": 6.458399,
+    "submitted_to_ack_ms": 37.646212,
+    "busy_responses": 0,
+    "restart_check": true
+  }
+}

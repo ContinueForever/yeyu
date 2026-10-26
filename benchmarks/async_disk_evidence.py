@@ -27,12 +27,23 @@ def value_matches(record, value):
     )
 
 
-def campaign(nodes, environment, name="async-main"):
+def campaign(
+    nodes,
+    environment,
+    name="async-main",
+    *,
+    phases=None,
+    window_seconds=None,
+    phase_builder=phase_options,
+    grouping="executor",
+    binary_hashes=None,
+):
     root = Path(nodes) / "node-3" / name
     progress = read(root / "progress.json")
     smoke = name == "async-smoke"
-    seconds = 2 if smoke else 30
-    phases = plan(smoke)
+    seconds = (2 if smoke else 30) if window_seconds is None else window_seconds
+    phases = plan(smoke) if phases is None else phases
+    require(grouping in ("executor", "variant"), "unknown comparison grouping")
     require(
         progress["status"] == "complete"
         and not progress["cleanup_errors"]
@@ -44,7 +55,8 @@ def campaign(nodes, environment, name="async-main"):
         "incomplete or different comparison plan",
     )
     expected_labels = {
-        f"m{r['cold_mib']}-r{r['repeat']}-{r['executor']}" for r in phases
+        r.get("label", f"m{r['cold_mib']}-r{r['repeat']}-{r['executor']}")
+        for r in phases
     }
     require(
         {p.name for p in root.iterdir() if p.is_dir()} == expected_labels,
@@ -52,12 +64,14 @@ def campaign(nodes, environment, name="async-main"):
     )
     rows, identities = [], {n: set() for n in (1, 2, 3)}
     for position, phase in enumerate(phases):
-        label = f"m{phase['cold_mib']}-r{phase['repeat']}-{phase['executor']}"
+        label = phase.get(
+            "label", f"m{phase['cold_mib']}-r{phase['repeat']}-{phase['executor']}"
+        )
         folder = root / label
         setup = read(folder / "setup.json")
         options = setup["options"]
         require(
-            options == phase_options(phase, name + "-" + label),
+            options == phase_builder(phase, name + "-" + label),
             "runtime plan options differ",
         )
         cold_keys = phase["cold_mib"] * 128
@@ -71,7 +85,12 @@ def campaign(nodes, environment, name="async-main"):
             argv = item["argv"]
             require(
                 item["started"]
-                and Path(argv[0]).name == "yewukv-node"
+                and Path(argv[0]).name
+                == (
+                    "yewukv-node-baseline"
+                    if options.get("program") == "baseline"
+                    else "yewukv-node"
+                )
                 and argument(argv, "--id") == str(node)
                 and argument(argv, "--port") == "19101"
                 and argument(argv, "--members") == members
@@ -87,6 +106,12 @@ def campaign(nodes, environment, name="async-main"):
                 and "--trace-prefix" not in argv,
                 "actual launch configuration differs",
             )
+            if binary_hashes is not None:
+                require(
+                    item["binary_sha256"]
+                    == binary_hashes[options.get("program", "new")],
+                    "actual launch binary hash differs",
+                )
         directory = folder / "window"
         config = read(directory / "result.json")
         require(
@@ -157,6 +182,13 @@ def campaign(nodes, environment, name="async-main"):
                     and not active["proxies"],
                     "sampled runtime configuration differs",
                 )
+                if binary_hashes is not None:
+                    require(
+                        active["program"] == options["program"]
+                        and active["binary_sha256"]
+                        == binary_hashes[options["program"]],
+                        "sampled binary variant differs",
+                    )
         for node in (1, 2, 3):
             item = resources[f"node_{node}"]
             identity = (item["pid"], item["start_ticks"])
@@ -218,11 +250,19 @@ def campaign(nodes, environment, name="async-main"):
         )
     groups, pairs = [], []
     for size in sorted({r["cold_mib"] for r in rows}):
-        for executor in ("sync", "background"):
+        for selected_group in (
+            ("sync", "background")
+            if grouping == "executor"
+            else ("before", "after", "sync")
+        ):
             selected = [
-                r for r in rows if r["cold_mib"] == size and r["executor"] == executor
+                r
+                for r in rows
+                if r["cold_mib"] == size and r[grouping] == selected_group
             ]
-            group = dict(cold_mib=size, executor=executor, windows=len(selected))
+            group = dict(
+                cold_mib=size, **{grouping: selected_group}, windows=len(selected)
+            )
             for key in ("successful_ops_s", "p99_ms", "p999_ms", "scheduled_p99_ms"):
                 values = [r[key] for r in selected]
                 group[key] = dict(
@@ -249,15 +289,25 @@ def campaign(nodes, environment, name="async-main"):
             groups.append(group)
         for repeat in sorted({r["repeat"] for r in rows if r["cold_mib"] == size}):
             selected = {
-                r["executor"]: r
+                r[grouping]: r
                 for r in rows
                 if r["cold_mib"] == size and r["repeat"] == repeat
             }
-            changes = {
-                key: 100 * (selected["background"][key] / selected["sync"][key] - 1)
-                for key in ("successful_ops_s", "p99_ms", "p999_ms", "scheduled_p99_ms")
-            }
-            pairs.append(dict(cold_mib=size, repeat=repeat, percent_change=changes))
+            for reference in ["sync"] if grouping == "executor" else ["before", "sync"]:
+                target = "background" if grouping == "executor" else "after"
+                changes = {
+                    key: 100 * (selected[target][key] / selected[reference][key] - 1)
+                    for key in (
+                        "successful_ops_s",
+                        "p99_ms",
+                        "p999_ms",
+                        "scheduled_p99_ms",
+                    )
+                }
+                pair = dict(cold_mib=size, repeat=repeat, percent_change=changes)
+                if grouping == "variant":
+                    pair["comparison"] = "after_vs_" + reference
+                pairs.append(pair)
     total = {
         k: sum(r[k] for r in rows)
         for k in (
