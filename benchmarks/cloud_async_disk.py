@@ -74,9 +74,22 @@ def record_value(response):
     )
 
 
-def run(fleet, bench, output, smoke=False, shutdown_agents=False):
-    seconds = 2 if smoke else 30
-    phases = plan(smoke)
+def run(
+    fleet,
+    bench,
+    output,
+    smoke=False,
+    shutdown_agents=False,
+    *,
+    phases=None,
+    window_seconds=None,
+    phase_builder=phase_options,
+    note=None,
+):
+    seconds = (2 if smoke else 30) if window_seconds is None else window_seconds
+    phases = plan(smoke) if phases is None else phases
+    if type(seconds) is not int or not 1 <= seconds <= 120 or not phases:
+        raise ValueError("invalid bounded comparison window")
     progress = dict(
         status="running",
         started_unix_ns=time.time_ns(),
@@ -84,15 +97,18 @@ def run(fleet, bench, output, smoke=False, shutdown_agents=False):
         seconds=seconds,
         completed=[],
         measured_seconds=0,
-        note="same binary; trace recorder absent; background KV encoder fixed; 32 clients, 600 offered rps, 50% writes, 128B; fresh data per phase, three paired repeats per size; load shares Follower 3, not isolated capacity",
+        note=note
+        or "same binary; trace recorder absent; background KV encoder fixed; 32 clients, 600 offered rps, 50% writes, 128B; fresh data per phase, three paired repeats per size; load shares Follower 3, not isolated capacity",
     )
     save(output / "progress.json", progress)
     try:
         for position, row in enumerate(phases):
-            label = f"m{row['cold_mib']}-r{row['repeat']}-{row['executor']}"
+            label = row.get(
+                "label", f"m{row['cold_mib']}-r{row['repeat']}-{row['executor']}"
+            )
             folder = output / label
             folder.mkdir()
-            options = phase_options(row, output.name + "-" + label)
+            options = phase_builder(row, output.name + "-" + label)
             progress.update(
                 position=position, phase=row, last_update_unix_ns=time.time_ns()
             )

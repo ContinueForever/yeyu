@@ -14,6 +14,7 @@
 | 关联读请求、ReadIndex 与副本 RPC 的分阶段耗时 | [读路径追踪](read-tracing.md) |
 | 关联同线程读等待、持久化编码、文件和目录同步 | [持久化时间关联](persistence-tracing.md) |
 | 后台磁盘线程、非阻塞 Raft 与故障确认顺序 | [后台磁盘执行](background-persistence.md) |
+| 繁忙副本的有界等待、超时清理与高任期撤销 | [副本磁盘屏障等待](peer-disk-admission.md) |
 | 持久化任务接收、顺序、完成通知与确认边界 | [有序持久化接口](persistence-queue.md) |
 | 版本条件更新、多发布者冲突与旧快照迁移 | [CAS 契约](cas.md) |
 | 冻结值的所有权、后台编码与暂停边界 | [后台快照编码](background-snapshot.md) |

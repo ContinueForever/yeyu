@@ -48,8 +48,8 @@ def guard(frames):
             raise RuntimeError("experiment node RSS limit")
 
 
-def phase_options(phase, case):
-    return dict(
+def phase_options(phase, case, disk_executor=None):
+    options = dict(
         case=case,
         encoder=phase["encoder"],
         proxies=False,
@@ -59,6 +59,25 @@ def phase_options(phase, case):
         journal_checkpoint_bytes=4194304,
         request_timeout_ms=1500,
     )
+    if disk_executor is not None:
+        if disk_executor not in ("sync", "background"):
+            raise ValueError("invalid disk executor")
+        options.update(disk_executor=disk_executor, trace=False)
+    return options
+
+
+def check_disk_executor(states, disk_executor):
+    if disk_executor is None:
+        return
+    if len(states) != 3 or any(
+        state["disk_executor"] != disk_executor
+        or state["trace_enabled"]
+        or state["trace_written"]
+        or state["trace_dropped"]
+        or state["trace_failed"]
+        for state in states
+    ):
+        raise RuntimeError("long-run disk mode differs or tracing is active")
 
 
 def compress_samples(folder):
@@ -72,7 +91,16 @@ def compress_samples(folder):
         path.unlink()
 
 
-def run(fleet, bench, output, phases, seconds, rate, shutdown_agents=False):
+def run(
+    fleet,
+    bench,
+    output,
+    phases,
+    seconds,
+    rate,
+    shutdown_agents=False,
+    disk_executor=None,
+):
     progress = dict(
         status="running",
         started_unix_ns=time.time_ns(),
@@ -85,6 +113,10 @@ def run(fleet, bench, output, phases, seconds, rate, shutdown_agents=False):
         original_services_protected=True,
         note="Three VMs; C++ load shares Follower 3. Default adaptive policy; one-core/512MiB node limits. Windows exclude setup; phase metrics include preload, warmup and probes.",
     )
+    if disk_executor is not None:
+        if disk_executor not in ("sync", "background"):
+            raise ValueError("invalid disk executor")
+        progress["disk_executor"] = disk_executor
     save(output / "progress.json", progress)
     result_bytes = 0
     try:
@@ -92,8 +124,8 @@ def run(fleet, bench, output, phases, seconds, rate, shutdown_agents=False):
             case = f"{output.name}-p{index}"
             folder = output / f"phase-{index:02d}"
             folder.mkdir()
-            options = phase_options(phase, case)
-            fleet.all("start", **options)
+            options = phase_options(phase, case, disk_executor)
+            launched = fleet.all("start", **options)
             fleet.settled()
             fleet.select_leader(2)
             cold_keys = phase["cold_mib"] * 128
@@ -112,22 +144,24 @@ def run(fleet, bench, output, phases, seconds, rate, shutdown_agents=False):
             )
             if anchor["code"] != 0 or not anchor["revision"]:
                 raise RuntimeError("anchor create failed")
-            save(
-                folder / "setup.json",
-                dict(
-                    config=phase,
-                    options=options,
-                    cold_keys=cold_keys,
-                    anchor_revision=anchor["revision"],
-                    states=fleet.settled(),
-                ),
+            setup = dict(
+                config=phase,
+                options=options,
+                cold_keys=cold_keys,
+                anchor_revision=anchor["revision"],
+                states=fleet.settled(),
             )
+            check_disk_executor(setup["states"], disk_executor)
+            if disk_executor is not None:
+                setup["launched"] = launched
+            save(folder / "setup.json", setup)
             for window in range(phase["windows"]):
                 progress.update(
                     phase=index, window=window, last_update_unix_ns=time.time_ns()
                 )
                 save(output / "progress.json", progress)
                 before = fleet.settled()
+                check_disk_executor(before, disk_executor)
                 if before[1]["role"] != "leader":
                     raise RuntimeError("leader changed before window")
                 target = folder / f"window-{window:03d}"
@@ -195,6 +229,7 @@ def run(fleet, bench, output, phases, seconds, rate, shutdown_agents=False):
                 summary = summarize(target)
                 compress_samples(target)
                 after = fleet.settled()
+                check_disk_executor(after, disk_executor)
                 save(
                     target / "observation.json",
                     dict(summary=summary, before=before, after=after),
@@ -225,7 +260,7 @@ def run(fleet, bench, output, phases, seconds, rate, shutdown_agents=False):
                 )
             fleet.all("stop")
             fleet.all("start", **options)
-            fleet.settled()
+            check_disk_executor(fleet.settled(), disk_executor)
             for key in range(cold_keys):
                 fleet.assert_value(f"cold-{key}".encode(), b"c" * 8192)
             restored = fleet.call("get", b"soak-anchor")
@@ -279,6 +314,7 @@ def main():
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--smoke", action="store_true")
     parser.add_argument("--shutdown-agents", action="store_true")
+    parser.add_argument("--disk-executor", choices=("sync", "background"))
     a = parser.parse_args()
     a.output.mkdir(parents=True, mode=0o700, exist_ok=False)
     signal.signal(
@@ -293,6 +329,7 @@ def main():
         2 if a.smoke else 60,
         600,
         a.shutdown_agents,
+        a.disk_executor,
     )
     print(
         json.dumps(

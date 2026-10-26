@@ -21,7 +21,7 @@ def disk_executor_args(payload, program):
     mode = payload.get("disk_executor")
     if mode is None:
         return []  # Omitted options still work with earlier experiment binaries.
-    if mode not in ("sync", "background") or program != "new":
+    if mode not in ("sync", "background") or program not in ("new", "baseline"):
         raise ValueError("disk executor requires a supported mode and new program")
     return ["--disk-executor", mode]
 
@@ -111,8 +111,10 @@ def main():
                     or not 100 <= request_timeout <= 60000
                 ):
                     raise ValueError("invalid snapshot/persistence options")
-                if program not in ["new", "legacy"] or (
-                    program == "legacy" and not case.startswith("legacy-")
+                if (
+                    program not in ["new", "legacy", "baseline"]
+                    or (program == "legacy" and not case.startswith("legacy-"))
+                    or (program == "baseline" and not case.startswith("baseline-"))
                 ):
                     raise ValueError(
                         "legacy execution requires an isolated legacy case"
@@ -134,9 +136,27 @@ def main():
                     and marker.read_text() == "new"
                 ):
                     raise ValueError("never open upgraded data using a legacy program")
+                if marker.exists() and (
+                    (program == "baseline") != (marker.read_text() == "baseline")
+                ):
+                    raise ValueError(
+                        "baseline data cannot be shared with another program"
+                    )
                 selected_binary = (
-                    binary if program == "new" else Path("/usr/local/bin/yewukv-node")
+                    binary
+                    if program == "new"
+                    else (
+                        binary.with_name("yewukv-node-baseline")
+                        if program == "baseline"
+                        else Path("/usr/local/bin/yewukv-node")
+                    )
                 )
+                if program == "baseline" and (
+                    not re.fullmatch(r"[0-9a-f]{64}", cfg.get("baseline_sha256", ""))
+                    or hashlib.sha256(selected_binary.read_bytes()).hexdigest()
+                    != cfg["baseline_sha256"]
+                ):
+                    raise ValueError("isolated baseline binary hash differs")
                 if (
                     program == "legacy"
                     and hashlib.sha256(selected_binary.read_bytes()).hexdigest()
@@ -192,7 +212,7 @@ def main():
                     "--event-queue",
                     str(payload.get("event_queue", 4096)),
                 ]
-                if program == "new":
+                if program in ("new", "baseline"):
                     argv += ["--snapshot-encoder", mode, *disk_args]
                 if tracing:
                     prefix = directory / "trace"
@@ -224,12 +244,18 @@ def main():
                 )
                 active.update(
                     case=case,
+                    program=program,
+                    binary_sha256=hashlib.sha256(
+                        selected_binary.read_bytes()
+                    ).hexdigest(),
                     encoder=mode,
                     proxies=proxies,
                     trace=tracing,
                     disk_executor=payload.get("disk_executor", "sync"),
                 )
-                return dict(started=True, argv=argv)
+                return dict(
+                    started=True, argv=argv, binary_sha256=active["binary_sha256"]
+                )
             if selected == "stop":
                 stop(unit)
                 stop(proxyunit)

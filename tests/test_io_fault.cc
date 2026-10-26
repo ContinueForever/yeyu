@@ -25,9 +25,11 @@ bool Armed(int fd) {
   const char* suffix = "/raft.state.tmp";
   const size_t length = std::strlen(suffix);
   const char* basename = std::strrchr(target, '/');
+  const char* checkpoint_only = std::getenv("YEWUKV_TEST_IO_CHECKPOINT_ONLY");
   return (static_cast<size_t>(size) >= length &&
           std::strcmp(target + size - length, suffix) == 0) ||
-         (basename && std::strncmp(basename + 1, "raft.wal.", 9) == 0);
+         (!(checkpoint_only && std::strcmp(checkpoint_only, "1") == 0) && basename &&
+          std::strncmp(basename + 1, "raft.wal.", 9) == 0);
 }
 }  // namespace
 

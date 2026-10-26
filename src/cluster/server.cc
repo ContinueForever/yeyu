@@ -298,6 +298,15 @@ struct Server::Impl {
     std::optional<ReadTrace> trace;
     uint64_t trace_ordinal = 0;
   };
+  struct DeferredPeer {
+    Pending pending;
+    Message message;
+    Clock::time_point received;
+  };
+  // Fixed-three membership: one waiting RPC per remote voter. The sender's
+  // transport timeout is 400 ms; leave time to deliver a bounded rejection.
+  static constexpr size_t kDeferredPeerCapacity = 2;
+  static constexpr auto kPeerDeferTimeout = 300ms;
 
   Options options;
   std::shared_ptr<ReadTraceRecorder> trace;
@@ -311,6 +320,7 @@ struct Server::Impl {
   uint64_t pending_term = 0;
   std::vector<std::pair<Pending, std::string>> staged;
   std::deque<Read> reads;
+  std::deque<DeferredPeer> deferred_peers;
   uint64_t applied_index = 0;
   std::vector<std::unique_ptr<Peer>> peers;
   std::mutex mutex;
@@ -332,6 +342,15 @@ struct Server::Impl {
   uint64_t append_requests = 0;
   uint64_t read_append_requests = 0;
   uint64_t read_append_with_entries = 0;
+  uint64_t peer_deferred = 0;
+  uint64_t peer_deferred_admitted = 0;
+  uint64_t peer_deferred_expired = 0;
+  uint64_t peer_deferred_abandoned = 0;
+  uint64_t peer_deferred_rejected = 0;
+  uint64_t peer_deferred_wait_ns = 0;
+  uint64_t peer_deferred_wait_max_ns = 0;
+  std::atomic<uint64_t> peer_busy_received{0};
+  std::atomic<uint64_t> peer_rpc_failed{0};
   uint64_t snapshot_pause_ns = 0;
   uint64_t snapshot_pause_max_ns = 0;
   struct EncodedSnapshot {
@@ -465,6 +484,76 @@ struct Server::Impl {
     return response;
   }
 
+  Status ReceivePeer(const DeferredPeer& request) {
+    // ReceiveAsync must inspect every message before admission, including when
+    // the waiting slots are full: a valid higher term fences leadership now.
+    // Keep our owned copy only when the disk barrier rejects admission.
+    return node.ReceiveAsync(
+        request.message, [this, operation = request.pending](std::optional<Message> reply) {
+          auto response = Response(operation.request_id);
+          if (reply)
+            *response.mutable_peer() = EncodeMessage(*reply);
+          else
+            response.set_code(KvResponse::UNAVAILABLE);
+          Respond(operation.connection, operation.ordered, std::move(response));
+        });
+  }
+
+  void RejectPeer(const DeferredPeer& request, const Status& status) {
+    auto response = Response(request.pending.request_id);
+    response.set_code(status.code() == StatusCode::kBusy ? KvResponse::BUSY
+                                                         : KvResponse::UNAVAILABLE);
+    response.set_error(status.ToString());
+    Respond(request.pending.connection, request.pending.ordered, std::move(response));
+  }
+
+  void HandlePeer(DeferredPeer request) {
+    const auto status = ReceivePeer(request);
+    if (status.ok()) return;
+    if (status.code() == StatusCode::kBusy && disk_worker &&
+        deferred_peers.size() < kDeferredPeerCapacity &&
+        std::none_of(deferred_peers.begin(), deferred_peers.end(), [&](const auto& previous) {
+          return previous.message.from == request.message.from;
+        })) {
+      deferred_peers.push_back(std::move(request));
+      ++peer_deferred;
+      return;
+    }
+    if (status.code() == StatusCode::kBusy) ++peer_deferred_rejected;
+    RejectPeer(request, status);
+  }
+
+  void DrainPeers() {
+    const auto now = Clock::now();
+    for (auto it = deferred_peers.begin(); it != deferred_peers.end();) {
+      auto connection = it->pending.connection.lock();
+      if (!connection || !connection->Connected()) {
+        ++peer_deferred_abandoned;
+        it = deferred_peers.erase(it);
+      } else if (now >= it->pending.deadline) {
+        ++peer_deferred_expired;
+        RejectPeer(*it, Status::IOError("peer request expired before disk admission"));
+        it = deferred_peers.erase(it);
+      } else
+        ++it;
+    }
+    while (!deferred_peers.empty() && !node.PersistencePending()) {
+      const auto status = ReceivePeer(deferred_peers.front());
+      if (status.code() == StatusCode::kBusy) break;
+      auto request = std::move(deferred_peers.front());
+      deferred_peers.pop_front();
+      if (!status.ok()) {
+        RejectPeer(request, status);
+        continue;
+      }
+      ++peer_deferred_admitted;  // Admitted; its reply still waits for disk.
+      const auto waited = static_cast<uint64_t>(
+          std::chrono::duration_cast<std::chrono::nanoseconds>(now - request.received).count());
+      peer_deferred_wait_ns += waited;
+      peer_deferred_wait_max_ns = std::max(peer_deferred_wait_max_ns, waited);
+    }
+  }
+
   void Handle(std::weak_ptr<net::TcpConnection> weak, uint64_t ordered, const KvRequest& request,
               std::optional<ReadTrace> timing = {}) {
     if (timing) {
@@ -494,20 +583,10 @@ struct Server::Impl {
             }
           }
         }
-        const auto request_id = request.request_id();
-        auto accepted = node.ReceiveAsync(
-            std::move(*message), [this, weak, ordered, request_id](std::optional<Message> reply) {
-              auto result = Response(request_id);
-              if (reply)
-                *result.mutable_peer() = EncodeMessage(*reply);
-              else
-                result.set_code(KvResponse::UNAVAILABLE);
-              Respond(weak, ordered, std::move(result));
-            });
-        if (accepted.ok()) return;
-        response.set_code(accepted.code() == StatusCode::kBusy ? KvResponse::BUSY
-                                                               : KvResponse::UNAVAILABLE);
-        response.set_error(accepted.ToString());
+        const auto received = Clock::now();
+        HandlePeer({Pending{weak, ordered, request.request_id(), received + kPeerDeferTimeout},
+                    std::move(*message), received});
+        return;
       }
     } else if (request.has_status()) {
       const char* role = node.IsLeader()                         ? "leader"
@@ -538,6 +617,17 @@ struct Server::Impl {
            << ",\"append_requests\":" << append_requests
            << ",\"read_append_requests\":" << read_append_requests
            << ",\"read_append_with_entries\":" << read_append_with_entries
+           << ",\"peer_deferred\":" << peer_deferred
+           << ",\"peer_deferred_pending\":" << deferred_peers.size()
+           << ",\"peer_deferred_capacity\":" << kDeferredPeerCapacity
+           << ",\"peer_deferred_admitted\":" << peer_deferred_admitted
+           << ",\"peer_deferred_expired\":" << peer_deferred_expired
+           << ",\"peer_deferred_abandoned\":" << peer_deferred_abandoned
+           << ",\"peer_deferred_rejected\":" << peer_deferred_rejected
+           << ",\"peer_deferred_wait_ns\":" << peer_deferred_wait_ns
+           << ",\"peer_deferred_wait_max_ns\":" << peer_deferred_wait_max_ns
+           << ",\"peer_busy_received\":" << peer_busy_received.load()
+           << ",\"peer_rpc_failed\":" << peer_rpc_failed.load()
            << ",\"snapshot_pause_ns\":" << snapshot_pause_ns
            << ",\"snapshot_pause_max_ns\":" << snapshot_pause_max_ns
            << ",\"snapshot_jobs\":" << snapshot_jobs
@@ -908,7 +998,11 @@ struct Server::Impl {
           }
         }
         node.AdvancePersistence();
+        // Resume bounded peer requests before starting another local snapshot
+        // or client disk write. Completion wakes this owner without a tick.
+        DrainPeers();
         for (auto& task : batch) task();
+        DrainPeers();
         if (Clock::now() >= next_tick) {
           node.Tick();
           next_tick = Clock::now() + 50ms;
@@ -962,6 +1056,8 @@ struct Server::Impl {
           timing->returned_ns = TraceNow();
         }
         if (!result.ok() || result.value().code() != KvResponse::OK || !result.value().has_peer()) {
+          if (result.ok() && result.value().code() == KvResponse::BUSY) ++peer_busy_received;
+          ++peer_rpc_failed;
           if (timing) trace->Record(*timing);
           client.reset();
           continue;
@@ -973,6 +1069,7 @@ struct Server::Impl {
             (message.kind == MessageKind::kAppend && reply->kind != MessageKind::kAppendReply) ||
             (message.kind == MessageKind::kSnapshot &&
              reply->kind != MessageKind::kSnapshotReply)) {
+          ++peer_rpc_failed;
           if (timing) trace->Record(*timing);
           client.reset();
           continue;
@@ -989,6 +1086,7 @@ struct Server::Impl {
             timing)
           trace->Record(*timing);
       } catch (...) {
+        ++peer_rpc_failed;
         if (timing) trace->Record(*timing);
         client.reset();
       }
