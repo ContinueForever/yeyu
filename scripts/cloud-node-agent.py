@@ -17,6 +17,15 @@ def command(*args):
     return subprocess.check_output(args, text=True, timeout=20)
 
 
+def disk_executor_args(payload, program):
+    mode = payload.get("disk_executor")
+    if mode is None:
+        return []  # Omitted options still work with earlier experiment binaries.
+    if mode not in ("sync", "background") or program != "new":
+        raise ValueError("disk executor requires a supported mode and new program")
+    return ["--disk-executor", mode]
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", type=Path, required=True)
@@ -73,6 +82,7 @@ def main():
                 mode = payload.get("encoder", "sync")
                 proxies = payload.get("proxies", False)
                 program = payload.get("program", "new")
+                disk_args = disk_executor_args(payload, program)
                 policy = payload.get("snapshot_policy", "fixed")
                 checkpoint = payload.get("journal_checkpoint_bytes", 67108864)
                 request_timeout = payload.get("request_timeout_ms", 900)
@@ -183,7 +193,7 @@ def main():
                     str(payload.get("event_queue", 4096)),
                 ]
                 if program == "new":
-                    argv += ["--snapshot-encoder", mode]
+                    argv += ["--snapshot-encoder", mode, *disk_args]
                 if tracing:
                     prefix = directory / "trace"
                     control_path = directory / "trace.enabled"
@@ -212,7 +222,13 @@ def main():
                     ],
                     case + "-node",
                 )
-                active.update(case=case, encoder=mode, proxies=proxies, trace=tracing)
+                active.update(
+                    case=case,
+                    encoder=mode,
+                    proxies=proxies,
+                    trace=tracing,
+                    disk_executor=payload.get("disk_executor", "sync"),
+                )
                 return dict(started=True, argv=argv)
             if selected == "stop":
                 stop(unit)

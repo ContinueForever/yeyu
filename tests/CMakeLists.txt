@@ -155,3 +155,7 @@ add_test(NAME cluster_async_persistence
   COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test_async_persistence.py
           ${snapshot_test_args} ${resource_test_args})
 set_tests_properties(cluster_async_persistence PROPERTIES TIMEOUT 180)
+
+add_test(NAME cloud_async_disk_plan
+  COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/test_async_disk_plan.py)
+set_tests_properties(cloud_async_disk_plan PROPERTIES TIMEOUT 10)
