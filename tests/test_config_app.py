@@ -26,23 +26,67 @@ class ConfigApplicationTests(unittest.TestCase):
             try:
                 cluster.leader()
                 nodes = ",".join(f"127.0.0.1:{port}" for port in cluster.ports)
-                command = [sys.executable, str(EXAMPLE), "--client", str(harness.CLIENT),
-                           "--nodes", nodes, "--timeout-ms", "500"]
+                command = [
+                    sys.executable,
+                    str(EXAMPLE),
+                    "--client",
+                    str(harness.CLIENT),
+                    "--nodes",
+                    nodes,
+                ]
                 config = Path(directory) / "config.json"
 
                 def publish(message):
-                    config.write_text(json.dumps(dict(message=message, enabled=True, request_timeout_ms=1500)))
-                    result = subprocess.run([*command, "publish", "--file", str(config)],
-                                            check=True, text=True, capture_output=True, timeout=10)
+                    config.write_text(
+                        json.dumps(
+                            dict(message=message, enabled=True, request_timeout_ms=1500)
+                        )
+                    )
+                    result = subprocess.run(
+                        [*command, "publish", "--file", str(config)],
+                        text=True,
+                        capture_output=True,
+                        timeout=10,
+                    )
+                    # Publishing uses the application's 1500 ms default. The
+                    # 500 ms probe budget below serves stale-health detection,
+                    # not a write-latency requirement on sanitizer CI runners.
+                    self.assertEqual(
+                        result.returncode,
+                        0,
+                        f"publish stdout={result.stdout!r}, stderr={result.stderr!r}\n{cluster.diagnostics()}",
+                    )
                     return json.loads(result.stdout)
 
                 first = publish("version one")
-                shown = subprocess.run([*command, "show"], check=True, text=True, capture_output=True, timeout=10)
+                shown = subprocess.run(
+                    [*command, "show"],
+                    check=True,
+                    text=True,
+                    capture_output=True,
+                    timeout=10,
+                )
                 self.assertEqual(json.loads(shown.stdout), first)
-                app = subprocess.Popen([*command, "serve", "--port", "0", "--poll-seconds", "0.1",
-                                        "--stale-after", "0.4"], stdout=subprocess.PIPE,
-                                       stderr=subprocess.PIPE, text=True)
-                self.assertTrue(select.select([app.stdout], [], [], 10)[0], "consumer did not start")
+                app = subprocess.Popen(
+                    [
+                        *command,
+                        "--timeout-ms",
+                        "500",
+                        "serve",
+                        "--port",
+                        "0",
+                        "--poll-seconds",
+                        "0.1",
+                        "--stale-after",
+                        "0.4",
+                    ],
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    text=True,
+                )
+                self.assertTrue(
+                    select.select([app.stdout], [], [], 10)[0], "consumer did not start"
+                )
                 line = app.stdout.readline()
                 self.assertTrue(line, f"consumer exited with {app.poll()}")
                 url = json.loads(line)["listen"]
@@ -56,11 +100,21 @@ class ConfigApplicationTests(unittest.TestCase):
 
                 self.assertEqual(request("/hello")[1]["message"], "version one")
                 second = publish("version two")
-                wait_for(cluster, lambda: request("/hello")[1].get("revision") == second["revision"])
+                wait_for(
+                    cluster,
+                    lambda: request("/hello")[1].get("revision") == second["revision"],
+                )
                 old = cluster.leader()
                 cluster.kill(old)
-                cluster.eventually_value(b"config/demo", json.dumps(second, sort_keys=True,
-                                         separators=(",", ":"), ensure_ascii=False).encode())
+                cluster.eventually_value(
+                    b"config/demo",
+                    json.dumps(
+                        second,
+                        sort_keys=True,
+                        separators=(",", ":"),
+                        ensure_ascii=False,
+                    ).encode(),
+                )
                 wait_for(cluster, lambda: request("/health")[0] == 200)
                 cluster.start(old)
                 cluster.blocked.update(range(3))
@@ -73,13 +127,24 @@ class ConfigApplicationTests(unittest.TestCase):
                     cluster.kill(i)
                 for i in range(3):
                     cluster.start(i)
-                cluster.eventually_value(b"config/demo", json.dumps(second, sort_keys=True,
-                                         separators=(",", ":"), ensure_ascii=False).encode())
+                cluster.eventually_value(
+                    b"config/demo",
+                    json.dumps(
+                        second,
+                        sort_keys=True,
+                        separators=(",", ":"),
+                        ensure_ascii=False,
+                    ).encode(),
+                )
                 wait_for(cluster, lambda: request("/health")[0] == 200)
                 self.assertEqual(request("/hello")[1]["revision"], second["revision"])
                 config.write_text('{"message":"bad"}')
-                invalid = subprocess.run([*command, "publish", "--file", str(config)],
-                                         capture_output=True, text=True, timeout=10)
+                invalid = subprocess.run(
+                    [*command, "publish", "--file", str(config)],
+                    capture_output=True,
+                    text=True,
+                    timeout=10,
+                )
                 self.assertNotEqual(invalid.returncode, 0)
                 self.assertEqual(request("/hello")[1]["revision"], second["revision"])
             finally:

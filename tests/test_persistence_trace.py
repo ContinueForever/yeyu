@@ -12,6 +12,7 @@ import test_cluster as harness
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "benchmarks"))
 from persistence_timeline import analyze, load_trace
+from cpp_load import read
 
 BENCH = None
 FAULT_LIBRARY = None
@@ -114,7 +115,19 @@ class PersistenceTraceTests(unittest.TestCase):
                 events = load_trace(paths[0])
                 report = analyze(events, root / "samples")
                 self.assertTrue(report["capture_clean"])
-                self.assertGreater(report["measured_gets"], 100)
+                # Correlation has no minimum throughput contract. Sanitizers
+                # and a busy runner may complete fewer requests in two seconds;
+                # still require every actual GET to join a unique trace.
+                config = read(root / "samples/result.json")
+                actual_gets = sum(
+                    sample[4] == 0
+                    for client in range(config["clients"])
+                    for sample in read(root / f"samples/client-{client}.json")[
+                        "samples"
+                    ]
+                )
+                self.assertGreater(actual_gets, 0)
+                self.assertEqual(report["measured_gets"], actual_gets)
                 self.assertEqual(report["joined_fraction"], 1)
                 self.assertGreater(report["joined_gets_overlapping_persist"], 0)
                 self.assertTrue(
