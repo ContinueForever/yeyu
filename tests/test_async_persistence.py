@@ -115,6 +115,19 @@ class AsyncRuntimeTests(unittest.TestCase):
                                 self.assertFalse(write.done())
                                 self.assertFalse(read.done())
                                 time.sleep(0.05)
+                            confirmed = cluster.status(leader)
+                            self.assertGreater(
+                                confirmed["read_quorum_rounds"],
+                                before["read_quorum_rounds"],
+                            )
+                            self.assertGreater(
+                                confirmed["read_append_requests"],
+                                before["read_append_requests"],
+                            )
+                            self.assertEqual(
+                                confirmed["read_index_completed"],
+                                before["read_index_completed"],
+                            )
                         finally:
                             (root / f"release-{leader}").touch()
                         self.assertEqual(write.result(timeout=5)["code"], 0)
