@@ -1,0 +1,344 @@
+{
+  "status": "complete",
+  "started_unix_ns": 1792980849288045959,
+  "plan": [
+    {
+      "cold_mib": 1,
+      "repeat": 0,
+      "executor": "sync"
+    },
+    {
+      "cold_mib": 1,
+      "repeat": 0,
+      "executor": "background"
+    },
+    {
+      "cold_mib": 1,
+      "repeat": 1,
+      "executor": "background"
+    },
+    {
+      "cold_mib": 1,
+      "repeat": 1,
+      "executor": "sync"
+    },
+    {
+      "cold_mib": 1,
+      "repeat": 2,
+      "executor": "sync"
+    },
+    {
+      "cold_mib": 1,
+      "repeat": 2,
+      "executor": "background"
+    },
+    {
+      "cold_mib": 15,
+      "repeat": 0,
+      "executor": "background"
+    },
+    {
+      "cold_mib": 15,
+      "repeat": 0,
+      "executor": "sync"
+    },
+    {
+      "cold_mib": 15,
+      "repeat": 1,
+      "executor": "sync"
+    },
+    {
+      "cold_mib": 15,
+      "repeat": 1,
+      "executor": "background"
+    },
+    {
+      "cold_mib": 15,
+      "repeat": 2,
+      "executor": "background"
+    },
+    {
+      "cold_mib": 15,
+      "repeat": 2,
+      "executor": "sync"
+    }
+  ],
+  "seconds": 30,
+  "completed": [
+    {
+      "position": 0,
+      "cold_mib": 1,
+      "repeat": 0,
+      "executor": "sync",
+      "summary": {
+        "attempts": 17980,
+        "successes": 17980,
+        "failures": 0,
+        "offered_slots": 18000,
+        "missed_slots": 20,
+        "valid": true,
+        "codes": {
+          "0": 17980
+        },
+        "successful_ops_s": 599.2041636907054,
+        "p99_ms": 21.301102,
+        "p999_ms": 50.83429,
+        "max_ms": 53.972651,
+        "scheduled_p99_ms": 25.921512
+      }
+    },
+    {
+      "position": 1,
+      "cold_mib": 1,
+      "repeat": 0,
+      "executor": "background",
+      "summary": {
+        "attempts": 16669,
+        "successes": 16669,
+        "failures": 0,
+        "offered_slots": 18000,
+        "missed_slots": 1331,
+        "valid": true,
+        "codes": {
+          "0": 16669
+        },
+        "successful_ops_s": 555.3353789832909,
+        "p99_ms": 53.02267,
+        "p999_ms": 492.000822,
+        "max_ms": 508.201726,
+        "scheduled_p99_ms": 54.433239
+      }
+    },
+    {
+      "position": 2,
+      "cold_mib": 1,
+      "repeat": 1,
+      "executor": "background",
+      "summary": {
+        "attempts": 16861,
+        "successes": 16861,
+        "failures": 0,
+        "offered_slots": 18000,
+        "missed_slots": 1139,
+        "valid": true,
+        "codes": {
+          "0": 16861
+        },
+        "successful_ops_s": 561.8787781806374,
+        "p99_ms": 56.759811,
+        "p999_ms": 497.045638,
+        "max_ms": 510.184118,
+        "scheduled_p99_ms": 56.794473
+      }
+    },
+    {
+      "position": 3,
+      "cold_mib": 1,
+      "repeat": 1,
+      "executor": "sync",
+      "summary": {
+        "attempts": 17992,
+        "successes": 17992,
+        "failures": 0,
+        "offered_slots": 18000,
+        "missed_slots": 8,
+        "valid": true,
+        "codes": {
+          "0": 17992
+        },
+        "successful_ops_s": 599.6015199931458,
+        "p99_ms": 24.16424,
+        "p999_ms": 48.036396,
+        "max_ms": 55.082901,
+        "scheduled_p99_ms": 29.331675
+      }
+    },
+    {
+      "position": 4,
+      "cold_mib": 1,
+      "repeat": 2,
+      "executor": "sync",
+      "summary": {
+        "attempts": 17982,
+        "successes": 17982,
+        "failures": 0,
+        "offered_slots": 18000,
+        "missed_slots": 18,
+        "valid": true,
+        "codes": {
+          "0": 17982
+        },
+        "successful_ops_s": 599.2966676304895,
+        "p99_ms": 19.188508,
+        "p999_ms": 46.309888,
+        "max_ms": 58.367679,
+        "scheduled_p99_ms": 24.677713
+      }
+    },
+    {
+      "position": 5,
+      "cold_mib": 1,
+      "repeat": 2,
+      "executor": "background",
+      "summary": {
+        "attempts": 16705,
+        "successes": 16705,
+        "failures": 0,
+        "offered_slots": 18000,
+        "missed_slots": 1295,
+        "valid": true,
+        "codes": {
+          "0": 16705
+        },
+        "successful_ops_s": 556.7465991539594,
+        "p99_ms": 48.107242,
+        "p999_ms": 478.820163,
+        "max_ms": 490.625618,
+        "scheduled_p99_ms": 50.182333
+      }
+    },
+    {
+      "position": 6,
+      "cold_mib": 15,
+      "repeat": 0,
+      "executor": "background",
+      "summary": {
+        "attempts": 17680,
+        "successes": 17680,
+        "failures": 0,
+        "offered_slots": 18000,
+        "missed_slots": 320,
+        "valid": true,
+        "codes": {
+          "0": 17680
+        },
+        "successful_ops_s": 589.1953902211801,
+        "p99_ms": 35.820441,
+        "p999_ms": 507.35634,
+        "max_ms": 535.641022,
+        "scheduled_p99_ms": 39.120917
+      }
+    },
+    {
+      "position": 7,
+      "cold_mib": 15,
+      "repeat": 0,
+      "executor": "sync",
+      "summary": {
+        "attempts": 17867,
+        "successes": 17867,
+        "failures": 0,
+        "offered_slots": 18000,
+        "missed_slots": 133,
+        "valid": true,
+        "codes": {
+          "0": 17867
+        },
+        "successful_ops_s": 595.5310320152612,
+        "p99_ms": 15.504519,
+        "p999_ms": 231.960067,
+        "max_ms": 260.15583,
+        "scheduled_p99_ms": 21.919734
+      }
+    },
+    {
+      "position": 8,
+      "cold_mib": 15,
+      "repeat": 1,
+      "executor": "sync",
+      "summary": {
+        "attempts": 17879,
+        "successes": 17879,
+        "failures": 0,
+        "offered_slots": 18000,
+        "missed_slots": 121,
+        "valid": true,
+        "codes": {
+          "0": 17879
+        },
+        "successful_ops_s": 595.9199001044742,
+        "p99_ms": 25.145935,
+        "p999_ms": 217.735311,
+        "max_ms": 242.627784,
+        "scheduled_p99_ms": 30.574762
+      }
+    },
+    {
+      "position": 9,
+      "cold_mib": 15,
+      "repeat": 1,
+      "executor": "background",
+      "summary": {
+        "attempts": 17682,
+        "successes": 17682,
+        "failures": 0,
+        "offered_slots": 18000,
+        "missed_slots": 318,
+        "valid": true,
+        "codes": {
+          "0": 17682
+        },
+        "successful_ops_s": 589.3063268128215,
+        "p99_ms": 46.805119,
+        "p999_ms": 470.960456,
+        "max_ms": 498.866862,
+        "scheduled_p99_ms": 47.198304
+      }
+    },
+    {
+      "position": 10,
+      "cold_mib": 15,
+      "repeat": 2,
+      "executor": "background",
+      "summary": {
+        "attempts": 17616,
+        "successes": 17616,
+        "failures": 0,
+        "offered_slots": 18000,
+        "missed_slots": 384,
+        "valid": true,
+        "codes": {
+          "0": 17616
+        },
+        "successful_ops_s": 586.9974746595907,
+        "p99_ms": 49.276634,
+        "p999_ms": 517.050482,
+        "max_ms": 544.880069,
+        "scheduled_p99_ms": 50.288552
+      }
+    },
+    {
+      "position": 11,
+      "cold_mib": 15,
+      "repeat": 2,
+      "executor": "sync",
+      "summary": {
+        "attempts": 17870,
+        "successes": 17870,
+        "failures": 0,
+        "offered_slots": 18000,
+        "missed_slots": 130,
+        "valid": true,
+        "codes": {
+          "0": 17870
+        },
+        "successful_ops_s": 595.5799804571225,
+        "p99_ms": 19.69023,
+        "p999_ms": 224.506793,
+        "max_ms": 252.864824,
+        "scheduled_p99_ms": 23.460657
+      }
+    }
+  ],
+  "measured_seconds": 360,
+  "note": "same binary; trace recorder absent; background KV encoder fixed; 32 clients, 600 offered rps, 50% writes, 128B; fresh data per phase, three paired repeats per size; load shares Follower 3, not isolated capacity",
+  "position": 11,
+  "phase": {
+    "cold_mib": 15,
+    "repeat": 2,
+    "executor": "sync"
+  },
+  "last_update_unix_ns": 1792981456708261149,
+  "finished_unix_ns": 1792981456983672749,
+  "cleanup_errors": []
+}

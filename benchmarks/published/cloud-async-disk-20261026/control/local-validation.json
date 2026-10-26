@@ -1,0 +1,25 @@
+{
+  "core_commit": "66bd2a92c25069279d3066b5e34d4e3368bb6e96",
+  "core_full_normal": 186,
+  "core_full_asan_ubsan": 186,
+  "component_tsan": 31,
+  "plan_unittest_cases": 7,
+  "plan_ctest_cases": 1,
+  "read_fix_commit": "29c6724ef2761dde6d4dcac1508ed9c61ec6eb8c",
+  "read_fix_normal": {
+    "cases": 3,
+    "seconds": 34.99
+  },
+  "read_fix_asan_ubsan": {
+    "cases": 2,
+    "seconds": 38.41,
+    "leak_detection": true
+  },
+  "ci_initial_failure": {
+    "run_id": 40257724527,
+    "job_id": 121363084157,
+    "test": "cluster_async_persistence: read_append_with_entries==0 is valid for a durable-prefix quorum while local persistence is pending"
+  },
+  "ci_initial_pr_success": 40257730066,
+  "production_cpp_changed": false
+}

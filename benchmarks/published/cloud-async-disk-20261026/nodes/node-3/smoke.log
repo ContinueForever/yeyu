@@ -1,0 +1,3 @@
+{"position": 0, "cold_mib": 1, "repeat": 0, "executor": "sync", "attempts": 1200, "successes": 1200, "failures": 0, "offered_slots": 1200, "missed_slots": 0, "valid": true, "codes": {"0": 1200}, "successful_ops_s": 597.5177665982513, "p99_ms": 15.225011, "p999_ms": 20.055229, "max_ms": 21.831542, "scheduled_p99_ms": 15.699829}
+{"position": 1, "cold_mib": 1, "repeat": 0, "executor": "background", "attempts": 1200, "successes": 1200, "failures": 0, "offered_slots": 1200, "missed_slots": 0, "valid": true, "codes": {"0": 1200}, "successful_ops_s": 597.5339394883266, "p99_ms": 35.333754, "p999_ms": 46.795351, "max_ms": 47.457278, "scheduled_p99_ms": 37.580269}
+{"status": "complete", "measured_seconds": 4}

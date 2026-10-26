@@ -68,6 +68,8 @@ python3 tests/test_cloud_soak_evidence.py
 
 后续[后台磁盘执行](docs/background-persistence.md)新增 16 项 C++ 组件用例与一个含 13 项真实进程用例的 CTest 入口，完整普通／ASan 各 186 项通过；TSan 仅覆盖队列与后台执行组件 31 项。`cluster_async_persistence` 使用测试专用磁盘闸门，验证同步等待时的心跳、GET 应用条件、SIGKILL、失败退出与停机排空，并复用已有历史／CAS／快照断言。首次强杀用例的读取助手重设超时问题及修正后记录一并归档，不能删掉失败日志。
 
+三机执行方式对照新增七项计划／参数检查，`cloud_async_disk_plan` 纳入 CTest，最新 CI 普通／ASan 各 187 项通过；离线 `test_async_disk_evidence.py` 的五项语义负例另计。它们在副本中刷新哈希后篡改分位数、模式、CPU 计数、恢复值和到达日历，要求当前核验脚本继续拒绝。原始云端归档和首次 CI 指标假设失败不能覆盖，实验结果与边界见[对照报告](docs/cloud-async-disk-20261026.md)。
+
 ## GitHub 检查
 
 `ci` 在推送与 PR 更新时运行普通构建、ASan／UBSan、格式检查、公开证据核验和单节点 Docker Compose 持久化恢复。`extended-local-reliability` 可手动运行 60–3600 秒故障活动，并保留报告与重现记录。单次检查通过不代表跨机器、真实断电或多日稳定性已完成。

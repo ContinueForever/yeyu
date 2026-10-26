@@ -1,0 +1,27 @@
+{
+  "commit": "21f56012bf56e9afc9aa25132178e37f4ef63661",
+  "source_sha256": "035a947e19ba7b7ebc8718bfb087502c0aea5f2f69fc37fd5f5ab806447a8784",
+  "components": {
+    "scripts/cloud-node-agent.py": "923e69dde34084e822e090307eb9186f43c6056ee2ca8da7412b739a2785ef10",
+    "scripts/peer-proxy.py": "f8decb151cea8d79dbdd3234cd508587b01377f165a842600bbf738afbfb1554",
+    "benchmarks/cloud_campaign.py": "da1d0e47eafe304af22ee4f7c777b03ba36252f5fb6842478993df183c7aad7a",
+    "benchmarks/cloud_load.py": "363e079d9c0dba6d3a3a9bfb1e86e00f9e33a0cc8089199ef05edbc3690f41a9",
+    "benchmarks/cloud_soak.py": "dc6dfb63f3ef168898320253d3288c7797cf299441e2b4268a692d281be64a78",
+    "benchmarks/cpp_load.py": "cd4aec2a771a6f1aa3f5d062a615e2ccee6b2ebaa63e999375e147131d183867",
+    "benchmarks/rpc_baseline.py": "bf5dddb6c99c124007fafdbba25f2a2b0b79410fc77f66416173eac78e154cb2",
+    "benchmarks/cloud_async_disk.py": "17e6e46273cc152ea8a1d2602d0113ed6a6649744da026b80cc2870a1b1cdbd2",
+    "tests/linearizability.py": "f1a569822634cee861890ff21413e82f44da1c41ff204d17e2b0a46c7564db0a"
+  },
+  "binaries": {
+    "yewukv-node": "f992830abb5e9471d8c3e66efd6fa8d512eb62110ab891aabac1da9cb38ed569",
+    "yewukv-bench": "91212524c21c98feaaf35735f39a9ee5f56007efb29e08c0627a539eda33ae21"
+  },
+  "agent_runtime_max_seconds": 2100,
+  "node_cpu_quota": "100%",
+  "node_memory_max": "512M",
+  "driver_cpu_quota": "100%",
+  "driver_memory_max": "512M",
+  "driver_runtime_max_seconds": 1800,
+  "trace_recorder": false,
+  "core_commit": "66bd2a92c25069279d3066b5e34d4e3368bb6e96"
+}

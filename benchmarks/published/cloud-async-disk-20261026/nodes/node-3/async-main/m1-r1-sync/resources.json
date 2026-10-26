@@ -1,0 +1,540 @@
+[
+  {
+    "monotonic_ns": 219585040811827,
+    "servers": [
+      {
+        "properties": "MainPID=88594\nNRestarts=0\nActiveState=active\n",
+        "active": {
+          "case": "async-main-m1-r1-sync",
+          "encoder": "background",
+          "proxies": false,
+          "trace": false,
+          "disk_executor": "sync"
+        },
+        "monotonic_ns": 256451964751074,
+        "free_disk_bytes": 35692572672,
+        "original_service": "NRestarts=0\nActiveState=active\nDropInPaths=\n",
+        "pid": 88594,
+        "stat": "88594 (yewukv-node) S 1 88594 88594 0 -1 4194560 3180 0 0 0 4 6 0 0 20 0 4 0 25644865 179310592 3300 18446744073709551615 101327288758272 101327289273973 140720790768656 0 0 0 16386 4096 0 0 0 0 17 0 0 0 0 0 0 101327289379440 101327289390408 101327737618432 140720790772880 140720790773369 140720790773369 140720790773692 0\n",
+        "status": "Name:\tyewukv-node\nUmask:\t0077\nState:\tS (sleeping)\nTgid:\t88594\nNgid:\t0\nPid:\t88594\nPPid:\t1\nTracerPid:\t0\nUid:\t999\t999\t999\t999\nGid:\t988\t988\t988\t988\nFDSize:\t256\nGroups:\t988 \nNStgid:\t88594\nNSpid:\t88594\nNSpgid:\t88594\nNSsid:\t88594\nKthread:\t0\nVmPeak:\t  239632 kB\nVmSize:\t  175108 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t   14240 kB\nVmRSS:\t   13440 kB\nRssAnon:\t    6880 kB\nRssFile:\t    6560 kB\nRssShmem:\t       0 kB\nVmData:\t   39596 kB\nVmStk:\t     132 kB\nVmExe:\t     504 kB\nVmLib:\t    5632 kB\nVmPTE:\t     104 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t4\nSigQ:\t0/14096\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000004002\nSigIgn:\t0000000000001000\nSigCgt:\t0000000100000000\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t000001ffffffffff\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t0\nSeccomp_filters:\t0\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\t3\nCpus_allowed_list:\t0-1\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t623\nnonvoluntary_ctxt_switches:\t19\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "io": "rchar: 1116916\nwchar: 2098010\nsyscr: 1029\nsyscw: 491\nread_bytes: 0\nwrite_bytes: 2650112\ncancelled_write_bytes: 0\n",
+        "cpu_stat": "cpu  609666 11736 299810 49404017 467990 0 176202 0 0 0"
+      },
+      {
+        "properties": "MainPID=75095\nNRestarts=0\nActiveState=active\n",
+        "active": {
+          "case": "async-main-m1-r1-sync",
+          "encoder": "background",
+          "proxies": false,
+          "trace": false,
+          "disk_executor": "sync"
+        },
+        "monotonic_ns": 237804605403367,
+        "free_disk_bytes": 35657232384,
+        "original_service": "NRestarts=0\nActiveState=active\nDropInPaths=\n",
+        "pid": 75095,
+        "stat": "75095 (yewukv-node) S 1 75095 75095 0 -1 4194560 3158 0 0 0 6 7 0 0 20 0 6 0 23780133 464531456 3290 18446744073709551615 96720206127104 96720206642805 140732089537248 0 0 0 16386 4096 0 0 0 0 17 1 0 0 0 0 0 96720206748272 96720206759240 96720747847680 140732089543822 140732089544313 140732089544313 140732089544636 0\n",
+        "status": "Name:\tyewukv-node\nUmask:\t0077\nState:\tS (sleeping)\nTgid:\t75095\nNgid:\t0\nPid:\t75095\nPPid:\t1\nTracerPid:\t0\nUid:\t999\t999\t999\t999\nGid:\t988\t988\t988\t988\nFDSize:\t256\nGroups:\t988 \nNStgid:\t75095\nNSpid:\t75095\nNSpgid:\t75095\nNSsid:\t75095\nKthread:\t0\nVmPeak:\t  455668 kB\nVmSize:\t  453644 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t   14256 kB\nVmRSS:\t   13332 kB\nRssAnon:\t    6828 kB\nRssFile:\t    6504 kB\nRssShmem:\t       0 kB\nVmData:\t   56296 kB\nVmStk:\t     132 kB\nVmExe:\t     504 kB\nVmLib:\t    5632 kB\nVmPTE:\t     124 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t6\nSigQ:\t0/14100\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000004002\nSigIgn:\t0000000000001000\nSigCgt:\t0000000100000000\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t000001ffffffffff\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t0\nSeccomp_filters:\t0\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\t3\nCpus_allowed_list:\t0-1\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t404\nnonvoluntary_ctxt_switches:\t8\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "io": "rchar: 1111862\nwchar: 2101618\nsyscr: 1251\nsyscw: 946\nread_bytes: 0\nwrite_bytes: 2650112\ncancelled_write_bytes: 0\n",
+        "cpu_stat": "cpu  368254 6245 317346 45209217 1085701 0 164338 0 0 0"
+      },
+      {
+        "properties": "MainPID=201501\nNRestarts=0\nActiveState=active\n",
+        "active": {
+          "case": "async-main-m1-r1-sync",
+          "encoder": "background",
+          "proxies": false,
+          "trace": false,
+          "disk_executor": "sync"
+        },
+        "monotonic_ns": 219585022436328,
+        "free_disk_bytes": 35494408192,
+        "original_service": "NRestarts=0\nActiveState=active\nDropInPaths=\n",
+        "pid": 201501,
+        "stat": "201501 (yewukv-node) S 1 201501 201501 0 -1 4194560 3204 0 0 0 4 6 0 0 20 0 6 0 21958174 464531456 3300 18446744073709551615 99410594521088 99410595036789 140721832367072 0 0 0 16386 4096 0 0 0 0 17 0 0 0 0 0 0 99410595142256 99410595153224 99410886000640 140721832373389 140721832373880 140721832373880 140721832374204 0\n",
+        "status": "Name:\tyewukv-node\nUmask:\t0077\nState:\tS (sleeping)\nTgid:\t201501\nNgid:\t0\nPid:\t201501\nPPid:\t1\nTracerPid:\t0\nUid:\t999\t999\t999\t999\nGid:\t988\t988\t988\t988\nFDSize:\t256\nGroups:\t988 \nNStgid:\t201501\nNSpid:\t201501\nNSpgid:\t201501\nNSsid:\t201501\nKthread:\t0\nVmPeak:\t  518168 kB\nVmSize:\t  453644 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t   14244 kB\nVmRSS:\t   13500 kB\nRssAnon:\t    6980 kB\nRssFile:\t    6520 kB\nRssShmem:\t       0 kB\nVmData:\t   56528 kB\nVmStk:\t     132 kB\nVmExe:\t     504 kB\nVmLib:\t    5632 kB\nVmPTE:\t     124 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t6\nSigQ:\t0/14156\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000004002\nSigIgn:\t0000000000001000\nSigCgt:\t0000000100000000\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t000001ffffffffff\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t0\nSeccomp_filters:\t0\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\t3\nCpus_allowed_list:\t0-1\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t598\nnonvoluntary_ctxt_switches:\t7\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "io": "rchar: 1116577\nwchar: 2106251\nsyscr: 1012\nsyscw: 496\nread_bytes: 0\nwrite_bytes: 2658304\ncancelled_write_bytes: 0\n",
+        "cpu_stat": "cpu  559959 12357 303057 42227507 373194 0 179658 0 0 0"
+      }
+    ]
+  },
+  {
+    "monotonic_ns": 219585299283568,
+    "servers": [
+      {
+        "properties": "MainPID=88594\nNRestarts=0\nActiveState=active\n",
+        "active": {
+          "case": "async-main-m1-r1-sync",
+          "encoder": "background",
+          "proxies": false,
+          "trace": false,
+          "disk_executor": "sync"
+        },
+        "monotonic_ns": 256452193590011,
+        "free_disk_bytes": 35692527616,
+        "original_service": "NRestarts=0\nActiveState=active\nDropInPaths=\n",
+        "pid": 88594,
+        "stat": "88594 (yewukv-node) S 1 88594 88594 0 -1 4194560 3180 0 0 0 5 6 0 0 20 0 4 0 25644865 179310592 3300 18446744073709551615 101327288758272 101327289273973 140720790768656 0 0 0 16386 4096 0 0 0 0 17 1 0 0 0 0 0 101327289379440 101327289390408 101327737618432 140720790772880 140720790773369 140720790773369 140720790773692 0\n",
+        "status": "Name:\tyewukv-node\nUmask:\t0077\nState:\tR (running)\nTgid:\t88594\nNgid:\t0\nPid:\t88594\nPPid:\t1\nTracerPid:\t0\nUid:\t999\t999\t999\t999\nGid:\t988\t988\t988\t988\nFDSize:\t256\nGroups:\t988 \nNStgid:\t88594\nNSpid:\t88594\nNSpgid:\t88594\nNSsid:\t88594\nKthread:\t0\nVmPeak:\t  239632 kB\nVmSize:\t  175108 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t   14240 kB\nVmRSS:\t   13440 kB\nRssAnon:\t    6880 kB\nRssFile:\t    6560 kB\nRssShmem:\t       0 kB\nVmData:\t   39596 kB\nVmStk:\t     132 kB\nVmExe:\t     504 kB\nVmLib:\t    5632 kB\nVmPTE:\t     104 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t4\nSigQ:\t0/14096\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000004002\nSigIgn:\t0000000000001000\nSigCgt:\t0000000100000000\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t000001ffffffffff\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t0\nSeccomp_filters:\t0\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\t3\nCpus_allowed_list:\t0-1\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t799\nnonvoluntary_ctxt_switches:\t19\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "io": "rchar: 1162401\nwchar: 2143858\nsyscr: 1293\nsyscw: 597\nread_bytes: 0\nwrite_bytes: 2768896\ncancelled_write_bytes: 0\n",
+        "cpu_stat": "cpu  609669 11736 299811 49404055 467993 0 176203 0 0 0"
+      },
+      {
+        "properties": "MainPID=75095\nNRestarts=0\nActiveState=active\n",
+        "active": {
+          "case": "async-main-m1-r1-sync",
+          "encoder": "background",
+          "proxies": false,
+          "trace": false,
+          "disk_executor": "sync"
+        },
+        "monotonic_ns": 237804891364035,
+        "free_disk_bytes": 35657187328,
+        "original_service": "NRestarts=0\nActiveState=active\nDropInPaths=\n",
+        "pid": 75095,
+        "stat": "75095 (yewukv-node) S 1 75095 75095 0 -1 4194560 3173 0 0 0 8 9 0 0 20 0 6 0 23780133 464531456 3290 18446744073709551615 96720206127104 96720206642805 140732089537248 0 0 0 16386 4096 0 0 0 0 17 1 0 0 0 0 0 96720206748272 96720206759240 96720747847680 140732089543822 140732089544313 140732089544313 140732089544636 0\n",
+        "status": "Name:\tyewukv-node\nUmask:\t0077\nState:\tS (sleeping)\nTgid:\t75095\nNgid:\t0\nPid:\t75095\nPPid:\t1\nTracerPid:\t0\nUid:\t999\t999\t999\t999\nGid:\t988\t988\t988\t988\nFDSize:\t256\nGroups:\t988 \nNStgid:\t75095\nNSpid:\t75095\nNSpgid:\t75095\nNSsid:\t75095\nKthread:\t0\nVmPeak:\t  455668 kB\nVmSize:\t  453644 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t   14256 kB\nVmRSS:\t   13392 kB\nRssAnon:\t    6888 kB\nRssFile:\t    6504 kB\nRssShmem:\t       0 kB\nVmData:\t   56296 kB\nVmStk:\t     132 kB\nVmExe:\t     504 kB\nVmLib:\t    5632 kB\nVmPTE:\t     124 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t6\nSigQ:\t0/14100\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000004002\nSigIgn:\t0000000000001000\nSigCgt:\t0000000100000000\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t000001ffffffffff\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t0\nSeccomp_filters:\t0\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\t3\nCpus_allowed_list:\t0-1\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t1078\nnonvoluntary_ctxt_switches:\t14\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "io": "rchar: 1170035\nwchar: 2155894\nsyscr: 2737\nsyscw: 2056\nread_bytes: 0\nwrite_bytes: 2805760\ncancelled_write_bytes: 0\n",
+        "cpu_stat": "cpu  368257 6245 317348 45209263 1085705 0 164339 0 0 0"
+      },
+      {
+        "properties": "MainPID=201501\nNRestarts=0\nActiveState=active\n",
+        "active": {
+          "case": "async-main-m1-r1-sync",
+          "encoder": "background",
+          "proxies": false,
+          "trace": false,
+          "disk_executor": "sync"
+        },
+        "monotonic_ns": 219585204180879,
+        "free_disk_bytes": 35494350848,
+        "original_service": "NRestarts=0\nActiveState=active\nDropInPaths=\n",
+        "pid": 201501,
+        "stat": "201501 (yewukv-node) S 1 201501 201501 0 -1 4194560 3204 0 0 0 5 7 0 0 20 0 6 0 21958174 464531456 3300 18446744073709551615 99410594521088 99410595036789 140721832367072 0 0 0 16386 4096 0 0 0 0 17 0 0 0 0 0 0 99410595142256 99410595153224 99410886000640 140721832373389 140721832373880 140721832373880 140721832374204 0\n",
+        "status": "Name:\tyewukv-node\nUmask:\t0077\nState:\tS (sleeping)\nTgid:\t201501\nNgid:\t0\nPid:\t201501\nPPid:\t1\nTracerPid:\t0\nUid:\t999\t999\t999\t999\nGid:\t988\t988\t988\t988\nFDSize:\t256\nGroups:\t988 \nNStgid:\t201501\nNSpid:\t201501\nNSpgid:\t201501\nNSsid:\t201501\nKthread:\t0\nVmPeak:\t  518168 kB\nVmSize:\t  453644 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t   14244 kB\nVmRSS:\t   13500 kB\nRssAnon:\t    6980 kB\nRssFile:\t    6520 kB\nRssShmem:\t       0 kB\nVmData:\t   56528 kB\nVmStk:\t     132 kB\nVmExe:\t     504 kB\nVmLib:\t    5632 kB\nVmPTE:\t     124 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t6\nSigQ:\t0/14156\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000004002\nSigIgn:\t0000000000001000\nSigCgt:\t0000000100000000\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t000001ffffffffff\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t0\nSeccomp_filters:\t0\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\t3\nCpus_allowed_list:\t0-1\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t651\nnonvoluntary_ctxt_switches:\t8\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "io": "rchar: 1159561\nwchar: 2151343\nsyscr: 1091\nsyscw: 535\nread_bytes: 0\nwrite_bytes: 2756608\ncancelled_write_bytes: 0\n",
+        "cpu_stat": "cpu  559979 12357 303062 42227521 373194 0 179659 0 0 0"
+      }
+    ],
+    "client_stat": "201584 (yewukv-bench) S 200708 200708 200708 0 -1 4194304 287 0 0 0 2 2 0 0 20 0 33 0 21958504 1285029888 1536 18446744073709551615 107792722034688 107792722115861 140730320774032 0 0 0 0 0 16384 0 0 0 17 0 0 0 0 0 0 107792722147440 107792722154768 107793544957952 140730320780604 140730320780916 140730320780916 140730320781243 0\n"
+  },
+  {
+    "monotonic_ns": 219590517265235,
+    "servers": [
+      {
+        "properties": "MainPID=88594\nNRestarts=0\nActiveState=active\n",
+        "active": {
+          "case": "async-main-m1-r1-sync",
+          "encoder": "background",
+          "proxies": false,
+          "trace": false,
+          "disk_executor": "sync"
+        },
+        "monotonic_ns": 256457371626783,
+        "free_disk_bytes": 35692527616,
+        "original_service": "NRestarts=0\nActiveState=active\nDropInPaths=\n",
+        "pid": 88594,
+        "stat": "88594 (yewukv-node) S 1 88594 88594 0 -1 4194560 4364 0 0 0 22 23 0 0 20 0 4 0 25644865 179503104 3711 18446744073709551615 101327288758272 101327289273973 140720790768656 0 0 0 16386 4096 0 0 0 0 17 1 0 0 0 0 0 101327289379440 101327289390408 101327737618432 140720790772880 140720790773369 140720790773369 140720790773692 0\n",
+        "status": "Name:\tyewukv-node\nUmask:\t0077\nState:\tS (sleeping)\nTgid:\t88594\nNgid:\t0\nPid:\t88594\nPPid:\t1\nTracerPid:\t0\nUid:\t999\t999\t999\t999\nGid:\t988\t988\t988\t988\nFDSize:\t256\nGroups:\t988 \nNStgid:\t88594\nNSpid:\t88594\nNSpgid:\t88594\nNSsid:\t88594\nKthread:\t0\nVmPeak:\t  239632 kB\nVmSize:\t  175296 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t   16912 kB\nVmRSS:\t   15028 kB\nRssAnon:\t    8468 kB\nRssFile:\t    6560 kB\nRssShmem:\t       0 kB\nVmData:\t   41224 kB\nVmStk:\t     132 kB\nVmExe:\t     504 kB\nVmLib:\t    5632 kB\nVmPTE:\t     104 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t4\nSigQ:\t0/14096\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000004002\nSigIgn:\t0000000000001000\nSigCgt:\t0000000100000000\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t000001ffffffffff\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t0\nSeccomp_filters:\t0\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\t3\nCpus_allowed_list:\t0-1\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t4115\nnonvoluntary_ctxt_switches:\t19\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "io": "rchar: 1442832\nwchar: 3507109\nsyscr: 6266\nsyscw: 2931\nread_bytes: 0\nwrite_bytes: 6889472\ncancelled_write_bytes: 0\n",
+        "cpu_stat": "cpu  609696 11736 299836 49404907 468118 0 176217 0 0 0"
+      },
+      {
+        "properties": "MainPID=75095\nNRestarts=0\nActiveState=active\n",
+        "active": {
+          "case": "async-main-m1-r1-sync",
+          "encoder": "background",
+          "proxies": false,
+          "trace": false,
+          "disk_executor": "sync"
+        },
+        "monotonic_ns": 237809989435900,
+        "free_disk_bytes": 35657187328,
+        "original_service": "NRestarts=0\nActiveState=active\nDropInPaths=\n",
+        "pid": 75095,
+        "stat": "75095 (yewukv-node) S 1 75095 75095 0 -1 4194560 4285 0 0 0 46 52 0 0 20 0 6 0 23780133 464588800 3619 18446744073709551615 96720206127104 96720206642805 140732089537248 0 0 0 16386 4096 0 0 0 0 17 1 0 0 0 0 0 96720206748272 96720206759240 96720747847680 140732089543822 140732089544313 140732089544313 140732089544636 0\n",
+        "status": "Name:\tyewukv-node\nUmask:\t0077\nState:\tS (sleeping)\nTgid:\t75095\nNgid:\t0\nPid:\t75095\nPPid:\t1\nTracerPid:\t0\nUid:\t999\t999\t999\t999\nGid:\t988\t988\t988\t988\nFDSize:\t256\nGroups:\t988 \nNStgid:\t75095\nNSpid:\t75095\nNSpgid:\t75095\nNSsid:\t75095\nKthread:\t0\nVmPeak:\t  456848 kB\nVmSize:\t  453700 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t   16744 kB\nVmRSS:\t   14692 kB\nRssAnon:\t    8188 kB\nRssFile:\t    6504 kB\nRssShmem:\t       0 kB\nVmData:\t   57580 kB\nVmStk:\t     132 kB\nVmExe:\t     504 kB\nVmLib:\t    5632 kB\nVmPTE:\t     128 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t6\nSigQ:\t0/14100\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000004002\nSigIgn:\t0000000000001000\nSigCgt:\t0000000100000000\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t000001ffffffffff\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t0\nSeccomp_filters:\t0\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\t3\nCpus_allowed_list:\t0-1\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t6661\nnonvoluntary_ctxt_switches:\t136\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "io": "rchar: 1567236\nwchar: 3610414\nsyscr: 17892\nsyscw: 14013\nread_bytes: 0\nwrite_bytes: 8810496\ncancelled_write_bytes: 0\n",
+        "cpu_stat": "cpu  368288 6245 317385 45209927 1085929 0 164362 0 0 0"
+      },
+      {
+        "properties": "MainPID=201501\nNRestarts=0\nActiveState=active\n",
+        "active": {
+          "case": "async-main-m1-r1-sync",
+          "encoder": "background",
+          "proxies": false,
+          "trace": false,
+          "disk_executor": "sync"
+        },
+        "monotonic_ns": 219590437114722,
+        "free_disk_bytes": 35494334464,
+        "original_service": "NRestarts=0\nActiveState=active\nDropInPaths=\n",
+        "pid": 201501,
+        "stat": "201501 (yewukv-node) S 1 201501 201501 0 -1 4194560 4394 0 0 0 19 20 0 0 20 0 6 0 21958174 464588800 3704 18446744073709551615 99410594521088 99410595036789 140721832367072 0 0 0 16386 4096 0 0 0 0 17 1 0 0 0 0 0 99410595142256 99410595153224 99410886000640 140721832373389 140721832373880 140721832373880 140721832374204 0\n",
+        "status": "Name:\tyewukv-node\nUmask:\t0077\nState:\tS (sleeping)\nTgid:\t201501\nNgid:\t0\nPid:\t201501\nPPid:\t1\nTracerPid:\t0\nUid:\t999\t999\t999\t999\nGid:\t988\t988\t988\t988\nFDSize:\t256\nGroups:\t988 \nNStgid:\t201501\nNSpid:\t201501\nNSpgid:\t201501\nNSsid:\t201501\nKthread:\t0\nVmPeak:\t  518168 kB\nVmSize:\t  453700 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t   16784 kB\nVmRSS:\t   15112 kB\nRssAnon:\t    8592 kB\nRssFile:\t    6520 kB\nRssShmem:\t       0 kB\nVmData:\t   58092 kB\nVmStk:\t     132 kB\nVmExe:\t     504 kB\nVmLib:\t    5632 kB\nVmPTE:\t     128 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t6\nSigQ:\t0/14156\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000004002\nSigIgn:\t0000000000001000\nSigCgt:\t0000000100000000\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t000001ffffffffff\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t0\nSeccomp_filters:\t0\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\t3\nCpus_allowed_list:\t0-1\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t2547\nnonvoluntary_ctxt_switches:\t47\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "io": "rchar: 1408562\nwchar: 3498972\nsyscr: 3933\nsyscw: 2038\nread_bytes: 0\nwrite_bytes: 6373376\ncancelled_write_bytes: 0\n",
+        "cpu_stat": "cpu  560059 12357 303115 42228347 373290 0 179687 0 0 0"
+      }
+    ],
+    "client_stat": "201584 (yewukv-bench) S 200708 200708 200708 0 -1 4194304 321 0 0 0 19 19 0 0 20 0 33 0 21958504 1290403840 1600 18446744073709551615 107792722034688 107792722115861 140730320774032 0 0 0 0 0 16384 0 0 0 17 0 0 0 0 0 0 107792722147440 107792722154768 107793544957952 140730320780604 140730320780916 140730320780916 140730320781243 0\n"
+  },
+  {
+    "monotonic_ns": 219595693688118,
+    "servers": [
+      {
+        "properties": "MainPID=88594\nNRestarts=0\nActiveState=active\n",
+        "active": {
+          "case": "async-main-m1-r1-sync",
+          "encoder": "background",
+          "proxies": false,
+          "trace": false,
+          "disk_executor": "sync"
+        },
+        "monotonic_ns": 256462558526513,
+        "free_disk_bytes": 35692531712,
+        "original_service": "NRestarts=0\nActiveState=active\nDropInPaths=\n",
+        "pid": 88594,
+        "stat": "88594 (yewukv-node) R 1 88594 88594 0 -1 4194560 4904 0 0 0 44 40 0 0 20 0 4 0 25644865 178409472 3446 18446744073709551615 101327288758272 101327289273973 140720790768656 0 0 0 16386 4096 0 0 0 0 17 0 0 0 0 0 0 101327289379440 101327289390408 101327737618432 140720790772880 140720790773369 140720790773369 140720790773692 0\n",
+        "status": "Name:\tyewukv-node\nUmask:\t0077\nState:\tR (running)\nTgid:\t88594\nNgid:\t0\nPid:\t88594\nPPid:\t1\nTracerPid:\t0\nUid:\t999\t999\t999\t999\nGid:\t988\t988\t988\t988\nFDSize:\t256\nGroups:\t988 \nNStgid:\t88594\nNSpid:\t88594\nNSpgid:\t88594\nNSsid:\t88594\nKthread:\t0\nVmPeak:\t  239632 kB\nVmSize:\t  174228 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t   16912 kB\nVmRSS:\t   14056 kB\nRssAnon:\t    7496 kB\nRssFile:\t    6560 kB\nRssShmem:\t       0 kB\nVmData:\t   42284 kB\nVmStk:\t     132 kB\nVmExe:\t     504 kB\nVmLib:\t    5632 kB\nVmPTE:\t     112 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t4\nSigQ:\t0/14096\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000004002\nSigIgn:\t0000000000001000\nSigCgt:\t0000000100000000\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t000001ffffffffff\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t0\nSeccomp_filters:\t0\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\t3\nCpus_allowed_list:\t0-1\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t6267\nnonvoluntary_ctxt_switches:\t20\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "io": "rchar: 1739769\nwchar: 4911754\nsyscr: 9493\nsyscw: 4773\nread_bytes: 0\nwrite_bytes: 11431936\ncancelled_write_bytes: 0\n",
+        "cpu_stat": "cpu  609729 11736 299866 49405692 468272 0 176237 0 0 0"
+      },
+      {
+        "properties": "MainPID=75095\nNRestarts=0\nActiveState=active\n",
+        "active": {
+          "case": "async-main-m1-r1-sync",
+          "encoder": "background",
+          "proxies": false,
+          "trace": false,
+          "disk_executor": "sync"
+        },
+        "monotonic_ns": 237815277662426,
+        "free_disk_bytes": 35657183232,
+        "original_service": "NRestarts=0\nActiveState=active\nDropInPaths=\n",
+        "pid": 75095,
+        "stat": "75095 (yewukv-node) S 1 75095 75095 0 -1 4194560 5092 0 0 0 72 72 0 0 20 0 6 0 23780133 463495168 3644 18446744073709551615 96720206127104 96720206642805 140732089537248 0 0 0 16386 4096 0 0 0 0 17 1 0 0 0 0 0 96720206748272 96720206759240 96720747847680 140732089543822 140732089544313 140732089544313 140732089544636 0\n",
+        "status": "Name:\tyewukv-node\nUmask:\t0077\nState:\tR (running)\nTgid:\t75095\nNgid:\t0\nPid:\t75095\nPPid:\t1\nTracerPid:\t0\nUid:\t999\t999\t999\t999\nGid:\t988\t988\t988\t988\nFDSize:\t256\nGroups:\t988 \nNStgid:\t75095\nNSpid:\t75095\nNSpgid:\t75095\nNSsid:\t75095\nKthread:\t0\nVmPeak:\t  456848 kB\nVmSize:\t  452632 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t   17676 kB\nVmRSS:\t   14788 kB\nRssAnon:\t    8284 kB\nRssFile:\t    6504 kB\nRssShmem:\t       0 kB\nVmData:\t   59708 kB\nVmStk:\t     132 kB\nVmExe:\t     504 kB\nVmLib:\t    5632 kB\nVmPTE:\t     132 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t6\nSigQ:\t0/14100\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000004002\nSigIgn:\t0000000000001000\nSigCgt:\t0000000100000000\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t000001ffffffffff\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t0\nSeccomp_filters:\t0\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\t3\nCpus_allowed_list:\t0-1\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t10969\nnonvoluntary_ctxt_switches:\t148\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "io": "rchar: 1878382\nwchar: 5089257\nsyscr: 26116\nsyscw: 20550\nread_bytes: 0\nwrite_bytes: 16089088\ncancelled_write_bytes: 0\n",
+        "cpu_stat": "cpu  368323 6245 317419 45210589 1086233 0 164384 0 0 0"
+      },
+      {
+        "properties": "MainPID=201501\nNRestarts=0\nActiveState=active\n",
+        "active": {
+          "case": "async-main-m1-r1-sync",
+          "encoder": "background",
+          "proxies": false,
+          "trace": false,
+          "disk_executor": "sync"
+        },
+        "monotonic_ns": 219595678217032,
+        "free_disk_bytes": 35494330368,
+        "original_service": "NRestarts=0\nActiveState=active\nDropInPaths=\n",
+        "pid": 201501,
+        "stat": "201501 (yewukv-node) S 1 201501 201501 0 -1 4194560 5192 0 0 0 35 33 0 0 20 0 6 0 21958174 463495168 3731 18446744073709551615 99410594521088 99410595036789 140721832367072 0 0 0 16386 4096 0 0 0 0 17 0 0 0 0 0 0 99410595142256 99410595153224 99410886000640 140721832373389 140721832373880 140721832373880 140721832374204 0\n",
+        "status": "Name:\tyewukv-node\nUmask:\t0077\nState:\tS (sleeping)\nTgid:\t201501\nNgid:\t0\nPid:\t201501\nPPid:\t1\nTracerPid:\t0\nUid:\t999\t999\t999\t999\nGid:\t988\t988\t988\t988\nFDSize:\t256\nGroups:\t988 \nNStgid:\t201501\nNSpid:\t201501\nNSpgid:\t201501\nNSsid:\t201501\nKthread:\t0\nVmPeak:\t  518168 kB\nVmSize:\t  452632 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t   18016 kB\nVmRSS:\t   15172 kB\nRssAnon:\t    8652 kB\nRssFile:\t    6520 kB\nRssShmem:\t       0 kB\nVmData:\t   60216 kB\nVmStk:\t     132 kB\nVmExe:\t     504 kB\nVmLib:\t    5632 kB\nVmPTE:\t     132 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t6\nSigQ:\t0/14156\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000004002\nSigIgn:\t0000000000001000\nSigCgt:\t0000000100000000\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t000001ffffffffff\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t0\nSeccomp_filters:\t0\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\t3\nCpus_allowed_list:\t0-1\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t4215\nnonvoluntary_ctxt_switches:\t58\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "io": "rchar: 1700970\nwchar: 4904561\nsyscr: 6432\nsyscw: 3579\nread_bytes: 0\nwrite_bytes: 10674176\ncancelled_write_bytes: 0\n",
+        "cpu_stat": "cpu  560141 12357 303168 42229165 373417 0 179711 0 0 0"
+      }
+    ],
+    "client_stat": "201584 (yewukv-bench) S 200708 200708 200708 0 -1 4194304 353 0 0 0 31 28 0 0 20 0 33 0 21958504 1290403840 1600 18446744073709551615 107792722034688 107792722115861 140730320774032 0 0 0 0 0 16384 0 0 0 17 0 0 0 0 0 0 107792722147440 107792722154768 107793544957952 140730320780604 140730320780916 140730320780916 140730320781243 0\n"
+  },
+  {
+    "monotonic_ns": 219600837431032,
+    "servers": [
+      {
+        "properties": "MainPID=88594\nNRestarts=0\nActiveState=active\n",
+        "active": {
+          "case": "async-main-m1-r1-sync",
+          "encoder": "background",
+          "proxies": false,
+          "trace": false,
+          "disk_executor": "sync"
+        },
+        "monotonic_ns": 256467727064139,
+        "free_disk_bytes": 35692208128,
+        "original_service": "NRestarts=0\nActiveState=active\nDropInPaths=\n",
+        "pid": 88594,
+        "stat": "88594 (yewukv-node) S 1 88594 88594 0 -1 4194560 4904 0 0 0 61 57 0 0 20 0 4 0 25644865 178409472 3446 18446744073709551615 101327288758272 101327289273973 140720790768656 0 0 0 16386 4096 0 0 0 0 17 0 0 0 0 0 0 101327289379440 101327289390408 101327737618432 140720790772880 140720790773369 140720790773369 140720790773692 0\n",
+        "status": "Name:\tyewukv-node\nUmask:\t0077\nState:\tS (sleeping)\nTgid:\t88594\nNgid:\t0\nPid:\t88594\nPPid:\t1\nTracerPid:\t0\nUid:\t999\t999\t999\t999\nGid:\t988\t988\t988\t988\nFDSize:\t256\nGroups:\t988 \nNStgid:\t88594\nNSpid:\t88594\nNSpgid:\t88594\nNSsid:\t88594\nKthread:\t0\nVmPeak:\t  239632 kB\nVmSize:\t  174228 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t   16912 kB\nVmRSS:\t   14056 kB\nRssAnon:\t    7496 kB\nRssFile:\t    6560 kB\nRssShmem:\t       0 kB\nVmData:\t   42284 kB\nVmStk:\t     132 kB\nVmExe:\t     504 kB\nVmLib:\t    5632 kB\nVmPTE:\t     112 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t4\nSigQ:\t0/14096\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000004002\nSigIgn:\t0000000000001000\nSigCgt:\t0000000100000000\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t000001ffffffffff\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t0\nSeccomp_filters:\t0\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\t3\nCpus_allowed_list:\t0-1\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t9411\nnonvoluntary_ctxt_switches:\t21\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "io": "rchar: 2058132\nwchar: 5241069\nsyscr: 14206\nsyscw: 7300\nread_bytes: 0\nwrite_bytes: 15671296\ncancelled_write_bytes: 0\n",
+        "cpu_stat": "cpu  609755 11736 299891 49406483 468443 0 176255 0 0 0"
+      },
+      {
+        "properties": "MainPID=75095\nNRestarts=0\nActiveState=active\n",
+        "active": {
+          "case": "async-main-m1-r1-sync",
+          "encoder": "background",
+          "proxies": false,
+          "trace": false,
+          "disk_executor": "sync"
+        },
+        "monotonic_ns": 237820413637594,
+        "free_disk_bytes": 35657191424,
+        "original_service": "NRestarts=0\nActiveState=active\nDropInPaths=\n",
+        "pid": 75095,
+        "stat": "75095 (yewukv-node) S 1 75095 75095 0 -1 4194560 5874 0 0 0 95 92 0 0 20 0 6 0 23780133 463495168 3197 18446744073709551615 96720206127104 96720206642805 140732089537248 0 0 0 16386 4096 0 0 0 0 17 0 0 0 0 0 0 96720206748272 96720206759240 96720747847680 140732089543822 140732089544313 140732089544313 140732089544636 0\n",
+        "status": "Name:\tyewukv-node\nUmask:\t0077\nState:\tS (sleeping)\nTgid:\t75095\nNgid:\t0\nPid:\t75095\nPPid:\t1\nTracerPid:\t0\nUid:\t999\t999\t999\t999\nGid:\t988\t988\t988\t988\nFDSize:\t256\nGroups:\t988 \nNStgid:\t75095\nNSpid:\t75095\nNSpgid:\t75095\nNSsid:\t75095\nKthread:\t0\nVmPeak:\t  456848 kB\nVmSize:\t  452632 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t   17776 kB\nVmRSS:\t   12916 kB\nRssAnon:\t    6412 kB\nRssFile:\t    6504 kB\nRssShmem:\t       0 kB\nVmData:\t   60772 kB\nVmStk:\t     132 kB\nVmExe:\t     504 kB\nVmLib:\t    5632 kB\nVmPTE:\t     136 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t6\nSigQ:\t0/14100\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000004002\nSigIgn:\t0000000000001000\nSigCgt:\t0000000100000000\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t000001ffffffffff\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t0\nSeccomp_filters:\t0\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\t3\nCpus_allowed_list:\t0-1\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t15740\nnonvoluntary_ctxt_switches:\t154\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "io": "rchar: 2189323\nwchar: 6567259\nsyscr: 35736\nsyscw: 27670\nread_bytes: 0\nwrite_bytes: 23662592\ncancelled_write_bytes: 0\n",
+        "cpu_stat": "cpu  368356 6245 317451 45211270 1086499 0 164402 0 0 0"
+      },
+      {
+        "properties": "MainPID=201501\nNRestarts=0\nActiveState=active\n",
+        "active": {
+          "case": "async-main-m1-r1-sync",
+          "encoder": "background",
+          "proxies": false,
+          "trace": false,
+          "disk_executor": "sync"
+        },
+        "monotonic_ns": 219600812927055,
+        "free_disk_bytes": 35494010880,
+        "original_service": "NRestarts=0\nActiveState=active\nDropInPaths=\n",
+        "pid": 201501,
+        "stat": "201501 (yewukv-node) S 1 201501 201501 0 -1 4194560 5974 0 0 0 51 48 0 0 20 0 6 0 21958174 463495168 4499 18446744073709551615 99410594521088 99410595036789 140721832367072 0 0 0 16386 4096 0 0 0 0 17 0 0 0 0 0 0 99410595142256 99410595153224 99410886000640 140721832373389 140721832373880 140721832373880 140721832374204 0\n",
+        "status": "Name:\tyewukv-node\nUmask:\t0077\nState:\tS (sleeping)\nTgid:\t201501\nNgid:\t0\nPid:\t201501\nPPid:\t1\nTracerPid:\t0\nUid:\t999\t999\t999\t999\nGid:\t988\t988\t988\t988\nFDSize:\t256\nGroups:\t988 \nNStgid:\t201501\nNSpid:\t201501\nNSpgid:\t201501\nNSsid:\t201501\nKthread:\t0\nVmPeak:\t  518168 kB\nVmSize:\t  452632 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t   18300 kB\nVmRSS:\t   18300 kB\nRssAnon:\t   11780 kB\nRssFile:\t    6520 kB\nRssShmem:\t       0 kB\nVmData:\t   61280 kB\nVmStk:\t     132 kB\nVmExe:\t     504 kB\nVmLib:\t    5632 kB\nVmPTE:\t     136 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t6\nSigQ:\t0/14156\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000004002\nSigIgn:\t0000000000001000\nSigCgt:\t0000000100000000\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t000001ffffffffff\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t0\nSeccomp_filters:\t0\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\t3\nCpus_allowed_list:\t0-1\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t6207\nnonvoluntary_ctxt_switches:\t62\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "io": "rchar: 1993894\nwchar: 5218795\nsyscr: 9417\nsyscw: 5372\nread_bytes: 0\nwrite_bytes: 14258176\ncancelled_write_bytes: 0\n",
+        "cpu_stat": "cpu  560224 12357 303221 42229945 373560 0 179736 0 0 0"
+      }
+    ],
+    "client_stat": "201584 (yewukv-bench) S 200708 200708 200708 0 -1 4194304 385 0 0 0 44 36 0 0 20 0 33 0 21958504 1290403840 1664 18446744073709551615 107792722034688 107792722115861 140730320774032 0 0 0 0 0 16384 0 0 0 17 0 0 0 0 0 0 107792722147440 107792722154768 107793544957952 140730320780604 140730320780916 140730320780916 140730320781243 0\n"
+  },
+  {
+    "monotonic_ns": 219606006091471,
+    "servers": [
+      {
+        "properties": "MainPID=88594\nNRestarts=0\nActiveState=active\n",
+        "active": {
+          "case": "async-main-m1-r1-sync",
+          "encoder": "background",
+          "proxies": false,
+          "trace": false,
+          "disk_executor": "sync"
+        },
+        "monotonic_ns": 256472858558579,
+        "free_disk_bytes": 35692216320,
+        "original_service": "NRestarts=0\nActiveState=active\nDropInPaths=\n",
+        "pid": 88594,
+        "stat": "88594 (yewukv-node) S 1 88594 88594 0 -1 4194560 5952 0 0 0 78 75 0 0 20 0 4 0 25644865 178409472 3982 18446744073709551615 101327288758272 101327289273973 140720790768656 0 0 0 16386 4096 0 0 0 0 17 0 0 0 0 0 0 101327289379440 101327289390408 101327737618432 140720790772880 140720790773369 140720790773369 140720790773692 0\n",
+        "status": "Name:\tyewukv-node\nUmask:\t0077\nState:\tS (sleeping)\nTgid:\t88594\nNgid:\t0\nPid:\t88594\nPPid:\t1\nTracerPid:\t0\nUid:\t999\t999\t999\t999\nGid:\t988\t988\t988\t988\nFDSize:\t256\nGroups:\t988 \nNStgid:\t88594\nNSpid:\t88594\nNSpgid:\t88594\nNSsid:\t88594\nKthread:\t0\nVmPeak:\t  239632 kB\nVmSize:\t  174228 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t   17880 kB\nVmRSS:\t   16184 kB\nRssAnon:\t    9624 kB\nRssFile:\t    6560 kB\nRssShmem:\t       0 kB\nVmData:\t   44412 kB\nVmStk:\t     132 kB\nVmExe:\t     504 kB\nVmLib:\t    5632 kB\nVmPTE:\t     116 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t4\nSigQ:\t0/14096\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000004002\nSigIgn:\t0000000000001000\nSigCgt:\t0000000100000000\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t000001ffffffffff\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t0\nSeccomp_filters:\t0\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\t3\nCpus_allowed_list:\t0-1\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t12537\nnonvoluntary_ctxt_switches:\t23\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "io": "rchar: 2375190\nwchar: 6660529\nsyscr: 18894\nsyscw: 9826\nread_bytes: 0\nwrite_bytes: 21024768\ncancelled_write_bytes: 0\n",
+        "cpu_stat": "cpu  609783 11736 299918 49407265 468618 0 176271 0 0 0"
+      },
+      {
+        "properties": "MainPID=75095\nNRestarts=0\nActiveState=active\n",
+        "active": {
+          "case": "async-main-m1-r1-sync",
+          "encoder": "background",
+          "proxies": false,
+          "trace": false,
+          "disk_executor": "sync"
+        },
+        "monotonic_ns": 237825589956259,
+        "free_disk_bytes": 35656843264,
+        "original_service": "NRestarts=0\nActiveState=active\nDropInPaths=\n",
+        "pid": 75095,
+        "stat": "75095 (yewukv-node) S 1 75095 75095 0 -1 4194560 5900 0 0 0 116 114 0 0 20 0 6 0 23780133 463630336 3197 18446744073709551615 96720206127104 96720206642805 140732089537248 0 0 0 16386 4096 0 0 0 0 17 1 0 0 0 0 0 96720206748272 96720206759240 96720747847680 140732089543822 140732089544313 140732089544313 140732089544636 0\n",
+        "status": "Name:\tyewukv-node\nUmask:\t0077\nState:\tS (sleeping)\nTgid:\t75095\nNgid:\t0\nPid:\t75095\nPPid:\t1\nTracerPid:\t0\nUid:\t999\t999\t999\t999\nGid:\t988\t988\t988\t988\nFDSize:\t256\nGroups:\t988 \nNStgid:\t75095\nNSpid:\t75095\nNSpgid:\t75095\nNSsid:\t75095\nKthread:\t0\nVmPeak:\t  456848 kB\nVmSize:\t  452764 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t   17776 kB\nVmRSS:\t   13020 kB\nRssAnon:\t    6516 kB\nRssFile:\t    6504 kB\nRssShmem:\t       0 kB\nVmData:\t   60904 kB\nVmStk:\t     132 kB\nVmExe:\t     504 kB\nVmLib:\t    5632 kB\nVmPTE:\t     136 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t6\nSigQ:\t0/14100\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000004002\nSigIgn:\t0000000000001000\nSigCgt:\t0000000100000000\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t000001ffffffffff\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t0\nSeccomp_filters:\t0\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\t3\nCpus_allowed_list:\t0-1\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t20507\nnonvoluntary_ctxt_switches:\t160\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "io": "rchar: 2503119\nwchar: 6959283\nsyscr: 45354\nsyscw: 34846\nread_bytes: 0\nwrite_bytes: 30191616\ncancelled_write_bytes: 0\n",
+        "cpu_stat": "cpu  368386 6245 317485 45211957 1086768 0 164421 0 0 0"
+      },
+      {
+        "properties": "MainPID=201501\nNRestarts=0\nActiveState=active\n",
+        "active": {
+          "case": "async-main-m1-r1-sync",
+          "encoder": "background",
+          "proxies": false,
+          "trace": false,
+          "disk_executor": "sync"
+        },
+        "monotonic_ns": 219605990711654,
+        "free_disk_bytes": 35494006784,
+        "original_service": "NRestarts=0\nActiveState=active\nDropInPaths=\n",
+        "pid": 201501,
+        "stat": "201501 (yewukv-node) S 1 201501 201501 0 -1 4194560 5975 0 0 0 66 62 0 0 20 0 6 0 21958174 463495168 3250 18446744073709551615 99410594521088 99410595036789 140721832367072 0 0 0 16386 4096 0 0 0 0 17 0 0 0 0 0 0 99410595142256 99410595153224 99410886000640 140721832373389 140721832373880 140721832373880 140721832374204 0\n",
+        "status": "Name:\tyewukv-node\nUmask:\t0077\nState:\tS (sleeping)\nTgid:\t201501\nNgid:\t0\nPid:\t201501\nPPid:\t1\nTracerPid:\t0\nUid:\t999\t999\t999\t999\nGid:\t988\t988\t988\t988\nFDSize:\t256\nGroups:\t988 \nNStgid:\t201501\nNSpid:\t201501\nNSpgid:\t201501\nNSsid:\t201501\nKthread:\t0\nVmPeak:\t  518168 kB\nVmSize:\t  452632 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t   18016 kB\nVmRSS:\t   13252 kB\nRssAnon:\t    6732 kB\nRssFile:\t    6520 kB\nRssShmem:\t       0 kB\nVmData:\t   61280 kB\nVmStk:\t     132 kB\nVmExe:\t     504 kB\nVmLib:\t    5632 kB\nVmPTE:\t     136 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t6\nSigQ:\t0/14156\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000004002\nSigIgn:\t0000000000001000\nSigCgt:\t0000000100000000\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t000001ffffffffff\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t0\nSeccomp_filters:\t0\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\t3\nCpus_allowed_list:\t0-1\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t8172\nnonvoluntary_ctxt_switches:\t64\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "io": "rchar: 2288847\nwchar: 6626990\nsyscr: 12362\nsyscw: 7133\nread_bytes: 0\nwrite_bytes: 18853888\ncancelled_write_bytes: 0\n",
+        "cpu_stat": "cpu  560307 12357 303269 42230731 373704 0 179759 0 0 0"
+      }
+    ],
+    "client_stat": "201584 (yewukv-bench) S 200708 200708 200708 0 -1 4194304 417 0 0 0 56 44 0 0 20 0 33 0 21958504 1290403840 1664 18446744073709551615 107792722034688 107792722115861 140730320774032 0 0 0 0 0 16384 0 0 0 17 0 0 0 0 0 0 107792722147440 107792722154768 107793544957952 140730320780604 140730320780916 140730320780916 140730320781243 0\n"
+  },
+  {
+    "monotonic_ns": 219611164171136,
+    "servers": [
+      {
+        "properties": "MainPID=88594\nNRestarts=0\nActiveState=active\n",
+        "active": {
+          "case": "async-main-m1-r1-sync",
+          "encoder": "background",
+          "proxies": false,
+          "trace": false,
+          "disk_executor": "sync"
+        },
+        "monotonic_ns": 256478020990785,
+        "free_disk_bytes": 35692228608,
+        "original_service": "NRestarts=0\nActiveState=active\nDropInPaths=\n",
+        "pid": 88594,
+        "stat": "88594 (yewukv-node) R 1 88594 88594 0 -1 4194560 6702 0 0 0 94 91 0 0 20 0 4 0 25644865 178409472 3469 18446744073709551615 101327288758272 101327289273973 140720790768656 0 0 0 16386 4096 0 0 0 0 17 0 0 0 0 0 0 101327289379440 101327289390408 101327737618432 140720790772880 140720790773369 140720790773369 140720790773692 0\n",
+        "status": "Name:\tyewukv-node\nUmask:\t0077\nState:\tS (sleeping)\nTgid:\t88594\nNgid:\t0\nPid:\t88594\nPPid:\t1\nTracerPid:\t0\nUid:\t999\t999\t999\t999\nGid:\t988\t988\t988\t988\nFDSize:\t256\nGroups:\t988 \nNStgid:\t88594\nNSpid:\t88594\nNSpgid:\t88594\nNSsid:\t88594\nKthread:\t0\nVmPeak:\t  239632 kB\nVmSize:\t  174228 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t   17976 kB\nVmRSS:\t   14052 kB\nRssAnon:\t    7492 kB\nRssFile:\t    6560 kB\nRssShmem:\t       0 kB\nVmData:\t   44412 kB\nVmStk:\t     132 kB\nVmExe:\t     504 kB\nVmLib:\t    5632 kB\nVmPTE:\t     116 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t4\nSigQ:\t0/14096\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000004002\nSigIgn:\t0000000000001000\nSigCgt:\t0000000100000000\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t000001ffffffffff\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t0\nSeccomp_filters:\t0\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\t3\nCpus_allowed_list:\t0-1\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t15746\nnonvoluntary_ctxt_switches:\t23\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "io": "rchar: 2691349\nwchar: 8074198\nsyscr: 23706\nsyscw: 12382\nread_bytes: 0\nwrite_bytes: 26333184\ncancelled_write_bytes: 0\n",
+        "cpu_stat": "cpu  609811 11736 299944 49408057 468788 0 176288 0 0 0"
+      },
+      {
+        "properties": "MainPID=75095\nNRestarts=0\nActiveState=active\n",
+        "active": {
+          "case": "async-main-m1-r1-sync",
+          "encoder": "background",
+          "proxies": false,
+          "trace": false,
+          "disk_executor": "sync"
+        },
+        "monotonic_ns": 237830720834976,
+        "free_disk_bytes": 35656859648,
+        "original_service": "NRestarts=0\nActiveState=active\nDropInPaths=\n",
+        "pid": 75095,
+        "stat": "75095 (yewukv-node) S 1 75095 75095 0 -1 4194560 6950 0 0 0 140 135 0 0 20 0 6 0 23780133 463630336 3752 18446744073709551615 96720206127104 96720206642805 140732089537248 0 0 0 16386 4096 0 0 0 0 17 1 0 0 0 0 0 96720206748272 96720206759240 96720747847680 140732089543822 140732089544313 140732089544313 140732089544636 0\n",
+        "status": "Name:\tyewukv-node\nUmask:\t0077\nState:\tS (sleeping)\nTgid:\t75095\nNgid:\t0\nPid:\t75095\nPPid:\t1\nTracerPid:\t0\nUid:\t999\t999\t999\t999\nGid:\t988\t988\t988\t988\nFDSize:\t256\nGroups:\t988 \nNStgid:\t75095\nNSpid:\t75095\nNSpgid:\t75095\nNSsid:\t75095\nKthread:\t0\nVmPeak:\t  456848 kB\nVmSize:\t  452764 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t   17776 kB\nVmRSS:\t   15156 kB\nRssAnon:\t    8652 kB\nRssFile:\t    6504 kB\nRssShmem:\t       0 kB\nVmData:\t   60904 kB\nVmStk:\t     132 kB\nVmExe:\t     504 kB\nVmLib:\t    5632 kB\nVmPTE:\t     136 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t6\nSigQ:\t0/14100\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000004002\nSigIgn:\t0000000000001000\nSigCgt:\t0000000100000000\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t000001ffffffffff\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t0\nSeccomp_filters:\t0\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\t3\nCpus_allowed_list:\t0-1\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t25297\nnonvoluntary_ctxt_switches:\t172\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "io": "rchar: 2809882\nwchar: 8430159\nsyscr: 54996\nsyscw: 41998\nread_bytes: 0\nwrite_bytes: 37584896\ncancelled_write_bytes: 0\n",
+        "cpu_stat": "cpu  368419 6245 317518 45212643 1087028 0 164442 0 0 0"
+      },
+      {
+        "properties": "MainPID=201501\nNRestarts=0\nActiveState=active\n",
+        "active": {
+          "case": "async-main-m1-r1-sync",
+          "encoder": "background",
+          "proxies": false,
+          "trace": false,
+          "disk_executor": "sync"
+        },
+        "monotonic_ns": 219611114879434,
+        "free_disk_bytes": 35494010880,
+        "original_service": "NRestarts=0\nActiveState=active\nDropInPaths=\n",
+        "pid": 201501,
+        "stat": "201501 (yewukv-node) S 1 201501 201501 0 -1 4194560 6993 0 0 0 82 76 0 0 20 0 6 0 21958174 463495168 3746 18446744073709551615 99410594521088 99410595036789 140721832367072 0 0 0 16386 4096 0 0 0 0 17 1 0 0 0 0 0 99410595142256 99410595153224 99410886000640 140721832373389 140721832373880 140721832373880 140721832374204 0\n",
+        "status": "Name:\tyewukv-node\nUmask:\t0077\nState:\tS (sleeping)\nTgid:\t201501\nNgid:\t0\nPid:\t201501\nPPid:\t1\nTracerPid:\t0\nUid:\t999\t999\t999\t999\nGid:\t988\t988\t988\t988\nFDSize:\t256\nGroups:\t988 \nNStgid:\t201501\nNSpid:\t201501\nNSpgid:\t201501\nNSsid:\t201501\nKthread:\t0\nVmPeak:\t  518168 kB\nVmSize:\t  452632 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t   18016 kB\nVmRSS:\t   15260 kB\nRssAnon:\t    8740 kB\nRssFile:\t    6520 kB\nRssShmem:\t       0 kB\nVmData:\t   61280 kB\nVmStk:\t     132 kB\nVmExe:\t     504 kB\nVmLib:\t    5632 kB\nVmPTE:\t     136 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t6\nSigQ:\t0/14156\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000004002\nSigIgn:\t0000000000001000\nSigCgt:\t0000000100000000\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t000001ffffffffff\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t0\nSeccomp_filters:\t0\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\t3\nCpus_allowed_list:\t0-1\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t10203\nnonvoluntary_ctxt_switches:\t71\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "io": "rchar: 2577399\nwchar: 8025074\nsyscr: 15406\nsyscw: 8931\nread_bytes: 0\nwrite_bytes: 23457792\ncancelled_write_bytes: 0\n",
+        "cpu_stat": "cpu  560386 12357 303320 42231513 373843 0 179784 0 0 0"
+      }
+    ],
+    "client_stat": "201584 (yewukv-bench) S 200708 200708 200708 0 -1 4194304 449 0 0 0 68 53 0 0 20 0 33 0 21958504 1290403840 1728 18446744073709551615 107792722034688 107792722115861 140730320774032 0 0 0 0 0 16384 0 0 0 17 0 0 0 0 0 0 107792722147440 107792722154768 107793544957952 140730320780604 140730320780916 140730320780916 140730320781243 0\n"
+  },
+  {
+    "monotonic_ns": 219616365812960,
+    "servers": [
+      {
+        "properties": "MainPID=88594\nNRestarts=0\nActiveState=active\n",
+        "active": {
+          "case": "async-main-m1-r1-sync",
+          "encoder": "background",
+          "proxies": false,
+          "trace": false,
+          "disk_executor": "sync"
+        },
+        "monotonic_ns": 256483290794815,
+        "free_disk_bytes": 35692224512,
+        "original_service": "NRestarts=0\nActiveState=active\nDropInPaths=\n",
+        "pid": 88594,
+        "stat": "88594 (yewukv-node) S 1 88594 88594 0 -1 4194560 7506 0 0 0 111 108 0 0 20 0 4 0 25644865 178409472 3217 18446744073709551615 101327288758272 101327289273973 140720790768656 0 0 0 16386 4096 0 0 0 0 17 1 0 0 0 0 0 101327289379440 101327289390408 101327737618432 140720790772880 140720790773369 140720790773369 140720790773692 0\n",
+        "status": "Name:\tyewukv-node\nUmask:\t0077\nState:\tS (sleeping)\nTgid:\t88594\nNgid:\t0\nPid:\t88594\nPPid:\t1\nTracerPid:\t0\nUid:\t999\t999\t999\t999\nGid:\t988\t988\t988\t988\nFDSize:\t256\nGroups:\t988 \nNStgid:\t88594\nNSpid:\t88594\nNSpgid:\t88594\nNSsid:\t88594\nKthread:\t0\nVmPeak:\t  239632 kB\nVmSize:\t  174228 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t   17976 kB\nVmRSS:\t   13128 kB\nRssAnon:\t    6568 kB\nRssFile:\t    6560 kB\nRssShmem:\t       0 kB\nVmData:\t   44412 kB\nVmStk:\t     132 kB\nVmExe:\t     504 kB\nVmLib:\t    5632 kB\nVmPTE:\t     116 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t4\nSigQ:\t0/14096\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000004002\nSigIgn:\t0000000000001000\nSigCgt:\t0000000100000000\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t000001ffffffffff\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t0\nSeccomp_filters:\t0\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\t3\nCpus_allowed_list:\t0-1\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t18820\nnonvoluntary_ctxt_switches:\t24\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "io": "rchar: 3021457\nwchar: 9507042\nsyscr: 28315\nsyscw: 14903\nread_bytes: 0\nwrite_bytes: 31784960\ncancelled_write_bytes: 0\n",
+        "cpu_stat": "cpu  609838 11736 299970 49408863 468965 0 176305 0 0 0"
+      },
+      {
+        "properties": "MainPID=75095\nNRestarts=0\nActiveState=active\n",
+        "active": {
+          "case": "async-main-m1-r1-sync",
+          "encoder": "background",
+          "proxies": false,
+          "trace": false,
+          "disk_executor": "sync"
+        },
+        "monotonic_ns": 237835951812405,
+        "free_disk_bytes": 35656851456,
+        "original_service": "NRestarts=0\nActiveState=active\nDropInPaths=\n",
+        "pid": 75095,
+        "stat": "75095 (yewukv-node) S 1 75095 75095 0 -1 4194560 7702 0 0 0 163 155 0 0 20 0 6 0 23780133 463630336 3464 18446744073709551615 96720206127104 96720206642805 140732089537248 0 0 0 16386 4096 0 0 0 0 17 1 0 0 0 0 0 96720206748272 96720206759240 96720747847680 140732089543822 140732089544313 140732089544313 140732089544636 0\n",
+        "status": "Name:\tyewukv-node\nUmask:\t0077\nState:\tS (sleeping)\nTgid:\t75095\nNgid:\t0\nPid:\t75095\nPPid:\t1\nTracerPid:\t0\nUid:\t999\t999\t999\t999\nGid:\t988\t988\t988\t988\nFDSize:\t256\nGroups:\t988 \nNStgid:\t75095\nNSpid:\t75095\nNSpgid:\t75095\nNSsid:\t75095\nKthread:\t0\nVmPeak:\t  456848 kB\nVmSize:\t  452764 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t   17776 kB\nVmRSS:\t   14024 kB\nRssAnon:\t    7520 kB\nRssFile:\t    6504 kB\nRssShmem:\t       0 kB\nVmData:\t   60904 kB\nVmStk:\t     132 kB\nVmExe:\t     504 kB\nVmLib:\t    5632 kB\nVmPTE:\t     136 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t6\nSigQ:\t0/14100\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000004002\nSigIgn:\t0000000000001000\nSigCgt:\t0000000100000000\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t000001ffffffffff\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t0\nSeccomp_filters:\t0\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\t3\nCpus_allowed_list:\t0-1\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t30077\nnonvoluntary_ctxt_switches:\t179\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "io": "rchar: 3129771\nwchar: 9923258\nsyscr: 64612\nsyscw: 49231\nread_bytes: 0\nwrite_bytes: 45379584\ncancelled_write_bytes: 0\n",
+        "cpu_stat": "cpu  368455 6245 317554 45213333 1087304 0 164463 0 0 0"
+      },
+      {
+        "properties": "MainPID=201501\nNRestarts=0\nActiveState=active\n",
+        "active": {
+          "case": "async-main-m1-r1-sync",
+          "encoder": "background",
+          "proxies": false,
+          "trace": false,
+          "disk_executor": "sync"
+        },
+        "monotonic_ns": 219616305581407,
+        "free_disk_bytes": 35494006784,
+        "original_service": "NRestarts=0\nActiveState=active\nDropInPaths=\n",
+        "pid": 201501,
+        "stat": "201501 (yewukv-node) S 1 201501 201501 0 -1 4194560 7509 0 0 0 98 91 0 0 20 0 6 0 21958174 463495168 3748 18446744073709551615 99410594521088 99410595036789 140721832367072 0 0 0 16386 4096 0 0 0 0 17 0 0 0 0 0 0 99410595142256 99410595153224 99410886000640 140721832373389 140721832373880 140721832373880 140721832374204 0\n",
+        "status": "Name:\tyewukv-node\nUmask:\t0077\nState:\tS (sleeping)\nTgid:\t201501\nNgid:\t0\nPid:\t201501\nPPid:\t1\nTracerPid:\t0\nUid:\t999\t999\t999\t999\nGid:\t988\t988\t988\t988\nFDSize:\t256\nGroups:\t988 \nNStgid:\t201501\nNSpid:\t201501\nNSpgid:\t201501\nNSsid:\t201501\nKthread:\t0\nVmPeak:\t  518168 kB\nVmSize:\t  452632 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t   18016 kB\nVmRSS:\t   15260 kB\nRssAnon:\t    8740 kB\nRssFile:\t    6520 kB\nRssShmem:\t       0 kB\nVmData:\t   61280 kB\nVmStk:\t     132 kB\nVmExe:\t     504 kB\nVmLib:\t    5632 kB\nVmPTE:\t     136 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t6\nSigQ:\t0/14156\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000004002\nSigIgn:\t0000000000001000\nSigCgt:\t0000000100000000\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t000001ffffffffff\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t0\nSeccomp_filters:\t0\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\t3\nCpus_allowed_list:\t0-1\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t12177\nnonvoluntary_ctxt_switches:\t76\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "io": "rchar: 2882276\nwchar: 9442719\nsyscr: 18365\nsyscw: 10721\nread_bytes: 0\nwrite_bytes: 28160000\ncancelled_write_bytes: 0\n",
+        "cpu_stat": "cpu  560472 12357 303369 42232300 373986 0 179810 0 0 0"
+      }
+    ],
+    "client_stat": "201584 (yewukv-bench) R 200708 200708 200708 0 -1 4194316 495 0 0 0 81 62 0 0 20 0 1 0 21958504 0 0 18446744073709551615 0 0 0 0 0 0 0 0 16384 0 0 0 17 1 0 0 0 0 0 0 0 0 0 0 0 0 0\n"
+  },
+  {
+    "monotonic_ns": 219616516373388,
+    "servers": [
+      {
+        "properties": "MainPID=88594\nNRestarts=0\nActiveState=active\n",
+        "active": {
+          "case": "async-main-m1-r1-sync",
+          "encoder": "background",
+          "proxies": false,
+          "trace": false,
+          "disk_executor": "sync"
+        },
+        "monotonic_ns": 256483418043347,
+        "free_disk_bytes": 35692224512,
+        "original_service": "NRestarts=0\nActiveState=active\nDropInPaths=\n",
+        "pid": 88594,
+        "stat": "88594 (yewukv-node) S 1 88594 88594 0 -1 4194560 7506 0 0 0 111 108 0 0 20 0 4 0 25644865 178409472 3217 18446744073709551615 101327288758272 101327289273973 140720790768656 0 0 0 16386 4096 0 0 0 0 17 1 0 0 0 0 0 101327289379440 101327289390408 101327737618432 140720790772880 140720790773369 140720790773369 140720790773692 0\n",
+        "status": "Name:\tyewukv-node\nUmask:\t0077\nState:\tS (sleeping)\nTgid:\t88594\nNgid:\t0\nPid:\t88594\nPPid:\t1\nTracerPid:\t0\nUid:\t999\t999\t999\t999\nGid:\t988\t988\t988\t988\nFDSize:\t256\nGroups:\t988 \nNStgid:\t88594\nNSpid:\t88594\nNSpgid:\t88594\nNSsid:\t88594\nKthread:\t0\nVmPeak:\t  239632 kB\nVmSize:\t  174228 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t   17976 kB\nVmRSS:\t   13128 kB\nRssAnon:\t    6568 kB\nRssFile:\t    6560 kB\nRssShmem:\t       0 kB\nVmData:\t   44412 kB\nVmStk:\t     132 kB\nVmExe:\t     504 kB\nVmLib:\t    5632 kB\nVmPTE:\t     116 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t4\nSigQ:\t0/14096\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000004002\nSigIgn:\t0000000000001000\nSigCgt:\t0000000100000000\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t000001ffffffffff\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t0\nSeccomp_filters:\t0\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\t3\nCpus_allowed_list:\t0-1\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t18822\nnonvoluntary_ctxt_switches:\t24\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "io": "rchar: 3021496\nwchar: 9507050\nsyscr: 28318\nsyscw: 14904\nread_bytes: 0\nwrite_bytes: 31784960\ncancelled_write_bytes: 0\n",
+        "cpu_stat": "cpu  609840 11736 299971 49408885 468965 0 176305 0 0 0"
+      },
+      {
+        "properties": "MainPID=75095\nNRestarts=0\nActiveState=active\n",
+        "active": {
+          "case": "async-main-m1-r1-sync",
+          "encoder": "background",
+          "proxies": false,
+          "trace": false,
+          "disk_executor": "sync"
+        },
+        "monotonic_ns": 237836106707169,
+        "free_disk_bytes": 35656851456,
+        "original_service": "NRestarts=0\nActiveState=active\nDropInPaths=\n",
+        "pid": 75095,
+        "stat": "75095 (yewukv-node) S 1 75095 75095 0 -1 4194560 7702 0 0 0 163 155 0 0 20 0 6 0 23780133 463630336 3464 18446744073709551615 96720206127104 96720206642805 140732089537248 0 0 0 16386 4096 0 0 0 0 17 1 0 0 0 0 0 96720206748272 96720206759240 96720747847680 140732089543822 140732089544313 140732089544313 140732089544636 0\n",
+        "status": "Name:\tyewukv-node\nUmask:\t0077\nState:\tS (sleeping)\nTgid:\t75095\nNgid:\t0\nPid:\t75095\nPPid:\t1\nTracerPid:\t0\nUid:\t999\t999\t999\t999\nGid:\t988\t988\t988\t988\nFDSize:\t256\nGroups:\t988 \nNStgid:\t75095\nNSpid:\t75095\nNSpgid:\t75095\nNSsid:\t75095\nKthread:\t0\nVmPeak:\t  456848 kB\nVmSize:\t  452764 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t   17776 kB\nVmRSS:\t   14024 kB\nRssAnon:\t    7520 kB\nRssFile:\t    6504 kB\nRssShmem:\t       0 kB\nVmData:\t   60904 kB\nVmStk:\t     132 kB\nVmExe:\t     504 kB\nVmLib:\t    5632 kB\nVmPTE:\t     136 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t6\nSigQ:\t0/14100\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000004002\nSigIgn:\t0000000000001000\nSigCgt:\t0000000100000000\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t000001ffffffffff\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t0\nSeccomp_filters:\t0\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\t3\nCpus_allowed_list:\t0-1\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t30077\nnonvoluntary_ctxt_switches:\t179\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "io": "rchar: 3129803\nwchar: 9923290\nsyscr: 64616\nsyscw: 49235\nread_bytes: 0\nwrite_bytes: 45379584\ncancelled_write_bytes: 0\n",
+        "cpu_stat": "cpu  368456 6245 317554 45213362 1087304 0 164463 0 0 0"
+      },
+      {
+        "properties": "MainPID=201501\nNRestarts=0\nActiveState=active\n",
+        "active": {
+          "case": "async-main-m1-r1-sync",
+          "encoder": "background",
+          "proxies": false,
+          "trace": false,
+          "disk_executor": "sync"
+        },
+        "monotonic_ns": 219616502777901,
+        "free_disk_bytes": 35493072896,
+        "original_service": "NRestarts=0\nActiveState=active\nDropInPaths=\n",
+        "pid": 201501,
+        "stat": "201501 (yewukv-node) S 1 201501 201501 0 -1 4194560 7509 0 0 0 98 91 0 0 20 0 6 0 21958174 463495168 3748 18446744073709551615 99410594521088 99410595036789 140721832367072 0 0 0 16386 4096 0 0 0 0 17 0 0 0 0 0 0 99410595142256 99410595153224 99410886000640 140721832373389 140721832373880 140721832373880 140721832374204 0\n",
+        "status": "Name:\tyewukv-node\nUmask:\t0077\nState:\tS (sleeping)\nTgid:\t201501\nNgid:\t0\nPid:\t201501\nPPid:\t1\nTracerPid:\t0\nUid:\t999\t999\t999\t999\nGid:\t988\t988\t988\t988\nFDSize:\t256\nGroups:\t988 \nNStgid:\t201501\nNSpid:\t201501\nNSpgid:\t201501\nNSsid:\t201501\nKthread:\t0\nVmPeak:\t  518168 kB\nVmSize:\t  452632 kB\nVmLck:\t       0 kB\nVmPin:\t       0 kB\nVmHWM:\t   18016 kB\nVmRSS:\t   15260 kB\nRssAnon:\t    8740 kB\nRssFile:\t    6520 kB\nRssShmem:\t       0 kB\nVmData:\t   61280 kB\nVmStk:\t     132 kB\nVmExe:\t     504 kB\nVmLib:\t    5632 kB\nVmPTE:\t     136 kB\nVmSwap:\t       0 kB\nHugetlbPages:\t       0 kB\nCoreDumping:\t0\nTHP_enabled:\t1\nuntag_mask:\t0xffffffffffffffff\nThreads:\t6\nSigQ:\t0/14156\nSigPnd:\t0000000000000000\nShdPnd:\t0000000000000000\nSigBlk:\t0000000000004002\nSigIgn:\t0000000000001000\nSigCgt:\t0000000100000000\nCapInh:\t0000000000000000\nCapPrm:\t0000000000000000\nCapEff:\t0000000000000000\nCapBnd:\t000001ffffffffff\nCapAmb:\t0000000000000000\nNoNewPrivs:\t0\nSeccomp:\t0\nSeccomp_filters:\t0\nSpeculation_Store_Bypass:\tvulnerable\nSpeculationIndirectBranch:\talways enabled\nCpus_allowed:\t3\nCpus_allowed_list:\t0-1\nMems_allowed:\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001\nMems_allowed_list:\t0\nvoluntary_ctxt_switches:\t12181\nnonvoluntary_ctxt_switches:\t76\nx86_Thread_features:\t\nx86_Thread_features_locked:\t\n",
+        "io": "rchar: 2882354\nwchar: 9442735\nsyscr: 18371\nsyscw: 10723\nread_bytes: 0\nwrite_bytes: 28160000\ncancelled_write_bytes: 0\n",
+        "cpu_stat": "cpu  560490 12357 303370 42232316 373986 0 179810 0 0 0"
+      }
+    ]
+  }
+]
