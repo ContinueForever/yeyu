@@ -1,0 +1,42 @@
+{
+  "normal_node_sha256": "bbf50e6663ca124e78d7151417e9d6f302508d6acf6e0655daf3c447d5c60983",
+  "asan_node_sha256": "9b1842d7c27a29411812b00cffccd1425f9c08af607006db9612fb8423c3460d",
+  "normal_tests_sha256": "c97e81e31cf14b115581726cb0fcfb8f7e6fe84f4a328ca205f18bd805e00255",
+  "asan_tests_sha256": "e4b8ffc47af68c4c73a6b9c5112bdc9a9d02fe6457dc8259e493ece6802b8f25",
+  "environment": {
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.43",
+    "cpu_model": "11th Gen Intel(R) Core(TM) i7-11800H @ 2.30GHz",
+    "logical_cpus": 4,
+    "cpu_affinity": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "memory": "MemTotal:        8141396 kB",
+    "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+    "load_average": [
+      0.8037109375,
+      0.740234375,
+      0.62451171875
+    ],
+    "server_sha256": "bbf50e6663ca124e78d7151417e9d6f302508d6acf6e0655daf3c447d5c60983",
+    "build": {
+      "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+      "CMAKE_CXX_COMPILER": "/usr/bin/c++",
+      "CMAKE_CXX_FLAGS": "",
+      "CMAKE_CXX_FLAGS_DEBUG": "-g",
+      "CMAKE_CXX_FLAGS_MINSIZEREL": "-Os -DNDEBUG",
+      "CMAKE_CXX_FLAGS_RELEASE": "-O3 -DNDEBUG",
+      "CMAKE_CXX_FLAGS_RELWITHDEBINFO": "-O2 -g -DNDEBUG",
+      "YEWUKV_ENABLE_SANITIZERS": "OFF",
+      "CMAKE_CXX_FLAGS-ADVANCED": "1",
+      "CMAKE_CXX_FLAGS_DEBUG-ADVANCED": "1",
+      "CMAKE_CXX_FLAGS_MINSIZEREL-ADVANCED": "1",
+      "CMAKE_CXX_FLAGS_RELEASE-ADVANCED": "1",
+      "CMAKE_CXX_FLAGS_RELWITHDEBINFO-ADVANCED": "1"
+    },
+    "compiler_version": "c++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+  },
+  "source_manifest_sha256": "0b30cb501e1ebc2265b147ee6bf8b2ecee0131e46eb143bccb11324a698f2565"
+}

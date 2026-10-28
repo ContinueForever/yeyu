@@ -1,0 +1,20 @@
+{
+  "core_commit": "834bb430a1263ed1c4e3f76f5696fd14f415ac55",
+  "validation_commit": "4193bb012f152e6742e5a4b2396fd9b3f9dc4d10",
+  "runs": [
+    {
+      "id": 40265323899,
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success",
+      "head": "4193bb012f152e6742e5a4b2396fd9b3f9dc4d10"
+    },
+    {
+      "id": 40265328907,
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "head": "4193bb012f152e6742e5a4b2396fd9b3f9dc4d10"
+    }
+  ]
+}

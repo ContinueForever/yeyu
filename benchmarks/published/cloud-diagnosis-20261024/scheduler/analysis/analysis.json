@@ -1,0 +1,406 @@
+{
+  "verified": true,
+  "client_accounting_verified": true,
+  "trace_correlation_verified": true,
+  "final": true,
+  "phases": [
+    {
+      "phase": "leader2",
+      "leader": 2,
+      "client": 3,
+      "identity": [
+        107,
+        2
+      ],
+      "runs": 5,
+      "operations": 592058,
+      "trace_on_operations": 592058,
+      "trace_on_slow_operations": 11721,
+      "trace_correlation_verified": true,
+      "matched": 23406,
+      "matched_slow": 4997,
+      "ambiguous_matches": 0,
+      "missing_confirming_peer": 0,
+      "metrics": {
+        "app_ms": {
+          "n": 23406,
+          "p50": 4.814296,
+          "p95": 44.626846,
+          "p99": 47.006564,
+          "max": 91.324476
+        },
+        "apply_finish_ms": {
+          "n": 23406,
+          "p50": 0.017866,
+          "p95": 0.065794,
+          "p99": 0.334372,
+          "max": 40.39311
+        },
+        "boundary_ms": {
+          "n": 23406,
+          "p50": 2.4585350000000004,
+          "p95": 3.972540000000002,
+          "p99": 36.660184,
+          "max": 46.761248
+        },
+        "confirm_finish_ms": {
+          "n": 23406,
+          "p50": 0.005533,
+          "p95": 0.014662,
+          "p99": 0.059639,
+          "max": 39.774409
+        },
+        "context_wait_ms": {
+          "n": 23406,
+          "p50": 0.526108,
+          "p95": 39.421151,
+          "p99": 40.802785,
+          "max": 44.106314
+        },
+        "dispatch_ms": {
+          "n": 23406,
+          "p50": 0.00423,
+          "p95": 0.011435,
+          "p99": 0.039145,
+          "max": 39.872579
+        },
+        "io_queue_ms": {
+          "n": 23406,
+          "p50": 0.049103,
+          "p95": 0.405132,
+          "p99": 0.854093,
+          "max": 59.698945
+        },
+        "peer_call_build_ms": {
+          "n": 23406,
+          "p50": 0.001432,
+          "p95": 0.002402,
+          "p99": 0.00859,
+          "max": 0.805384
+        },
+        "peer_main_queue_ms": {
+          "n": 23406,
+          "p50": 0.012992,
+          "p95": 0.37116,
+          "p99": 38.243182,
+          "max": 40.384758
+        },
+        "peer_response_wait_ms": {
+          "n": 23406,
+          "p50": 0.843949,
+          "p95": 37.172101,
+          "p99": 40.606227,
+          "max": 41.30957
+        },
+        "peer_send_queue_ms": {
+          "n": 23406,
+          "p50": 0.025053,
+          "p95": 0.419462,
+          "p99": 3.967806,
+          "max": 40.598025
+        },
+        "peer_thread_wake_ms": {
+          "n": 23406,
+          "p50": 0.018155,
+          "p95": 0.4727,
+          "p99": 38.887286,
+          "max": 58.324364
+        },
+        "peer_worker_queue_ms": {
+          "n": 23406,
+          "p50": 0.033982,
+          "p95": 0.462297,
+          "p99": 1.184748,
+          "max": 41.55313
+        },
+        "peer_write_ms": {
+          "n": 23406,
+          "p50": 0.005373,
+          "p95": 0.0124,
+          "p99": 0.052313,
+          "max": 40.07299
+        },
+        "pre_confirm_rpc_ms": {
+          "n": 23406,
+          "p50": 0.000962,
+          "p95": 0.002938,
+          "p99": 0.216901,
+          "max": 8.531759
+        },
+        "queue_ms": {
+          "n": 23406,
+          "p50": 0.013698,
+          "p95": 0.66244,
+          "p99": 39.498578,
+          "max": 42.747324
+        },
+        "quorum_wait_ms": {
+          "n": 23406,
+          "p50": 1.186555,
+          "p95": 40.472678,
+          "p99": 41.224408,
+          "max": 59.435655
+        },
+        "serialize_ms": {
+          "n": 23406,
+          "p50": 0.000407,
+          "p95": 0.001741,
+          "p99": 0.003363,
+          "max": 39.769018
+        },
+        "server_ms": {
+          "n": 23406,
+          "p50": 2.158515,
+          "p95": 41.778502,
+          "p99": 42.779051,
+          "max": 81.9759
+        }
+      },
+      "slow_metrics": {
+        "app_ms": {
+          "n": 4997,
+          "p50": 43.868721,
+          "p95": 46.876074,
+          "p99": 82.328465,
+          "max": 91.324476
+        },
+        "apply_finish_ms": {
+          "n": 4997,
+          "p50": 0.024371,
+          "p95": 0.092924,
+          "p99": 0.550233,
+          "max": 40.39311
+        },
+        "boundary_ms": {
+          "n": 4997,
+          "p50": 2.607752000000005,
+          "p95": 20.820214,
+          "p99": 42.735873,
+          "max": 46.761248
+        },
+        "confirm_finish_ms": {
+          "n": 4997,
+          "p50": 0.006934,
+          "p95": 0.023472,
+          "p99": 0.056926,
+          "max": 39.774409
+        },
+        "context_wait_ms": {
+          "n": 4997,
+          "p50": 0.726454,
+          "p95": 40.768534,
+          "p99": 41.376187,
+          "max": 44.106314
+        },
+        "dispatch_ms": {
+          "n": 4997,
+          "p50": 0.004594,
+          "p95": 0.014317,
+          "p99": 0.047449,
+          "max": 38.081141
+        },
+        "io_queue_ms": {
+          "n": 4997,
+          "p50": 0.08315,
+          "p95": 0.428043,
+          "p99": 2.654064,
+          "max": 59.698945
+        },
+        "peer_call_build_ms": {
+          "n": 4997,
+          "p50": 0.00156,
+          "p95": 0.003047,
+          "p99": 0.009513,
+          "max": 0.042161
+        },
+        "peer_main_queue_ms": {
+          "n": 4997,
+          "p50": 0.016515,
+          "p95": 38.241076,
+          "p99": 40.103128,
+          "max": 40.384758
+        },
+        "peer_response_wait_ms": {
+          "n": 4997,
+          "p50": 0.918598,
+          "p95": 40.600352,
+          "p99": 41.009496,
+          "max": 41.30957
+        },
+        "peer_send_queue_ms": {
+          "n": 4997,
+          "p50": 0.03129,
+          "p95": 1.966471,
+          "p99": 40.213694,
+          "max": 40.598025
+        },
+        "peer_thread_wake_ms": {
+          "n": 4997,
+          "p50": 0.031831,
+          "p95": 37.310444,
+          "p99": 40.085476,
+          "max": 58.324364
+        },
+        "peer_worker_queue_ms": {
+          "n": 4997,
+          "p50": 0.038482,
+          "p95": 0.726067,
+          "p99": 39.764705,
+          "max": 41.55313
+        },
+        "peer_write_ms": {
+          "n": 4997,
+          "p50": 0.005572,
+          "p95": 0.015667,
+          "p99": 0.098952,
+          "max": 40.07299
+        },
+        "pre_confirm_rpc_ms": {
+          "n": 4997,
+          "p50": 0.001487,
+          "p95": 0.032059,
+          "p99": 0.625832,
+          "max": 2.440085
+        },
+        "queue_ms": {
+          "n": 4997,
+          "p50": 0.017834,
+          "p95": 39.425247,
+          "p99": 40.166669,
+          "max": 42.747324
+        },
+        "quorum_wait_ms": {
+          "n": 4997,
+          "p50": 2.663819,
+          "p95": 41.222551,
+          "p99": 42.324564,
+          "max": 59.435655
+        },
+        "serialize_ms": {
+          "n": 4997,
+          "p50": 0.000371,
+          "p95": 0.00251,
+          "p99": 0.004255,
+          "max": 39.769018
+        },
+        "server_ms": {
+          "n": 4997,
+          "p50": 41.191958,
+          "p95": 42.705449,
+          "p99": 45.962858,
+          "max": 81.9759
+        }
+      },
+      "slow_over20ms_counts": {
+        "app_ms": 4997,
+        "apply_finish_ms": 28,
+        "boundary_ms": 251,
+        "confirm_finish_ms": 16,
+        "context_wait_ms": 1462,
+        "dispatch_ms": 1,
+        "io_queue_ms": 37,
+        "peer_call_build_ms": 0,
+        "peer_main_queue_ms": 336,
+        "peer_response_wait_ms": 1433,
+        "peer_send_queue_ms": 167,
+        "peer_thread_wake_ms": 291,
+        "peer_worker_queue_ms": 81,
+        "peer_write_ms": 10,
+        "pre_confirm_rpc_ms": 0,
+        "queue_ms": 854,
+        "quorum_wait_ms": 2338,
+        "serialize_ms": 1,
+        "server_ms": 4745
+      },
+      "confirmed_by_counts": {
+        "1": 23077,
+        "2": 0,
+        "3": 329
+      }
+    }
+  ],
+  "runs": [
+    {
+      "phase": "leader2",
+      "case": "c32-trace1-baseline-r1",
+      "leader": 2,
+      "clients": 32,
+      "trace": 1,
+      "repeat": 1,
+      "operations": 118565,
+      "ops_s": 5927.252349778944,
+      "p50_ms": 4.438,
+      "p95_ms": 7.011,
+      "p99_ms": 43.365,
+      "p999_ms": 46.72,
+      "max_ms": 85.884,
+      "samples": 118565
+    },
+    {
+      "phase": "leader2",
+      "case": "c32-trace1-perf-r1",
+      "leader": 2,
+      "clients": 32,
+      "trace": 1,
+      "repeat": 1,
+      "operations": 116277,
+      "ops_s": 5812.757198740258,
+      "p50_ms": 4.443,
+      "p95_ms": 7.081,
+      "p99_ms": 43.805,
+      "p999_ms": 45.714,
+      "max_ms": 48.024,
+      "samples": 116277
+    },
+    {
+      "phase": "leader2",
+      "case": "c32-trace1-baseline-r2",
+      "leader": 2,
+      "clients": 32,
+      "trace": 1,
+      "repeat": 2,
+      "operations": 119110,
+      "ops_s": 5954.137185821689,
+      "p50_ms": 4.427,
+      "p95_ms": 6.93,
+      "p99_ms": 43.478,
+      "p999_ms": 45.496,
+      "max_ms": 50.13,
+      "samples": 119110
+    },
+    {
+      "phase": "leader2",
+      "case": "c32-trace1-perf-r2",
+      "leader": 2,
+      "clients": 32,
+      "trace": 1,
+      "repeat": 2,
+      "operations": 118103,
+      "ops_s": 5903.652249918214,
+      "p50_ms": 4.445,
+      "p95_ms": 7.098,
+      "p99_ms": 43.506,
+      "p999_ms": 47.005,
+      "max_ms": 92.31,
+      "samples": 118103
+    },
+    {
+      "phase": "leader2",
+      "case": "c32-trace1-baseline-r3",
+      "leader": 2,
+      "clients": 32,
+      "trace": 1,
+      "repeat": 3,
+      "operations": 120003,
+      "ops_s": 5999.070549441894,
+      "p50_ms": 4.325,
+      "p95_ms": 6.931,
+      "p99_ms": 43.765,
+      "p999_ms": 47.417,
+      "max_ms": 67.362,
+      "samples": 120003
+    }
+  ],
+  "operations": 592058,
+  "note": "Full client samples define percentiles. Trace reads include systematic 1/32 samples and reads slow before preparing their responses; traced data is selected, not a representative latency distribution. Join by client port plus request ID, narrowed by server-local case boundaries where available. Every stage difference uses a single host clock. Boundary residual also includes networking, kernels and client work, so it is not called network delay."
+}

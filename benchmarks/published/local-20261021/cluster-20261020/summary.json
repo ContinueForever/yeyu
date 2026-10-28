@@ -1,0 +1,22 @@
+[
+  {
+    "batch": 1,
+    "repeats": 3,
+    "ops_per_second": 462.0027685458155,
+    "p50_ms": 16.839,
+    "p95_ms": 22.41,
+    "p99_ms": 25.363,
+    "disk_saves": 1451,
+    "disk_bytes": 100470160
+  },
+  {
+    "batch": 32,
+    "repeats": 3,
+    "ops_per_second": 1010.8249956360158,
+    "p50_ms": 7.445,
+    "p95_ms": 12.178,
+    "p99_ms": 14.051,
+    "disk_saves": 879,
+    "disk_bytes": 60643362
+  }
+]

@@ -1,0 +1,6 @@
+{
+  "initial_collection": "export-code SyntaxError: unterminated string literal",
+  "stage": "after experiment completion, temporary-unit cleanup and original-data checks, before exports",
+  "correction": "Escape the newline literal in the generated remote exporter; rerun terminal-gated collector without rerunning the workload",
+  "workload_results_changed": false
+}

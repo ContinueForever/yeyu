@@ -1,0 +1,35 @@
+[
+  {
+    "node": 1,
+    "original_sha256": "6bb46da21f4a3284cace8536eec9d2c8867e67cc9a3f187ea532ef0308575b02",
+    "service": "NRestarts=0\nActiveState=active\nDropInPaths=\n",
+    "free_disk": 36128014336,
+    "free_memory": "3005476 kB",
+    "ports_free": {
+      "19101": true,
+      "19190": true
+    }
+  },
+  {
+    "node": 2,
+    "original_sha256": "6bb46da21f4a3284cace8536eec9d2c8867e67cc9a3f187ea532ef0308575b02",
+    "service": "NRestarts=0\nActiveState=active\nDropInPaths=\n",
+    "free_disk": 35913728000,
+    "free_memory": "3119876 kB",
+    "ports_free": {
+      "19101": true,
+      "19190": true
+    }
+  },
+  {
+    "node": 3,
+    "original_sha256": "6bb46da21f4a3284cace8536eec9d2c8867e67cc9a3f187ea532ef0308575b02",
+    "service": "NRestarts=0\nActiveState=active\nDropInPaths=\n",
+    "free_disk": 36248682496,
+    "free_memory": "3154500 kB",
+    "ports_free": {
+      "19101": true,
+      "19190": true
+    }
+  }
+]

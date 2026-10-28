@@ -1,0 +1,270 @@
+{
+  "fault": {
+    "kind": "partition",
+    "applied_ns": 42939660368603,
+    "healed_ns": 42940763028839,
+    "verified": true
+  },
+  "attempts": [
+    {
+      "kind": "cas",
+      "start": 42939633315543,
+      "end": 42939633436297,
+      "code": 6,
+      "discarded": true
+    },
+    {
+      "kind": "put",
+      "start": 42939633443052,
+      "end": 42939634247855,
+      "code": 0,
+      "discarded": false
+    },
+    {
+      "kind": "cas",
+      "start": 42939635202863,
+      "end": 42939636158529,
+      "code": 0,
+      "discarded": false
+    },
+    {
+      "kind": "cas",
+      "start": 42939635329259,
+      "end": 42939636673912,
+      "code": 7,
+      "discarded": false
+    },
+    {
+      "kind": "cas",
+      "start": 42939635496058,
+      "end": 42939636708266,
+      "code": 7,
+      "discarded": false
+    },
+    {
+      "kind": "get",
+      "start": 42939676937135,
+      "end": 42940622405780,
+      "code": 6,
+      "discarded": false
+    },
+    {
+      "kind": "get",
+      "start": 42939676266273,
+      "end": 42940622470196,
+      "code": 6,
+      "discarded": false
+    },
+    {
+      "kind": "get",
+      "start": 42939677208165,
+      "end": 42940622486150,
+      "code": 6,
+      "discarded": false
+    },
+    {
+      "kind": "cas",
+      "start": 42940662548956,
+      "end": 42941074221723,
+      "code": 6,
+      "discarded": false
+    },
+    {
+      "kind": "cas",
+      "start": 42940662499704,
+      "end": 42941074267456,
+      "code": 6,
+      "discarded": false
+    },
+    {
+      "kind": "cas",
+      "start": 42940662601809,
+      "end": 42941074358107,
+      "code": 6,
+      "discarded": false
+    },
+    {
+      "kind": "get",
+      "start": 42941116278748,
+      "end": 42941117056860,
+      "code": 0,
+      "discarded": false
+    },
+    {
+      "kind": "cas",
+      "start": 42941117069285,
+      "end": 42941117608668,
+      "code": 7,
+      "discarded": false
+    },
+    {
+      "kind": "del",
+      "start": 42941117617498,
+      "end": 42941118600763,
+      "code": 0,
+      "discarded": false
+    },
+    {
+      "kind": "cas",
+      "start": 42941118609376,
+      "end": 42941119229179,
+      "code": 0,
+      "discarded": false
+    },
+    {
+      "kind": "cas",
+      "start": 42941119236853,
+      "end": 42941120100443,
+      "code": 7,
+      "discarded": false
+    },
+    {
+      "kind": "get",
+      "start": 42941771916578,
+      "end": 42941772480644,
+      "code": 0,
+      "discarded": false
+    }
+  ],
+  "operations": [
+    {
+      "kind": "cas",
+      "key": "6361732d686973746f7279",
+      "start": 42939633315543,
+      "end": null,
+      "value": "6c6f73742d7265706c79",
+      "expected_revision": 0,
+      "code": 6,
+      "optional": true
+    },
+    {
+      "kind": "put",
+      "key": "6361732d686973746f7279",
+      "start": 42939633443052,
+      "end": 42939634247855,
+      "value": "696e697469616c",
+      "code": 0,
+      "revision": 3
+    },
+    {
+      "kind": "cas",
+      "key": "6361732d686973746f7279",
+      "start": 42939635202863,
+      "end": 42939636158529,
+      "value": "636c69656e742d312d30",
+      "expected_revision": 3,
+      "code": 0,
+      "revision": 4
+    },
+    {
+      "kind": "cas",
+      "key": "6361732d686973746f7279",
+      "start": 42939635329259,
+      "end": 42939636673912,
+      "value": "636c69656e742d322d30",
+      "expected_revision": 3,
+      "code": 7,
+      "revision": 4,
+      "result": "636c69656e742d312d30"
+    },
+    {
+      "kind": "cas",
+      "key": "6361732d686973746f7279",
+      "start": 42939635496058,
+      "end": 42939636708266,
+      "value": "636c69656e742d302d30",
+      "expected_revision": 3,
+      "code": 7,
+      "revision": 4,
+      "result": "636c69656e742d312d30"
+    },
+    {
+      "kind": "cas",
+      "key": "6361732d686973746f7279",
+      "start": 42940662548956,
+      "end": null,
+      "value": "636c69656e742d312d32",
+      "expected_revision": 4,
+      "code": 6,
+      "optional": true
+    },
+    {
+      "kind": "cas",
+      "key": "6361732d686973746f7279",
+      "start": 42940662499704,
+      "end": null,
+      "value": "636c69656e742d322d32",
+      "expected_revision": 4,
+      "code": 6,
+      "optional": true
+    },
+    {
+      "kind": "cas",
+      "key": "6361732d686973746f7279",
+      "start": 42940662601809,
+      "end": null,
+      "value": "636c69656e742d302d32",
+      "expected_revision": 4,
+      "code": 6,
+      "optional": true
+    },
+    {
+      "kind": "get",
+      "key": "6361732d686973746f7279",
+      "start": 42941116278748,
+      "end": 42941117056860,
+      "code": 0,
+      "revision": 4,
+      "result": "636c69656e742d312d30"
+    },
+    {
+      "kind": "cas",
+      "key": "6361732d686973746f7279",
+      "start": 42941117069285,
+      "end": 42941117608668,
+      "value": "7374616c65",
+      "expected_revision": 0,
+      "code": 7,
+      "revision": 4,
+      "result": "636c69656e742d312d30"
+    },
+    {
+      "kind": "del",
+      "key": "6361732d686973746f7279",
+      "start": 42941117617498,
+      "end": 42941118600763,
+      "code": 0,
+      "revision": 9
+    },
+    {
+      "kind": "cas",
+      "key": "6361732d686973746f7279",
+      "start": 42941118609376,
+      "end": 42941119229179,
+      "value": "726563726561746564",
+      "expected_revision": 0,
+      "code": 0,
+      "revision": 10
+    },
+    {
+      "kind": "cas",
+      "key": "6361732d686973746f7279",
+      "start": 42941119236853,
+      "end": 42941120100443,
+      "value": "414241",
+      "expected_revision": 4,
+      "code": 7,
+      "revision": 10,
+      "result": "726563726561746564"
+    },
+    {
+      "kind": "get",
+      "key": "6361732d686973746f7279",
+      "start": 42941771916578,
+      "end": 42941772480644,
+      "code": 0,
+      "revision": 10,
+      "result": "726563726561746564"
+    }
+  ]
+}

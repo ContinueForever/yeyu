@@ -1,0 +1,45 @@
+{
+  "verified": true,
+  "windows": 4,
+  "measured_seconds": 8,
+  "identity_ranges": 128,
+  "rows": [
+    {
+      "node": 2,
+      "pid": 71701,
+      "capture_clean": true,
+      "measured_gets": 588,
+      "joined_gets": 588,
+      "missing_gets": 0,
+      "ambiguous_gets": 0,
+      "joined_fraction": 1.0,
+      "client_slow_threshold_ns": 20000000,
+      "client_slow_gets": 75,
+      "joined_slow_gets": 75,
+      "joined_gets_overlapping_persist": 520,
+      "recorded_persistence_operations": 535,
+      "failed_persistence_operations": 0,
+      "persistence_sample_every": 1,
+      "note": "Same-node steady-clock interval unions on the read's worker TID. Observed overlaps are lower bounds when sampled, toggled, truncated or dropped. Client identity joins use port and sequential request ID; ambiguous port reuse is excluded. No cross-host clock subtraction or attribution of follower I/O, scheduling or network delay."
+    },
+    {
+      "node": 2,
+      "pid": 71752,
+      "capture_clean": true,
+      "measured_gets": 567,
+      "joined_gets": 567,
+      "missing_gets": 0,
+      "ambiguous_gets": 0,
+      "joined_fraction": 1.0,
+      "client_slow_threshold_ns": 20000000,
+      "client_slow_gets": 81,
+      "joined_slow_gets": 81,
+      "joined_gets_overlapping_persist": 497,
+      "recorded_persistence_operations": 517,
+      "failed_persistence_operations": 0,
+      "persistence_sample_every": 1,
+      "note": "Same-node steady-clock interval unions on the read's worker TID. Observed overlaps are lower bounds when sampled, toggled, truncated or dropped. Client identity joins use port and sequential request ID; ambiguous port reuse is excluded. No cross-host clock subtraction or attribution of follower I/O, scheduling or network delay."
+    }
+  ],
+  "collection": "Client evidence read from node3; leader traces independently read from node2; no cross-host steady-clock subtraction."
+}

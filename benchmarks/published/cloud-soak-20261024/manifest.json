@@ -1,0 +1,21 @@
+{
+  "runtime_commit": "d34a605d0f50727c996fb9c287b40bbe4b8700d7",
+  "phase_archives": [
+    "results/phase-00.tar.gz",
+    "results/phase-01.tar.gz",
+    "results/phase-02.tar.gz",
+    "results/phase-03.tar.gz",
+    "results/phase-04.tar.gz",
+    "results/phase-05.tar.gz"
+  ],
+  "smoke_archive": "results/smoke.tar.gz",
+  "measured_seconds": 21600,
+  "windows": 360,
+  "transforms": [
+    "Only diagnostic IPs, hostnames, private paths and experiment unit tags are consistently remapped; numeric samples are unchanged.",
+    "Client JSON plaintext is byte-for-byte preserved; gzip is recompressed at level 9 with mtime 0. The decompressed SHA-256 inventory binds all 11520 formal sample files.",
+    "Runtime source and executed tool archives retain original content and hashes; never execute tools from the evidence archive.",
+    "Derived CSV uses LF line endings; captured control logs are gzip-compressed without trimming their text."
+  ],
+  "scope": "Medians of correlated 60-second windows, not pooled percentiles or independent repetitions. Sampled CPU/RSS include setup and warmup. First-to-last leader counter intervals also include probes and gaps. Lifetime maxima cannot be differenced into window maxima."
+}

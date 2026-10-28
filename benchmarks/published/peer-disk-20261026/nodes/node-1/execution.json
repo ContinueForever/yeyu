@@ -1,0 +1,32 @@
+{
+  "commit": "834bb430a1263ed1c4e3f76f5696fd14f415ac55",
+  "core_commit": "834bb430a1263ed1c4e3f76f5696fd14f415ac55",
+  "components": {
+    "scripts/cloud-node-agent.py": "5415be28d0e90bc657e7cf842a699018efa84330760ea4089cb6fb4fa2586f44",
+    "scripts/peer-proxy.py": "f8decb151cea8d79dbdd3234cd508587b01377f165a842600bbf738afbfb1554",
+    "scripts/verify-cloud-soak.py": "819ee276cf0b5170b69ff44f19d8efda258e136c7057041e9bdaed9b6f47ed10",
+    "benchmarks/cloud_campaign.py": "da1d0e47eafe304af22ee4f7c777b03ba36252f5fb6842478993df183c7aad7a",
+    "benchmarks/cloud_load.py": "363e079d9c0dba6d3a3a9bfb1e86e00f9e33a0cc8089199ef05edbc3690f41a9",
+    "benchmarks/cloud_soak.py": "c877541b9668d055bc85634de36af4eb4ce7b9c97b042c32e53ca63ec57b11e5",
+    "benchmarks/cpp_load.py": "cd4aec2a771a6f1aa3f5d062a615e2ccee6b2ebaa63e999375e147131d183867",
+    "benchmarks/rpc_baseline.py": "bf5dddb6c99c124007fafdbba25f2a2b0b79410fc77f66416173eac78e154cb2",
+    "benchmarks/cloud_async_disk.py": "66faa75283cf7351cfa156154373813dd5e4f0593002503e63ddb08cbf73211d",
+    "benchmarks/cloud_peer_disk.py": "0a68091332eadb8e945d723709413b46bf383669b4afe1c19974ba5c9309fb4a",
+    "tests/linearizability.py": "f1a569822634cee861890ff21413e82f44da1c41ff204d17e2b0a46c7564db0a"
+  },
+  "source_sha256": "f6d50aa012f00b0d17bc94b856fa277f9a125b8e95e00d7eb0076a0582f810a5",
+  "binaries": {
+    "yewukv-node": "e58f9fe73dfef9e6d21b8f56c607bde0a9ad82c45c40e419cba5cc0f43ff85b7",
+    "yewukv-bench": "cd3e67a5f08326e21950ea2a623fc0524c4c85f8faa4ee53e3f108c3c820aff5"
+  },
+  "baseline_sha256": "f992830abb5e9471d8c3e66efd6fa8d512eb62110ab891aabac1da9cb38ed569",
+  "baseline_source_sha256": "035a947e19ba7b7ebc8718bfb087502c0aea5f2f69fc37fd5f5ab806447a8784",
+  "baseline_core_commit": "66bd2a92c25069279d3066b5e34d4e3368bb6e96",
+  "agent_runtime_max_seconds": 32400,
+  "node_runtime_max_seconds": 7500,
+  "node_cpu_quota": "100%",
+  "node_memory_max": "512M",
+  "driver_cpu_quota": "100%",
+  "driver_memory_max": "512M",
+  "trace_recorder": false
+}

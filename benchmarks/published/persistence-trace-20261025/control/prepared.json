@@ -1,0 +1,24 @@
+{
+  "tag": "yewukv-trace-experiment",
+  "root": "/private/experiment",
+  "staged": [
+    {
+      "node": 1,
+      "staged": true
+    },
+    {
+      "node": 2,
+      "staged": true
+    },
+    {
+      "node": 3,
+      "staged": true
+    }
+  ],
+  "source_sha256": "95151689cde6120c63071f8c41d6fb8b6f15bfed75a4c20ce37ab25d8c723c5e",
+  "binaries": {
+    "yewukv-node": "eee89c3092f9c092c139371b4ff5fe977b0edf7eb524282aebc3cd16cf4a1b03",
+    "yewukv-bench": "e3af78b4bf2d5f9be5794d17e7ddf9eb3822cffb1e9e79354c7adfd839ab4093"
+  },
+  "services_started": false
+}

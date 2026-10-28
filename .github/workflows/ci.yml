@@ -1,0 +1,83 @@
+name: ci
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  build-test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      matrix:
+        sanitizers: ["OFF", "ON"]
+    env:
+      ASAN_OPTIONS: detect_leaks=1:halt_on_error=1
+      UBSAN_OPTIONS: halt_on_error=1:print_stacktrace=1
+    steps:
+      - uses: actions/checkout@v4
+      - name: install deps
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y g++ cmake ninja-build \
+            protobuf-compiler libprotobuf-dev libgtest-dev python3 clang-format-18
+      - name: configure
+        run: cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Debug -DYEWUKV_ENABLE_SANITIZERS=${{ matrix.sanitizers }}
+      - name: build
+        run: cmake --build build -j$(nproc)
+      - name: test
+        run: ctest --test-dir build --output-on-failure
+      - name: Retain test and cluster history evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-evidence-sanitizers-${{ matrix.sanitizers }}
+          path: |
+            build/Testing/Temporary/LastTest.log
+            build/Testing/Temporary/LastTestsFailed.log
+            build/cluster-history.json
+            build/cluster-evidence/
+            build/tests/soak-evidence/
+          if-no-files-found: ignore
+      - name: Verify published experiment evidence
+        if: matrix.sanitizers == 'OFF'
+        run: |
+          python3 scripts/verify-evidence.py benchmarks/published/local-20261021
+          python3 scripts/verify-local-optimization.py benchmarks/published/local-optimization-20261021
+          python3 scripts/verify-local-followup.py benchmarks/published/local-followup-20261022
+          python3 scripts/verify-cloud-evidence.py benchmarks/published/cloud-20261023
+          python3 scripts/verify-cloud-performance.py benchmarks/published/cloud-performance-20261023
+          python3 tests/test_cloud_performance_evidence.py
+          python3 scripts/verify-cloud-diagnosis.py benchmarks/published/cloud-diagnosis-20261024
+          python3 tests/test_cloud_diagnosis_evidence.py
+          python3 scripts/verify-engineering.py benchmarks/published/engineering-20261024
+          python3 tests/test_engineering_evidence.py
+          python3 scripts/verify-tooling.py benchmarks/published/tooling-20261024
+          python3 scripts/verify-cloud-soak-publication.py benchmarks/published/cloud-soak-20261024
+          python3 tests/test_cloud_soak_evidence.py
+          python3 scripts/verify-persistence-trace.py benchmarks/published/persistence-trace-20261025
+          python3 tests/test_persistence_evidence.py
+          sha256sum --check benchmarks/published/persistence-queue-20261026/SHA256SUMS
+          sha256sum --check benchmarks/published/async-persistence-20261026/SHA256SUMS
+          python3 scripts/verify-cloud-async-disk.py benchmarks/published/cloud-async-disk-20261026
+          python3 tests/test_async_disk_evidence.py
+          sha256sum --check benchmarks/published/cloud-async-disk-20261026/SHA256SUMS
+          python3 scripts/verify-peer-disk.py benchmarks/published/peer-disk-20261026
+          python3 tests/test_peer_disk_evidence.py
+          sha256sum --check benchmarks/published/peer-disk-20261026/SHA256SUMS
+          python3 scripts/verify-background-soak.py benchmarks/published/background-soak-20261026
+          python3 tests/test_background_soak_evidence.py
+          sha256sum --check benchmarks/published/background-soak-20261026/SHA256SUMS
+      - name: clang-format check
+        run: |
+          files=$(git ls-files '*.cc' '*.h')
+          [ -z "$files" ] || clang-format-18 --dry-run --Werror $files
+  compose-durability:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Docker versions
+        run: |
+          docker version
+          docker compose version
+      - name: Build and verify WAL recovery across container recreation
+        run: scripts/ci-compose-smoke.sh

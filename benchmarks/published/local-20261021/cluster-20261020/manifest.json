@@ -1,0 +1,21 @@
+{
+  "command": [
+    "benchmarks/cluster_baseline.py",
+    "--node",
+    "build/bin/yewukv-node",
+    "--output",
+    "benchmarks/results/cluster-20261020",
+    "--clients",
+    "8",
+    "--ops-per-client",
+    "100",
+    "--repeats",
+    "3"
+  ],
+  "source_manifest_sha256": "76d2d3a4bb4f6da53811c2f8fb8c88f5212982a9a4e966b8519d29da811a00d8",
+  "git": [
+    "49ae3a515ae9179697924c7f4ec39af94d42ad15",
+    true
+  ],
+  "note": "Three local processes, shared VM/filesystem; all reads use Raft log commitment."
+}

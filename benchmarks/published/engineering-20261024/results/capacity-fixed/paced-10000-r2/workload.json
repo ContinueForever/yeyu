@@ -1,0 +1,12 @@
+{
+  "name": "paced-10000-r2",
+  "clients": 32,
+  "write_percent": 50,
+  "repeat": 2,
+  "encoder": "sync",
+  "cold_keys": 0,
+  "duration_seconds": 6,
+  "warmup_seconds": 2,
+  "offered_rps": 10000,
+  "leader_id": 2
+}

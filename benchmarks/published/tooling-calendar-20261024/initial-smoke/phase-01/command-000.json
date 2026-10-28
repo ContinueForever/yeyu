@@ -1,0 +1,23 @@
+[
+  "/usr/local/libexec/yewukv-next-20261024T134536Z/yewukv-bench",
+  "--host",
+  "192.0.2.2",
+  "--port",
+  "19101",
+  "--clients",
+  "32",
+  "--duration-ms",
+  "2000",
+  "--warmup-ms",
+  "1000",
+  "--write-percent",
+  "0",
+  "--offered-rps",
+  "600",
+  "--max-samples",
+  "200000",
+  "--prefix",
+  "soak-hot",
+  "--output",
+  "/private-experiment/soak-smoke/phase-01/window-000"
+]

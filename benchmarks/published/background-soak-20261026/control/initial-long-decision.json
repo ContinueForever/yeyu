@@ -1,0 +1,37 @@
+{
+  "raw_verified": true,
+  "restart_checks": 18,
+  "core_commit": "834bb430a1263ed1c4e3f76f5696fd14f415ac55",
+  "binary_sha256": "e58f9fe73dfef9e6d21b8f56c607bde0a9ad82c45c40e419cba5cc0f43ff85b7",
+  "performance_gate": false,
+  "disk_executor": "sync",
+  "ratios": [
+    {
+      "cold_mib": 1,
+      "ops_after_over_sync": 0.9998053917215333,
+      "p99_after_over_sync": 1.0044993864700849,
+      "p999_after_over_before": 0.09437781298726887,
+      "missed_after": 46,
+      "missed_sync": 26
+    },
+    {
+      "cold_mib": 15,
+      "ops_after_over_sync": 0.9999412040855392,
+      "p99_after_over_sync": 0.8273465968528925,
+      "p999_after_over_before": 0.5182337608159978,
+      "missed_after": 404,
+      "missed_sync": 443
+    }
+  ],
+  "total": {
+    "attempts": 318263,
+    "successes": 318263,
+    "failures": 0,
+    "offered_slots": 324000,
+    "missed_slots": 5737,
+    "puts": 158894,
+    "gets": 159369,
+    "max_ms": 531.19654
+  },
+  "summary_sha256": "5786ab10b3b78ffa5fafa8d0f75826c3cfa0dd3eba4242a6ffc7b223e5b1acf6"
+}

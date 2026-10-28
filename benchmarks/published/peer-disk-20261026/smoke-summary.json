@@ -1,0 +1,902 @@
+{
+  "windows": 3,
+  "measured_seconds": 6,
+  "wall_seconds": 28.732125924,
+  "total": {
+    "attempts": 3600,
+    "successes": 3600,
+    "failures": 0,
+    "offered_slots": 3600,
+    "missed_slots": 0,
+    "puts": 1815,
+    "gets": 1785,
+    "max_ms": 35.992735
+  },
+  "rows": [
+    {
+      "position": 0,
+      "cold_mib": 1,
+      "repeat": 0,
+      "variant": "before",
+      "executor": "background",
+      "label": "m1-r0-before",
+      "attempts": 1200,
+      "successes": 1200,
+      "failures": 0,
+      "offered_slots": 1200,
+      "missed_slots": 0,
+      "valid": true,
+      "codes": {
+        "0": 1200
+      },
+      "successful_ops_s": 598.1568368312822,
+      "p99_ms": 17.106425,
+      "p999_ms": 28.476976,
+      "max_ms": 28.579949,
+      "scheduled_p99_ms": 17.178647,
+      "puts": 605,
+      "gets": 595,
+      "resources": {
+        "node_1": {
+          "pid": 92380,
+          "start_ticks": 26116693,
+          "sample_seconds": 3.432498662,
+          "cpu_seconds": 0.26,
+          "average_cores": 0.07574656994869937,
+          "peak_rss_bytes": 15085568,
+          "first_rss_bytes": 14954496,
+          "last_rss_bytes": 15085568,
+          "minimum_free_disk_bytes": 35461070848
+        },
+        "node_2": {
+          "pid": 78180,
+          "start_ticks": 24251958,
+          "sample_seconds": 3.376919778,
+          "cpu_seconds": 0.51,
+          "average_cores": 0.1510252044844401,
+          "peak_rss_bytes": 15020032,
+          "first_rss_bytes": 15020032,
+          "last_rss_bytes": 15020032,
+          "minimum_free_disk_bytes": 35526316032
+        },
+        "node_3": {
+          "pid": 207933,
+          "start_ticks": 22430004,
+          "sample_seconds": 3.405643882,
+          "cpu_seconds": 0.23,
+          "average_cores": 0.06753495314516857,
+          "peak_rss_bytes": 16003072,
+          "first_rss_bytes": 16003072,
+          "last_rss_bytes": 16003072,
+          "minimum_free_disk_bytes": 35348934656
+        },
+        "client": {
+          "pid": 208005,
+          "start_ticks": 22430355,
+          "sample_seconds": 2.13868394,
+          "cpu_seconds": 0.31,
+          "average_cores": 0.14494895398148452,
+          "peak_rss_bytes": 6684672,
+          "first_rss_bytes": 6291456,
+          "last_rss_bytes": 6684672
+        }
+      },
+      "counter_deltas": {
+        "1": {
+          "disk_bytes": 179696,
+          "disk_checkpoint_saves": 0,
+          "disk_journal_saves": 585,
+          "disk_encode_ns": 1336185,
+          "disk_crc_ns": 842238,
+          "disk_write_ns": 8892859,
+          "disk_file_sync_ns": 1116352044,
+          "disk_directory_sync_ns": 0,
+          "snapshot_pause_ns": 0,
+          "snapshots_saved": 0,
+          "disk_checkpoint_duration_buckets": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "disk_journal_sync_duration_buckets": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            493,
+            92,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "2": {
+          "disk_bytes": 182088,
+          "disk_checkpoint_saves": 0,
+          "disk_journal_saves": 631,
+          "disk_encode_ns": 1100816,
+          "disk_crc_ns": 695624,
+          "disk_write_ns": 5083130,
+          "disk_file_sync_ns": 1214578621,
+          "disk_directory_sync_ns": 0,
+          "snapshot_pause_ns": 0,
+          "snapshots_saved": 0,
+          "disk_checkpoint_duration_buckets": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "disk_journal_sync_duration_buckets": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            533,
+            96,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "3": {
+          "disk_bytes": 171116,
+          "disk_checkpoint_saves": 0,
+          "disk_journal_saves": 420,
+          "disk_encode_ns": 1502125,
+          "disk_crc_ns": 977061,
+          "disk_write_ns": 10882336,
+          "disk_file_sync_ns": 871084206,
+          "disk_directory_sync_ns": 0,
+          "snapshot_pause_ns": 0,
+          "snapshots_saved": 0,
+          "disk_checkpoint_duration_buckets": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "disk_journal_sync_duration_buckets": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            258,
+            161,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "cold_keys": 128,
+      "hot_keys": 256,
+      "anchor_revision": 131
+    },
+    {
+      "position": 1,
+      "cold_mib": 1,
+      "repeat": 0,
+      "variant": "after",
+      "executor": "background",
+      "label": "m1-r0-after",
+      "attempts": 1200,
+      "successes": 1200,
+      "failures": 0,
+      "offered_slots": 1200,
+      "missed_slots": 0,
+      "valid": true,
+      "codes": {
+        "0": 1200
+      },
+      "successful_ops_s": 597.900240125705,
+      "p99_ms": 12.729048,
+      "p999_ms": 18.039259,
+      "max_ms": 19.61592,
+      "scheduled_p99_ms": 14.583015,
+      "puts": 605,
+      "gets": 595,
+      "resources": {
+        "node_1": {
+          "pid": 92427,
+          "start_ticks": 26117683,
+          "sample_seconds": 3.515029629,
+          "cpu_seconds": 0.25,
+          "average_cores": 0.07112315581565187,
+          "peak_rss_bytes": 15282176,
+          "first_rss_bytes": 15282176,
+          "last_rss_bytes": 15282176,
+          "minimum_free_disk_bytes": 35459809280
+        },
+        "node_2": {
+          "pid": 78227,
+          "start_ticks": 24252945,
+          "sample_seconds": 3.45693496,
+          "cpu_seconds": 0.5,
+          "average_cores": 0.14463679698503787,
+          "peak_rss_bytes": 15003648,
+          "first_rss_bytes": 15003648,
+          "last_rss_bytes": 15003648,
+          "minimum_free_disk_bytes": 35525050368
+        },
+        "node_3": {
+          "pid": 208132,
+          "start_ticks": 22430985,
+          "sample_seconds": 3.482056361,
+          "cpu_seconds": 0.24,
+          "average_cores": 0.06892478900918053,
+          "peak_rss_bytes": 15187968,
+          "first_rss_bytes": 15187968,
+          "last_rss_bytes": 15187968,
+          "minimum_free_disk_bytes": 35347382272
+        },
+        "client": {
+          "pid": 208201,
+          "start_ticks": 22431287,
+          "sample_seconds": 2.135889788,
+          "cpu_seconds": 0.29,
+          "average_cores": 0.1357747958856761,
+          "peak_rss_bytes": 6422528,
+          "first_rss_bytes": 6422528,
+          "last_rss_bytes": 6422528
+        }
+      },
+      "counter_deltas": {
+        "1": {
+          "disk_bytes": 177980,
+          "disk_checkpoint_saves": 0,
+          "disk_journal_saves": 552,
+          "disk_encode_ns": 1405728,
+          "disk_crc_ns": 889348,
+          "disk_write_ns": 9044702,
+          "disk_file_sync_ns": 1078574533,
+          "disk_directory_sync_ns": 0,
+          "snapshot_pause_ns": 0,
+          "snapshots_saved": 0,
+          "disk_checkpoint_duration_buckets": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "disk_journal_sync_duration_buckets": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            455,
+            95,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "2": {
+          "disk_bytes": 181932,
+          "disk_checkpoint_saves": 0,
+          "disk_journal_saves": 628,
+          "disk_encode_ns": 1082608,
+          "disk_crc_ns": 708633,
+          "disk_write_ns": 5163753,
+          "disk_file_sync_ns": 1204226981,
+          "disk_directory_sync_ns": 0,
+          "snapshot_pause_ns": 0,
+          "snapshots_saved": 0,
+          "disk_checkpoint_duration_buckets": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "disk_journal_sync_duration_buckets": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            538,
+            88,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "3": {
+          "disk_bytes": 171324,
+          "disk_checkpoint_saves": 0,
+          "disk_journal_saves": 424,
+          "disk_encode_ns": 1462797,
+          "disk_crc_ns": 929790,
+          "disk_write_ns": 10274626,
+          "disk_file_sync_ns": 896508232,
+          "disk_directory_sync_ns": 0,
+          "snapshot_pause_ns": 0,
+          "snapshots_saved": 0,
+          "disk_checkpoint_duration_buckets": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "disk_journal_sync_duration_buckets": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            262,
+            161,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "cold_keys": 128,
+      "hot_keys": 256,
+      "anchor_revision": 131,
+      "peer_counter_deltas": {
+        "1": {
+          "peer_deferred": 0,
+          "peer_deferred_admitted": 0,
+          "peer_deferred_expired": 0,
+          "peer_deferred_abandoned": 0,
+          "peer_deferred_rejected": 0,
+          "peer_deferred_wait_ns": 0,
+          "peer_busy_received": 0,
+          "peer_rpc_failed": 0
+        },
+        "2": {
+          "peer_deferred": 0,
+          "peer_deferred_admitted": 0,
+          "peer_deferred_expired": 0,
+          "peer_deferred_abandoned": 0,
+          "peer_deferred_rejected": 0,
+          "peer_deferred_wait_ns": 0,
+          "peer_busy_received": 0,
+          "peer_rpc_failed": 0
+        },
+        "3": {
+          "peer_deferred": 0,
+          "peer_deferred_admitted": 0,
+          "peer_deferred_expired": 0,
+          "peer_deferred_abandoned": 0,
+          "peer_deferred_rejected": 0,
+          "peer_deferred_wait_ns": 0,
+          "peer_busy_received": 0,
+          "peer_rpc_failed": 0
+        }
+      }
+    },
+    {
+      "position": 2,
+      "cold_mib": 1,
+      "repeat": 0,
+      "variant": "sync",
+      "executor": "sync",
+      "label": "m1-r0-sync",
+      "attempts": 1200,
+      "successes": 1200,
+      "failures": 0,
+      "offered_slots": 1200,
+      "missed_slots": 0,
+      "valid": true,
+      "codes": {
+        "0": 1200
+      },
+      "successful_ops_s": 598.1322554713619,
+      "p99_ms": 16.083037,
+      "p999_ms": 35.210876,
+      "max_ms": 35.992735,
+      "scheduled_p99_ms": 27.654562,
+      "puts": 605,
+      "gets": 595,
+      "resources": {
+        "node_1": {
+          "pid": 92474,
+          "start_ticks": 26118613,
+          "sample_seconds": 3.474879774,
+          "cpu_seconds": 0.2,
+          "average_cores": 0.057555948121271606,
+          "peak_rss_bytes": 13729792,
+          "first_rss_bytes": 13598720,
+          "last_rss_bytes": 13729792,
+          "minimum_free_disk_bytes": 35458560000
+        },
+        "node_2": {
+          "pid": 78272,
+          "start_ticks": 24253874,
+          "sample_seconds": 3.428711809,
+          "cpu_seconds": 0.44,
+          "average_cores": 0.12832807903103646,
+          "peak_rss_bytes": 13594624,
+          "first_rss_bytes": 13463552,
+          "last_rss_bytes": 13594624,
+          "minimum_free_disk_bytes": 35523788800
+        },
+        "node_3": {
+          "pid": 208333,
+          "start_ticks": 22431915,
+          "sample_seconds": 3.427716312,
+          "cpu_seconds": 0.19,
+          "average_cores": 0.05543049153012871,
+          "peak_rss_bytes": 13754368,
+          "first_rss_bytes": 13623296,
+          "last_rss_bytes": 13754368,
+          "minimum_free_disk_bytes": 35345838080
+        },
+        "client": {
+          "pid": 208404,
+          "start_ticks": 22432226,
+          "sample_seconds": 2.224372397,
+          "cpu_seconds": 0.31,
+          "average_cores": 0.1393651532531583,
+          "peak_rss_bytes": 6553600,
+          "first_rss_bytes": 6291456,
+          "last_rss_bytes": 6553600
+        }
+      },
+      "counter_deltas": {
+        "1": {
+          "disk_bytes": 169972,
+          "disk_checkpoint_saves": 0,
+          "disk_journal_saves": 398,
+          "disk_encode_ns": 1210177,
+          "disk_crc_ns": 765830,
+          "disk_write_ns": 7434519,
+          "disk_file_sync_ns": 802899016,
+          "disk_directory_sync_ns": 0,
+          "snapshot_pause_ns": 0,
+          "snapshots_saved": 0,
+          "disk_checkpoint_duration_buckets": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "disk_journal_sync_duration_buckets": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            306,
+            89,
+            2,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "2": {
+          "disk_bytes": 181256,
+          "disk_checkpoint_saves": 0,
+          "disk_journal_saves": 615,
+          "disk_encode_ns": 1074905,
+          "disk_crc_ns": 715134,
+          "disk_write_ns": 5267311,
+          "disk_file_sync_ns": 1170926405,
+          "disk_directory_sync_ns": 0,
+          "snapshot_pause_ns": 0,
+          "snapshots_saved": 0,
+          "disk_checkpoint_duration_buckets": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "disk_journal_sync_duration_buckets": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            529,
+            86,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "3": {
+          "disk_bytes": 166488,
+          "disk_checkpoint_saves": 0,
+          "disk_journal_saves": 331,
+          "disk_encode_ns": 1266118,
+          "disk_crc_ns": 820467,
+          "disk_write_ns": 8786164,
+          "disk_file_sync_ns": 700803836,
+          "disk_directory_sync_ns": 0,
+          "snapshot_pause_ns": 0,
+          "snapshots_saved": 0,
+          "disk_checkpoint_duration_buckets": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "disk_journal_sync_duration_buckets": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            215,
+            113,
+            2,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "cold_keys": 128,
+      "hot_keys": 256,
+      "anchor_revision": 131,
+      "peer_counter_deltas": {
+        "1": {
+          "peer_deferred": 0,
+          "peer_deferred_admitted": 0,
+          "peer_deferred_expired": 0,
+          "peer_deferred_abandoned": 0,
+          "peer_deferred_rejected": 0,
+          "peer_deferred_wait_ns": 0,
+          "peer_busy_received": 0,
+          "peer_rpc_failed": 0
+        },
+        "2": {
+          "peer_deferred": 0,
+          "peer_deferred_admitted": 0,
+          "peer_deferred_expired": 0,
+          "peer_deferred_abandoned": 0,
+          "peer_deferred_rejected": 0,
+          "peer_deferred_wait_ns": 0,
+          "peer_busy_received": 0,
+          "peer_rpc_failed": 0
+        },
+        "3": {
+          "peer_deferred": 0,
+          "peer_deferred_admitted": 0,
+          "peer_deferred_expired": 0,
+          "peer_deferred_abandoned": 0,
+          "peer_deferred_rejected": 0,
+          "peer_deferred_wait_ns": 0,
+          "peer_busy_received": 0,
+          "peer_rpc_failed": 0
+        }
+      }
+    }
+  ],
+  "groups": [
+    {
+      "cold_mib": 1,
+      "variant": "before",
+      "windows": 1,
+      "successful_ops_s": {
+        "median": 598.1568368312822,
+        "minimum": 598.1568368312822,
+        "maximum": 598.1568368312822
+      },
+      "p99_ms": {
+        "median": 17.106425,
+        "minimum": 17.106425,
+        "maximum": 17.106425
+      },
+      "p999_ms": {
+        "median": 28.476976,
+        "minimum": 28.476976,
+        "maximum": 28.476976
+      },
+      "scheduled_p99_ms": {
+        "median": 17.178647,
+        "minimum": 17.178647,
+        "maximum": 17.178647
+      },
+      "successes": 1200,
+      "missed_slots": 0,
+      "offered_slots": 1200,
+      "max_ms": 28.579949,
+      "resources": {
+        "node_1": {
+          "average_cores": 0.07574656994869937,
+          "sampled_max_rss_bytes": 15085568
+        },
+        "node_2": {
+          "average_cores": 0.1510252044844401,
+          "sampled_max_rss_bytes": 15020032
+        },
+        "node_3": {
+          "average_cores": 0.06753495314516857,
+          "sampled_max_rss_bytes": 16003072
+        },
+        "client": {
+          "average_cores": 0.14494895398148452,
+          "sampled_max_rss_bytes": 6684672
+        }
+      }
+    },
+    {
+      "cold_mib": 1,
+      "variant": "after",
+      "windows": 1,
+      "successful_ops_s": {
+        "median": 597.900240125705,
+        "minimum": 597.900240125705,
+        "maximum": 597.900240125705
+      },
+      "p99_ms": {
+        "median": 12.729048,
+        "minimum": 12.729048,
+        "maximum": 12.729048
+      },
+      "p999_ms": {
+        "median": 18.039259,
+        "minimum": 18.039259,
+        "maximum": 18.039259
+      },
+      "scheduled_p99_ms": {
+        "median": 14.583015,
+        "minimum": 14.583015,
+        "maximum": 14.583015
+      },
+      "successes": 1200,
+      "missed_slots": 0,
+      "offered_slots": 1200,
+      "max_ms": 19.61592,
+      "resources": {
+        "node_1": {
+          "average_cores": 0.07112315581565187,
+          "sampled_max_rss_bytes": 15282176
+        },
+        "node_2": {
+          "average_cores": 0.14463679698503787,
+          "sampled_max_rss_bytes": 15003648
+        },
+        "node_3": {
+          "average_cores": 0.06892478900918053,
+          "sampled_max_rss_bytes": 15187968
+        },
+        "client": {
+          "average_cores": 0.1357747958856761,
+          "sampled_max_rss_bytes": 6422528
+        }
+      }
+    },
+    {
+      "cold_mib": 1,
+      "variant": "sync",
+      "windows": 1,
+      "successful_ops_s": {
+        "median": 598.1322554713619,
+        "minimum": 598.1322554713619,
+        "maximum": 598.1322554713619
+      },
+      "p99_ms": {
+        "median": 16.083037,
+        "minimum": 16.083037,
+        "maximum": 16.083037
+      },
+      "p999_ms": {
+        "median": 35.210876,
+        "minimum": 35.210876,
+        "maximum": 35.210876
+      },
+      "scheduled_p99_ms": {
+        "median": 27.654562,
+        "minimum": 27.654562,
+        "maximum": 27.654562
+      },
+      "successes": 1200,
+      "missed_slots": 0,
+      "offered_slots": 1200,
+      "max_ms": 35.992735,
+      "resources": {
+        "node_1": {
+          "average_cores": 0.057555948121271606,
+          "sampled_max_rss_bytes": 13729792
+        },
+        "node_2": {
+          "average_cores": 0.12832807903103646,
+          "sampled_max_rss_bytes": 13594624
+        },
+        "node_3": {
+          "average_cores": 0.05543049153012871,
+          "sampled_max_rss_bytes": 13754368
+        },
+        "client": {
+          "average_cores": 0.1393651532531583,
+          "sampled_max_rss_bytes": 6553600
+        }
+      }
+    }
+  ],
+  "pairs": [
+    {
+      "cold_mib": 1,
+      "repeat": 0,
+      "percent_change": {
+        "successful_ops_s": -0.042897897303428856,
+        "p99_ms": -25.589081295478167,
+        "p999_ms": -36.6531790454155,
+        "scheduled_p99_ms": -15.109641638250103
+      },
+      "comparison": "after_vs_before"
+    },
+    {
+      "cold_mib": 1,
+      "repeat": 0,
+      "percent_change": {
+        "successful_ops_s": -0.038789973878616824,
+        "p99_ms": -20.854201852548126,
+        "p999_ms": -48.767934657462085,
+        "scheduled_p99_ms": -47.26723569152894
+      },
+      "comparison": "after_vs_sync"
+    }
+  ]
+}

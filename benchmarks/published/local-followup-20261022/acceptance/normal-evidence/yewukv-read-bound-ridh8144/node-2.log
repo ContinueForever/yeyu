@@ -1,0 +1,5 @@
+17:21:42.116 INFO  [acceptor] listening on 127.0.0.1:59523
+node=2 event=role role=follower term=1 last=0 commit=0
+17:21:42.735 ERROR [conn] connection error fd=12 err=104
+node=2 event=role role=candidate term=2 last=2 commit=2
+node=2 event=role role=leader term=2 last=3 commit=2

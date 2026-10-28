@@ -1,0 +1,14 @@
+{
+  "normal": {
+    "file": "local/ctest-normal.log",
+    "sha256": "baac5359da8b894dd8221543c1a3773d719e552a316dac39b62ff184c08a2b96",
+    "tests": 134,
+    "passed": true
+  },
+  "asan": {
+    "file": "local/ctest-asan.log",
+    "sha256": "bdb1a8522e5c18ae7a648010bdc4c679e9a13a1a2b6239f079f076dac32baf78",
+    "tests": 134,
+    "passed": true
+  }
+}

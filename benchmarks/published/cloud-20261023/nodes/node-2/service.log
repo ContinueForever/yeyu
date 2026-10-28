@@ -1,0 +1,31 @@
+Oct 23 16:50:56 ecs-node-2 systemd[1]: Started yewukv-node@2.service - yewukv Raft node 2.
+Oct 23 16:50:56 ecs-node-2 yewukv-node[12104]: 16:50:56.705 INFO  [acceptor] listening on 10.0.0.12:9101
+Oct 23 16:50:57 ecs-node-2 yewukv-node[12104]: node=2 event=role role=follower term=80 last=0 commit=0
+Oct 23 17:09:56 ecs-node-2 systemd[1]: Stopping yewukv-node@2.service - yewukv Raft node 2...
+Oct 23 17:09:56 ecs-node-2 systemd[1]: yewukv-node@2.service: Deactivated successfully.
+Oct 23 17:09:56 ecs-node-2 systemd[1]: Stopped yewukv-node@2.service - yewukv Raft node 2.
+Oct 23 17:09:56 ecs-node-2 systemd[1]: yewukv-node@2.service: Consumed 1.699s CPU time, 1.6M memory peak, 0B memory swap peak.
+Oct 23 17:09:56 ecs-node-2 systemd[1]: Started yewukv-node@2.service - yewukv Raft node 2.
+Oct 23 17:09:56 ecs-node-2 yewukv-node[26024]: 17:09:56.484 INFO  [acceptor] listening on 10.0.0.12:9101
+Oct 23 17:09:56 ecs-node-2 yewukv-node[26024]: node=2 event=role role=follower term=80 last=3 commit=0
+Oct 23 21:06:40 ecs-node-2 yewukv-node[26024]: node=2 event=role role=follower term=81 last=3 commit=3
+Oct 23 21:09:54 ecs-node-2 yewukv-node[26024]: node=2 event=role role=follower term=82 last=5 commit=5
+Oct 23 21:26:08 ecs-node-2 systemd[1]: Stopping yewukv-node@2.service - yewukv Raft node 2...
+Oct 23 21:26:08 ecs-node-2 systemd[1]: yewukv-node@2.service: Deactivated successfully.
+Oct 23 21:26:08 ecs-node-2 systemd[1]: Stopped yewukv-node@2.service - yewukv Raft node 2.
+Oct 23 21:26:08 ecs-node-2 systemd[1]: yewukv-node@2.service: Consumed 34.178s CPU time, 1.5M memory peak, 0B memory swap peak.
+Oct 23 21:27:24 ecs-node-2 systemd[1]: Started yewukv-node@2.service - yewukv Raft node 2.
+Oct 23 21:27:24 ecs-node-2 yewukv-node[29092]: 21:27:24.904 INFO  [acceptor] listening on 10.0.0.12:9101
+Oct 23 21:27:24 ecs-node-2 yewukv-node[29092]: node=2 event=role role=follower term=82 last=9 commit=8
+Oct 23 21:36:57 ecs-node-2 yewukv-node[29092]: node=2 event=role role=candidate term=83 last=9 commit=9
+Oct 23 21:36:57 ecs-node-2 yewukv-node[29092]: node=2 event=role role=leader term=83 last=10 commit=9
+Oct 23 21:37:06 ecs-node-2 systemd[1]: Stopping yewukv-node@2.service - yewukv Raft node 2...
+Oct 23 21:37:06 ecs-node-2 systemd[1]: yewukv-node@2.service: Deactivated successfully.
+Oct 23 21:37:06 ecs-node-2 systemd[1]: Stopped yewukv-node@2.service - yewukv Raft node 2.
+Oct 23 21:37:06 ecs-node-2 systemd[1]: yewukv-node@2.service: Consumed 1.365s CPU time.
+Oct 23 21:38:08 ecs-node-2 systemd[1]: Started yewukv-node@2.service - yewukv Raft node 2.
+Oct 23 21:38:08 ecs-node-2 yewukv-node[29434]: 21:38:08.839 INFO  [acceptor] listening on 10.0.0.12:9101
+Oct 23 21:38:08 ecs-node-2 yewukv-node[29434]: node=2 event=role role=follower term=83 last=10 commit=0
+Oct 23 21:38:09 ecs-node-2 yewukv-node[29434]: node=2 event=role role=follower term=95 last=10 commit=0
+Oct 23 21:38:09 ecs-node-2 yewukv-node[29434]: node=2 event=role role=candidate term=96 last=10 commit=0
+Oct 23 21:38:09 ecs-node-2 yewukv-node[29434]: node=2 event=role role=leader term=96 last=11 commit=0

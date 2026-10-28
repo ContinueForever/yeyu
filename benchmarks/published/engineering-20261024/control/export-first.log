@@ -1,0 +1,25 @@
+all campaign gates passed
+
+Traceback (most recent call last):
+  File "/private-workspace/next-stage-20261024/tools/finish_cloud.py", line 65, in <module>
+    with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:downloads=list(pool.map(fetch,HOSTS))
+                                                                                ~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/concurrent/futures/_base.py", line 639, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/usr/lib/python3.14/concurrent/futures/_base.py", line 311, in _result_or_cancel
+    return fut.result(timeout)
+           ~~~~~~~~~~^^^^^^^^^
+  File "/usr/lib/python3.14/concurrent/futures/_base.py", line 450, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3.14/concurrent/futures/_base.py", line 395, in __get_result
+    raise self._exception
+  File "/usr/lib/python3.14/concurrent/futures/thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "/usr/lib/python3.14/concurrent/futures/thread.py", line 73, in run
+    return fn(*args, **kwargs)
+  File "/private-workspace/next-stage-20261024/tools/finish_cloud.py", line 64, in fetch
+    print(json.dumps(dict(node=node,downloaded=True,**metadata)),flush=True);return metadata
+                     ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: dict() got multiple values for keyword argument 'node'

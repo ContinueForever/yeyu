@@ -1,0 +1,9 @@
+{
+  "requested_socket_timeout_seconds": 0.1,
+  "actual_elapsed_seconds": 0.885915574000137,
+  "response_code": 6,
+  "response_error": "leadership lost or quorum timeout; operation outcome is unknown",
+  "disk_gate_still_held": true,
+  "persistence_pending": 1,
+  "reason": "wire.receive_response calls receive_exact, which resets socket timeout to its 4s deadline; application returned UNAVAILABLE at its request deadline, with no disk acknowledgment"
+}

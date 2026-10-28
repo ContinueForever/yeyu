@@ -1,0 +1,15 @@
+18:23:04.867 INFO  [acceptor] listening on 192.0.2.3:19101
+node=3 event=role role=candidate term=1 last=0 commit=0
+node=3 event=role role=leader term=1 last=1 commit=0
+node=3 event=role role=follower term=2 last=1 commit=1
+18:23:07.433 INFO  [acceptor] listening on 192.0.2.3:19101
+node=3 event=role role=follower term=2 last=34 commit=32
+node=3 event=role role=candidate term=3 last=34 commit=32
+node=3 event=role role=leader term=3 last=35 commit=32
+node=3 event=role role=follower term=4 last=35 commit=35
+node=3 event=role role=candidate term=5 last=39 commit=39
+node=3 event=role role=leader term=5 last=40 commit=39
+18:23:11.060 INFO  [acceptor] listening on 192.0.2.3:19101
+node=3 event=role role=follower term=5 last=40 commit=40
+node=3 event=role role=candidate term=6 last=40 commit=40
+node=3 event=role role=leader term=6 last=41 commit=40

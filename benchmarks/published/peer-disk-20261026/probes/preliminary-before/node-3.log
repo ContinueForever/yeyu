@@ -1,0 +1,11 @@
+11:12:31.605 INFO  [acceptor] listening on 127.0.0.1:46415
+node=3 event=role role=candidate term=1 last=0 commit=0
+node=3 event=role role=leader term=1 last=0 commit=0
+node=3 event=role role=follower term=1 last=5 commit=5
+node=3 event=role role=follower term=2 last=5 commit=5
+node=3 event=role role=follower term=3 last=5 commit=5
+node=3 event=role role=follower term=4 last=5 commit=5
+11:12:34.423 INFO  [acceptor] listening on 127.0.0.1:46415
+node=3 event=role role=follower term=4 last=6 commit=4
+node=3 event=role role=candidate term=5 last=6 commit=4
+node=3 event=role role=leader term=5 last=6 commit=4

@@ -1,0 +1,28 @@
+{
+  "mode": "main",
+  "unit": "yewukv-trace-experiment-trace-main",
+  "command": [
+    "systemd-run",
+    "--unit",
+    "yewukv-trace-experiment-trace-main",
+    "--collect",
+    "--property=RuntimeMaxSec=1800",
+    "--property=UMask=0077",
+    "--property=MemoryMax=512M",
+    "--property=CPUQuota=100%",
+    "--property=TasksMax=192",
+    "--property=StandardOutput=append:/private/experiment/main.log",
+    "--property=StandardError=append:/private/experiment/main.log",
+    "/usr/bin/python3",
+    "/private/experiment/source/benchmarks/cloud_persistence_trace.py",
+    "--config",
+    "/private/experiment/private-config.json",
+    "--bench",
+    "/private/bin/yewukv-bench",
+    "--output",
+    "/private/experiment/trace-main",
+    "--shutdown-agents"
+  ],
+  "commit": "27baea4d528ee3d372b6b523996f36508c6ca16b",
+  "dispatched_unix_ns": 1792940242025374829
+}

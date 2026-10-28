@@ -1,0 +1,600 @@
+[
+  {
+    "monotonic_ns": 68329903955395,
+    "load": [
+      0.3876953125,
+      0.3623046875,
+      0.4404296875
+    ],
+    "processes": [
+      {
+        "pid": 49196,
+        "cpu_seconds": 1.1,
+        "rss_bytes": 23592960
+      },
+      {
+        "pid": 49197,
+        "cpu_seconds": 1.11,
+        "rss_bytes": 23724032
+      }
+    ],
+    "cpu_ticks": "cpu  179263 11667 96470 13234986 30958 0 43566 0 0 0",
+    "meminfo": [
+      "MemTotal:        3714280 kB",
+      "MemFree:         1549884 kB",
+      "MemAvailable:    3152756 kB"
+    ]
+  },
+  {
+    "monotonic_ns": 68330905057099,
+    "load": [
+      0.3876953125,
+      0.3623046875,
+      0.4404296875
+    ],
+    "processes": [
+      {
+        "pid": 49196,
+        "cpu_seconds": 1.42,
+        "rss_bytes": 24117248
+      },
+      {
+        "pid": 49197,
+        "cpu_seconds": 1.45,
+        "rss_bytes": 24248320
+      }
+    ],
+    "cpu_ticks": "cpu  179306 11667 96494 13235105 30958 0 43576 0 0 0",
+    "meminfo": [
+      "MemTotal:        3714280 kB",
+      "MemFree:         1549132 kB",
+      "MemAvailable:    3152012 kB"
+    ]
+  },
+  {
+    "monotonic_ns": 68331905958633,
+    "load": [
+      0.3876953125,
+      0.3623046875,
+      0.4404296875
+    ],
+    "processes": [
+      {
+        "pid": 49196,
+        "cpu_seconds": 1.71,
+        "rss_bytes": 24641536
+      },
+      {
+        "pid": 49197,
+        "cpu_seconds": 1.76,
+        "rss_bytes": 24772608
+      }
+    ],
+    "cpu_ticks": "cpu  179347 11667 96519 13235227 30958 0 43587 0 0 0",
+    "meminfo": [
+      "MemTotal:        3714280 kB",
+      "MemFree:         1548132 kB",
+      "MemAvailable:    3151016 kB"
+    ]
+  },
+  {
+    "monotonic_ns": 68332906602120,
+    "load": [
+      0.3876953125,
+      0.3623046875,
+      0.4404296875
+    ],
+    "processes": [
+      {
+        "pid": 49196,
+        "cpu_seconds": 2.01,
+        "rss_bytes": 25296896
+      },
+      {
+        "pid": 49197,
+        "cpu_seconds": 2.07,
+        "rss_bytes": 25296896
+      }
+    ],
+    "cpu_ticks": "cpu  179386 11667 96541 13235351 30958 0 43599 0 0 0",
+    "meminfo": [
+      "MemTotal:        3714280 kB",
+      "MemFree:         1547380 kB",
+      "MemAvailable:    3150264 kB"
+    ]
+  },
+  {
+    "monotonic_ns": 68333907361032,
+    "load": [
+      0.67724609375,
+      0.4228515625,
+      0.4599609375
+    ],
+    "processes": [
+      {
+        "pid": 49196,
+        "cpu_seconds": 2.27,
+        "rss_bytes": 25559040
+      },
+      {
+        "pid": 49197,
+        "cpu_seconds": 2.32,
+        "rss_bytes": 25559040
+      }
+    ],
+    "cpu_ticks": "cpu  179415 11667 96563 13235488 30958 0 43608 0 0 0",
+    "meminfo": [
+      "MemTotal:        3714280 kB",
+      "MemFree:         1548940 kB",
+      "MemAvailable:    3151828 kB"
+    ]
+  },
+  {
+    "monotonic_ns": 68334907834095,
+    "load": [
+      0.67724609375,
+      0.4228515625,
+      0.4599609375
+    ],
+    "processes": [
+      {
+        "pid": 49196,
+        "cpu_seconds": 2.59,
+        "rss_bytes": 26214400
+      },
+      {
+        "pid": 49197,
+        "cpu_seconds": 2.65,
+        "rss_bytes": 26214400
+      }
+    ],
+    "cpu_ticks": "cpu  179454 11667 96591 13235605 30958 0 43620 0 0 0",
+    "meminfo": [
+      "MemTotal:        3714280 kB",
+      "MemFree:         1547184 kB",
+      "MemAvailable:    3150076 kB"
+    ]
+  },
+  {
+    "monotonic_ns": 68335908480469,
+    "load": [
+      0.67724609375,
+      0.4228515625,
+      0.4599609375
+    ],
+    "processes": [
+      {
+        "pid": 49196,
+        "cpu_seconds": 2.89,
+        "rss_bytes": 26607616
+      },
+      {
+        "pid": 49197,
+        "cpu_seconds": 2.95,
+        "rss_bytes": 26607616
+      }
+    ],
+    "cpu_ticks": "cpu  179489 11667 96616 13235730 30958 0 43631 0 0 0",
+    "meminfo": [
+      "MemTotal:        3714280 kB",
+      "MemFree:         1545928 kB",
+      "MemAvailable:    3148820 kB"
+    ]
+  },
+  {
+    "monotonic_ns": 68336909439325,
+    "load": [
+      0.67724609375,
+      0.4228515625,
+      0.4599609375
+    ],
+    "processes": [
+      {
+        "pid": 49196,
+        "cpu_seconds": 3.21,
+        "rss_bytes": 27131904
+      },
+      {
+        "pid": 49197,
+        "cpu_seconds": 3.28,
+        "rss_bytes": 27131904
+      }
+    ],
+    "cpu_ticks": "cpu  179530 11667 96642 13235850 30958 0 43643 0 0 0",
+    "meminfo": [
+      "MemTotal:        3714280 kB",
+      "MemFree:         1544168 kB",
+      "MemAvailable:    3147064 kB"
+    ]
+  },
+  {
+    "monotonic_ns": 68337910432320,
+    "load": [
+      0.67724609375,
+      0.4228515625,
+      0.4599609375
+    ],
+    "processes": [
+      {
+        "pid": 49196,
+        "cpu_seconds": 3.5,
+        "rss_bytes": 27656192
+      },
+      {
+        "pid": 49197,
+        "cpu_seconds": 3.58,
+        "rss_bytes": 27525120
+      }
+    ],
+    "cpu_ticks": "cpu  179568 11667 96668 13235974 30958 0 43655 0 0 0",
+    "meminfo": [
+      "MemTotal:        3714280 kB",
+      "MemFree:         1543416 kB",
+      "MemAvailable:    3146312 kB"
+    ]
+  },
+  {
+    "monotonic_ns": 68338910963704,
+    "load": [
+      0.703125,
+      0.4326171875,
+      0.462890625
+    ],
+    "processes": [
+      {
+        "pid": 49196,
+        "cpu_seconds": 3.78,
+        "rss_bytes": 28049408
+      },
+      {
+        "pid": 49197,
+        "cpu_seconds": 3.88,
+        "rss_bytes": 28049408
+      }
+    ],
+    "cpu_ticks": "cpu  179603 11667 96693 13236100 30958 0 43666 0 0 0",
+    "meminfo": [
+      "MemTotal:        3714280 kB",
+      "MemFree:         1542164 kB",
+      "MemAvailable:    3145068 kB"
+    ]
+  },
+  {
+    "monotonic_ns": 68339911644371,
+    "load": [
+      0.703125,
+      0.4326171875,
+      0.462890625
+    ],
+    "processes": [
+      {
+        "pid": 49196,
+        "cpu_seconds": 4.13,
+        "rss_bytes": 28704768
+      },
+      {
+        "pid": 49197,
+        "cpu_seconds": 4.24,
+        "rss_bytes": 28573696
+      }
+    ],
+    "cpu_ticks": "cpu  179647 11667 96725 13236212 30958 0 43679 0 0 0",
+    "meminfo": [
+      "MemTotal:        3714280 kB",
+      "MemFree:         1540404 kB",
+      "MemAvailable:    3143312 kB"
+    ]
+  },
+  {
+    "monotonic_ns": 68340912323206,
+    "load": [
+      0.703125,
+      0.4326171875,
+      0.462890625
+    ],
+    "processes": [
+      {
+        "pid": 49196,
+        "cpu_seconds": 4.44,
+        "rss_bytes": 29097984
+      },
+      {
+        "pid": 49197,
+        "cpu_seconds": 4.56,
+        "rss_bytes": 29097984
+      }
+    ],
+    "cpu_ticks": "cpu  179684 11667 96749 13236336 30958 0 43692 0 0 0",
+    "meminfo": [
+      "MemTotal:        3714280 kB",
+      "MemFree:         1539904 kB",
+      "MemAvailable:    3142812 kB"
+    ]
+  },
+  {
+    "monotonic_ns": 68341912795358,
+    "load": [
+      0.703125,
+      0.4326171875,
+      0.462890625
+    ],
+    "processes": [
+      {
+        "pid": 49196,
+        "cpu_seconds": 4.76,
+        "rss_bytes": 29753344
+      },
+      {
+        "pid": 49197,
+        "cpu_seconds": 4.89,
+        "rss_bytes": 29622272
+      }
+    ],
+    "cpu_ticks": "cpu  179726 11667 96777 13236454 30958 0 43704 0 0 0",
+    "meminfo": [
+      "MemTotal:        3714280 kB",
+      "MemFree:         1538144 kB",
+      "MemAvailable:    3141056 kB"
+    ]
+  },
+  {
+    "monotonic_ns": 68342913447015,
+    "load": [
+      0.703125,
+      0.4326171875,
+      0.462890625
+    ],
+    "processes": [
+      {
+        "pid": 49196,
+        "cpu_seconds": 5.07,
+        "rss_bytes": 30277632
+      },
+      {
+        "pid": 49197,
+        "cpu_seconds": 5.22,
+        "rss_bytes": 30146560
+      }
+    ],
+    "cpu_ticks": "cpu  179766 11667 96802 13236573 30958 0 43716 0 0 0",
+    "meminfo": [
+      "MemTotal:        3714280 kB",
+      "MemFree:         1536892 kB",
+      "MemAvailable:    3139808 kB"
+    ]
+  },
+  {
+    "monotonic_ns": 68343915041938,
+    "load": [
+      0.88720703125,
+      0.4755859375,
+      0.4765625
+    ],
+    "processes": [
+      {
+        "pid": 49196,
+        "cpu_seconds": 5.37,
+        "rss_bytes": 30670848
+      },
+      {
+        "pid": 49197,
+        "cpu_seconds": 5.54,
+        "rss_bytes": 30670848
+      }
+    ],
+    "cpu_ticks": "cpu  179803 11667 96830 13236696 30958 0 43726 0 0 0",
+    "meminfo": [
+      "MemTotal:        3714280 kB",
+      "MemFree:         1535884 kB",
+      "MemAvailable:    3138800 kB"
+    ]
+  },
+  {
+    "monotonic_ns": 68344915709568,
+    "load": [
+      0.88720703125,
+      0.4755859375,
+      0.4765625
+    ],
+    "processes": [
+      {
+        "pid": 49196,
+        "cpu_seconds": 5.69,
+        "rss_bytes": 31195136
+      },
+      {
+        "pid": 49197,
+        "cpu_seconds": 5.86,
+        "rss_bytes": 31195136
+      }
+    ],
+    "cpu_ticks": "cpu  179839 11667 96858 13236818 30958 0 43740 0 0 0",
+    "meminfo": [
+      "MemTotal:        3714280 kB",
+      "MemFree:         1534372 kB",
+      "MemAvailable:    3137292 kB"
+    ]
+  },
+  {
+    "monotonic_ns": 68345916328427,
+    "load": [
+      0.88720703125,
+      0.4755859375,
+      0.4765625
+    ],
+    "processes": [
+      {
+        "pid": 49196,
+        "cpu_seconds": 6.0,
+        "rss_bytes": 31719424
+      },
+      {
+        "pid": 49197,
+        "cpu_seconds": 6.18,
+        "rss_bytes": 31588352
+      }
+    ],
+    "cpu_ticks": "cpu  179878 11667 96886 13236939 30958 0 43751 0 0 0",
+    "meminfo": [
+      "MemTotal:        3714280 kB",
+      "MemFree:         1533368 kB",
+      "MemAvailable:    3136292 kB"
+    ]
+  },
+  {
+    "monotonic_ns": 68346916812247,
+    "load": [
+      0.88720703125,
+      0.4755859375,
+      0.4765625
+    ],
+    "processes": [
+      {
+        "pid": 49196,
+        "cpu_seconds": 6.32,
+        "rss_bytes": 32243712
+      },
+      {
+        "pid": 49197,
+        "cpu_seconds": 6.5,
+        "rss_bytes": 32243712
+      }
+    ],
+    "cpu_ticks": "cpu  179919 11667 96912 13237059 30958 0 43762 0 0 0",
+    "meminfo": [
+      "MemTotal:        3714280 kB",
+      "MemFree:         1531612 kB",
+      "MemAvailable:    3134536 kB"
+    ]
+  },
+  {
+    "monotonic_ns": 68347917567284,
+    "load": [
+      0.88720703125,
+      0.4755859375,
+      0.4765625
+    ],
+    "processes": [
+      {
+        "pid": 49196,
+        "cpu_seconds": 6.63,
+        "rss_bytes": 32768000
+      },
+      {
+        "pid": 49197,
+        "cpu_seconds": 6.82,
+        "rss_bytes": 32768000
+      }
+    ],
+    "cpu_ticks": "cpu  179960 11667 96938 13237178 30958 0 43773 0 0 0",
+    "meminfo": [
+      "MemTotal:        3714280 kB",
+      "MemFree:         1530608 kB",
+      "MemAvailable:    3133536 kB"
+    ]
+  },
+  {
+    "monotonic_ns": 68348918905658,
+    "load": [
+      0.81591796875,
+      0.46728515625,
+      0.4736328125
+    ],
+    "processes": [
+      {
+        "pid": 49196,
+        "cpu_seconds": 6.95,
+        "rss_bytes": 33292288
+      },
+      {
+        "pid": 49197,
+        "cpu_seconds": 7.16,
+        "rss_bytes": 33292288
+      }
+    ],
+    "cpu_ticks": "cpu  180001 11667 96966 13237296 30958 0 43786 0 0 0",
+    "meminfo": [
+      "MemTotal:        3714280 kB",
+      "MemFree:         1529100 kB",
+      "MemAvailable:    3132028 kB"
+    ]
+  },
+  {
+    "monotonic_ns": 68349920966669,
+    "load": [
+      0.81591796875,
+      0.46728515625,
+      0.4736328125
+    ],
+    "processes": [
+      {
+        "pid": 49196,
+        "cpu_seconds": 7.3,
+        "rss_bytes": 33816576
+      },
+      {
+        "pid": 49197,
+        "cpu_seconds": 7.51,
+        "rss_bytes": 33816576
+      }
+    ],
+    "cpu_ticks": "cpu  180042 11667 96997 13237408 30958 0 43799 0 0 0",
+    "meminfo": [
+      "MemTotal:        3714280 kB",
+      "MemFree:         1527844 kB",
+      "MemAvailable:    3130776 kB"
+    ]
+  },
+  {
+    "monotonic_ns": 68350922316917,
+    "load": [
+      0.81591796875,
+      0.46728515625,
+      0.4736328125
+    ],
+    "processes": [
+      {
+        "pid": 49196,
+        "cpu_seconds": 7.57,
+        "rss_bytes": 33816576
+      },
+      {
+        "pid": 49197,
+        "cpu_seconds": 7.79,
+        "rss_bytes": 33816576
+      }
+    ],
+    "cpu_ticks": "cpu  180077 11667 97022 13237538 30958 0 43811 0 0 0",
+    "meminfo": [
+      "MemTotal:        3714280 kB",
+      "MemFree:         1527596 kB",
+      "MemAvailable:    3130528 kB"
+    ]
+  },
+  {
+    "monotonic_ns": 68351924483671,
+    "load": [
+      0.81591796875,
+      0.46728515625,
+      0.4736328125
+    ],
+    "processes": [
+      {
+        "pid": 49196,
+        "cpu_seconds": 8.36,
+        "rss_bytes": 38928384
+      },
+      {
+        "pid": 49197,
+        "cpu_seconds": 8.6,
+        "rss_bytes": 38928384
+      }
+    ],
+    "cpu_ticks": "cpu  180225 11667 97038 13237567 30958 0 43815 0 0 0",
+    "meminfo": [
+      "MemTotal:        3714280 kB",
+      "MemFree:         1512252 kB",
+      "MemAvailable:    3116008 kB"
+    ]
+  }
+]

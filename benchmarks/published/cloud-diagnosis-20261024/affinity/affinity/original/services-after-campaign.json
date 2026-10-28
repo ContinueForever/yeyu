@@ -1,0 +1,68 @@
+[
+  {
+    "action": "inspect",
+    "node": 1,
+    "started_ns": 1792829882217882373,
+    "realtime_ns": 1792829882229156763,
+    "monotonic_ns": 105367485630108,
+    "properties": {
+      "MainPID": "60598",
+      "NRestarts": "0",
+      "ExecMainStartTimestamp": "Sat 2026-10-24 16:10:46 CST",
+      "ExecStart": "{ path=/usr/local/bin/yewukv-node ; argv[]=/usr/local/bin/yewukv-node --id 1 --listen-host ${YEWUKV_LISTEN_HOST} --port ${YEWUKV_PORT} --members ${YEWUKV_MEMBERS} --data-dir /var/lib/yewukv/node-1 ; ignore_errors=no ; start_time=[Sat 2026-10-24 16:10:46 CST] ; stop_time=[n/a] ; pid=60598 ; code=(null) ; status=0/0 }",
+      "ActiveState": "active",
+      "DropInPaths": ""
+    },
+    "installed_sha256": "6bb46da21f4a3284cace8536eec9d2c8867e67cc9a3f187ea532ef0308575b02",
+    "running_sha256": "6bb46da21f4a3284cace8536eec9d2c8867e67cc9a3f187ea532ef0308575b02",
+    "boot_id": "81245ac9-3951-4fa9-8639-f6ad37280795",
+    "env": "YEWUKV_LISTEN_HOST=192.0.2.1\nYEWUKV_PORT=9101\nYEWUKV_MEMBERS=1@192.0.2.1:9101,2@192.0.2.2:9101,3@192.0.2.3:9101\n",
+    "proc_stat": "60598 (yewukv-node) S 1 60598 60598 0 -1 4194560 1542 0 0 0 533 632 0 0 20 0 4 0 10493187 105086976 2328 18446744073709551615 97363799994368 97363800350341 140721745127696 0 0 0 16386 4096 0 0 0 0 17 1 0 0 0 0 0 97363800425168 97363800433832 97364357505024 140721745128701 140721745128882 140721745128882 140721745129437 0\n",
+    "unit_text": "# /etc/systemd/system/yewukv-node@.service\n[Unit]\nDescription=yewukv Raft node %i\nWants=network-online.target\nAfter=network-online.target\n\n[Service]\nType=simple\nUser=yewukv\nGroup=yewukv\nEnvironmentFile=/etc/yewukv/node-%i.env\nExecStart=/usr/local/bin/yewukv-node --id %i --listen-host ${YEWUKV_LISTEN_HOST} --port ${YEWUKV_PORT} --members ${YEWUKV_MEMBERS} --data-dir /var/lib/yewukv/node-%i\nStateDirectory=yewukv/node-%i\nStateDirectoryMode=0700\nRestart=on-failure\nRestartSec=2\nTimeoutStopSec=10\nUMask=0077\nNoNewPrivileges=true\nPrivateTmp=true\nProtectHome=true\nProtectSystem=strict\n\n[Install]\nWantedBy=multi-user.target\n",
+    "finished_ns": 1792829882312642430
+  },
+  {
+    "action": "inspect",
+    "node": 2,
+    "started_ns": 1792829881536302257,
+    "realtime_ns": 1792829881553100449,
+    "monotonic_ns": 86719473847184,
+    "properties": {
+      "MainPID": "51247",
+      "NRestarts": "0",
+      "ExecMainStartTimestamp": "Sat 2026-10-24 16:10:47 CST",
+      "ExecStart": "{ path=/usr/local/bin/yewukv-node ; argv[]=/usr/local/bin/yewukv-node --id 2 --listen-host ${YEWUKV_LISTEN_HOST} --port ${YEWUKV_PORT} --members ${YEWUKV_MEMBERS} --data-dir /var/lib/yewukv/node-2 ; ignore_errors=no ; start_time=[Sat 2026-10-24 16:10:47 CST] ; stop_time=[n/a] ; pid=51247 ; code=(null) ; status=0/0 }",
+      "ActiveState": "active",
+      "DropInPaths": ""
+    },
+    "installed_sha256": "6bb46da21f4a3284cace8536eec9d2c8867e67cc9a3f187ea532ef0308575b02",
+    "running_sha256": "6bb46da21f4a3284cace8536eec9d2c8867e67cc9a3f187ea532ef0308575b02",
+    "boot_id": "4d2c32d3-4b0f-4ebe-87a1-6dd6394a35c5",
+    "env": "YEWUKV_LISTEN_HOST=192.0.2.2\nYEWUKV_PORT=9101\nYEWUKV_MEMBERS=1@192.0.2.1:9101,2@192.0.2.2:9101,3@192.0.2.3:9101\n",
+    "proc_stat": "51247 (yewukv-node) S 1 51247 51247 0 -1 4194560 1567 0 0 0 1994 2859 0 0 20 0 6 0 8628504 390307840 2344 18446744073709551615 105585766199296 105585766555269 140721165810704 0 0 0 16386 4096 0 0 0 0 17 0 0 0 0 0 0 105585766630096 105585766638760 105586008518656 140721165819129 140721165819312 140721165819312 140721165819869 0\n",
+    "unit_text": "# /etc/systemd/system/yewukv-node@.service\n[Unit]\nDescription=yewukv Raft node %i\nWants=network-online.target\nAfter=network-online.target\n\n[Service]\nType=simple\nUser=yewukv\nGroup=yewukv\nEnvironmentFile=/etc/yewukv/node-%i.env\nExecStart=/usr/local/bin/yewukv-node --id %i --listen-host ${YEWUKV_LISTEN_HOST} --port ${YEWUKV_PORT} --members ${YEWUKV_MEMBERS} --data-dir /var/lib/yewukv/node-%i\nStateDirectory=yewukv/node-%i\nStateDirectoryMode=0700\nRestart=on-failure\nRestartSec=2\nTimeoutStopSec=10\nUMask=0077\nNoNewPrivileges=true\nPrivateTmp=true\nProtectHome=true\nProtectSystem=strict\n\n[Install]\nWantedBy=multi-user.target\n",
+    "finished_ns": 1792829881675512751
+  },
+  {
+    "action": "inspect",
+    "node": 3,
+    "started_ns": 1792829881555248459,
+    "realtime_ns": 1792829881565569771,
+    "monotonic_ns": 68499883263077,
+    "properties": {
+      "MainPID": "48404",
+      "NRestarts": "0",
+      "ExecMainStartTimestamp": "Sat 2026-10-24 16:10:46 CST",
+      "ExecStart": "{ path=/usr/local/bin/yewukv-node ; argv[]=/usr/local/bin/yewukv-node --id 3 --listen-host ${YEWUKV_LISTEN_HOST} --port ${YEWUKV_PORT} --members ${YEWUKV_MEMBERS} --data-dir /var/lib/yewukv/node-3 ; ignore_errors=no ; start_time=[Sat 2026-10-24 16:10:46 CST] ; stop_time=[n/a] ; pid=48404 ; code=(null) ; status=0/0 }",
+      "ActiveState": "active",
+      "DropInPaths": ""
+    },
+    "installed_sha256": "6bb46da21f4a3284cace8536eec9d2c8867e67cc9a3f187ea532ef0308575b02",
+    "running_sha256": "6bb46da21f4a3284cace8536eec9d2c8867e67cc9a3f187ea532ef0308575b02",
+    "boot_id": "11b6f4f5-0f33-4f14-995e-3c0c8ef47abd",
+    "env": "YEWUKV_LISTEN_HOST=192.0.2.3\nYEWUKV_PORT=9101\nYEWUKV_MEMBERS=1@192.0.2.1:9101,2@192.0.2.2:9101,3@192.0.2.3:9101\n",
+    "proc_stat": "48404 (yewukv-node) S 1 48404 48404 0 -1 4194560 1577 0 0 0 507 468 0 0 20 0 4 0 6806502 390430720 2365 18446744073709551615 99075456929792 99075457285765 140735321945888 0 0 0 16386 4096 0 0 0 0 17 0 0 0 0 0 0 99075457360592 99075457369256 99075634925568 140735321951481 140735321951664 140735321951664 140735321952221 0\n",
+    "unit_text": "# /etc/systemd/system/yewukv-node@.service\n[Unit]\nDescription=yewukv Raft node %i\nWants=network-online.target\nAfter=network-online.target\n\n[Service]\nType=simple\nUser=yewukv\nGroup=yewukv\nEnvironmentFile=/etc/yewukv/node-%i.env\nExecStart=/usr/local/bin/yewukv-node --id %i --listen-host ${YEWUKV_LISTEN_HOST} --port ${YEWUKV_PORT} --members ${YEWUKV_MEMBERS} --data-dir /var/lib/yewukv/node-%i\nStateDirectory=yewukv/node-%i\nStateDirectoryMode=0700\nRestart=on-failure\nRestartSec=2\nTimeoutStopSec=10\nUMask=0077\nNoNewPrivileges=true\nPrivateTmp=true\nProtectHome=true\nProtectSystem=strict\n\n[Install]\nWantedBy=multi-user.target\n",
+    "finished_ns": 1792829881648935503
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "normal": {
+    "file": "local/ctest-normal.log",
+    "sha256": "a7ceabfc2f4c5c55e208ef49698c411cacaecae39c8dd2fee8e1082e4097a156",
+    "tests": 134,
+    "passed": true
+  },
+  "asan": {
+    "file": "local/ctest-asan.log",
+    "sha256": "bbd250a4dda2569b2204289032ee261f1cb625e003bc336fd41f1fea6e10dd64",
+    "tests": 134,
+    "passed": true
+  },
+  "tsan_recorder": {
+    "file": "local/tsan-recorder.log",
+    "sha256": "119e5e7ab4de470fdd7a8903d8f8301489b33229bb844b27918bc4f26584c15b",
+    "tests": 4,
+    "passed": true,
+    "scope": "recording component only"
+  }
+}

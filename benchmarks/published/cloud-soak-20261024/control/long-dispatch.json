@@ -1,0 +1,28 @@
+{
+  "mode": "long",
+  "unit": "yewukv-soak-experiment-soak",
+  "command": [
+    "systemd-run",
+    "--unit",
+    "yewukv-soak-experiment-soak",
+    "--collect",
+    "--property=RuntimeMaxSec=28800",
+    "--property=UMask=0077",
+    "--property=MemoryMax=512M",
+    "--property=CPUQuota=100%",
+    "--property=TasksMax=192",
+    "--property=StandardOutput=append:/private/experiment/long.log",
+    "--property=StandardError=append:/private/experiment/long.log",
+    "/usr/bin/python3",
+    "/private/experiment/source/benchmarks/cloud_soak.py",
+    "--config",
+    "/private/experiment/private-config.json",
+    "--bench",
+    "/private/bin/yewukv-bench",
+    "--output",
+    "/private/experiment/soak-main",
+    "--shutdown-agents"
+  ],
+  "commit": "d34a605d0f50727c996fb9c287b40bbe4b8700d7",
+  "dispatched_unix_ns": 1792851237380297967
+}

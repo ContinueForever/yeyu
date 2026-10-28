@@ -1,0 +1,41 @@
+[
+  {
+    "node": 1,
+    "checked_unix_ns": 1792985461321646741,
+    "cpu_count": 2,
+    "clock_ticks": 100,
+    "page_size": 4096,
+    "kernel": "6.8.0-139-generic",
+    "os_release": "PRETTY_NAME=\"Ubuntu 24.04.5 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"24.04\"\nVERSION=\"24.04.5 LTS (Noble Numbat)\"\nVERSION_CODENAME=noble\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=noble\nLOGO=ubuntu-logo\n",
+    "cpu_model": "Intel(R) Xeon(R) Platinum",
+    "meminfo": "MemTotal:        3714260 kB\nMemFree:          362800 kB\nMemAvailable:    2919904 kB\nBuffers:          217740 kB\nCached:          2399640 kB\nSwapCached:            0 kB\nActive:           841248 kB\nInactive:        2077796 kB\nActive(anon):     312092 kB\nInactive(anon):      956 kB\nActive(file):     529156 kB\nInactive(file):  2076840 kB\nUnevictable:       28696 kB\nMlocked:           27160 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nZswap:                 0 kB\nZswapped:              0 kB\nDirty:             13360 kB\nWriteback:             0 kB\nAnonPages:        330412 kB\nMapped:           216596 kB\nShmem:              2632 kB\nKReclaimable:     239024 kB\nSlab:             311716 kB\nSReclaimable:     239024 kB\nSUnreclaim:        72692 kB\nKernelStack:        4264 kB\nPageTables:         5504 kB\nSecPageTables:         0 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     1857128 kB\nCommitted_AS:     925104 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       21560 kB\nVmallocChunk:          0 kB\nPercpu:             2536 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nUnaccepted:            0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      132372 kB\nDirectMap2M:     2846720 kB\nDirectMap1G:     1048576 kB\n",
+    "free_disk_bytes": 35557728256,
+    "binaries": {}
+  },
+  {
+    "node": 2,
+    "checked_unix_ns": 1792985460905585400,
+    "cpu_count": 2,
+    "clock_ticks": 100,
+    "page_size": 4096,
+    "kernel": "6.8.0-139-generic",
+    "os_release": "PRETTY_NAME=\"Ubuntu 24.04.5 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"24.04\"\nVERSION=\"24.04.5 LTS (Noble Numbat)\"\nVERSION_CODENAME=noble\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=noble\nLOGO=ubuntu-logo\n",
+    "cpu_model": "Intel(R) Xeon(R) Platinum",
+    "meminfo": "MemTotal:        3714256 kB\nMemFree:          290436 kB\nMemAvailable:    3108920 kB\nBuffers:          183652 kB\nCached:          2770276 kB\nSwapCached:            0 kB\nActive:           707048 kB\nInactive:        2372792 kB\nActive(anon):     137232 kB\nInactive(anon):       12 kB\nActive(file):     569816 kB\nInactive(file):  2372780 kB\nUnevictable:       28696 kB\nMlocked:           27160 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nZswap:                 0 kB\nZswapped:              0 kB\nDirty:               928 kB\nWriteback:             0 kB\nAnonPages:        154624 kB\nMapped:           141340 kB\nShmem:              2572 kB\nKReclaimable:     158420 kB\nSlab:             229752 kB\nSReclaimable:     158420 kB\nSUnreclaim:        71332 kB\nKernelStack:        3216 kB\nPageTables:         3804 kB\nSecPageTables:         0 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     1857128 kB\nCommitted_AS:     536876 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       21616 kB\nVmallocChunk:          0 kB\nPercpu:             3120 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nUnaccepted:            0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      167180 kB\nDirectMap2M:     3860480 kB\nDirectMap1G:           0 kB\n",
+    "free_disk_bytes": 35553808384,
+    "binaries": {}
+  },
+  {
+    "node": 3,
+    "checked_unix_ns": 1792985461275229269,
+    "cpu_count": 2,
+    "clock_ticks": 100,
+    "page_size": 4096,
+    "kernel": "6.8.0-139-generic",
+    "os_release": "PRETTY_NAME=\"Ubuntu 24.04.5 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"24.04\"\nVERSION=\"24.04.5 LTS (Noble Numbat)\"\nVERSION_CODENAME=noble\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=noble\nLOGO=ubuntu-logo\n",
+    "cpu_model": "Intel(R) Xeon(R) Platinum",
+    "meminfo": "MemTotal:        3714280 kB\nMemFree:          396100 kB\nMemAvailable:    3099936 kB\nBuffers:          180836 kB\nCached:          2646476 kB\nSwapCached:            0 kB\nActive:           533416 kB\nInactive:        2406976 kB\nActive(anon):     124456 kB\nInactive(anon):        0 kB\nActive(file):     408960 kB\nInactive(file):  2406976 kB\nUnevictable:       28696 kB\nMlocked:           27160 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nZswap:                 0 kB\nZswapped:              0 kB\nDirty:               380 kB\nWriteback:             0 kB\nAnonPages:        141792 kB\nMapped:           142896 kB\nShmem:              2616 kB\nKReclaimable:     175688 kB\nSlab:             248996 kB\nSReclaimable:     175688 kB\nSUnreclaim:        73308 kB\nKernelStack:        3264 kB\nPageTables:         3820 kB\nSecPageTables:         0 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     1857140 kB\nCommitted_AS:     524204 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       21588 kB\nVmallocChunk:          0 kB\nPercpu:             3504 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nUnaccepted:            0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      144664 kB\nDirectMap2M:     3883008 kB\nDirectMap1G:           0 kB\n",
+    "free_disk_bytes": 35379245056,
+    "binaries": {}
+  }
+]

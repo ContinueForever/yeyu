@@ -1,0 +1,49 @@
+{
+  "status": "complete",
+  "started_unix_ns": 1792850197595895694,
+  "plan": [
+    {
+      "cold_mib": 1,
+      "encoder": "sync",
+      "windows": 1
+    },
+    {
+      "cold_mib": 1,
+      "encoder": "background",
+      "windows": 1
+    }
+  ],
+  "window_seconds": 2,
+  "offered_rps": 600,
+  "completed_phases": [
+    0,
+    1
+  ],
+  "completed_windows": 2,
+  "measured_seconds": 4,
+  "original_services_protected": true,
+  "note": "Three VMs; C++ load shares Follower 3. Default adaptive policy; one-core/512MiB node limits. Windows exclude setup; phase metrics include preload, warmup and probes.",
+  "phase": 1,
+  "window": 0,
+  "last_update_unix_ns": 1792850215505455677,
+  "last_window": {
+    "attempts": 1200,
+    "successes": 1200,
+    "failures": 0,
+    "offered_slots": 1201,
+    "missed_slots": 1,
+    "valid": true,
+    "codes": {
+      "0": 1200
+    },
+    "successful_ops_s": 598.7203779868632,
+    "p99_ms": 30.936107,
+    "p999_ms": 47.579004,
+    "max_ms": 49.166513,
+    "scheduled_p99_ms": 39.616299
+  },
+  "result_bytes": 145817,
+  "finished_unix_ns": 1792850220304836163,
+  "cleanup_errors": [],
+  "shutdown_agents_requested": false
+}

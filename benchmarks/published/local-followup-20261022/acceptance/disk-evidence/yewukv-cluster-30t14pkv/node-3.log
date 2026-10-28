@@ -1,0 +1,11 @@
+11:08:23.108 INFO  [acceptor] listening on 127.0.0.1:60877
+node=3 event=role role=candidate term=1 last=0 commit=0
+node=3 event=role role=leader term=1 last=1 commit=0
+11:08:24.432 INFO  [acceptor] listening on 127.0.0.1:60877
+node=3 event=role role=follower term=1 last=43 commit=0
+node=3 event=role role=follower term=2 last=46 commit=46
+node=3 event=role role=follower term=3 last=46 commit=46
+11:08:26.566 INFO  [acceptor] listening on 127.0.0.1:60877
+node=3 event=role role=follower term=3 last=51 commit=0
+node=3 event=role role=candidate term=4 last=51 commit=0
+node=3 event=role role=leader term=4 last=52 commit=0

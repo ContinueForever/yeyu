@@ -1,0 +1,56 @@
+{
+  "command": [
+    "scripts/cluster-soak.py",
+    "--node",
+    "build/bin/yewukv-node",
+    "--client",
+    "build/bin/yewukv-client",
+    "--output",
+    "benchmarks/results/journal-soak-20261021-final",
+    "--duration-seconds",
+    "1200"
+  ],
+  "environment": {
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.43",
+    "cpu_model": "11th Gen Intel(R) Core(TM) i7-11800H @ 2.30GHz",
+    "logical_cpus": 4,
+    "cpu_affinity": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "memory": "MemTotal:        8141396 kB",
+    "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+    "load_average": [
+      2.3955078125,
+      2.6455078125,
+      1.6728515625
+    ],
+    "server_sha256": "83d034f19c3a003b86b7b362a0f822033a763a30e027d3367b5c3ba972a41cb4",
+    "build": {
+      "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+      "CMAKE_CXX_COMPILER": "/usr/bin/c++",
+      "CMAKE_CXX_FLAGS": "",
+      "CMAKE_CXX_FLAGS_DEBUG": "-g",
+      "CMAKE_CXX_FLAGS_MINSIZEREL": "-Os -DNDEBUG",
+      "CMAKE_CXX_FLAGS_RELEASE": "-O3 -DNDEBUG",
+      "CMAKE_CXX_FLAGS_RELWITHDEBINFO": "-O2 -g -DNDEBUG",
+      "YEWUKV_ENABLE_SANITIZERS": "OFF",
+      "CMAKE_CXX_FLAGS-ADVANCED": "1",
+      "CMAKE_CXX_FLAGS_DEBUG-ADVANCED": "1",
+      "CMAKE_CXX_FLAGS_MINSIZEREL-ADVANCED": "1",
+      "CMAKE_CXX_FLAGS_RELEASE-ADVANCED": "1",
+      "CMAKE_CXX_FLAGS_RELWITHDEBINFO-ADVANCED": "1"
+    },
+    "compiler_version": "c++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0\nCopyright (C) 2025 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n"
+  },
+  "source_manifest_sha256": "eaa8839702fe7dec58ea5543b4ac480a56db3ec5bf12839793e47eb90ec14cd3",
+  "status": "complete",
+  "note": "Three loopback processes on one host. Fresh per-epoch keys; exhaustive per-key oracle <=9 operations/key.",
+  "elapsed_seconds": 1201.497795063,
+  "epochs": 1143,
+  "attempted_operations": 61722,
+  "checked_operations": 61113,
+  "unknown_writes": 899
+}

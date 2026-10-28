@@ -1,0 +1,508 @@
+{
+  "schema": 1,
+  "phases": [
+    {
+      "dataset": "initial",
+      "phase": "main",
+      "identity": [
+        97,
+        3
+      ],
+      "client_node_id": 1,
+      "cases": [
+        {
+          "name": "c8-trace0-r1",
+          "clients": 8,
+          "mode": 0,
+          "repeat": 1,
+          "diagnostic": false,
+          "program": "trace"
+        },
+        {
+          "name": "c8-trace1-r1",
+          "clients": 8,
+          "mode": 1,
+          "repeat": 1,
+          "diagnostic": false,
+          "program": "trace"
+        },
+        {
+          "name": "c32-trace0-r1",
+          "clients": 32,
+          "mode": 0,
+          "repeat": 1,
+          "diagnostic": false,
+          "program": "trace"
+        },
+        {
+          "name": "c32-trace1-r1",
+          "clients": 32,
+          "mode": 1,
+          "repeat": 1,
+          "diagnostic": false,
+          "program": "trace"
+        },
+        {
+          "name": "c32-trace1-r2",
+          "clients": 32,
+          "mode": 1,
+          "repeat": 2,
+          "diagnostic": false,
+          "program": "trace"
+        },
+        {
+          "name": "c32-trace0-r2",
+          "clients": 32,
+          "mode": 0,
+          "repeat": 2,
+          "diagnostic": false,
+          "program": "trace"
+        },
+        {
+          "name": "c8-trace1-r2",
+          "clients": 8,
+          "mode": 1,
+          "repeat": 2,
+          "diagnostic": false,
+          "program": "trace"
+        },
+        {
+          "name": "c8-trace0-r2",
+          "clients": 8,
+          "mode": 0,
+          "repeat": 2,
+          "diagnostic": false,
+          "program": "trace"
+        },
+        {
+          "name": "c8-trace0-r3",
+          "clients": 8,
+          "mode": 0,
+          "repeat": 3,
+          "diagnostic": false,
+          "program": "trace"
+        },
+        {
+          "name": "c8-trace1-r3",
+          "clients": 8,
+          "mode": 1,
+          "repeat": 3,
+          "diagnostic": false,
+          "program": "trace"
+        },
+        {
+          "name": "c32-trace0-r3",
+          "clients": 32,
+          "mode": 0,
+          "repeat": 3,
+          "diagnostic": false,
+          "program": "trace"
+        },
+        {
+          "name": "c32-trace1-r3",
+          "clients": 32,
+          "mode": 1,
+          "repeat": 3,
+          "diagnostic": false,
+          "program": "trace"
+        }
+      ],
+      "read_correlation_valid": false
+    },
+    {
+      "dataset": "initial",
+      "phase": "leader2",
+      "identity": [
+        99,
+        2
+      ],
+      "client_node_id": 3,
+      "cases": [
+        {
+          "name": "c32-trace0-r1",
+          "clients": 32,
+          "mode": 0,
+          "repeat": 1,
+          "diagnostic": false,
+          "program": "trace"
+        },
+        {
+          "name": "c32-trace1-r1",
+          "clients": 32,
+          "mode": 1,
+          "repeat": 1,
+          "diagnostic": false,
+          "program": "trace"
+        },
+        {
+          "name": "c32-trace1-r2",
+          "clients": 32,
+          "mode": 1,
+          "repeat": 2,
+          "diagnostic": false,
+          "program": "trace"
+        },
+        {
+          "name": "c32-trace0-r2",
+          "clients": 32,
+          "mode": 0,
+          "repeat": 2,
+          "diagnostic": false,
+          "program": "trace"
+        },
+        {
+          "name": "c32-trace0-r3",
+          "clients": 32,
+          "mode": 0,
+          "repeat": 3,
+          "diagnostic": false,
+          "program": "trace"
+        },
+        {
+          "name": "c32-trace1-r3",
+          "clients": 32,
+          "mode": 1,
+          "repeat": 3,
+          "diagnostic": false,
+          "program": "trace"
+        },
+        {
+          "name": "c8-trace1-r1",
+          "clients": 8,
+          "mode": 1,
+          "repeat": 1,
+          "diagnostic": false,
+          "program": "trace"
+        },
+        {
+          "name": "c32-trace1-packets",
+          "clients": 32,
+          "mode": 1,
+          "repeat": 4,
+          "diagnostic": true,
+          "program": "trace"
+        }
+      ],
+      "read_correlation_valid": false
+    },
+    {
+      "dataset": "address-fix",
+      "phase": "main",
+      "identity": [
+        103,
+        2
+      ],
+      "client_node_id": 3,
+      "cases": [
+        {
+          "name": "c32-trace0-r1",
+          "clients": 32,
+          "mode": 0,
+          "repeat": 1,
+          "diagnostic": false,
+          "program": "trace"
+        },
+        {
+          "name": "c32-trace1-r1",
+          "clients": 32,
+          "mode": 1,
+          "repeat": 1,
+          "diagnostic": false,
+          "program": "trace"
+        },
+        {
+          "name": "c32-trace1-r2",
+          "clients": 32,
+          "mode": 1,
+          "repeat": 2,
+          "diagnostic": false,
+          "program": "trace"
+        },
+        {
+          "name": "c32-trace0-r2",
+          "clients": 32,
+          "mode": 0,
+          "repeat": 2,
+          "diagnostic": false,
+          "program": "trace"
+        },
+        {
+          "name": "c32-trace0-r3",
+          "clients": 32,
+          "mode": 0,
+          "repeat": 3,
+          "diagnostic": false,
+          "program": "trace"
+        },
+        {
+          "name": "c32-trace1-r3",
+          "clients": 32,
+          "mode": 1,
+          "repeat": 3,
+          "diagnostic": false,
+          "program": "trace"
+        },
+        {
+          "name": "c8-trace1-r1",
+          "clients": 8,
+          "mode": 1,
+          "repeat": 1,
+          "diagnostic": false,
+          "program": "trace"
+        },
+        {
+          "name": "c32-trace1-packets",
+          "clients": 32,
+          "mode": 1,
+          "repeat": 4,
+          "diagnostic": true,
+          "program": "trace"
+        }
+      ],
+      "read_correlation_valid": true
+    },
+    {
+      "dataset": "scheduler",
+      "phase": "main",
+      "identity": [
+        107,
+        2
+      ],
+      "client_node_id": 3,
+      "cases": [
+        {
+          "name": "c32-trace1-baseline-r1",
+          "clients": 32,
+          "mode": 1,
+          "repeat": 1,
+          "profiled": false,
+          "diagnostic": false,
+          "program": "trace"
+        },
+        {
+          "name": "c32-trace1-perf-r1",
+          "clients": 32,
+          "mode": 1,
+          "repeat": 1,
+          "profiled": true,
+          "diagnostic": true,
+          "program": "trace"
+        },
+        {
+          "name": "c32-trace1-baseline-r2",
+          "clients": 32,
+          "mode": 1,
+          "repeat": 2,
+          "profiled": false,
+          "diagnostic": false,
+          "program": "trace"
+        },
+        {
+          "name": "c32-trace1-perf-r2",
+          "clients": 32,
+          "mode": 1,
+          "repeat": 2,
+          "profiled": true,
+          "diagnostic": true,
+          "program": "trace"
+        },
+        {
+          "name": "c32-trace1-baseline-r3",
+          "clients": 32,
+          "mode": 1,
+          "repeat": 3,
+          "profiled": false,
+          "diagnostic": false,
+          "program": "trace"
+        }
+      ],
+      "read_correlation_valid": true
+    },
+    {
+      "dataset": "affinity",
+      "phase": "main",
+      "identity": [
+        111,
+        2
+      ],
+      "client_node_id": 3,
+      "cases": [
+        {
+          "name": "c32-trace1-shared-r1",
+          "clients": 32,
+          "mode": 1,
+          "repeat": 1,
+          "affinity": "0,1",
+          "label": "shared",
+          "diagnostic": false,
+          "program": "trace"
+        },
+        {
+          "name": "c32-trace1-cpu0-r1",
+          "clients": 32,
+          "mode": 1,
+          "repeat": 1,
+          "affinity": "0",
+          "label": "cpu0",
+          "diagnostic": false,
+          "program": "trace"
+        },
+        {
+          "name": "c32-trace1-cpu1-r1",
+          "clients": 32,
+          "mode": 1,
+          "repeat": 1,
+          "affinity": "1",
+          "label": "cpu1",
+          "diagnostic": false,
+          "program": "trace"
+        },
+        {
+          "name": "c32-trace1-cpu0-r2",
+          "clients": 32,
+          "mode": 1,
+          "repeat": 2,
+          "affinity": "0",
+          "label": "cpu0",
+          "diagnostic": false,
+          "program": "trace"
+        },
+        {
+          "name": "c32-trace1-cpu1-r2",
+          "clients": 32,
+          "mode": 1,
+          "repeat": 2,
+          "affinity": "1",
+          "label": "cpu1",
+          "diagnostic": false,
+          "program": "trace"
+        },
+        {
+          "name": "c32-trace1-shared-r2",
+          "clients": 32,
+          "mode": 1,
+          "repeat": 2,
+          "affinity": "0,1",
+          "label": "shared",
+          "diagnostic": false,
+          "program": "trace"
+        },
+        {
+          "name": "c32-trace1-cpu1-r3",
+          "clients": 32,
+          "mode": 1,
+          "repeat": 3,
+          "affinity": "1",
+          "label": "cpu1",
+          "diagnostic": false,
+          "program": "trace"
+        },
+        {
+          "name": "c32-trace1-shared-r3",
+          "clients": 32,
+          "mode": 1,
+          "repeat": 3,
+          "affinity": "0,1",
+          "label": "shared",
+          "diagnostic": false,
+          "program": "trace"
+        },
+        {
+          "name": "c32-trace1-cpu0-r3",
+          "clients": 32,
+          "mode": 1,
+          "repeat": 3,
+          "affinity": "0",
+          "label": "cpu0",
+          "diagnostic": false,
+          "program": "trace"
+        }
+      ],
+      "read_correlation_valid": true
+    },
+    {
+      "dataset": "affinity",
+      "phase": "original",
+      "identity": [
+        114,
+        2
+      ],
+      "client_node_id": 3,
+      "cases": [
+        {
+          "name": "c32-trace0-original-shared-r1",
+          "clients": 32,
+          "mode": 0,
+          "repeat": 1,
+          "label": "shared",
+          "affinity": "0,1",
+          "diagnostic": false,
+          "program": "original"
+        },
+        {
+          "name": "c32-trace0-original-cpu0-r1",
+          "clients": 32,
+          "mode": 0,
+          "repeat": 1,
+          "label": "cpu0",
+          "affinity": "0",
+          "diagnostic": false,
+          "program": "original"
+        },
+        {
+          "name": "c32-trace0-original-cpu0-r2",
+          "clients": 32,
+          "mode": 0,
+          "repeat": 2,
+          "label": "cpu0",
+          "affinity": "0",
+          "diagnostic": false,
+          "program": "original"
+        },
+        {
+          "name": "c32-trace0-original-shared-r2",
+          "clients": 32,
+          "mode": 0,
+          "repeat": 2,
+          "label": "shared",
+          "affinity": "0,1",
+          "diagnostic": false,
+          "program": "original"
+        },
+        {
+          "name": "c32-trace0-original-shared-r3",
+          "clients": 32,
+          "mode": 0,
+          "repeat": 3,
+          "label": "shared",
+          "affinity": "0,1",
+          "diagnostic": false,
+          "program": "original"
+        },
+        {
+          "name": "c32-trace0-original-cpu0-r3",
+          "clients": 32,
+          "mode": 0,
+          "repeat": 3,
+          "label": "cpu0",
+          "affinity": "0",
+          "diagnostic": false,
+          "program": "original"
+        }
+      ],
+      "read_correlation_valid": false
+    }
+  ],
+  "runs": 48,
+  "operations": 5024663,
+  "failures": 0,
+  "redaction": "Node addresses/hostnames and private workspace prefixes replaced in exported diagnostic text. Frozen source archives and local test logs kept byte-exact. Original numeric monotonic timings, PID/TID, ports and request IDs retained.",
+  "excluded": [
+    "private keys",
+    "business backups and node data",
+    "executables",
+    "packet pcaps",
+    "binary perf.data"
+  ],
+  "note": "Decoded scheduler event streams are complete. Packet findings are retained summaries; independent packet recomputation requires private captures. First-round read correlation remains invalid."
+}

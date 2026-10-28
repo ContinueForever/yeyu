@@ -1,0 +1,51 @@
+[
+  {
+    "node": 1,
+    "checked_unix_ns": 1792986224976886175,
+    "cpu_count": 2,
+    "clock_ticks": 100,
+    "page_size": 4096,
+    "kernel": "6.8.0-139-generic",
+    "os_release": "PRETTY_NAME=\"Ubuntu 24.04.5 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"24.04\"\nVERSION=\"24.04.5 LTS (Noble Numbat)\"\nVERSION_CODENAME=noble\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=noble\nLOGO=ubuntu-logo\n",
+    "cpu_model": "Intel(R) Xeon(R) Platinum",
+    "meminfo": "MemTotal:        3714260 kB\nMemFree:          428516 kB\nMemAvailable:    2987648 kB\nBuffers:          217380 kB\nCached:          2402180 kB\nSwapCached:            0 kB\nActive:           655456 kB\nInactive:        2208920 kB\nActive(anon):     255240 kB\nInactive(anon):      956 kB\nActive(file):     400216 kB\nInactive(file):  2207964 kB\nUnevictable:       28696 kB\nMlocked:           27160 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nZswap:                 0 kB\nZswapped:              0 kB\nDirty:               680 kB\nWriteback:            60 kB\nAnonPages:        273564 kB\nMapped:           189352 kB\nShmem:              2628 kB\nKReclaimable:     238868 kB\nSlab:             311616 kB\nSReclaimable:     238868 kB\nSUnreclaim:        72748 kB\nKernelStack:        4160 kB\nPageTables:         4964 kB\nSecPageTables:         0 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     1857128 kB\nCommitted_AS:     879880 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       21388 kB\nVmallocChunk:          0 kB\nPercpu:             2536 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nUnaccepted:            0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      132372 kB\nDirectMap2M:     2846720 kB\nDirectMap1G:     1048576 kB\n",
+    "free_disk_bytes": 35453054976,
+    "binaries": {
+      "yewukv-node": "e58f9fe73dfef9e6d21b8f56c607bde0a9ad82c45c40e419cba5cc0f43ff85b7",
+      "yewukv-node-baseline": "f992830abb5e9471d8c3e66efd6fa8d512eb62110ab891aabac1da9cb38ed569"
+    }
+  },
+  {
+    "node": 2,
+    "checked_unix_ns": 1792986224566785229,
+    "cpu_count": 2,
+    "clock_ticks": 100,
+    "page_size": 4096,
+    "kernel": "6.8.0-139-generic",
+    "os_release": "PRETTY_NAME=\"Ubuntu 24.04.5 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"24.04\"\nVERSION=\"24.04.5 LTS (Noble Numbat)\"\nVERSION_CODENAME=noble\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=noble\nLOGO=ubuntu-logo\n",
+    "cpu_model": "Intel(R) Xeon(R) Platinum",
+    "meminfo": "MemTotal:        3714256 kB\nMemFree:          225588 kB\nMemAvailable:    3079220 kB\nBuffers:          183720 kB\nCached:          2804856 kB\nSwapCached:            0 kB\nActive:           740184 kB\nInactive:        2407440 kB\nActive(anon):     170368 kB\nInactive(anon):       12 kB\nActive(file):     569816 kB\nInactive(file):  2407428 kB\nUnevictable:       28696 kB\nMlocked:           27160 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nZswap:                 0 kB\nZswapped:              0 kB\nDirty:               356 kB\nWriteback:             0 kB\nAnonPages:        187684 kB\nMapped:           142352 kB\nShmem:              2572 kB\nKReclaimable:     159420 kB\nSlab:             231156 kB\nSReclaimable:     159420 kB\nSUnreclaim:        71736 kB\nKernelStack:        3384 kB\nPageTables:         4084 kB\nSecPageTables:         0 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     1857128 kB\nCommitted_AS:     637428 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       21776 kB\nVmallocChunk:          0 kB\nPercpu:             3168 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nUnaccepted:            0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      167180 kB\nDirectMap2M:     3860480 kB\nDirectMap1G:           0 kB\n",
+    "free_disk_bytes": 35518287872,
+    "binaries": {
+      "yewukv-node": "e58f9fe73dfef9e6d21b8f56c607bde0a9ad82c45c40e419cba5cc0f43ff85b7",
+      "yewukv-node-baseline": "f992830abb5e9471d8c3e66efd6fa8d512eb62110ab891aabac1da9cb38ed569"
+    }
+  },
+  {
+    "node": 3,
+    "checked_unix_ns": 1792986225094871025,
+    "cpu_count": 2,
+    "clock_ticks": 100,
+    "page_size": 4096,
+    "kernel": "6.8.0-139-generic",
+    "os_release": "PRETTY_NAME=\"Ubuntu 24.04.5 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"24.04\"\nVERSION=\"24.04.5 LTS (Noble Numbat)\"\nVERSION_CODENAME=noble\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=noble\nLOGO=ubuntu-logo\n",
+    "cpu_model": "Intel(R) Xeon(R) Platinum",
+    "meminfo": "MemTotal:        3714280 kB\nMemFree:          289240 kB\nMemAvailable:    3034652 kB\nBuffers:          181024 kB\nCached:          2686220 kB\nSwapCached:            0 kB\nActive:           601120 kB\nInactive:        2446896 kB\nActive(anon):     192160 kB\nInactive(anon):        0 kB\nActive(file):     408960 kB\nInactive(file):  2446896 kB\nUnevictable:       28696 kB\nMlocked:           27160 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nZswap:                 0 kB\nZswapped:              0 kB\nDirty:              1272 kB\nWriteback:            56 kB\nAnonPages:        209468 kB\nMapped:           144068 kB\nShmem:              2628 kB\nKReclaimable:     177344 kB\nSlab:             252336 kB\nSReclaimable:     177344 kB\nSUnreclaim:        74992 kB\nKernelStack:        3984 kB\nPageTables:         4524 kB\nSecPageTables:         0 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     1857140 kB\nCommitted_AS:     949648 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       22308 kB\nVmallocChunk:          0 kB\nPercpu:             3624 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nUnaccepted:            0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      144664 kB\nDirectMap2M:     3883008 kB\nDirectMap1G:           0 kB\n",
+    "free_disk_bytes": 35338416128,
+    "binaries": {
+      "yewukv-node": "e58f9fe73dfef9e6d21b8f56c607bde0a9ad82c45c40e419cba5cc0f43ff85b7",
+      "yewukv-bench": "cd3e67a5f08326e21950ea2a623fc0524c4c85f8faa4ee53e3f108c3c820aff5",
+      "yewukv-node-baseline": "f992830abb5e9471d8c3e66efd6fa8d512eb62110ab891aabac1da9cb38ed569"
+    }
+  }
+]

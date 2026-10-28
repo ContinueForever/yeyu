@@ -1,0 +1,27 @@
+{
+  "tag": "yewukv-soak-experiment",
+  "root": "/private/experiment",
+  "staged": [
+    {
+      "node": 1,
+      "staged": true
+    },
+    {
+      "node": 2,
+      "staged": true
+    },
+    {
+      "node": 3,
+      "staged": true
+    }
+  ],
+  "source_sha256": "229d18219e9345ad2e0fce8ebb5d6ed75a9f5da8a11b30b5685d935369e49cca",
+  "binaries": {
+    "yewukv-node": "fde3cffc1d5068cc8cfe1a731d933dee8a7aab2ef2c4fec6fee2574855b01afa",
+    "yewukv-bench": "ebfad1b3ca60d446631115dc251c92d601dbe20a507b0a634e25fc43f9a137d2"
+  },
+  "services_started": false,
+  "runtime_source_filename": "runtime-source-v2.tar.gz",
+  "runtime_manifest_filename": "runtime-source-v2-manifest.json",
+  "calendar_schema": 2
+}

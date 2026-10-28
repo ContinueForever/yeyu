@@ -1,0 +1,6 @@
+# Optional host-specific tuning; see docs/cloud-scheduling-20261024.md.
+# This example is not installed by the deployment scripts.
+# Recheck mixed workloads and failover before adopting a single-CPU limit.
+[Service]
+CPUAffinity=
+CPUAffinity=0

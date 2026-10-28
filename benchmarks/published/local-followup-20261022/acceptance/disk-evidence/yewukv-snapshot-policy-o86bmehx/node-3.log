@@ -1,0 +1,7 @@
+16:47:08.788 INFO  [acceptor] listening on 127.0.0.1:33597
+node=3 event=role role=candidate term=1 last=0 commit=0
+node=3 event=role role=leader term=1 last=1 commit=0
+16:47:09.589 INFO  [acceptor] listening on 127.0.0.1:33597
+node=3 event=role role=follower term=1 last=153 commit=147
+node=3 event=role role=candidate term=2 last=153 commit=147
+node=3 event=role role=leader term=2 last=154 commit=147

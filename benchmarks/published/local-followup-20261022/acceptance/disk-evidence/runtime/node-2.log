@@ -1,0 +1,13 @@
+16:49:04.058 INFO  [acceptor] listening on 127.0.0.1:56213
+node=2 event=role role=follower term=1 last=0 commit=0
+node=2 event=role role=follower term=2 last=11 commit=10
+node=2 event=role role=candidate term=3 last=55 commit=54
+node=2 event=role role=candidate term=4 last=55 commit=54
+node=2 event=role role=follower term=5 last=55 commit=54
+16:49:09.234 INFO  [acceptor] listening on 127.0.0.1:56213
+node=2 event=role role=follower term=5 last=184 commit=176
+node=2 event=role role=follower term=6 last=184 commit=176
+node=2 event=role role=follower term=7 last=231 commit=231
+16:49:11.630 INFO  [acceptor] listening on 127.0.0.1:56213
+node=2 event=role role=follower term=7 last=260 commit=256
+node=2 event=role role=follower term=8 last=260 commit=256

@@ -1,0 +1,16 @@
+{
+  "commit": "27baea4d528ee3d372b6b523996f36508c6ca16b",
+  "checked_runs": [
+    {
+      "id": 40203731890,
+      "event": "push",
+      "conclusion": "success"
+    },
+    {
+      "id": 40203736735,
+      "event": "pull_request",
+      "conclusion": "success"
+    }
+  ],
+  "note": "Core validation before publication changes; current branch CI independently reruns the suite."
+}

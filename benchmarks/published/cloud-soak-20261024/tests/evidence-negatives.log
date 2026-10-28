@@ -1,0 +1,11 @@
+test_csv_cannot_silently_understate_tail_latency (__main__.EvidenceNegatives.test_csv_cannot_silently_understate_tail_latency) ... ok
+test_histogram_reset_cannot_be_a_window_distribution (__main__.EvidenceNegatives.test_histogram_reset_cannot_be_a_window_distribution) ... ok
+test_original_service_interruption_is_not_healthy (__main__.EvidenceNegatives.test_original_service_interruption_is_not_healthy) ... ok
+test_pid_reuse_does_not_hide_process_restart (__main__.EvidenceNegatives.test_pid_reuse_does_not_hide_process_restart) ... ok
+test_result_archives_cannot_escape_the_expected_phase (__main__.EvidenceNegatives.test_result_archives_cannot_escape_the_expected_phase) ... ok
+test_unchanged_counts_do_not_hide_wrong_arrival_calendar (__main__.EvidenceNegatives.test_unchanged_counts_do_not_hide_wrong_arrival_calendar) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.273s
+
+OK

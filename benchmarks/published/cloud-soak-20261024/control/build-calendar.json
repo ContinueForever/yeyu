@@ -1,0 +1,13 @@
+{
+  "command": [
+    "cmake",
+    "--build",
+    "/private/experiment/build",
+    "--target",
+    "yewukv-bench",
+    "-j1"
+  ],
+  "started_ns": 1792851005274265654,
+  "finished_ns": 1792851009941843921,
+  "bench_sha256": "ebfad1b3ca60d446631115dc251c92d601dbe20a507b0a634e25fc43f9a137d2"
+}

@@ -1,0 +1,25 @@
+[1/14] Building CXX object src/raft/CMakeFiles/yewu_raft.dir/file_store.cc.o
+[2/14] Building CXX object src/raft/CMakeFiles/yewu_raft.dir/node.cc.o
+[3/14] Linking CXX static library src/raft/libyewu_raft.a
+[4/14] Building CXX object app/CMakeFiles/yewukv-node.dir/yewukv_node.cc.o
+[5/14] Building CXX object tests/CMakeFiles/yewu_tests.dir/test_raft_file_store.cc.o
+[6/14] Building CXX object src/cluster/CMakeFiles/yewu_cluster.dir/server.cc.o
+[7/14] Linking CXX static library src/cluster/libyewu_cluster.a
+[8/14] Building CXX object tests/CMakeFiles/yewu_tests.dir/test_raft_snapshot.cc.o
+[9/14] Building CXX object tests/CMakeFiles/yewu_tests.dir/test_raft_node.cc.o
+/home/hermes/yeyu/source/tests/test_raft_node.cc: In member function ‘virtual void {anonymous}::RaftNode_PersistenceFailurePreventsElectionOrAppendAcknowledgement_Test::TestBody()’:
+/home/hermes/yeyu/source/tests/test_raft_node.cc:317:45: warning: missing initializer for member ‘yewukv::raft::Node::Config::validate_snapshot’ [-Wmissing-field-initializers]
+  317 |   Node node({1, {1, 2, 3}}, {}, store, store);
+      |                                             ^
+/home/hermes/yeyu/source/tests/test_raft_node.cc:323:67: warning: missing initializer for member ‘yewukv::raft::Node::Config::validate_snapshot’ [-Wmissing-field-initializers]
+  323 |   Node follower({2, {1, 2, 3}}, {}, follower_store, follower_store);
+      |                                                                   ^
+/home/hermes/yeyu/source/tests/test_raft_node.cc: In member function ‘virtual void {anonymous}::RaftNode_RejectsUnknownPeersAndFutureTermEntriesWithoutMutatingState_Test::TestBody()’:
+/home/hermes/yeyu/source/tests/test_raft_node.cc:338:45: warning: missing initializer for member ‘yewukv::raft::Node::Config::validate_snapshot’ [-Wmissing-field-initializers]
+  338 |   Node node({1, {1, 2, 3}}, {}, store, store);
+      |                                             ^
+[10/14] Building CXX object tests/CMakeFiles/yewu_test_io_fault.dir/test_io_fault.cc.o
+[11/14] Linking CXX executable bin/yewukv-node
+[12/14] Building CXX object tests/CMakeFiles/yewu_tests.dir/test_cluster_state_machine.cc.o
+[13/14] Linking CXX shared library tests/libyewu_test_io_fault.so
+[14/14] Linking CXX executable bin/yewu_tests

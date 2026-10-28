@@ -1,0 +1,68 @@
+[
+  {
+    "action": "inspect",
+    "node": 1,
+    "started_ns": 1792829005819618974,
+    "realtime_ns": 1792829005839166869,
+    "monotonic_ns": 104491095638689,
+    "properties": {
+      "MainPID": "58782",
+      "NRestarts": "0",
+      "ExecMainStartTimestamp": "Sat 2026-10-24 16:00:39 CST",
+      "ExecStart": "{ path=/usr/local/libexec/yewukv-readtrace-20261024T080020Z-affinity/yewukv-node ; argv[]=/usr/local/libexec/yewukv-readtrace-20261024T080020Z-affinity/yewukv-node --id 1 --listen-host ${YEWUKV_LISTEN_HOST} --port ${YEWUKV_PORT} --members ${YEWUKV_MEMBERS} --data-dir /var/lib/yewukv/node-1 --trace-prefix /var/log/yewukv-readtrace-20261024T080020Z-affinity/node-1/read --trace-sample-every 32 --trace-slow-ms 10 --trace-max-events 1000000 ; ignore_errors=no ; start_time=[Sat 2026-10-24 16:00:39 CST] ; stop_time=[n/a] ; pid=58782 ; code=(null) ; status=0/0 }",
+      "ActiveState": "active",
+      "DropInPaths": "/run/systemd/system/yewukv-node@1.service.d/90-readtrace-experiment.conf"
+    },
+    "installed_sha256": "6bb46da21f4a3284cace8536eec9d2c8867e67cc9a3f187ea532ef0308575b02",
+    "running_sha256": "22ad75d7dd5d8b3d211eca41354d11605b1eac11cac042db43c2649efda76899",
+    "boot_id": "81245ac9-3951-4fa9-8639-f6ad37280795",
+    "env": "YEWUKV_LISTEN_HOST=192.0.2.1\nYEWUKV_PORT=9101\nYEWUKV_MEMBERS=1@192.0.2.1:9101,2@192.0.2.2:9101,3@192.0.2.3:9101\n",
+    "proc_stat": "58782 (yewukv-node) S 1 58782 58782 0 -1 4194560 1548 0 0 0 187 234 0 0 20 0 5 0 10432501 180625408 2378 18446744073709551615 97951107067904 97951107450597 140725274242576 0 0 0 16386 4096 0 0 0 0 17 1 0 0 0 0 0 97951107531120 97951107540136 97951647453184 140725274246080 140725274246457 140725274246457 140725274247086 0\n",
+    "unit_text": "# /etc/systemd/system/yewukv-node@.service\n[Unit]\nDescription=yewukv Raft node %i\nWants=network-online.target\nAfter=network-online.target\n\n[Service]\nType=simple\nUser=yewukv\nGroup=yewukv\nEnvironmentFile=/etc/yewukv/node-%i.env\nExecStart=/usr/local/bin/yewukv-node --id %i --listen-host ${YEWUKV_LISTEN_HOST} --port ${YEWUKV_PORT} --members ${YEWUKV_MEMBERS} --data-dir /var/lib/yewukv/node-%i\nStateDirectory=yewukv/node-%i\nStateDirectoryMode=0700\nRestart=on-failure\nRestartSec=2\nTimeoutStopSec=10\nUMask=0077\nNoNewPrivileges=true\nPrivateTmp=true\nProtectHome=true\nProtectSystem=strict\n\n[Install]\nWantedBy=multi-user.target\n\n# /run/systemd/system/yewukv-node@1.service.d/90-readtrace-experiment.conf\n[Service]\nExecStart=\nExecStart=/usr/local/libexec/yewukv-readtrace-20261024T080020Z-affinity/yewukv-node --id %i --listen-host ${YEWUKV_LISTEN_HOST} --port ${YEWUKV_PORT} --members ${YEWUKV_MEMBERS} --data-dir /var/lib/yewukv/node-%i --trace-prefix /var/log/yewukv-readtrace-20261024T080020Z-affinity/node-1/read --trace-sample-every 32 --trace-slow-ms 10 --trace-max-events 1000000\nLogsDirectory=yewukv-readtrace-20261024T080020Z-affinity/node-%i\nLogsDirectoryMode=0700\n",
+    "finished_ns": 1792829005932655314
+  },
+  {
+    "action": "inspect",
+    "node": 2,
+    "started_ns": 1792829005696353918,
+    "realtime_ns": 1792829005707446571,
+    "monotonic_ns": 85843628192926,
+    "properties": {
+      "MainPID": "48409",
+      "NRestarts": "0",
+      "ExecMainStartTimestamp": "Sat 2026-10-24 16:00:39 CST",
+      "ExecStart": "{ path=/usr/local/libexec/yewukv-readtrace-20261024T080020Z-affinity/yewukv-node ; argv[]=/usr/local/libexec/yewukv-readtrace-20261024T080020Z-affinity/yewukv-node --id 2 --listen-host ${YEWUKV_LISTEN_HOST} --port ${YEWUKV_PORT} --members ${YEWUKV_MEMBERS} --data-dir /var/lib/yewukv/node-2 --trace-prefix /var/log/yewukv-readtrace-20261024T080020Z-affinity/node-2/read --trace-sample-every 32 --trace-slow-ms 10 --trace-max-events 1000000 ; ignore_errors=no ; start_time=[Sat 2026-10-24 16:00:39 CST] ; stop_time=[n/a] ; pid=48409 ; code=(null) ; status=0/0 }",
+      "ActiveState": "active",
+      "DropInPaths": "/run/systemd/system/yewukv-node@2.service.d/90-readtrace-experiment.conf"
+    },
+    "installed_sha256": "6bb46da21f4a3284cace8536eec9d2c8867e67cc9a3f187ea532ef0308575b02",
+    "running_sha256": "22ad75d7dd5d8b3d211eca41354d11605b1eac11cac042db43c2649efda76899",
+    "boot_id": "4d2c32d3-4b0f-4ebe-87a1-6dd6394a35c5",
+    "env": "YEWUKV_LISTEN_HOST=192.0.2.2\nYEWUKV_PORT=9101\nYEWUKV_MEMBERS=1@192.0.2.1:9101,2@192.0.2.2:9101,3@192.0.2.3:9101\n",
+    "proc_stat": "48409 (yewukv-node) S 1 48409 48409 0 -1 4194560 1586 0 0 0 1072 1403 0 0 20 0 7 0 8567763 465846272 2392 18446744073709551615 100732947746816 100732948129509 140727783117664 0 0 0 16386 4096 0 0 0 0 17 1 0 0 0 0 0 100732948210032 100732948219048 100733741613056 140727783119804 140727783120183 140727783120183 140727783120814 0\n",
+    "unit_text": "# /etc/systemd/system/yewukv-node@.service\n[Unit]\nDescription=yewukv Raft node %i\nWants=network-online.target\nAfter=network-online.target\n\n[Service]\nType=simple\nUser=yewukv\nGroup=yewukv\nEnvironmentFile=/etc/yewukv/node-%i.env\nExecStart=/usr/local/bin/yewukv-node --id %i --listen-host ${YEWUKV_LISTEN_HOST} --port ${YEWUKV_PORT} --members ${YEWUKV_MEMBERS} --data-dir /var/lib/yewukv/node-%i\nStateDirectory=yewukv/node-%i\nStateDirectoryMode=0700\nRestart=on-failure\nRestartSec=2\nTimeoutStopSec=10\nUMask=0077\nNoNewPrivileges=true\nPrivateTmp=true\nProtectHome=true\nProtectSystem=strict\n\n[Install]\nWantedBy=multi-user.target\n\n# /run/systemd/system/yewukv-node@2.service.d/90-readtrace-experiment.conf\n[Service]\nExecStart=\nExecStart=/usr/local/libexec/yewukv-readtrace-20261024T080020Z-affinity/yewukv-node --id %i --listen-host ${YEWUKV_LISTEN_HOST} --port ${YEWUKV_PORT} --members ${YEWUKV_MEMBERS} --data-dir /var/lib/yewukv/node-%i --trace-prefix /var/log/yewukv-readtrace-20261024T080020Z-affinity/node-2/read --trace-sample-every 32 --trace-slow-ms 10 --trace-max-events 1000000\nLogsDirectory=yewukv-readtrace-20261024T080020Z-affinity/node-%i\nLogsDirectoryMode=0700\n",
+    "finished_ns": 1792829005912204863
+  },
+  {
+    "action": "inspect",
+    "node": 3,
+    "started_ns": 1792829005712915492,
+    "realtime_ns": 1792829005724106873,
+    "monotonic_ns": 67624041800731,
+    "properties": {
+      "MainPID": "45380",
+      "NRestarts": "0",
+      "ExecMainStartTimestamp": "Sat 2026-10-24 16:00:39 CST",
+      "ExecStart": "{ path=/usr/local/libexec/yewukv-readtrace-20261024T080020Z-affinity/yewukv-node ; argv[]=/usr/local/libexec/yewukv-readtrace-20261024T080020Z-affinity/yewukv-node --id 3 --listen-host ${YEWUKV_LISTEN_HOST} --port ${YEWUKV_PORT} --members ${YEWUKV_MEMBERS} --data-dir /var/lib/yewukv/node-3 --trace-prefix /var/log/yewukv-readtrace-20261024T080020Z-affinity/node-3/read --trace-sample-every 32 --trace-slow-ms 10 --trace-max-events 1000000 ; ignore_errors=no ; start_time=[Sat 2026-10-24 16:00:39 CST] ; stop_time=[n/a] ; pid=45380 ; code=(null) ; status=0/0 }",
+      "ActiveState": "active",
+      "DropInPaths": "/run/systemd/system/yewukv-node@3.service.d/90-readtrace-experiment.conf"
+    },
+    "installed_sha256": "6bb46da21f4a3284cace8536eec9d2c8867e67cc9a3f187ea532ef0308575b02",
+    "running_sha256": "22ad75d7dd5d8b3d211eca41354d11605b1eac11cac042db43c2649efda76899",
+    "boot_id": "11b6f4f5-0f33-4f14-995e-3c0c8ef47abd",
+    "env": "YEWUKV_LISTEN_HOST=192.0.2.3\nYEWUKV_PORT=9101\nYEWUKV_MEMBERS=1@192.0.2.1:9101,2@192.0.2.2:9101,3@192.0.2.3:9101\n",
+    "proc_stat": "45380 (yewukv-node) S 1 45380 45380 0 -1 4194560 1584 0 0 0 268 235 0 0 20 0 5 0 6745808 465969152 2365 18446744073709551615 104272159334400 104272159717093 140725452826592 0 0 0 16386 4096 0 0 0 0 17 0 0 0 0 0 0 104272159797616 104272159806632 104272942522368 140725452827580 140725452827959 140725452827959 140725452828590 0\n",
+    "unit_text": "# /etc/systemd/system/yewukv-node@.service\n[Unit]\nDescription=yewukv Raft node %i\nWants=network-online.target\nAfter=network-online.target\n\n[Service]\nType=simple\nUser=yewukv\nGroup=yewukv\nEnvironmentFile=/etc/yewukv/node-%i.env\nExecStart=/usr/local/bin/yewukv-node --id %i --listen-host ${YEWUKV_LISTEN_HOST} --port ${YEWUKV_PORT} --members ${YEWUKV_MEMBERS} --data-dir /var/lib/yewukv/node-%i\nStateDirectory=yewukv/node-%i\nStateDirectoryMode=0700\nRestart=on-failure\nRestartSec=2\nTimeoutStopSec=10\nUMask=0077\nNoNewPrivileges=true\nPrivateTmp=true\nProtectHome=true\nProtectSystem=strict\n\n[Install]\nWantedBy=multi-user.target\n\n# /run/systemd/system/yewukv-node@3.service.d/90-readtrace-experiment.conf\n[Service]\nExecStart=\nExecStart=/usr/local/libexec/yewukv-readtrace-20261024T080020Z-affinity/yewukv-node --id %i --listen-host ${YEWUKV_LISTEN_HOST} --port ${YEWUKV_PORT} --members ${YEWUKV_MEMBERS} --data-dir /var/lib/yewukv/node-%i --trace-prefix /var/log/yewukv-readtrace-20261024T080020Z-affinity/node-3/read --trace-sample-every 32 --trace-slow-ms 10 --trace-max-events 1000000\nLogsDirectory=yewukv-readtrace-20261024T080020Z-affinity/node-%i\nLogsDirectoryMode=0700\n",
+    "finished_ns": 1792829005813644064
+  }
+]

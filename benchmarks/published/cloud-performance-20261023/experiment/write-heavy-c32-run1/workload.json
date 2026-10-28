@@ -1,0 +1,13 @@
+{
+  "prefix": "cloudbench-1e89d182932c4b9b",
+  "value_size": 128,
+  "keys_per_client": 8,
+  "seed": 1701,
+  "duration_seconds": 30,
+  "warmup_seconds": 5,
+  "timeout_seconds": 5,
+  "profile": "write-heavy",
+  "clients": 32,
+  "repeat": 1,
+  "write_percent": 90
+}

@@ -1,0 +1,130 @@
+{
+  "schema": 1,
+  "core_commit": "834bb430a1263ed1c4e3f76f5696fd14f415ac55",
+  "windows": 360,
+  "measured_seconds": 21600,
+  "disk_executor": "background",
+  "default_executor": "sync",
+  "performance_gate": false,
+  "phase_archives": [
+    [
+      "results/phase-00.tar.gz.part00"
+    ],
+    [
+      "results/phase-01.tar.gz.part00"
+    ],
+    [
+      "results/phase-02.tar.gz.part00"
+    ],
+    [
+      "results/phase-03.tar.gz.part00"
+    ],
+    [
+      "results/phase-04.tar.gz.part00"
+    ],
+    [
+      "results/phase-05.tar.gz.part00"
+    ]
+  ],
+  "other_archive": [
+    "results/other.tar.gz.part00"
+  ],
+  "files": {
+    "README.md": {
+      "bytes": 2179,
+      "sha256": "b3088da7e26c980fb822f6551ba1d6170a6e13a997b3e28beab12d28f99682bf"
+    },
+    "control/build-result.json": {
+      "bytes": 904,
+      "sha256": "7585a35b93183fc5e4e6d65afd662abac2bbf758605e8409b59fc276524d5c10"
+    },
+    "control/ci.json": {
+      "bytes": 511,
+      "sha256": "b6728da586fa6fe4248d0b57b25b38e6ca1ddb4d9ab104d0e2527a9c30e1aba4"
+    },
+    "control/download-manifest.json": {
+      "bytes": 515,
+      "sha256": "ef840c76acac8ef8d830b85f8db5d6d15a61c4746f643b96b1948626361b9728"
+    },
+    "control/execution.json": {
+      "bytes": 2017,
+      "sha256": "32a71c49a19fb7ed3f3ea1c22db6d239ff55317437ec1dfd40db2cc91393a6e2"
+    },
+    "control/export-map.json": {
+      "bytes": 4634839,
+      "sha256": "7fc90adb016c7498f3edc8267b066011426025d5420d739759247326562580ac"
+    },
+    "control/final-services.json": {
+      "bytes": 1567,
+      "sha256": "244e99ba3d05e9f5b6c1de2e1a798d88a221243eeb1e5b52cbe2f440a3a15e29"
+    },
+    "control/initial-long-decision.json": {
+      "bytes": 1038,
+      "sha256": "36fca73170ebaffea6a8de7d3c7e28e94e91a829a5a47f0d8cee189537156729"
+    },
+    "control/long-acceptance-scope.json": {
+      "bytes": 1660,
+      "sha256": "2cc9226828010ae498e2ed228ccdb2b2c0a3cb794d8da56e30e8262fe44707a1"
+    },
+    "control/node-environment.json": {
+      "bytes": 7647,
+      "sha256": "234fc385499f78e9856d93dc8d6681b7f6c641341738b9c35867ed7b1651c4ea"
+    },
+    "control/original-protection.json": {
+      "bytes": 677,
+      "sha256": "84b2a21919c2a9de357ae49577ab179816127318b645892655b81d3d3960f6f7"
+    },
+    "derived/smoke-verification.json": {
+      "bytes": 1150,
+      "sha256": "b2fbb6efbdfdc12ff7952f707125c08caef93ddce5997829e83e9a300e404944"
+    },
+    "derived/summary.json": {
+      "bytes": 1846383,
+      "sha256": "5b3777511d8a8868a9b7a7538bd35db133e605689534e613b6c8d3a2a0db53db"
+    },
+    "derived/verification.json": {
+      "bytes": 1204,
+      "sha256": "5d9ce0ac09a96ce3191da8c04210fed29e888922559add0be018d0bb9d673b62"
+    },
+    "results/other.tar.gz.part00": {
+      "bytes": 117353,
+      "sha256": "0102b9b6c932ba929531d9698ef1d98f4c243c7102d0bfc6d505a0a3c7f3aa00"
+    },
+    "results/phase-00.tar.gz.part00": {
+      "bytes": 44302677,
+      "sha256": "fd10fb27b9aa1e90d4be4c5fc1ad3ebe4e87460f368d44ec7c6b09099fda8532"
+    },
+    "results/phase-01.tar.gz.part00": {
+      "bytes": 44352576,
+      "sha256": "a321299acbf61ded337448b407366876d66dc61369da332b2637440005e43f16"
+    },
+    "results/phase-02.tar.gz.part00": {
+      "bytes": 44028779,
+      "sha256": "41665bf1aa1a7ea8b31333845e6a57d457733da2cc46804ae97678acfcbc4fae"
+    },
+    "results/phase-03.tar.gz.part00": {
+      "bytes": 44090998,
+      "sha256": "e596197fac70d8eb810acaa07f46829cd289a350d7afa4c379f90f426d9487ed"
+    },
+    "results/phase-04.tar.gz.part00": {
+      "bytes": 43557609,
+      "sha256": "fcb1f9e058e5092fd99ed52aaf2bce6f5f057deebeadba0fefc7e4ffd9ec3b34"
+    },
+    "results/phase-05.tar.gz.part00": {
+      "bytes": 43748574,
+      "sha256": "eac960bb66ac3e5f26ec4ad290a0592ec64bcf07a4fc96190c5f4076ace389b0"
+    },
+    "source/executed-tools.tar.gz": {
+      "bytes": 24038,
+      "sha256": "9b376be6b66e1a1475b06140621b926b1c645b8117828ef80a16f2d8126dbd2b"
+    },
+    "source/runtime-source-manifest.json": {
+      "bytes": 7726,
+      "sha256": "42e1713611f074122e641322993d115d939ad70a9c8b8303dc4e448531811225"
+    },
+    "source/runtime-source.tar.gz": {
+      "bytes": 84607,
+      "sha256": "f6d50aa012f00b0d17bc94b856fa277f9a125b8e95e00d7eb0076a0582f810a5"
+    }
+  }
+}

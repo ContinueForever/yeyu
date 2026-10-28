@@ -1,0 +1,22 @@
+{
+  "ordinary": {
+    "tests": 188,
+    "failures": 0,
+    "seconds": 83.28
+  },
+  "asan_ubsan": {
+    "tests": 189,
+    "failures": 0,
+    "seconds": 104.85,
+    "detect_leaks": true
+  },
+  "additional": {
+    "ctest": 4,
+    "failures": 0,
+    "seconds": 4.35
+  },
+  "plan_unittest": {
+    "tests": 5,
+    "failures": 0
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "status": "complete",
+  "started_unix_ns": 1792980709481250045,
+  "plan": [
+    {
+      "cold_mib": 1,
+      "repeat": 0,
+      "executor": "sync"
+    },
+    {
+      "cold_mib": 1,
+      "repeat": 0,
+      "executor": "background"
+    }
+  ],
+  "seconds": 2,
+  "completed": [
+    {
+      "position": 0,
+      "cold_mib": 1,
+      "repeat": 0,
+      "executor": "sync",
+      "summary": {
+        "attempts": 1200,
+        "successes": 1200,
+        "failures": 0,
+        "offered_slots": 1200,
+        "missed_slots": 0,
+        "valid": true,
+        "codes": {
+          "0": 1200
+        },
+        "successful_ops_s": 597.5177665982513,
+        "p99_ms": 15.225011,
+        "p999_ms": 20.055229,
+        "max_ms": 21.831542,
+        "scheduled_p99_ms": 15.699829
+      }
+    },
+    {
+      "position": 1,
+      "cold_mib": 1,
+      "repeat": 0,
+      "executor": "background",
+      "summary": {
+        "attempts": 1200,
+        "successes": 1200,
+        "failures": 0,
+        "offered_slots": 1200,
+        "missed_slots": 0,
+        "valid": true,
+        "codes": {
+          "0": 1200
+        },
+        "successful_ops_s": 597.5339394883266,
+        "p99_ms": 35.333754,
+        "p999_ms": 46.795351,
+        "max_ms": 47.457278,
+        "scheduled_p99_ms": 37.580269
+      }
+    }
+  ],
+  "measured_seconds": 4,
+  "note": "same binary; trace recorder absent; background KV encoder fixed; 32 clients, 600 offered rps, 50% writes, 128B; fresh data per phase, three paired repeats per size; load shares Follower 3, not isolated capacity",
+  "position": 1,
+  "phase": {
+    "cold_mib": 1,
+    "repeat": 0,
+    "executor": "background"
+  },
+  "last_update_unix_ns": 1792980728506731190,
+  "finished_unix_ns": 1792980728620164204,
+  "cleanup_errors": []
+}

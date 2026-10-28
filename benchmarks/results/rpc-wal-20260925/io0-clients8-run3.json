@@ -1,0 +1,37 @@
+{
+  "version": 2,
+  "timestamp_utc": "2026-09-25T13:38:38.750498+00:00",
+  "git_revision": "52f908facbc7a42e36a7e5c7d604bc0a4f2f5c9c",
+  "working_tree_dirty": true,
+  "host": "127.0.0.1",
+  "port": 40951,
+  "clients": 8,
+  "operations": 40000,
+  "ops_per_client": 5000,
+  "warmup_ops_per_client": 100,
+  "timeout_seconds": 5.0,
+  "completed_puts": 20000,
+  "completed_gets": 20000,
+  "samples_file": "/home/wwww/yewu/benchmarks/results/rpc-wal-20260925/io0-clients8-run3-samples.json",
+  "write_percent": 50,
+  "value_size_bytes": 128,
+  "elapsed_seconds": 11.359917679,
+  "throughput_ops_per_second": 3521.2,
+  "latency_ms": {
+    "p50": 2.232,
+    "p95": 4.008,
+    "p99": 4.375
+  },
+  "machine": {
+    "platform": "Linux-7.0.0-31-generic-x86_64-with-glibc2.39",
+    "logical_cpus": 4,
+    "python": "3.12.3",
+    "cpu_affinity": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "note": "Python threaded closed-loop client; one outstanding RPC and one hot key per connection. Not a server saturation benchmark."
+}

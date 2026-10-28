@@ -1,0 +1,91 @@
+Test project /home/hermes/yeyu/source/build
+      Start 121: cluster_snapshot_runtime
+      Start 122: cluster_resource_runtime
+ 1/43 Test #121: cluster_snapshot_runtime ........................................................   Passed   11.91 sec
+      Start 123: cluster_fault_campaign_smoke
+ 2/43 Test #122: cluster_resource_runtime ........................................................   Passed   13.96 sec
+      Start 125: config_application
+ 3/43 Test #125: config_application ..............................................................   Passed    3.15 sec
+      Start 124: cluster_read_index
+ 4/43 Test #123: cluster_fault_campaign_smoke ....................................................   Passed    8.45 sec
+      Start  54: RaftFileStore.RejectsInvalidConfigurationAndOversizedPublishedImage
+ 5/43 Test #124: cluster_read_index ..............................................................   Passed    3.40 sec
+      Start  63: RaftJournal.EveryIncompleteFinalRecordIsTruncatedButAcknowledgedPrefixRemains
+ 6/43 Test  #54: RaftFileStore.RejectsInvalidConfigurationAndOversizedPublishedImage .............   Passed    0.19 sec
+      Start  61: RaftJournal.AppendsOnlyDeltaAndLeavesLargeCheckpointUntouched
+ 7/43 Test  #61: RaftJournal.AppendsOnlyDeltaAndLeavesLargeCheckpointUntouched ...................   Passed    0.06 sec
+      Start  65: RaftJournal.RollsCheckpointGenerationAndReclaimsObsoleteJournal
+ 8/43 Test  #63: RaftJournal.EveryIncompleteFinalRecordIsTruncatedButAcknowledgedPrefixRemains ...   Passed    0.13 sec
+      Start  69: RaftJournal.SigkillAtCheckpointBoundariesKeepsCheckpointAndJournalPaired
+ 9/43 Test  #65: RaftJournal.RollsCheckpointGenerationAndReclaimsObsoleteJournal .................   Passed    0.05 sec
+      Start  68: RaftJournal.SigkillAtAppendBoundariesRecoversWholeOldOrNewSuffix
+10/43 Test  #69: RaftJournal.SigkillAtCheckpointBoundariesKeepsCheckpointAndJournalPaired ........   Passed    0.05 sec
+      Start  58: RaftFileStore.SigkillDuringSuffixReplacementRecoversAWholeOldOrNewImage
+11/43 Test  #68: RaftJournal.SigkillAtAppendBoundariesRecoversWholeOldOrNewSuffix ................   Passed    0.03 sec
+      Start  51: RaftFileStore.RejectsChecksumDamageAndEveryTruncatedImageWithoutRepair
+12/43 Test  #58: RaftFileStore.SigkillDuringSuffixReplacementRecoversAWholeOldOrNewImage .........   Passed    0.04 sec
+      Start  67: RaftJournal.JournalFailurePoisonsInstanceUntilReopenAtAllAppendBoundaries
+13/43 Test  #67: RaftJournal.JournalFailurePoisonsInstanceUntilReopenAtAllAppendBoundaries .......   Passed    0.02 sec
+      Start  59: RaftFileStore.AcknowledgedVotesAndAppendsSurviveSigkill
+14/43 Test  #59: RaftFileStore.AcknowledgedVotesAndAppendsSurviveSigkill .........................   Passed    0.01 sec
+      Start  90: RaftSnapshot.SigkillAtEveryPublishBoundaryRecoversWholeSnapshotAndSuffix
+15/43 Test  #90: RaftSnapshot.SigkillAtEveryPublishBoundaryRecoversWholeSnapshotAndSuffix ........   Passed    0.01 sec
+      Start  64: RaftJournal.RejectsCompleteCorruptRecordIncludingFinalRecordAndHeaderLength
+16/43 Test  #51: RaftFileStore.RejectsChecksumDamageAndEveryTruncatedImageWithoutRepair ..........   Passed    0.08 sec
+      Start  47: RaftFileStore.RejectsInvalidSuffixWithoutChangingPersistedState
+17/43 Test  #64: RaftJournal.RejectsCompleteCorruptRecordIncludingFinalRecordAndHeaderLength .....   Passed    0.01 sec
+      Start  60: RaftJournal.MigratesLegacyImageAndRecoversBinarySuffixAndVote
+18/43 Test  #47: RaftFileStore.RejectsInvalidSuffixWithoutChangingPersistedState .................   Passed    0.01 sec
+      Start  42: RaftFileStore.FastChecksumMatchesIndependentBitwiseEncoderForBinaryImages
+19/43 Test  #60: RaftJournal.MigratesLegacyImageAndRecoversBinarySuffixAndVote ...................   Passed    0.01 sec
+      Start  57: RaftFileStore.InjectedPersistenceFailuresRequireReopenAtEveryBoundary
+20/43 Test  #42: RaftFileStore.FastChecksumMatchesIndependentBitwiseEncoderForBinaryImages .......   Passed    0.03 sec
+      Start  66: RaftJournal.MissingCheckpointOrActiveJournalFailsClosed
+21/43 Test  #57: RaftFileStore.InjectedPersistenceFailuresRequireReopenAtEveryBoundary ...........   Passed    0.03 sec
+      Start  91: RaftSnapshot.ChunkRetriesAndReceiverRestartNeverPublishPartialState
+22/43 Test  #66: RaftJournal.MissingCheckpointOrActiveJournalFailsClosed .........................   Passed    0.01 sec
+      Start  52: RaftFileStore.RejectsStructurallyInvalidImagesEvenWithValidChecksums
+23/43 Test  #91: RaftSnapshot.ChunkRetriesAndReceiverRestartNeverPublishPartialState .............   Passed    0.00 sec
+      Start  62: RaftJournal.ReplacementAndTruncationReplayWithoutResurrectingOldSuffix
+24/43 Test  #62: RaftJournal.ReplacementAndTruncationReplayWithoutResurrectingOldSuffix ..........   Passed    0.01 sec
+      Start  49: RaftFileStore.LocksDirectoryAndReleasesLockAfterCloseOrConstructorFailure
+25/43 Test  #52: RaftFileStore.RejectsStructurallyInvalidImagesEvenWithValidChecksums ............   Passed    0.02 sec
+      Start  93: RaftSnapshot.DiskFailurePreventsSnapshotInstallationAcknowledgement
+26/43 Test  #93: RaftSnapshot.DiskFailurePreventsSnapshotInstallationAcknowledgement .............   Passed    0.00 sec
+      Start  53: RaftFileStore.RejectsSymlinkAndNonRegularPublishedState
+27/43 Test  #49: RaftFileStore.LocksDirectoryAndReleasesLockAfterCloseOrConstructorFailure .......   Passed    0.01 sec
+      Start  41: RaftFileStore.InitializesAndRecoversHardStateAndBinaryCommands
+28/43 Test  #53: RaftFileStore.RejectsSymlinkAndNonRegularPublishedState .........................   Passed    0.01 sec
+      Start  46: RaftFileStore.RejectsTermRegressionAndVoteChangesWithoutTouchingImage
+29/43 Test  #41: RaftFileStore.InitializesAndRecoversHardStateAndBinaryCommands ..................   Passed    0.01 sec
+      Start  43: RaftFileStore.ElectionCannotVoteTwiceAfterRealReopen
+30/43 Test  #46: RaftFileStore.RejectsTermRegressionAndVoteChangesWithoutTouchingImage ...........   Passed    0.01 sec
+      Start  44: RaftFileStore.LogCoreReplacesConflictingSuffixAcrossRestart
+31/43 Test  #43: RaftFileStore.ElectionCannotVoteTwiceAfterRealReopen ............................   Passed    0.01 sec
+      Start  50: RaftFileStore.IgnoresStaleTemporaryImageAndReplacesItOnNextWrite
+32/43 Test  #44: RaftFileStore.LogCoreReplacesConflictingSuffixAcrossRestart .....................   Passed    0.01 sec
+      Start  55: RaftFileStore.FilesystemFailurePoisonsElectionWithoutPublishingVotes
+33/43 Test  #50: RaftFileStore.IgnoresStaleTemporaryImageAndReplacesItOnNextWrite ................   Passed    0.01 sec
+      Start  88: RaftSnapshot.InstallationRetainsOnlySuffixWithMatchingBoundaryTerm
+34/43 Test  #55: RaftFileStore.FilesystemFailurePoisonsElectionWithoutPublishingVotes ............   Passed    0.00 sec
+      Start  45: RaftFileStore.SupportsDurableSuffixTruncationAndAppend
+35/43 Test  #88: RaftSnapshot.InstallationRetainsOnlySuffixWithMatchingBoundaryTerm ..............   Passed    0.00 sec
+      Start  56: RaftFileStore.AppendFailurePoisonsLogBeforeAnySuccessOrCommit
+36/43 Test  #45: RaftFileStore.SupportsDurableSuffixTruncationAndAppend ..........................   Passed    0.01 sec
+      Start  87: RaftSnapshot.CompactsCommittedPrefixAndRecoversSnapshotWithUncommittedSuffix
+37/43 Test  #56: RaftFileStore.AppendFailurePoisonsLogBeforeAnySuccessOrCommit ...................   Passed    0.01 sec
+      Start  48: RaftFileStore.EnforcesCapacityBeforeIOAndCanTruncateToMakeRoom
+38/43 Test  #87: RaftSnapshot.CompactsCommittedPrefixAndRecoversSnapshotWithUncommittedSuffix ....   Passed    0.00 sec
+      Start  89: RaftSnapshot.SnapshotCapacityRejectionDoesNotReplaceDurableImage
+39/43 Test  #89: RaftSnapshot.SnapshotCapacityRejectionDoesNotReplaceDurableImage ................   Passed    0.00 sec
+      Start  92: RaftSnapshot.RejectsMalformedOrInvalidApplicationSnapshotsBeforePublication
+40/43 Test  #48: RaftFileStore.EnforcesCapacityBeforeIOAndCanTruncateToMakeRoom ..................   Passed    0.01 sec
+      Start  95: SnapshotPolicy.ByteTriggerAndApplicationBoundaryRemainHardConditions
+41/43 Test  #92: RaftSnapshot.RejectsMalformedOrInvalidApplicationSnapshotsBeforePublication .....   Passed    0.00 sec
+      Start  94: SnapshotPolicy.LargeLiveStateAmortizesEntryTriggeredImages
+42/43 Test  #95: SnapshotPolicy.ByteTriggerAndApplicationBoundaryRemainHardConditions ............   Passed    0.00 sec
+43/43 Test  #94: SnapshotPolicy.LargeLiveStateAmortizesEntryTriggeredImages ......................   Passed    0.00 sec
+
+100% tests passed, 0 tests failed out of 43
+
+Total Test time (real) =  20.90 sec
