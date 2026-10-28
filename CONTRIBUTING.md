@@ -39,36 +39,27 @@ git diff --check
 
 `benchmarks/results/` 用于本机运行目录；新结果默认忽略，其中少数已跟踪目录属于早期公开基线。新公开证据放在 `benchmarks/published/<experiment>/`，保留命令、环境、版本、源码、原始样本、失败记录和校验清单。节点数据目录、可执行文件、业务备份和密钥不属于公开证据。
 
-已发布证据可离线核验，无需启动服务器：
+最新云端结果可离线核验，无需启动服务器：
 
 ```bash
-python3 scripts/verify-evidence.py benchmarks/published/local-20261021
-python3 scripts/verify-local-optimization.py benchmarks/published/local-optimization-20261021
-python3 scripts/verify-local-followup.py benchmarks/published/local-followup-20261022
-python3 scripts/verify-cloud-evidence.py benchmarks/published/cloud-20261023
-python3 scripts/verify-cloud-performance.py benchmarks/published/cloud-performance-20261023
-python3 scripts/verify-cloud-diagnosis.py benchmarks/published/cloud-diagnosis-20261024
-python3 scripts/verify-engineering.py benchmarks/published/engineering-20261024
-python3 scripts/verify-tooling.py benchmarks/published/tooling-20261024
-python3 scripts/verify-cloud-soak-publication.py benchmarks/published/cloud-soak-20261024
-python3 tests/test_cloud_soak_evidence.py
+python3 scripts/verify-cloud-async-disk.py benchmarks/published/cloud-async-disk-20261026
+python3 tests/test_async_disk_evidence.py
+sha256sum --check benchmarks/published/cloud-async-disk-20261026/SHA256SUMS
+python3 scripts/verify-peer-disk.py benchmarks/published/peer-disk-20261026
+python3 tests/test_peer_disk_evidence.py
+sha256sum --check benchmarks/published/peer-disk-20261026/SHA256SUMS
+python3 scripts/verify-background-soak.py benchmarks/published/background-soak-20261026
+python3 tests/test_background_soak_evidence.py
+sha256sum --check benchmarks/published/background-soak-20261026/SHA256SUMS
 ```
 
-不要直接覆盖已发布样本或其清单。新增实验使用新目录，按照[实验复现说明](benchmarks/README.md)记录实际结果，并在[文档索引](docs/README.md#实验与验收)添加入口。旧报告对应归档的历史实现，当前构建可能采用不同默认策略。
+运行的是当前仓库核验器，不执行归档源码或工具。客户 gzip 保留原字节，身份脱敏映射与前后哈希单列；数值、日历、分位数、资源、任期、队列守恒、恢复和清理按报告范围复算。哈希检查不能替代语义检查：五项首轮对照负例、七项新旧对照负例、七项长实验负例会在副本中改数据并刷新文件清单，核验仍必须拒绝。
 
-云端性能归档另有 `python3 tests/test_cloud_performance_evidence.py`：在临时副本中修改 P99、矩阵轮次、应用进度、节点程序哈希和请求成功标志，并刷新两层文件清单，要求语义核验仍拒绝。原始归档保持不变。
+所有历史公开实验的核验命令保留在各归档 README，[文档索引](docs/README.md#实验与验收)提供入口；[CI 配置](.github/workflows/ci.yml)列出完整执行集合。不要直接覆盖已发布样本或其清单。新增实验使用新目录，按[实验复现说明](benchmarks/README.md)记录实际结果，并在文档索引添加入口。旧报告对应当时源码和默认策略，测试数量、故障操作与性能样本不能跨版本相加。
 
-新增 `tests/test_cloud_diagnosis_evidence.py` 与 `tests/test_engineering_evidence.py` 检查追踪关联、计划到达时刻及不可能的历史读值；CI 运行两份公开归档核验和语义负例。最新实验条件、普通／ASan 143 项及组件 TSan 的范围见[工程报告](docs/engineering-next-20261024.md)。
+交付基线普通／ASan＋UBSan 各 189 项 CTest 通过。部分 CTest 入口包含多个 Python 子场景；离线证据负例不叠加为 CTest 数。TSan 31 项只覆盖有序队列与后台磁盘组件，不包含完整网络服务。强杀、慢盘和 I/O 错误使用测试专用注入库；常规服务不加载它。首次失败、修正和诊断限制按各阶段报告保留，不覆盖旧日志。
 
-六小时公开证据另检查全部逐请求日历、真实读写比例、资源身份、持久化分桶与派生 CSV；`test_cloud_soak_evidence.py` 使用副本检查服务中断、PID 复用、计数回退、错误日历、越界归档与虚假尾延迟。它们是离线证据检查，不叠加为核心 CTest 回归数，实际运行范围见[长窗口报告](docs/cloud-soak-20261024.md)。
-
-持久化时间关联新增磁盘字节等价、诊断异常隔离、失败记录及真实三进程关联／重启检查，完整普通／ASan 回归为 154 项。`persistence_timeline_accounting` 另在同一个 CTest 中覆盖 8 项区间、身份和不完整记录案例，不能再次叠加进 154 项。接口与解释范围见[持久化追踪](docs/persistence-tracing.md)。
-
-有序持久化接口阶段新增 15 项组件测试，该阶段完整普通／ASan 回归为 169 项。实际 Node／RaftLog 通过阻塞兼容桥接到可控完成队列，检查确认与恢复边界；该阶段默认 Server 尚未接入后台磁盘线程。真实三进程追踪测试现要求传入测试 I/O 注入库（CTest 自动配置），以短时 5 ms 同步延迟验证区间交集；这不是性能测量。契约及修正前后记录见[有序持久化接口](docs/persistence-queue.md)。
-
-后续[后台磁盘执行](docs/background-persistence.md)新增 16 项 C++ 组件用例与一个含 13 项真实进程用例的 CTest 入口，完整普通／ASan 各 186 项通过；TSan 仅覆盖队列与后台执行组件 31 项。`cluster_async_persistence` 使用测试专用磁盘闸门，验证同步等待时的心跳、GET 应用条件、SIGKILL、失败退出与停机排空，并复用已有历史／CAS／快照断言。首次强杀用例的读取助手重设超时问题及修正后记录一并归档，不能删掉失败日志。
-
-三机执行方式对照新增七项计划／参数检查，`cloud_async_disk_plan` 纳入 CTest，最新 CI 普通／ASan 各 187 项通过；离线 `test_async_disk_evidence.py` 的五项语义负例另计。它们在副本中刷新哈希后篡改分位数、模式、CPU 计数、恢复值和到达日历，要求当前核验脚本继续拒绝。原始云端归档和首次 CI 指标假设失败不能覆盖，实验结果与边界见[对照报告](docs/cloud-async-disk-20261026.md)。
+当前只修改文档时，核对链接、命令参数、默认值、指标口径和历史迁移内容即可；已有 CI 仍执行完整检查。修改实现时按本页前述要求运行受影响验证与完整 CTest。求职描述与源码／证据对应关系见[简历与面试说明](docs/resume.md)。
 
 ## GitHub 检查
 

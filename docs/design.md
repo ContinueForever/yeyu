@@ -1,7 +1,12 @@
 # yewukv design notes
 
-Living document. Records decisions and trade-offs as milestones land, so the
-repository tells a real engineering story rather than just containing code.
+These notes describe the original standalone `yewukv-server` network, RPC,
+storage executor and WAL. Its per-mutation sync policy is separate from the
+three-node Raft runtime and its batching or optional background disk execution.
+For the current project scope, see [the project overview](../README.md).
+For clustered ordering and durability, see [the Raft contract](raft-contract.md),
+[ReadIndex](read-index.md), [journal](journal.md) and
+[background disk execution](background-persistence.md).
 
 ## M1 — network layer decisions
 
@@ -14,8 +19,8 @@ repository tells a real engineering story rather than just containing code.
 - **Buffer**: contiguous vector with prepend space and read/write indices,
   `readv` + 64KB stack scatter buffer to avoid premature growth on large reads.
 - **Text protocol first, Protobuf RPC next**: the line protocol exists only to
-  validate the IO path; the production wire is length-prefixed + protobuf
-  (Raft schema drafted in `proto/raft.proto`). The frame decoder must still
+  validate the IO path; the RPC wire is length-prefixed + protobuf.
+  The frame decoder must still
   handle TCP fragmentation, coalescing and invalid lengths.
 - **Engine interface from day one**: network code depends on `KVEngine`, never
   on a concrete map. WAL sync runs on the storage executor; keeping blocking
@@ -142,8 +147,12 @@ repository tells a real engineering story rather than just containing code.
   still time out after the record became durable, and no deduplication key
   makes retries safe.
 
-## Open questions (resolve when implementing)
+## Current scope and separate runtime
 
-- WAL fsync policy vs group commit batching (measure P99 on cloud SSDs).
-- The cluster now defaults to quorum-based ReadIndex without clock leases; see [the read contract](read-index.md).
-- Fixed shard table first; Region split + Epoch only after failover is solid.
+- The standalone WAL still syncs each mutation. The Raft runtime separately
+  batches up to 32 ready proposals; this is not a standalone WAL group commit.
+- The cluster defaults to quorum-based ReadIndex without clock leases; see
+  [the read contract](read-index.md).
+- The current delivery is fixed three voters and one Raft Group. Sharding,
+  Multi-Raft and dynamic membership remain outside the implemented scope;
+  see [the delivery status](roadmap.md).

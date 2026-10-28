@@ -63,7 +63,7 @@ v2 固定头为 56 字节，日志索引从 lastIncludedIndex + 1 开始。损�
 
 ## 观测与验证
 
-`status` 包含 snapshot_index、snapshot_bytes、live_snapshot_bytes、retained_entries、retained_log_bytes、state_bytes、snapshots_saved、snapshots_installed、busy_rejections、completed_commands 和 quorum_timeouts。新增 snapshot_policy、snapshot_pause_ns 和 snapshot_pause_max_ns；暂停耗时覆盖状态序列化、验证、检查点同步及发布，按进程累计。它不是请求延迟，也不能把累计最大值相减作为测量窗口的最大值。持久化计数分别区分 journal、检查点和同步次数。
+`status` 包含 snapshot_index、snapshot_bytes、live_snapshot_bytes、retained_entries、retained_log_bytes、state_bytes、snapshots_saved、snapshots_installed、busy_rejections、completed_commands 和 quorum_timeouts。新增 snapshot_policy、snapshot_pause_ns 和 snapshot_pause_max_ns；默认同步路径的暂停耗时覆盖状态序列化、验证、检查点同步及发布，按进程累计。后台编码不计入节点线程暂停；后台磁盘时发布暂停仅覆盖准备和接收任务，完整耗时另见[后台磁盘指标](background-persistence.md#追踪与指标解释)。它不是请求延迟，也不能把累计最大值相减作为测量窗口的最大值。持久化计数分别区分 journal、检查点和同步次数。
 
 ```bash
 ctest --test-dir build --output-on-failure -j2
@@ -74,6 +74,6 @@ python3 benchmarks/cluster_matrix.py --node build/bin/yewukv-node \
   --duration-seconds 10 --repeats 3 --output benchmarks/results/my-matrix
 ```
 
-历史证据见[本机验收报告](local-acceptance-20261021.md)与[journal / ReadIndex 优化](local-optimization-20261021.md)。默认普通变更已使用追加 journal，GET 已使用 ReadIndex；生成检查点仍同步重写快照及后缀。发布期间还会存在临时文件和新代次 journal；state_bytes 统计逻辑状态，不是目录占用或块设备物理写入量。分片、成员变更、跨机器、真实断电和生产验收仍不在本机结论内。
+历史证据见[本机验收报告](local-acceptance-20261021.md)与[journal / ReadIndex 优化](local-optimization-20261021.md)。默认普通变更已使用追加 journal，GET 已使用 ReadIndex；默认磁盘路径仍同步重写检查点，另有可选[后台磁盘](background-persistence.md)。发布期间还会存在临时文件和新代次 journal；state_bytes 统计逻辑状态，不是目录占用或块设备物理写入量。后续三机证据见[实验索引](README.md#实验与验收)；这些早期本机结论不覆盖跨机器、真实断电或生产容量，当前仍无分片或动态成员变更。
 
 设计依据：[Raft 原论文第 7 节](https://raft.github.io/raft.pdf)。故障历史方法参考 [etcd 鲁棒性测试](https://github.com/etcd-io/etcd/blob/main/tests/robustness/README.md)。
